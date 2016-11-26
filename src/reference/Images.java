@@ -1,5 +1,7 @@
 package reference;
 
+import sun.awt.image.BufferedImageDevice;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,10 +9,24 @@ import java.io.IOException;
 
 public class Images
 {
-	public static final BufferedImage LINK_RIGHT = loadSingleImage("/sprites/link/LinkRight.png");
-	public static final BufferedImage LINK_LEFT = loadSingleImage("/sprites/link/LinkLeft.png");
-	public static final BufferedImage LINK_UP = loadSingleImage("/sprites/link/LinkUp.png");
-	public static final BufferedImage LINK_DOWN = loadSingleImage("/sprites/link/LinkDown.png");
+	private static final int WIDTH = 16;
+	private static final int HEIGHT = 16;
+
+	private static final BufferedImage LINK_WALK = loadSingleImage("/sprites/link/LinkWalk.png");
+
+	public static final BufferedImage LINK_DOWN = LINK_WALK.getSubimage(0, 0, WIDTH, HEIGHT);
+	public static final BufferedImage LINK_DOWN_2 = LINK_WALK.getSubimage(WIDTH, 0, WIDTH, HEIGHT);
+
+	public static final BufferedImage LINK_UP = LINK_WALK.getSubimage(0, HEIGHT, WIDTH, HEIGHT);
+	public static final BufferedImage LINK_UP_2 = LINK_WALK.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT);
+
+	public static final BufferedImage LINK_RIGHT = LINK_WALK.getSubimage(0, HEIGHT * 2, WIDTH, HEIGHT);
+	public static final BufferedImage LINK_RIGHT_2 = LINK_WALK.getSubimage(WIDTH, HEIGHT * 2, WIDTH, HEIGHT);
+
+	public static final BufferedImage LINK_LEFT = LINK_WALK.getSubimage(0, HEIGHT * 3, WIDTH, HEIGHT);
+	public static final BufferedImage LINK_LEFT_2 = LINK_WALK.getSubimage(WIDTH, HEIGHT * 3, WIDTH, HEIGHT);
+
+
 
 	private static BufferedImage loadSingleImage(String string)
 	{
@@ -24,5 +40,11 @@ public class Images
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private static BufferedImage loadSubImage(String string, int x, int y, int width, int height)
+	{
+		BufferedImage sheet = loadSingleImage(string);
+		return sheet.getSubimage(x, y, width, height);
 	}
 }

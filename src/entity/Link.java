@@ -28,6 +28,12 @@ public class Link
 	private int down;
 
 	private int direction;
+	private String state;
+
+	private Animation walkUp;
+	private Animation walkRight;
+	private Animation walkDown;
+	private Animation walkLeft;
 
 	public Link()
 	{
@@ -40,53 +46,111 @@ public class Link
 		height = 16;
 
 		standingStillSprites = new BufferedImage[] {Images.LINK_UP, Images.LINK_RIGHT, Images.LINK_DOWN, Images.LINK_LEFT};
+		walkUp = new Animation(5, Images.LINK_UP, Images.LINK_UP_2);
+		walkRight = new Animation(5, Images.LINK_RIGHT, Images.LINK_RIGHT_2);
+		walkDown = new Animation(5, Images.LINK_DOWN, Images.LINK_DOWN_2);
+		walkLeft = new Animation(5, Images.LINK_LEFT, Images.LINK_LEFT_2);
+
+		state = "IDLE";
 	}
 
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(standingStillSprites[direction], x - width / 2, y - height / 2, width, height, null);
+		switch(state)
+		{
+		case "IDLE":
+			g2d.drawImage(standingStillSprites[direction], x - width / 2, y - height / 2, width, height, null);
+			break;
+		case "UP":
+			walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
+			break;
+		case "DOWN":
+			walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
+			break;
+		case "RIGHT":
+			walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
+			break;
+		case "LEFT":
+			walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+			break;
+		}
 	}
 
 	public void update()
 	{
-		/*
-		 * Determining direction moved by setting velX to it. However, only basic directions are allowed,
-		 * so the direction is only set if the other velocity is 0
-		 */
-		if(Math.abs(velY) == 0) velX = (right - left) * moveSpeed;
-		if(Math.abs(velX) == 0) velY = (down - up) * moveSpeed;
+		switch(state)
+		{
+		case "IDLE":
+			velX = 0;
+			velY = 0;
+
+			if(up == 1) state = "UP";
+			if(down == 1) state = "DOWN";
+			if(left == 1) state = "LEFT";
+			if(right == 1) state = "RIGHT";
+			if(up + down + left + right == 0) state = "IDLE";
+
+			break;
+		case "UP":
+			velX = 0;
+			velY = -moveSpeed;
+			direction = 0;
+
+			walkUp.runAnimation();
+
+			if(up == 1) state = "UP";
+			if(down == 1) state = "DOWN";
+			if(left == 1) state = "LEFT";
+			if(right == 1) state = "RIGHT";
+			if(up + down + left + right == 0) state = "IDLE";
+
+			break;
+		case "DOWN":
+			velX = 0;
+			velY = moveSpeed;
+			direction = 2;
+
+			walkDown.runAnimation();
+
+			if(up == 1) state = "UP";
+			if(down == 1) state = "DOWN";
+			if(left == 1) state = "LEFT";
+			if(right == 1) state = "RIGHT";
+			if(up + down + left + right == 0) state = "IDLE";
+
+			break;
+		case "RIGHT":
+			velX = moveSpeed;
+			velY = 0;
+			direction = 1;
+
+			walkRight.runAnimation();
+
+			if(up == 1) state = "UP";
+			if(down == 1) state = "DOWN";
+			if(left == 1) state = "LEFT";
+			if(right == 1) state = "RIGHT";
+			if(up + down + left + right == 0) state = "IDLE";
+
+			break;
+		case "LEFT":
+			velX = -moveSpeed;
+			velY = 0;
+			direction = 3;
+
+			walkLeft.runAnimation();
+
+			if(up == 1) state = "UP";
+			if(down == 1) state = "DOWN";
+			if(left == 1) state = "LEFT";
+			if(right == 1) state = "RIGHT";
+			if(up + down + left + right == 0) state = "IDLE";
+
+			break;
+		}
 
 		x += velX;
 		y += velY;
-
-		//Set direction for drawing the sprites
-		if(velX > 0) direction = 1;
-		if(velX < 0) direction = 3;
-
-		if(velY > 0) direction = 2;
-		if(velY < 0) direction = 0;
-
-		//Constrain x and y coordinates
-		if(x - width / 2 < 0) x = width / 2;
-		if(x + width / 2 > GamePanel.WIDTH) x = GamePanel.WIDTH - width / 2;
-
-		if(y - height / 2 < 0) y = height / 2;
-		if(y + height / 2 > GamePanel.HEIGHT) y = GamePanel.HEIGHT - height / 2;
-	}
-
-	public void setXVelocity(int newValue)
-	{
-		velX = newValue;
-	}
-
-	public void setYVelocity(int newValue)
-	{
-		velY = newValue;
-	}
-
-	public int getMoveSpeed()
-	{
-		return moveSpeed;
 	}
 
 	public void keyPressed(int key)

@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class OverWorldState extends State
 {
-	Link link;
+	private Link link;
 
 	public OverWorldState(StateManager stateManager)
 	{
