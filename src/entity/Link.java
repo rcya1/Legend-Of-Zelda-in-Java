@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+//TODO Fix flashing when program starts. Possibly because of starting values of animation?
 public class Link
 {
 	private int x;
@@ -72,6 +73,10 @@ public class Link
 			break;
 		case "LEFT":
 			walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+			break;
+		default:
+			g2d.setColor(Color.RED);
+			g2d.drawRect(x - width / 2, y - height / 2, width, height);
 			break;
 		}
 	}
@@ -146,6 +151,9 @@ public class Link
 			if(right == 1) state = "RIGHT";
 			if(up + down + left + right == 0) state = "IDLE";
 
+			break;
+		default:
+			System.out.println(state);
 			break;
 		}
 
