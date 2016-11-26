@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
 	public static final int WIDTH = 256;
-	public static final int HEIGHT = 176;
+	public static final int HEIGHT = 240;
 	private static final int SCALE = 2;
 
 	private Thread updateThread;
@@ -74,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		stateManager.keyPressed(e.getKeyCode());
+		stateManager.keyReleased(e.getKeyCode());
 	}
 
 	@Override

@@ -1,14 +1,17 @@
 package state;
 
 import state.states.MenuState;
+import state.states.OverWorldState;
 
 import java.awt.*;
 
 public class StateManager
 {
-	public static final int NUMBER_OF_STATES = 1;
+	public static final int NUMBER_OF_STATES = 3;
 
 	public static final int MENU_STATE = 0;
+	public static final int OVERWORLD_STATE = 1;
+	public static final int INVENTORY_STATE = 2;
 
 	private State[] states;
 	private int currentState;
@@ -16,7 +19,7 @@ public class StateManager
 	public StateManager()
 	{
 		states = new State[NUMBER_OF_STATES];
-		currentState = MENU_STATE;
+		currentState = OVERWORLD_STATE;
 		loadState(currentState);
 	}
 
@@ -38,6 +41,7 @@ public class StateManager
 	private void loadState(int state)
 	{
 		if(state == MENU_STATE) states[state] = new MenuState(this);
+		if(state == OVERWORLD_STATE) states[state] = new OverWorldState(this);
 	}
 
 	public void setState(int state)
@@ -47,10 +51,12 @@ public class StateManager
 		loadState(currentState);
 		states[currentState].init();
 	}
+
 	private void unloadState(int state)
 	{
 		states[state] = null;
 	}
+
 	public void update()
 	{
 		if(states[currentState] != null) states[currentState].update();
