@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 public class Animation
 {
 	private int speed;
-	private int frames; //Number of frames
+	private int frames;
 
-	private int index; //Current index of array
-	private int count; //
+	private int index;
+	private int count;
 
 	private BufferedImage[] images;
 	private BufferedImage currentImage;
