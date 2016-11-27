@@ -24,11 +24,13 @@ public class Animation
 
 		index = 0;
 		count = 0;
+
+		nextFrame();
 	}
 
 	public void runAnimation()
 	{
-		index ++;
+		index++;
 		if(index > speed)
 		{
 			index = 0;
@@ -45,6 +47,7 @@ public class Animation
 				currentImage = images[i];
 			}
 		}
+
 		count++;
 		if(count > frames)
 		{
@@ -54,7 +57,6 @@ public class Animation
 
 	public void draw(Graphics2D g2d, int x, int y, int width, int height)
 	{
-		//currentImage = images[count];
 		g2d.drawImage(currentImage, x, y, width, height,null);
 	}
 }

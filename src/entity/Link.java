@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-//TODO Fix flashing when program starts. Possibly because of starting values of animation?
+//TODO Add sword sprites
 public class Link
 {
 	private int x;
@@ -23,13 +23,16 @@ public class Link
 
 	private BufferedImage[] standingStillSprites;
 
-	private int left;
-	private int up;
-	private int right;
-	private int down;
+	private boolean left;
+	private boolean up;
+	private boolean right;
+	private boolean down;
+	private boolean attack;
 
 	private int direction;
 	private String state;
+
+	private int timer;
 
 	private Animation walkUp;
 	private Animation walkRight;
@@ -45,6 +48,8 @@ public class Link
 
 		width = 16;
 		height = 16;
+
+		timer = 0;
 
 		standingStillSprites = new BufferedImage[] {Images.LINK_UP, Images.LINK_RIGHT, Images.LINK_DOWN, Images.LINK_LEFT};
 		walkUp = new Animation(5, Images.LINK_UP, Images.LINK_UP_2);
@@ -89,11 +94,12 @@ public class Link
 			velX = 0;
 			velY = 0;
 
-			if(up == 1) state = "UP";
-			if(down == 1) state = "DOWN";
-			if(left == 1) state = "LEFT";
-			if(right == 1) state = "RIGHT";
-			if(up + down + left + right == 0) state = "IDLE";
+			if(up) state = "UP";
+			if(down) state = "DOWN";
+			if(left) state = "LEFT";
+			if(right) state = "RIGHT";
+			if(attack) state = "ATTACK_SWORD_START";
+			if(!(up || down || left || right || attack)) state = "IDLE";
 
 			break;
 		case "UP":
@@ -103,11 +109,12 @@ public class Link
 
 			walkUp.runAnimation();
 
-			if(up == 1) state = "UP";
-			if(down == 1) state = "DOWN";
-			if(left == 1) state = "LEFT";
-			if(right == 1) state = "RIGHT";
-			if(up + down + left + right == 0) state = "IDLE";
+			if(up) state = "UP";
+			if(down) state = "DOWN";
+			if(left) state = "LEFT";
+			if(right) state = "RIGHT";
+			if(attack) state = "ATTACK_SWORD_START";
+			if(!(up || down || left || right || attack)) state = "IDLE";
 
 			break;
 		case "DOWN":
@@ -117,11 +124,12 @@ public class Link
 
 			walkDown.runAnimation();
 
-			if(up == 1) state = "UP";
-			if(down == 1) state = "DOWN";
-			if(left == 1) state = "LEFT";
-			if(right == 1) state = "RIGHT";
-			if(up + down + left + right == 0) state = "IDLE";
+			if(up) state = "UP";
+			if(down) state = "DOWN";
+			if(left) state = "LEFT";
+			if(right) state = "RIGHT";
+			if(attack) state = "ATTACK_SWORD_START";
+			if(!(up || down || left || right || attack)) state = "IDLE";
 
 			break;
 		case "RIGHT":
@@ -131,11 +139,12 @@ public class Link
 
 			walkRight.runAnimation();
 
-			if(up == 1) state = "UP";
-			if(down == 1) state = "DOWN";
-			if(left == 1) state = "LEFT";
-			if(right == 1) state = "RIGHT";
-			if(up + down + left + right == 0) state = "IDLE";
+			if(up) state = "UP";
+			if(down) state = "DOWN";
+			if(left) state = "LEFT";
+			if(right) state = "RIGHT";
+			if(attack) state = "ATTACK_SWORD_START";
+			if(!(up || down || left || right || attack)) state = "IDLE";
 
 			break;
 		case "LEFT":
@@ -145,11 +154,25 @@ public class Link
 
 			walkLeft.runAnimation();
 
-			if(up == 1) state = "UP";
-			if(down == 1) state = "DOWN";
-			if(left == 1) state = "LEFT";
-			if(right == 1) state = "RIGHT";
-			if(up + down + left + right == 0) state = "IDLE";
+			if(up) state = "UP";
+			if(down) state = "DOWN";
+			if(left) state = "LEFT";
+			if(right) state = "RIGHT";
+			if(attack) state = "ATTACK_SWORD_START";
+			if(!(up || down || left || right || attack)) state = "IDLE";
+
+			break;
+		case "ATTACK_SWORD_START":
+			velX = 0;
+			velY = 0;
+
+			timer = 15;
+
+			state = "ATTACK_SWORD";
+			break;
+		case "ATTACK_SWORD":
+			if(timer > 0) timer--;
+			else state = "IDLE";
 
 			break;
 		default:
@@ -165,19 +188,23 @@ public class Link
 	{
 		if(key == KeyEvent.VK_D)
 		{
-			right = 1;
+			right = true;
 		}
 		if(key == KeyEvent.VK_A)
 		{
-			left = 1;
+			left = true;
 		}
 		if(key == KeyEvent.VK_W)
 		{
-			up = 1;
+			up = true;
 		}
 		if(key == KeyEvent.VK_S)
 		{
-			down = 1;
+			down = true;
+		}
+		if(key == KeyEvent.VK_SPACE)
+		{
+			attack = true;
 		}
 	}
 
@@ -185,19 +212,23 @@ public class Link
 	{
 		if(key == KeyEvent.VK_D)
 		{
-			right = 0;
+			right = false;
 		}
 		if(key == KeyEvent.VK_A)
 		{
-			left = 0;
+			left = false;
 		}
 		if(key == KeyEvent.VK_W)
 		{
-			up = 0;
+			up = false;
 		}
 		if(key == KeyEvent.VK_S)
 		{
-			down = 0;
+			down = false;
+		}
+		if(key == KeyEvent.VK_SPACE)
+		{
+			attack = false;
 		}
 	}
 }
