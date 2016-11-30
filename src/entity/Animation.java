@@ -25,6 +25,8 @@ public class Animation
 		index = 0;
 		count = 0;
 
+		currentImage = images[0];
+
 		nextFrame();
 	}
 
