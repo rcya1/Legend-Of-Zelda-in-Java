@@ -1,10 +1,10 @@
 package map;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class TileMap
@@ -14,8 +14,6 @@ public class TileMap
 
 	private int widthOfTile;
 	private int heightOfTile;
-
-	private ArrayList<BufferedImage> sprites;
 
 	private Tile[][] tiles;
 
@@ -27,38 +25,8 @@ public class TileMap
 		this.widthOfTile = 16;
 		this.heightOfTile = 16;
 
-		sprites = new ArrayList<>();
 		tiles = new Tile[rows][columns];
 	}
-
-	/*public void loadSprites(String filePath)
-	{
-		BufferedImage spritesImage = null;
-
-		try
-		{
-			spritesImage = ImageIO.read(getClass().getResourceAsStream(filePath));
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-
-		if(sprites != null)
-		{
-			int spriteColumns = spritesImage.getWidth() / widthOfTile;
-			int spriteRows = spritesImage.getHeight() / heightOfTile;
-
-			for(int i = 0; i < spriteColumns; i++)
-			{
-				for(int j = 0; j < spriteRows; j++)
-				{
-					sprites.add(spritesImage.getSubimage(widthOfTile * i, heightOfTile * j,
-							widthOfTile, heightOfTile));
-				}
-			}
-		}
-	}*/
 
 	public void loadTiles(String filePath)
 	{

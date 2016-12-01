@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 
 public enum Tile
 {
+	EMPTY,
 	ROCKS_UP_LEFT,
 	ROCKS_UP,
 	ROCKS_UP_RIGHT,
 	ROCKS_DOWN_LEFT,
 	ROCKS_DOWN,
-	ROCKS_DOWN_RIGHT,
-	EMPTY;
+	ROCKS_DOWN_RIGHT;
 
 	public static Tile parseID(int id)
 	{

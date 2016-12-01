@@ -35,8 +35,6 @@ public class OverWorldState extends State
 		link.draw(g2d);
 	}
 
-
-
 	public void keyPressed(int key)
 	{
 		link.setKeyVariables(key, true);

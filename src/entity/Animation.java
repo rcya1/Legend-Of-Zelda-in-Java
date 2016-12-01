@@ -3,7 +3,7 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Animation
+class Animation
 {
 	private int speed;
 	private int frameCount;
@@ -14,7 +14,7 @@ public class Animation
 	private BufferedImage[] images;
 	private BufferedImage currentImage;
 
-	public Animation(int speed, BufferedImage... frames)
+	Animation(int speed, BufferedImage... frames)
 	{
 		this.speed = speed;
 		this.images = frames;
@@ -27,7 +27,7 @@ public class Animation
 		nextFrame();
 	}
 
-	public void update()
+	void update()
 	{
 		timer++;
 		if(timer > speed)
@@ -44,7 +44,7 @@ public class Animation
 		if(index >= frameCount) index = 0;
 	}
 
-	public void draw(Graphics2D g2d, int x, int y, int width, int height)
+	void draw(Graphics2D g2d, int x, int y, int width, int height)
 	{
 		g2d.drawImage(currentImage, x, y, width, height,null);
 	}
