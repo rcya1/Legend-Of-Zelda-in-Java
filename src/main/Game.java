@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class Game
 {
+	//Credit - Zephiel87 for tileset
+
 	public static void main(String[] args)
 	{
 		new Game().start();

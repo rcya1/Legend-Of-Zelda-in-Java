@@ -1,60 +1,47 @@
 package entity;
 
-import reference.Images;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Animation
 {
 	private int speed;
-	private int frames;
+	private int frameCount;
 
+	private int timer;
 	private int index;
-	private int count;
 
 	private BufferedImage[] images;
 	private BufferedImage currentImage;
 
-	public Animation(int speed, BufferedImage... args)
+	public Animation(int speed, BufferedImage... frames)
 	{
 		this.speed = speed;
-		images = args;
-		frames = args.length;
+		this.images = frames;
+		frameCount = frames.length;
 
+		timer = 0;
 		index = 0;
-		count = 0;
 
-		currentImage = images[0];
-
+		currentImage = this.images[0];
 		nextFrame();
 	}
 
-	public void runAnimation()
+	public void update()
 	{
-		index++;
-		if(index > speed)
+		timer++;
+		if(timer > speed)
 		{
-			index = 0;
+			timer = 0;
 			nextFrame();
 		}
 	}
 
 	private void nextFrame()
 	{
-		for(int i = 0; i < frames; i++)
-		{
-			if(count == i)
-			{
-				currentImage = images[i];
-			}
-		}
-
-		count++;
-		if(count > frames)
-		{
-			count = 0;
-		}
+		currentImage = images[index];
+		index++;
+		if(index >= frameCount) index = 0;
 	}
 
 	public void draw(Graphics2D g2d, int x, int y, int width, int height)

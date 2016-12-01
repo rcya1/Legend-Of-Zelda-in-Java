@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-//TODO Add sword sprites
 public class Link
 {
 	private int x;
@@ -78,7 +77,7 @@ public class Link
 			velY = -moveSpeed;
 			direction = 0;
 
-			walkUp.runAnimation();
+			walkUp.update();
 
 			checkFreeMovement();
 			break;
@@ -87,7 +86,7 @@ public class Link
 			velY = moveSpeed;
 			direction = 2;
 
-			walkDown.runAnimation();
+			walkDown.update();
 
 			checkFreeMovement();
 			break;
@@ -96,7 +95,7 @@ public class Link
 			velY = 0;
 			direction = 1;
 
-			walkRight.runAnimation();
+			walkRight.update();
 
 			checkFreeMovement();
 			break;
@@ -105,7 +104,7 @@ public class Link
 			velY = 0;
 			direction = 3;
 
-			walkLeft.runAnimation();
+			walkLeft.update();
 
 			checkFreeMovement();
 			break;
@@ -240,51 +239,27 @@ public class Link
 		if(!(up || down || left || right || attack)) state = "IDLE";
 	}
 
-	public void keyPressed(int key)
+	public void setKeyVariables(int key, boolean bool)
 	{
 		if(key == KeyEvent.VK_D)
 		{
-			right = true;
+			right = bool;
 		}
 		if(key == KeyEvent.VK_A)
 		{
-			left = true;
+			left = bool;
 		}
 		if(key == KeyEvent.VK_W)
 		{
-			up = true;
+			up = bool;
 		}
 		if(key == KeyEvent.VK_S)
 		{
-			down = true;
+			down = bool;
 		}
 		if(key == KeyEvent.VK_SPACE)
 		{
-			attack = true;
-		}
-	}
-
-	public void keyReleased(int key)
-	{
-		if(key == KeyEvent.VK_D)
-		{
-			right = false;
-		}
-		if(key == KeyEvent.VK_A)
-		{
-			left = false;
-		}
-		if(key == KeyEvent.VK_W)
-		{
-			up = false;
-		}
-		if(key == KeyEvent.VK_S)
-		{
-			down = false;
-		}
-		if(key == KeyEvent.VK_SPACE)
-		{
-			attack = false;
+			attack = bool;
 		}
 	}
 }

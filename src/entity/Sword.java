@@ -5,7 +5,7 @@ import reference.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class Sword
+class Sword
 {
 	private int x;
 	private int y;

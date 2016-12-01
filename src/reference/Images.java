@@ -53,4 +53,19 @@ public class Images
 		BufferedImage sheet = loadSingleImage(string);
 		return sheet.getSubimage(x, y, width, height);
 	}
+
+	public static class Blocks
+	{
+		private static final BufferedImage TILE_ROCKS = loadSingleImage("/sprites/blocks/RockTiles.png");
+
+		public static final BufferedImage EMPTY = loadSingleImage("/sprites/blocks/Empty.png");
+
+		public static final BufferedImage ROCKS_UP_LEFT = TILE_ROCKS.getSubimage(0, 0, WIDTH, HEIGHT);
+		public static final BufferedImage ROCKS_UP = TILE_ROCKS.getSubimage(WIDTH, 0, WIDTH, HEIGHT);
+		public static final BufferedImage ROCKS_UP_RIGHT = TILE_ROCKS.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT);
+		public static final BufferedImage ROCKS_DOWN_LEFT = TILE_ROCKS.getSubimage(0, HEIGHT, WIDTH, HEIGHT);
+		public static final BufferedImage ROCKS_DOWN = TILE_ROCKS.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT);
+		public static final BufferedImage ROCKS_DOWN_RIGHT = TILE_ROCKS.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT);
+
+	}
 }
