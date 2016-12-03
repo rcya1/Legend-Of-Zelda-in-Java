@@ -4,7 +4,8 @@ import javax.swing.*;
 
 class Game
 {
-	//Credit - Zephiel87 for tileset
+	//Credit - Zephiel87 for Overworld Tileset
+	//Credit - Deathbringer for Enemies sprite
 
 	public static void main(String[] args)
 	{

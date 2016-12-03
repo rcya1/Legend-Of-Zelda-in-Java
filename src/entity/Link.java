@@ -13,13 +13,13 @@ public class Link
 {
 	private TileMap tileMap;
 
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 
-	private int velX;
-	private int velY;
+	private double velX;
+	private double velY;
 
-	private int moveSpeed;
+	private double moveSpeed;
 
 	private int width;
 	private int height;
@@ -50,7 +50,7 @@ public class Link
 		x = GamePanel.WIDTH / 2;
 		y = GamePanel.HEIGHT / 2;
 
-		moveSpeed = 2;
+		moveSpeed = 1.25;
 
 		width = 16;
 		height = 16;
@@ -125,8 +125,8 @@ public class Link
 		case "ATTACK_SWORD":
 			if(timer == 9)
 			{
-				int drawX = x - width / 2;
-				int drawY = y - height / 2;
+				int drawX = (int) x - width / 2;
+				int drawY = (int) y - height / 2;
 				switch(direction)
 				{
 				case 0:
@@ -182,7 +182,7 @@ public class Link
 
 		for(int i = 0; i < Math.abs(velX); i++)
 		{
-			int temporaryX = x + MathHelper.sign(velX);
+			double temporaryX = x + MathHelper.sign(velX);
 			if(!MathHelper.checkCollisionWithTileMap(temporaryX, y, tileMap, width - 3, height - 3))
 			{
 				x = temporaryX;
@@ -195,7 +195,7 @@ public class Link
 
 		for(int i = 0; i < Math.abs(velY); i++)
 		{
-			int temporaryY = y + MathHelper.sign(velY);
+			double temporaryY = y + MathHelper.sign(velY);
 			if(!MathHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - 3, height - 3))
 			{
 				y = temporaryY;
@@ -211,48 +211,51 @@ public class Link
 	{
 		if(sword != null) sword.draw(g2d);
 
+		int drawX = (int) x - width / 2;
+		int drawY = (int) y - height / 2;
+
 		switch(state)
 		{
 		case "IDLE":
 			switch(direction)
 			{
 			case 0:
-				walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkUp.draw(g2d, drawX, drawY, width, height);
 				break;
 			case 1:
-				walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkRight.draw(g2d, drawX, drawY, width, height);
 				break;
 			case 2:
-				walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkDown.draw(g2d, drawX, drawY, width, height);
 				break;
 			case 3:
-				walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkLeft.draw(g2d, drawX, drawY, width, height);
 				break;
 			default:
 				break;
 			}
 			break;
 		case "UP":
-			walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkUp.draw(g2d, drawX, drawY, width, height);
 			break;
 		case "DOWN":
-			walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkDown.draw(g2d, drawX, drawY, width, height);
 			break;
 		case "RIGHT":
-			walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkRight.draw(g2d, drawX, drawY, width, height);
 			break;
 		case "LEFT":
-			walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkLeft.draw(g2d, drawX, drawY, width, height);
 			break;
 		case "ATTACK_SWORD_START":
-			g2d.drawImage(swordAttack[direction], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction], drawX, drawY, width, height, null);
 			break;
 		case "ATTACK_SWORD":
-			g2d.drawImage(swordAttack[direction], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction], drawX, drawY, width, height, null);
 			break;
 		default:
 			g2d.setColor(Color.RED);
-			g2d.drawRect(x - width / 2, y - height / 2, width, height);
+			g2d.drawRect(drawX, drawY, width, height);
 			break;
 		}
 	}
