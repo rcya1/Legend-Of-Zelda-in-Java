@@ -77,12 +77,6 @@ public class Images
 		return null;
 	}
 
-	private static BufferedImage loadSubImage(String string, int x, int y, int width, int height)
-	{
-		BufferedImage sheet = loadSingleImage(string);
-		return sheet != null ? sheet.getSubimage(x, y, width, height) : null;
-	}
-
 	public static class Blocks
 	{
 		private static final BufferedImage TILE_ROCKS = loadSingleImage("/sprites/blocks/RockTiles.png");

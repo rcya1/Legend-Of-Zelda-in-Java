@@ -2,7 +2,7 @@ package main;
 
 import javax.swing.*;
 
-public class Game
+class Game
 {
 	//Credit - Zephiel87 for tileset
 

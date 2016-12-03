@@ -12,7 +12,7 @@ public class MathHelper
 		else return 0;
 	}
 
-	public static boolean checkCollisionWithTileMap(int x, int y, TileMap tileMap, int playerWidth, int playerHeight, int direction)
+	public static boolean checkCollisionWithTileMap(int x, int y, TileMap tileMap, int playerWidth, int playerHeight)
 	{
 		boolean collisionFlag = false;
 
@@ -24,7 +24,7 @@ public class MathHelper
 		if(leftColumn < 0) leftColumn = 0;
 		if(rightColumn > tileMap.getColumns() - 1) rightColumn = tileMap.getColumns() - 1;
 		if(topRow < 0) topRow = 0;
-		if(bottomRow > tileMap.getColumns() - 1) bottomRow = tileMap.getColumns() - 1;
+		if(bottomRow > tileMap.getRows() - 1) bottomRow = tileMap.getRows() - 1;
 
 		for(int i = leftColumn; i <= rightColumn; i++)
 		{

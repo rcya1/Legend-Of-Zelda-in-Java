@@ -22,8 +22,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private StateManager stateManager;
 
-	private int FPS = 60;
-	private long targetTime = 1000 / FPS;
+	private final int FPS = 60;
+	private final long targetTime = 1000 / FPS;
 
 	GamePanel()
 	{
