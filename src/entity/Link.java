@@ -183,7 +183,7 @@ public class Link
 		for(int i = 0; i < Math.abs(velX); i++)
 		{
 			int temporaryX = x + MathHelper.sign(velX);
-			if(!MathHelper.checkCollisionWithTileMap(temporaryX, y, tileMap, width - 3, height - 3))
+			if(!MathHelper.checkCollisionWithTileMap(temporaryX, y, tileMap, width - 6, height - 6))
 			{
 				x = temporaryX;
 			}
@@ -196,7 +196,7 @@ public class Link
 		for(int i = 0; i < Math.abs(velY); i++)
 		{
 			int temporaryY = y + MathHelper.sign(velY);
-			if(!MathHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - 3, height - 3))
+			if(!MathHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - 6, height - 6))
 			{
 				y = temporaryY;
 			}

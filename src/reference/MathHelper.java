@@ -33,7 +33,6 @@ public class MathHelper
 				Tile tile = tileMap.getTile(i, j);
 				if(!tile.isPassible())
 				{
-					System.out.println(i + " : " + j);
 					collisionFlag = true;
 				}
 			}
