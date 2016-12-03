@@ -1,7 +1,9 @@
 package entity;
 
 import main.GamePanel;
+import map.TileMap;
 import reference.Images;
+import reference.MathHelper;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -9,6 +11,8 @@ import java.awt.image.BufferedImage;
 
 public class Link
 {
+	private TileMap tileMap;
+
 	private int x;
 	private int y;
 
@@ -39,8 +43,10 @@ public class Link
 
 	private BufferedImage[] swordAttack;
 
-	public Link()
+	public Link(TileMap tileMap)
 	{
+		this.tileMap = tileMap;
+
 		x = GamePanel.WIDTH / 2;
 		y = GamePanel.HEIGHT / 2;
 
@@ -174,8 +180,31 @@ public class Link
 
 		if(sword != null) sword.update();
 
-		x += velX;
-		y += velY;
+		for(int i = 0; i < Math.abs(velX); i++)
+		{
+			int temporaryX = x + MathHelper.sign(velX);
+			if(!MathHelper.checkCollisionWithTileMap(temporaryX, y, tileMap, width - 3, height - 3, direction))
+			{
+				x = temporaryX;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		for(int i = 0; i < Math.abs(velY); i++)
+		{
+			int temporaryY = y + MathHelper.sign(velY);
+			if(!MathHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - 3, height - 3, direction))
+			{
+				y = temporaryY;
+			}
+			else
+			{
+				break;
+			}
+		}
 	}
 
 	public void draw(Graphics2D g2d)

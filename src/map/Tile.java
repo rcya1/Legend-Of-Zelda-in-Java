@@ -57,4 +57,27 @@ public enum Tile
 		}
 		return null;
 	}
+
+	public boolean isPassible()
+	{
+		switch(this)
+		{
+		case EMPTY:
+			return true;
+		case ROCKS_UP_LEFT:
+			return false;
+		case ROCKS_UP:
+			return false;
+		case ROCKS_UP_RIGHT:
+			return false;
+		case ROCKS_DOWN_LEFT:
+			return false;
+		case ROCKS_DOWN:
+			return false;
+		case ROCKS_DOWN_RIGHT:
+			return false;
+		}
+
+		return true;
+	}
 }

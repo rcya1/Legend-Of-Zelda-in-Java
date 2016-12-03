@@ -22,9 +22,9 @@ public class OverWorldState extends State
 
 	public void init()
 	{
-		tileMap = new TileMap(4, 4);
+		tileMap = new TileMap(12, 12);
 		tileMap.loadTiles("/tileMaps/test.txt");
-		link = new Link();
+		link = new Link(tileMap);
 	}
 
 	public void draw(Graphics2D g2d)

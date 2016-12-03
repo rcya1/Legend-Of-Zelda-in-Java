@@ -27,14 +27,14 @@ public class StateManager
 		if(states[currentState] != null) states[currentState].draw(g2d);
 	}
 
-	public void keyPressed(int k)
+	public void keyPressed(int key)
 	{
-		states[currentState].keyPressed(k);
+		states[currentState].keyPressed(key);
 	}
 
-	public void keyReleased(int k)
+	public void keyReleased(int key)
 	{
-		states[currentState].keyReleased(k);
+		states[currentState].keyReleased(key);
 	}
 
 	private void loadState(int state)

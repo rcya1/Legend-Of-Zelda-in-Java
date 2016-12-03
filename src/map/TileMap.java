@@ -1,10 +1,8 @@
 package map;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.StringTokenizer;
 
 public class TileMap
@@ -30,11 +28,10 @@ public class TileMap
 
 	public void loadTiles(String filePath)
 	{
-		InputStream inputStream = getClass().getResourceAsStream(filePath);
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
 		try
 		{
+			InputStream inputStream = getClass().getResourceAsStream(filePath);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.defaultCharset()));
 			String line;
 			int lineCount = 0;
 			while((line = bufferedReader.readLine()) != null)
@@ -43,7 +40,7 @@ public class TileMap
 				int characterCount = 0;
 				while(tokenizer.hasMoreElements())
 				{
-					tiles[lineCount][characterCount] = Tile.parseID(Integer.parseInt(tokenizer.nextToken()));
+					tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(tokenizer.nextToken()));
 					characterCount++;
 				}
 				lineCount++;
@@ -64,5 +61,29 @@ public class TileMap
 				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i, heightOfTile * k, widthOfTile, heightOfTile, null);
 			}
 		}
+	}
+
+	public Tile getTile(int column, int row)
+	{
+		return tiles[column][row];
+	}
+
+	public int getWidthOfTile()
+	{
+		return widthOfTile;
+	}
+
+	public int getHeightOfTile()
+	{
+		return heightOfTile;
+	}
+
+	public int getColumns()
+	{
+		return columns;
+	}
+	public int getRows()
+	{
+		return rows;
 	}
 }
