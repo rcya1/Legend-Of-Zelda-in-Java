@@ -79,28 +79,50 @@ public class Images
 
 	public static class Blocks
 	{
-		private static final BufferedImage TILE_ROCKS = loadSingleImage("/sprites/blocks/RockTiles.png");
-
 		public static final BufferedImage EMPTY = loadSingleImage("/sprites/blocks/Empty.png");
 
-		public static final BufferedImage ROCKS_UP_LEFT = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(0, 0, WIDTH, HEIGHT) :
+		private static final BufferedImage TILE_ROCKS_GREEN = loadSingleImage("/sprites/blocks/RockGreenTiles.png");
+		private static final BufferedImage TILE_ROCKS_ORANGE = loadSingleImage("/sprites/blocks/RockOrangeTiles.png");
+
+		public static final BufferedImage ROCKS_GREEN_UP_LEFT = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(0, 0, WIDTH, HEIGHT) :
 				null;
-		public static final BufferedImage ROCKS_UP = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+		public static final BufferedImage ROCKS_GREEN_UP = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
 				null;
-		public static final BufferedImage ROCKS_UP_RIGHT = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
+		public static final BufferedImage ROCKS_GREEN_UP_RIGHT = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
 				null;
-		public static final BufferedImage ROCKS_DOWN_LEFT = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
+		public static final BufferedImage ROCKS_GREEN_DOWN_LEFT = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
 				null;
-		public static final BufferedImage ROCKS_DOWN = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
+		public static final BufferedImage ROCKS_GREEN_DOWN = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
 				null;
-		public static final BufferedImage ROCKS_DOWN_RIGHT = TILE_ROCKS != null ?
-				TILE_ROCKS.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT) :
+		public static final BufferedImage ROCKS_GREEN_DOWN_RIGHT = TILE_ROCKS_GREEN != null ?
+				TILE_ROCKS_GREEN.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT) :
 				null;
 
+		public static final BufferedImage ROCKS_ORANGE_UP_LEFT = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(0, 0, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage ROCKS_ORANGE_UP = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage ROCKS_ORANGE_UP_RIGHT = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage ROCKS_ORANGE_DOWN_LEFT = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage ROCKS_ORANGE_DOWN = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage ROCKS_ORANGE_DOWN_RIGHT = TILE_ROCKS_ORANGE != null ?
+				TILE_ROCKS_ORANGE.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT) :
+				null;
+
+		public static final BufferedImage ROCKS_GREEN_SINGLE = loadSingleImage("/sprites/blocks/RockGreenSingle.png");
+		public static final BufferedImage ROCKS_ORANGE_SINGLE = loadSingleImage("/sprites/blocks/RockOrangeSingle.png");
 	}
 }
