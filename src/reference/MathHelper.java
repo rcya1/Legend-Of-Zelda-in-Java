@@ -1,8 +1,6 @@
 package reference;
 
 import entity.Direction;
-import map.Tile;
-import map.TileMap;
 
 public class MathHelper
 {
@@ -18,13 +16,13 @@ public class MathHelper
 		switch(direction)
 		{
 		case UP:
-			return new int[] {x, y - 12};
+			return new int[] {x, y - offset};
 		case RIGHT:
-			return new int[] {x + 12, y};
+			return new int[] {x + offset, y};
 		case DOWN:
-			return new int[] {x, y + 12};
+			return new int[] {x, y + offset};
 		case LEFT:
-			return new int[] {x - 12, y};
+			return new int[] {x - offset, y};
 		default:
 			return new int[] {x, y};
 		}
