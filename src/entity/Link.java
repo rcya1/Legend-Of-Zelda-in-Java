@@ -17,10 +17,13 @@ public class Link
 	private int x;
 	private int y;
 
-	private int velX;
-	private int velY;
+	private double subPixelXVelocity;
+	private double subPixelYVelocity;
 
-	private int moveSpeed;
+	private double velX;
+	private double velY;
+
+	private double moveSpeed;
 
 	private int width;
 	private int height;
@@ -32,10 +35,11 @@ public class Link
 	private boolean attack;
 
 	private Direction direction;
+
 	private String state;
 
 	private Sword sword;
-	private int timer;
+	private int swordTimer;
 
 	private Animation walkUp;
 	private Animation walkRight;
@@ -51,20 +55,20 @@ public class Link
 		x = GamePanel.WIDTH / 2;
 		y = GamePanel.HEIGHT / 2;
 
-		moveSpeed = 2;
+		moveSpeed = 1.5;
 
 		width = 16;
 		height = 16;
 
-		timer = 0;
+		swordTimer = 0;
 
-		walkUp = new Animation(4, Images.LINK_UP, Images.LINK_UP_2);
-		walkRight = new Animation(4, Images.LINK_RIGHT, Images.LINK_RIGHT_2);
-		walkDown = new Animation(4, Images.LINK_DOWN, Images.LINK_DOWN_2);
-		walkLeft = new Animation(4, Images.LINK_LEFT, Images.LINK_LEFT_2);
+		walkUp = new Animation(5, Images.Link.LINK_UP, Images.Link.LINK_UP_2);
+		walkRight = new Animation(5, Images.Link.LINK_RIGHT, Images.Link.LINK_RIGHT_2);
+		walkDown = new Animation(5, Images.Link.LINK_DOWN, Images.Link.LINK_DOWN_2);
+		walkLeft = new Animation(5, Images.Link.LINK_LEFT, Images.Link.LINK_LEFT_2);
 
-		swordAttack = new BufferedImage[] {Images.LINK_ATTACK_SWORD_UP, Images.LINK_ATTACK_SWORD_RIGHT,
-				                           Images.LINK_ATTACK_SWORD_DOWN, Images.LINK_ATTACK_SWORD_LEFT};
+		swordAttack = new BufferedImage[] {Images.Link.LINK_ATTACK_SWORD_UP, Images.Link.LINK_ATTACK_SWORD_RIGHT,
+				                           Images.Link.LINK_ATTACK_SWORD_DOWN, Images.Link.LINK_ATTACK_SWORD_LEFT};
 
 		state = "IDLE";
 
@@ -121,23 +125,22 @@ public class Link
 			velX = 0;
 			velY = 0;
 
-			timer = 16;
+			swordTimer = 16;
 
 			state = "ATTACK_SWORD";
 			break;
 		case "ATTACK_SWORD":
-			if(timer == 9)
+			if(swordTimer == 9)
 			{
 				int[] drawingCoordinates = MathHelper.getSwordOffset(x - width / 2, y - height / 2, 12, direction);
 				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction);
 			}
-			else if(timer <= 2)
+			else if(swordTimer <= 2)
 			{
-				int[] vector = direction.getVector(4);
-				sword.setVector(-vector[0], -vector[1]);
+				sword.retract();
 			}
 
-			if(timer > 0) timer--;
+			if(swordTimer > 0) swordTimer--;
 			else
 			{
 				state = "IDLE";
@@ -151,10 +154,23 @@ public class Link
 
 		if(sword != null) sword.update();
 
+		subPixelXVelocity += velX;
+		subPixelYVelocity += velY;
+
+		int newVelX = Math.round((float) subPixelXVelocity);
+		int newVelY = Math.round((float) subPixelYVelocity);
+
+		subPixelXVelocity = velX - newVelX;
+		subPixelYVelocity = velY - newVelY;
+
 		int collisionOffset = 6;
 
-		for(int i = 0; i < Math.abs(velX); i++)
+		if(newVelX > Math.ceil(moveSpeed)) newVelX = (int) Math.ceil(newVelX);
+		if(newVelY > Math.ceil(moveSpeed)) newVelY = (int) Math.ceil(newVelY);
+
+		for(int i = 0; i < Math.abs(newVelX); i++)
 		{
+			subPixelYVelocity = 0;
 			int temporaryX = x + MathHelper.sign(velX);
 			if(!MapHelper.checkCollisionWithTileMap(temporaryX, y, tileMap,
 					width - collisionOffset, height - collisionOffset))
@@ -162,11 +178,11 @@ public class Link
 			else break;
 		}
 
-		for(int i = 0; i < Math.abs(velY); i++)
+		for(int i = 0; i < Math.abs(newVelY); i++)
 		{
+			subPixelXVelocity = 0;
 			int temporaryY = y + MathHelper.sign(velY);
-			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap,
-					width - 6, height - 6))
+			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - collisionOffset, height - collisionOffset))
 				y = temporaryY;
 			else break;
 		}

@@ -1,11 +1,12 @@
-package entity;
+package entity.enemies;
 
+import entity.Direction;
 import reference.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class Sword
+public class OctorokPellet
 {
 	private int x;
 	private int y;
@@ -18,13 +19,15 @@ class Sword
 
 	private Direction direction;
 
-	Sword(int x, int y, Direction direction)
+	OctorokPellet(int x, int y, Direction direction)
 	{
 		this.x = x;
 		this.y = y;
 
-		velX = 0;
-		velY = 0;
+		int[] vector = direction.getVector(4);
+
+		velX = vector[0];
+		velY = vector[1];
 
 		this.direction = direction;
 
@@ -41,16 +44,8 @@ class Sword
 	void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
-		g2d.rotate(direction.getRadians(), x + width / 2, y + height / 2);
-		g2d.drawImage(Images.Link.SWORD, x, y, width, height, null);
+		g2d.rotate(direction.getRadians(), x, y);
+		g2d.drawImage(Images.Enemies.OCTOROK_PELLET, x - width / 2, y - width / 2, width, height, null);
 		g2d.setTransform(transform);
-	}
-
-	void retract()
-	{
-		int[] vector = direction.getVector(4);
-
-		velX = -vector[0];
-		velY = -vector[1];
 	}
 }

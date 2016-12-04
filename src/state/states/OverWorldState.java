@@ -1,6 +1,8 @@
 package state.states;
 
+import entity.Direction;
 import entity.Link;
+import entity.enemies.Octorok;
 import main.GamePanel;
 import map.TileMap;
 import state.State;
@@ -11,6 +13,8 @@ import java.awt.*;
 public class OverWorldState extends State
 {
 	private Link link;
+
+	private Octorok testOctorok;
 
 	private TileMap tileMap;
 
@@ -25,6 +29,7 @@ public class OverWorldState extends State
 		tileMap = new TileMap(12, 12);
 		tileMap.loadTiles("/tileMaps/test.txt");
 		link = new Link(tileMap);
+		testOctorok = new Octorok(24, 104, Direction.UP, tileMap);
 	}
 
 	public void draw(Graphics2D g2d)
@@ -33,6 +38,7 @@ public class OverWorldState extends State
 		g2d.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		tileMap.draw(g2d);
 		link.draw(g2d);
+		testOctorok.draw(g2d);
 	}
 
 	public void keyPressed(int key)
@@ -48,5 +54,6 @@ public class OverWorldState extends State
 	public void update()
 	{
 		link.update();
+		testOctorok.update();
 	}
 }
