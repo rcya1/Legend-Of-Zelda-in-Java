@@ -3,6 +3,7 @@ package entity.enemies;
 import entity.Direction;
 import entity.Animation;
 
+import entity.MapObject;
 import map.TileMap;
 import reference.Images;
 import reference.MapHelper;
@@ -11,28 +12,8 @@ import reference.MathHelper;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class Octorok
+public class Octorok extends MapObject implements Enemy
 {
-	private TileMap tileMap;
-
-	private int x;
-	private int y;
-
-	private double subPixelX;
-	private double subPixelY;
-
-	private double velX;
-	private double velY;
-
-	private double moveSpeed;
-
-	private int width;
-	private int height;
-
-	private Direction direction;
-
-	private String state;
-
 	private int timer;
 
 	private Animation animation;
@@ -100,45 +81,7 @@ public class Octorok
 			break;
 		}
 
-		subPixelX += velX;
-		subPixelY += velY;
-
-		int newVelX = Math.round((float) subPixelX);
-		int newVelY = Math.round((float) subPixelY);
-
-		subPixelX = velX - newVelX;
-		subPixelY = velY - newVelY;
-
-		if(newVelX > Math.ceil(moveSpeed)) newVelX = (int) Math.ceil(newVelX);
-		if(newVelY > Math.ceil(moveSpeed)) newVelY = (int) Math.ceil(newVelY);
-
-		int collisionOffset = 6;
-
-		for(int i = 0; i < Math.abs(newVelX); i++)
-		{
-			subPixelY = 0;
-			int temporaryX = x + MathHelper.sign(velX);
-			if(!MapHelper.checkCollisionWithTileMap(temporaryX, y, tileMap,
-					width - collisionOffset, height - collisionOffset))
-				x = temporaryX;
-			else
-			{
-				direction = Direction.getRandom();
-			}
-		}
-
-		for(int i = 0; i < Math.abs(newVelY); i++)
-		{
-			subPixelX = 0;
-			int temporaryY = y + MathHelper.sign(velY);
-			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap,
-					width - collisionOffset, height - collisionOffset))
-				y = temporaryY;
-			else
-			{
-				direction = Direction.getRandom();
-			}
-		}
+		handleCollisions();
 
 		if(pellet != null) pellet.update();
 	}

@@ -10,33 +10,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-public class Link
+public class Link extends MapObject
 {
-	private TileMap tileMap;
-
-	private int x;
-	private int y;
-
-	private double subPixelXVelocity;
-	private double subPixelYVelocity;
-
-	private double velX;
-	private double velY;
-
-	private double moveSpeed;
-
-	private int width;
-	private int height;
-
 	private boolean left;
 	private boolean up;
 	private boolean right;
 	private boolean down;
 	private boolean attack;
-
-	private Direction direction;
-
-	private String state;
 
 	private Sword sword;
 	private int swordTimer;
@@ -154,38 +134,7 @@ public class Link
 
 		if(sword != null) sword.update();
 
-		subPixelXVelocity += velX;
-		subPixelYVelocity += velY;
-
-		int newVelX = Math.round((float) subPixelXVelocity);
-		int newVelY = Math.round((float) subPixelYVelocity);
-
-		subPixelXVelocity = velX - newVelX;
-		subPixelYVelocity = velY - newVelY;
-
-		int collisionOffset = 6;
-
-		if(newVelX > Math.ceil(moveSpeed)) newVelX = (int) Math.ceil(newVelX);
-		if(newVelY > Math.ceil(moveSpeed)) newVelY = (int) Math.ceil(newVelY);
-
-		for(int i = 0; i < Math.abs(newVelX); i++)
-		{
-			subPixelYVelocity = 0;
-			int temporaryX = x + MathHelper.sign(velX);
-			if(!MapHelper.checkCollisionWithTileMap(temporaryX, y, tileMap,
-					width - collisionOffset, height - collisionOffset))
-				x = temporaryX;
-			else break;
-		}
-
-		for(int i = 0; i < Math.abs(newVelY); i++)
-		{
-			subPixelXVelocity = 0;
-			int temporaryY = y + MathHelper.sign(velY);
-			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - collisionOffset, height - collisionOffset))
-				y = temporaryY;
-			else break;
-		}
+		handleCollisions();
 	}
 
 	public void draw(Graphics2D g2d)
