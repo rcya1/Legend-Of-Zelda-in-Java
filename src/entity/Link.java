@@ -3,6 +3,7 @@ package entity;
 import main.GamePanel;
 import map.TileMap;
 import reference.Images;
+import reference.MapHelper;
 import reference.MathHelper;
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public class Link
 	private boolean down;
 	private boolean attack;
 
-	private int direction;
+	private Direction direction;
 	private String state;
 
 	private Sword sword;
@@ -66,6 +67,8 @@ public class Link
 				                           Images.LINK_ATTACK_SWORD_DOWN, Images.LINK_ATTACK_SWORD_LEFT};
 
 		state = "IDLE";
+
+		direction = Direction.UP;
 	}
 
 	public void update()
@@ -81,34 +84,34 @@ public class Link
 		case "UP":
 			velX = 0;
 			velY = -moveSpeed;
-			direction = 0;
+			direction = Direction.UP;
 
 			walkUp.update();
-
-			checkFreeMovement();
-			break;
-		case "DOWN":
-			velX = 0;
-			velY = moveSpeed;
-			direction = 2;
-
-			walkDown.update();
 
 			checkFreeMovement();
 			break;
 		case "RIGHT":
 			velX = moveSpeed;
 			velY = 0;
-			direction = 1;
+			direction = Direction.RIGHT;
 
 			walkRight.update();
+
+			checkFreeMovement();
+			break;
+		case "DOWN":
+			velX = 0;
+			velY = moveSpeed;
+			direction = Direction.DOWN;
+
+			walkDown.update();
 
 			checkFreeMovement();
 			break;
 		case "LEFT":
 			velX = -moveSpeed;
 			velY = 0;
-			direction = 3;
+			direction = Direction.LEFT;
 
 			walkLeft.update();
 
@@ -125,45 +128,13 @@ public class Link
 		case "ATTACK_SWORD":
 			if(timer == 9)
 			{
-				int drawX = x - width / 2;
-				int drawY = y - height / 2;
-				switch(direction)
-				{
-				case 0:
-					sword = new Sword(drawX, drawY - 12, direction);
-					break;
-				case 1:
-					sword = new Sword(drawX + 12, drawY, direction);
-					break;
-				case 2:
-					sword = new Sword(drawX, drawY + 12, direction);
-					break;
-				case 3:
-					sword = new Sword(drawX - 12, drawY, direction);
-					break;
-				default:
-					break;
-				}
+				int[] drawingCoordinates = MathHelper.getSwordOffset(x - width / 2, y - height / 2, 12, direction);
+				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction);
 			}
 			else if(timer <= 2)
 			{
-				switch(direction)
-				{
-				case 0:
-					sword.setVector(0, 4);
-					break;
-				case 1:
-					sword.setVector(-4, 0);
-					break;
-				case 2:
-					sword.setVector(0, -4);
-					break;
-				case 3:
-					sword.setVector(4, 0);
-					break;
-				default:
-					break;
-				}
+				int[] vector = direction.getVector(4);
+				sword.setVector(-vector[0], -vector[1]);
 			}
 
 			if(timer > 0) timer--;
@@ -180,30 +151,24 @@ public class Link
 
 		if(sword != null) sword.update();
 
+		int collisionOffset = 6;
+
 		for(int i = 0; i < Math.abs(velX); i++)
 		{
 			int temporaryX = x + MathHelper.sign(velX);
-			if(!MathHelper.checkCollisionWithTileMap(temporaryX, y, tileMap, width - 6, height - 6))
-			{
+			if(!MapHelper.checkCollisionWithTileMap(temporaryX, y, tileMap,
+					width - collisionOffset, height - collisionOffset))
 				x = temporaryX;
-			}
-			else
-			{
-				break;
-			}
+			else break;
 		}
 
 		for(int i = 0; i < Math.abs(velY); i++)
 		{
 			int temporaryY = y + MathHelper.sign(velY);
-			if(!MathHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - 6, height - 6))
-			{
+			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap,
+					width - 6, height - 6))
 				y = temporaryY;
-			}
-			else
-			{
-				break;
-			}
+			else break;
 		}
 	}
 
@@ -216,16 +181,16 @@ public class Link
 		case "IDLE":
 			switch(direction)
 			{
-			case 0:
+			case UP:
 				walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
 				break;
-			case 1:
+			case RIGHT:
 				walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
 				break;
-			case 2:
+			case DOWN:
 				walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
 				break;
-			case 3:
+			case LEFT:
 				walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
 				break;
 			default:
@@ -245,10 +210,10 @@ public class Link
 			walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
 			break;
 		case "ATTACK_SWORD_START":
-			g2d.drawImage(swordAttack[direction], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction.getInteger()], x - width / 2, y - height / 2, width, height, null);
 			break;
 		case "ATTACK_SWORD":
-			g2d.drawImage(swordAttack[direction], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction.getInteger()], x - width / 2, y - height / 2, width, height, null);
 			break;
 		default:
 			g2d.setColor(Color.RED);
@@ -270,25 +235,10 @@ public class Link
 
 	public void setKeyVariables(int key, boolean bool)
 	{
-		if(key == KeyEvent.VK_D)
-		{
-			right = bool;
-		}
-		if(key == KeyEvent.VK_A)
-		{
-			left = bool;
-		}
-		if(key == KeyEvent.VK_W)
-		{
-			up = bool;
-		}
-		if(key == KeyEvent.VK_S)
-		{
-			down = bool;
-		}
-		if(key == KeyEvent.VK_SPACE)
-		{
-			attack = bool;
-		}
+		if(key == KeyEvent.VK_D) right = bool;
+		if(key == KeyEvent.VK_A) left = bool;
+		if(key == KeyEvent.VK_W) up = bool;
+		if(key == KeyEvent.VK_S) down = bool;
+		if(key == KeyEvent.VK_SPACE) attack = bool;
 	}
 }

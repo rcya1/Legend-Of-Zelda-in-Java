@@ -16,9 +16,9 @@ class Sword
 	private int width;
 	private int height;
 
-	private int direction;
+	private Direction direction;
 
-	Sword(int x, int y, int direction)
+	Sword(int x, int y, Direction direction)
 	{
 		this.x = x;
 		this.y = y;
@@ -41,23 +41,7 @@ class Sword
 	void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
-		switch(direction)
-		{
-		case 0:
-			g2d.rotate(0, x + width / 2, y + height / 2);
-			break;
-		case 1:
-			g2d.rotate(Math.PI / 2, x + width / 2, y + height / 2);
-			break;
-		case 2:
-			g2d.rotate(Math.PI, x + width / 2, y + height / 2);
-			break;
-		case 3:
-			g2d.rotate(Math.PI * 1.5, x + width / 2, y + height / 2);
-			break;
-		default:
-			break;
-		}
+		g2d.rotate(direction.getRadians(), x + width / 2, y + height / 2);
 		g2d.drawImage(Images.SWORD, x, y, width, height, null);
 		g2d.setTransform(transform);
 	}

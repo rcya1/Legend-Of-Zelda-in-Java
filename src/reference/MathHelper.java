@@ -1,5 +1,6 @@
 package reference;
 
+import entity.Direction;
 import map.Tile;
 import map.TileMap;
 
@@ -12,31 +13,20 @@ public class MathHelper
 		else return 0;
 	}
 
-	public static boolean checkCollisionWithTileMap(int x, int y, TileMap tileMap, int playerWidth, int playerHeight)
+	public static int[] getSwordOffset(int x, int y, int offset, Direction direction)
 	{
-		boolean collisionFlag = false;
-
-		int leftColumn = (x - playerWidth / 2) / tileMap.getWidthOfTile();
-		int rightColumn = (x + playerWidth / 2) / tileMap.getWidthOfTile();
-		int topRow = (y - playerHeight / 2) / tileMap.getHeightOfTile();
-		int bottomRow = (y + playerHeight / 2) / tileMap.getHeightOfTile();
-
-		if(leftColumn < 0) leftColumn = 0;
-		if(rightColumn > tileMap.getColumns() - 1) rightColumn = tileMap.getColumns() - 1;
-		if(topRow < 0) topRow = 0;
-		if(bottomRow > tileMap.getRows() - 1) bottomRow = tileMap.getRows() - 1;
-
-		for(int i = leftColumn; i <= rightColumn; i++)
+		switch(direction)
 		{
-			for(int j = topRow; j <= bottomRow; j++)
-			{
-				Tile tile = tileMap.getTile(i, j);
-				if(!tile.isPassible())
-				{
-					collisionFlag = true;
-				}
-			}
+		case UP:
+			return new int[] {x, y - 12};
+		case RIGHT:
+			return new int[] {x + 12, y};
+		case DOWN:
+			return new int[] {x, y + 12};
+		case LEFT:
+			return new int[] {x - 12, y};
+		default:
+			return new int[] {x, y};
 		}
-		return collisionFlag;
 	}
 }
