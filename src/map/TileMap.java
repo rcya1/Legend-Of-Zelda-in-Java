@@ -1,8 +1,12 @@
 package map;
 
+import entity.enemies.Enemy;
+import reference.MapHelper;
+
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class TileMap
@@ -12,6 +16,8 @@ public class TileMap
 
 	private int widthOfTile;
 	private int heightOfTile;
+
+	private ArrayList<Enemy> enemies;
 
 	private Tile[][] tiles;
 
@@ -24,6 +30,7 @@ public class TileMap
 		this.heightOfTile = 16;
 
 		tiles = new Tile[rows][columns];
+		enemies = new ArrayList<Enemy>();
 	}
 
 	public void loadTiles(String filePath)
@@ -41,6 +48,34 @@ public class TileMap
 				while(tokenizer.hasMoreElements())
 				{
 					tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(tokenizer.nextToken()));
+					characterCount++;
+				}
+				lineCount++;
+			}
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void loadEnemies(String filePath)
+	{
+		try
+		{
+			InputStream inputStream = getClass().getResourceAsStream(filePath);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.defaultCharset()));
+			String line;
+			int lineCount = 0;
+			while((line = bufferedReader.readLine()) != null)
+			{
+				StringTokenizer tokenizer = new StringTokenizer(line);
+				int characterCount = 0;
+				while(tokenizer.hasMoreElements())
+				{
+					Enemy enemy = MapHelper.parseEnemy(tokenizer.nextToken(), characterCount * widthOfTile,
+							lineCount * heightOfTile, this);
+					if(enemy != null) enemies.add(enemy);
 					characterCount++;
 				}
 				lineCount++;
@@ -85,5 +120,10 @@ public class TileMap
 	public int getRows()
 	{
 		return rows;
+	}
+
+	public ArrayList<Enemy> getEnemies()
+	{
+		return enemies;
 	}
 }

@@ -1,6 +1,9 @@
 package reference;
 
 import entity.Direction;
+import entity.enemies.Enemy;
+import entity.enemies.Octorok;
+import map.TileMap;
 
 public class MathHelper
 {
@@ -32,6 +35,17 @@ public class MathHelper
 			return new int[] {x - offset, y};
 		default:
 			return new int[] {x, y};
+		}
+	}
+
+	public static Enemy getEnemy(String string, int x, int y, TileMap tileMap)
+	{
+		switch(string)
+		{
+		case "A":
+			return new Octorok(x, y, Direction.getRandom(), tileMap);
+		default:
+			return null;
 		}
 	}
 }

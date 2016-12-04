@@ -33,8 +33,10 @@ public abstract class MapObject
 
 	public abstract void draw(Graphics2D g2d);
 
-	public void handleCollisions()
+	public boolean handleCollisions()
 	{
+		boolean collision = false;
+
 		subPixelXVelocity += velX;
 		subPixelYVelocity += velY;
 
@@ -55,7 +57,10 @@ public abstract class MapObject
 			int temporaryX = x + MathHelper.sign(velX);
 			if(!MapHelper.checkCollisionWithTileMap(temporaryX, y, tileMap,
 					width - collisionOffset, height - collisionOffset))
+			{
 				x = temporaryX;
+				collision = true;
+			}
 			else break;
 		}
 
@@ -64,8 +69,13 @@ public abstract class MapObject
 			subPixelXVelocity = 0;
 			int temporaryY = y + MathHelper.sign(velY);
 			if(!MapHelper.checkCollisionWithTileMap(x, temporaryY, tileMap, width - collisionOffset, height - collisionOffset))
+			{
 				y = temporaryY;
+				collision = true;
+			}
 			else break;
 		}
+
+		return collision;
 	}
 }

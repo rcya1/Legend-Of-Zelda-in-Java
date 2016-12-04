@@ -6,8 +6,6 @@ import entity.Animation;
 import entity.MapObject;
 import map.TileMap;
 import reference.Images;
-import reference.MapHelper;
-import reference.MathHelper;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -81,9 +79,9 @@ public class Octorok extends MapObject implements Enemy
 			break;
 		}
 
-		handleCollisions();
-
 		if(pellet != null) pellet.update();
+
+		handleCollisions();
 	}
 
 	public void draw(Graphics2D g2d)
