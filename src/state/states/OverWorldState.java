@@ -31,15 +31,14 @@ public class OverWorldState extends State
 
 	public void init()
 	{
-		tileMap = new TileMap(12, 12);
+		tileMap = new TileMap(16, 12);
 		tileMap.loadTiles("/tileMaps/test.txt");
 		tileMap.loadEnemies("/tileMaps/testE.txt");
 
 		link = new Link(tileMap);
 
 		enemies = tileMap.getEnemies();
-
-		animations = new ArrayList<>();
+		animations = tileMap.getAnimations();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -48,14 +47,12 @@ public class OverWorldState extends State
 		g2d.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		tileMap.draw(g2d);
 		link.draw(g2d);
-
-		for(Enemy enemy : enemies) enemy.draw(g2d);
-		for(AnimationObject animation : animations) animation.draw(g2d);
 	}
 
 	public void keyPressed(int key)
 	{
 		link.setKeyVariables(key, true);
+		tileMap.setVector(-2, 0);
 	}
 
 	public void keyReleased(int key)
@@ -65,6 +62,8 @@ public class OverWorldState extends State
 
 	public void update()
 	{
+		tileMap.update();
+
 		link.update();
 
 		Iterator enemyIterator = enemies.iterator();

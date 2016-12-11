@@ -67,18 +67,15 @@ public class Animation
 
 	private void nextFrame()
 	{
-		if(!repeat)
+		if(index != -1)
 		{
-			if(index != -1)
-			{
-				currentImage = images[index];
-				index++;
+			currentImage = images[index];
+			index++;
 
-				if(index >= frameCount)
-				{
-					if(repeat) index = 0;
-					else index = -1;
-				}
+			if(index >= frameCount)
+			{
+				if(repeat) index = 0;
+				else index = -1;
 			}
 		}
 	}

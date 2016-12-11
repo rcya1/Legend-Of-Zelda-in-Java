@@ -1,5 +1,6 @@
 package map;
 
+import entity.AnimationObject;
 import entity.enemies.Enemy;
 import reference.MapHelper;
 
@@ -11,6 +12,12 @@ import java.util.StringTokenizer;
 
 public class TileMap
 {
+	private int x;
+	private int y;
+
+	private int velX;
+	private int velY;
+
 	private int columns;
 	private int rows;
 
@@ -18,19 +25,51 @@ public class TileMap
 	private int heightOfTile;
 
 	private ArrayList<Enemy> enemies;
+	private ArrayList<AnimationObject> animations;
 
 	private Tile[][] tiles;
 
 	public TileMap(int columns, int rows)
 	{
+		x = 0;
+		y = 0;
+
+		velX = 0;
+		velY = 0;
+
 		this.columns = columns;
 		this.rows = rows;
 
-		this.widthOfTile = 16;
-		this.heightOfTile = 16;
+		widthOfTile = 16;
+		heightOfTile = 16;
 
-		tiles = new Tile[rows][columns];
-		enemies = new ArrayList<Enemy>();
+		tiles = new Tile[columns][rows];
+		enemies = new ArrayList<>();
+		animations = new ArrayList<>();
+	}
+
+	public void update()
+	{
+		x += velX;
+		y += velY;
+
+		if(x % 256 == 0) velX = 0;
+		if(y % 192 == 0) velY = 0;
+	}
+
+	public void draw(Graphics2D g2d)
+	{
+		for(int i = 0; i < columns; i++)
+		{
+			for(int k = 0; k < rows; k++)
+			{
+				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i + x, heightOfTile * k + y,
+						widthOfTile, heightOfTile, null);
+			}
+		}
+
+		for(Enemy enemy : enemies) enemy.draw(g2d);
+		for(AnimationObject animation : animations) animation.draw(g2d);
 	}
 
 	public void loadTiles(String filePath)
@@ -87,15 +126,10 @@ public class TileMap
 		}
 	}
 
-	public void draw(Graphics2D g2d)
+	public void setVector(int velX, int velY)
 	{
-		for(int i = 0; i < columns; i++)
-		{
-			for(int k = 0; k < rows; k++)
-			{
-				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i, heightOfTile * k, widthOfTile, heightOfTile, null);
-			}
-		}
+		this.velX = velX;
+		this.velY = velY;
 	}
 
 	public Tile getTile(int column, int row)
@@ -125,5 +159,9 @@ public class TileMap
 	public ArrayList<Enemy> getEnemies()
 	{
 		return enemies;
+	}
+	public ArrayList<AnimationObject> getAnimations()
+	{
+		return animations;
 	}
 }
