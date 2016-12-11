@@ -1,24 +1,19 @@
-package entity;
+package entity.weapons;
 
+import entity.Direction;
 import reference.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class Sword
+public class Sword extends Weapon
 {
-	private int x;
-	private int y;
-
 	private int velX;
 	private int velY;
 
-	private int width;
-	private int height;
-
 	private Direction direction;
 
-	Sword(int x, int y, Direction direction)
+	public Sword(int x, int y, Direction direction)
 	{
 		this.x = x;
 		this.y = y;
@@ -30,23 +25,25 @@ class Sword
 
 		width = 16;
 		height = 16;
+
+		damage = 2;
 	}
 
-	void update()
+	public void update()
 	{
 		x += velX;
 		y += velY;
 	}
 
-	void draw(Graphics2D g2d)
+	public void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
-		g2d.rotate(direction.getRadians(), x + width / 2, y + height / 2);
-		g2d.drawImage(Images.Link.SWORD, x, y, width, height, null);
+		g2d.rotate(direction.getRadians(), x, y);
+		g2d.drawImage(Images.Link.SWORD, x - width / 2, y - width / 2, width, height, null);
 		g2d.setTransform(transform);
 	}
 
-	void retract()
+	public void retract()
 	{
 		int[] vector = direction.getVector(4);
 

@@ -14,7 +14,9 @@ public class Animation
 	private BufferedImage[] images;
 	private BufferedImage currentImage;
 
-	public Animation(int speed, BufferedImage... frames)
+	private boolean repeat;
+
+	public Animation(int speed, boolean repeat, BufferedImage... frames)
 	{
 		this.speed = speed;
 		this.images = frames;
@@ -22,6 +24,32 @@ public class Animation
 
 		timer = 0;
 		index = 0;
+
+		this.repeat = repeat;
+
+		currentImage = this.images[0];
+		nextFrame();
+	}
+
+	//Note: Must be linear, one row
+	public Animation(int speed, boolean repeat, BufferedImage spriteSheet, int spriteWidth, int spriteHeight)
+	{
+		this.speed = speed;
+
+		BufferedImage[] frames = new BufferedImage[spriteSheet.getWidth() / spriteWidth];
+
+		for(int i = 0; i < frames.length; i++)
+		{
+			frames[i] = spriteSheet.getSubimage(i * spriteWidth, 0, spriteWidth, spriteHeight);
+		}
+
+		this.images = frames;
+		frameCount = frames.length;
+
+		timer = 0;
+		index = 0;
+
+		this.repeat = repeat;
 
 		currentImage = this.images[0];
 		nextFrame();
@@ -39,9 +67,25 @@ public class Animation
 
 	private void nextFrame()
 	{
-		currentImage = images[index];
-		index++;
-		if(index >= frameCount) index = 0;
+		if(!repeat)
+		{
+			if(index != -1)
+			{
+				currentImage = images[index];
+				index++;
+
+				if(index >= frameCount)
+				{
+					if(repeat) index = 0;
+					else index = -1;
+				}
+			}
+		}
+	}
+
+	public int getIndex()
+	{
+		return index;
 	}
 
 	public void draw(Graphics2D g2d, int x, int y, int width, int height)

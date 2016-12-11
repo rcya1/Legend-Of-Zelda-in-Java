@@ -129,6 +129,8 @@ public class Images
 
 	public static class Enemies
 	{
+		public static final BufferedImage ENEMY_DEATH = loadSingleImage("/sprites/enemies/Death.png");
+
 		private static final BufferedImage OCTOROK_SPRITES = loadSingleImage("/sprites/enemies/octorok/OctorokSprites.png");
 
 		public static final BufferedImage OCTOROK = OCTOROK_SPRITES.getSubimage(0, 0, WIDTH, HEIGHT);

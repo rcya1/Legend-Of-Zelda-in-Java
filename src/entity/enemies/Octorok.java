@@ -3,16 +3,16 @@ package entity.enemies;
 import entity.Direction;
 import entity.Animation;
 
-import entity.MapObject;
 import map.TileMap;
 import reference.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class Octorok extends MapObject implements Enemy
+public class Octorok extends Enemy
 {
-	private int timer;
+	private int shootingTimer;
+	private int movementRefreshTimer;
 
 	private Animation animation;
 
@@ -36,9 +36,11 @@ public class Octorok extends MapObject implements Enemy
 		moveSpeed = 0.5;
 		state = "MOVING";
 
-		animation = new Animation(20, Images.Enemies.OCTOROK, Images.Enemies.OCTOROK_2);
+		animation = new Animation(20, true, Images.Enemies.OCTOROK, Images.Enemies.OCTOROK_2);
 
 		pellet = null;
+
+		health = 4;
 	}
 
 	public void update()
@@ -56,7 +58,7 @@ public class Octorok extends MapObject implements Enemy
 			if((Math.random() * 300) < 2)
 			{
 				state = "SHOOTING";
-				timer = 0;
+				shootingTimer = 0;
 			}
 
 			break;
@@ -64,10 +66,10 @@ public class Octorok extends MapObject implements Enemy
 			velX = 0;
 			velY = 0;
 
-			if(timer < 90)
+			if(shootingTimer < 90)
 			{
-				timer++;
-				if(timer == 60)
+				shootingTimer++;
+				if(shootingTimer == 60)
 				{
 					pellet = new OctorokPellet(x, y, direction);
 				}
@@ -81,15 +83,28 @@ public class Octorok extends MapObject implements Enemy
 
 		if(pellet != null) pellet.update();
 
-		handleCollisions();
+		if(handleCollisions() && movementRefreshTimer == 0)
+		{
+			movementRefreshTimer = 120;
+			direction = Direction.getRandom();
+		}
+
+		if(movementRefreshTimer > 0) movementRefreshTimer --;
+
+		checkDamageCollisions();
+
+		super.update();
 	}
 
 	public void draw(Graphics2D g2d)
 	{
-		AffineTransform transform = g2d.getTransform();
-		g2d.rotate(direction.getRadians(), x, y);
-		animation.draw(g2d, x - width / 2, y - height / 2, width, height);
-		g2d.setTransform(transform);
+		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
+		{
+			AffineTransform transform = g2d.getTransform();
+			g2d.rotate(direction.getRadians(), x, y);
+			animation.draw(g2d, x - width / 2, y - height / 2, width, height);
+			g2d.setTransform(transform);
+		}
 
 		if(pellet != null) pellet.draw(g2d);
 	}

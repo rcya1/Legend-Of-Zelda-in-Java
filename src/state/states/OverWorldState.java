@@ -1,16 +1,18 @@
 package state.states;
 
-import entity.Direction;
+import entity.Animation;
+import entity.AnimationObject;
 import entity.Link;
 import entity.enemies.Enemy;
-import entity.enemies.Octorok;
 import main.GamePanel;
 import map.TileMap;
+import reference.Images;
 import state.State;
 import state.StateManager;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class OverWorldState extends State
 {
@@ -19,6 +21,7 @@ public class OverWorldState extends State
 	private TileMap tileMap;
 
 	private ArrayList<Enemy> enemies;
+	private ArrayList<AnimationObject> animations;
 
 	public OverWorldState(StateManager stateManager)
 	{
@@ -31,9 +34,12 @@ public class OverWorldState extends State
 		tileMap = new TileMap(12, 12);
 		tileMap.loadTiles("/tileMaps/test.txt");
 		tileMap.loadEnemies("/tileMaps/testE.txt");
+
 		link = new Link(tileMap);
 
 		enemies = tileMap.getEnemies();
+
+		animations = new ArrayList<>();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -44,6 +50,7 @@ public class OverWorldState extends State
 		link.draw(g2d);
 
 		for(Enemy enemy : enemies) enemy.draw(g2d);
+		for(AnimationObject animation : animations) animation.draw(g2d);
 	}
 
 	public void keyPressed(int key)
@@ -60,6 +67,35 @@ public class OverWorldState extends State
 	{
 		link.update();
 
-		for(Enemy enemy : enemies) enemy.update();
+		Iterator enemyIterator = enemies.iterator();
+		while(enemyIterator.hasNext())
+		{
+			Enemy enemy = (Enemy) enemyIterator.next();
+
+			if(link.getSword() != null) enemy.setSword(link.getSword());
+			else enemy.setSword(null);
+
+			enemy.update();
+
+			if(enemy.getDestroyFlag())
+			{
+				enemyIterator.remove();
+				animations.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2, enemy.getY() - enemy.getHeight() / 2,
+						new Animation(3, false, Images.Enemies.ENEMY_DEATH, 16, 16)
+				));
+			}
+		}
+
+		Iterator animationIterator = animations.iterator();
+		while(animationIterator.hasNext())
+		{
+			AnimationObject animationObject = (AnimationObject) animationIterator.next();
+			animationObject.update();
+
+			if(animationObject.getAnimation().getIndex() == -1)
+			{
+				animationIterator.remove();
+			}
+		}
 	}
 }

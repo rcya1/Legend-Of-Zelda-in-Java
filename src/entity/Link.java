@@ -1,9 +1,9 @@
 package entity;
 
+import entity.weapons.Sword;
 import main.GamePanel;
 import map.TileMap;
 import reference.Images;
-import reference.MapHelper;
 import reference.MathHelper;
 
 import java.awt.*;
@@ -12,11 +12,11 @@ import java.awt.image.BufferedImage;
 
 public class Link extends MapObject
 {
-	private boolean left;
-	private boolean up;
-	private boolean right;
-	private boolean down;
-	private boolean attack;
+	private boolean inputLeft;
+	private boolean inputUp;
+	private boolean inputRight;
+	private boolean inputDown;
+	private boolean inputAttack;
 
 	private Sword sword;
 	private int swordTimer;
@@ -42,10 +42,10 @@ public class Link extends MapObject
 
 		swordTimer = 0;
 
-		walkUp = new Animation(5, Images.Link.LINK_UP, Images.Link.LINK_UP_2);
-		walkRight = new Animation(5, Images.Link.LINK_RIGHT, Images.Link.LINK_RIGHT_2);
-		walkDown = new Animation(5, Images.Link.LINK_DOWN, Images.Link.LINK_DOWN_2);
-		walkLeft = new Animation(5, Images.Link.LINK_LEFT, Images.Link.LINK_LEFT_2);
+		walkUp = new Animation(5, true, Images.Link.LINK_UP, Images.Link.LINK_UP_2);
+		walkRight = new Animation(5, true, Images.Link.LINK_RIGHT, Images.Link.LINK_RIGHT_2);
+		walkDown = new Animation(5, true, Images.Link.LINK_DOWN, Images.Link.LINK_DOWN_2);
+		walkLeft = new Animation(5, true, Images.Link.LINK_LEFT, Images.Link.LINK_LEFT_2);
 
 		swordAttack = new BufferedImage[] {Images.Link.LINK_ATTACK_SWORD_UP, Images.Link.LINK_ATTACK_SWORD_RIGHT,
 				                           Images.Link.LINK_ATTACK_SWORD_DOWN, Images.Link.LINK_ATTACK_SWORD_LEFT};
@@ -112,7 +112,7 @@ public class Link extends MapObject
 		case "ATTACK_SWORD":
 			if(swordTimer == 9)
 			{
-				int[] drawingCoordinates = MathHelper.getSwordOffset(x - width / 2, y - height / 2, 12, direction);
+				int[] drawingCoordinates = MathHelper.getSwordOffset(x, y, 12, direction);
 				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction);
 			}
 			else if(swordTimer <= 2)
@@ -190,20 +190,25 @@ public class Link extends MapObject
 	//Check for movement that you have when you can do anything, i.e. IDLE, or LEFT/RIGHT/UP/DOWN
 	private void checkFreeMovement()
 	{
-		if(up) state = "UP";
-		if(down) state = "DOWN";
-		if(left) state = "LEFT";
-		if(right) state = "RIGHT";
-		if(attack) state = "ATTACK_SWORD_START";
-		if(!(up || down || left || right || attack)) state = "IDLE";
+		if(inputUp) state = "UP";
+		if(inputDown) state = "DOWN";
+		if(inputLeft) state = "LEFT";
+		if(inputRight) state = "RIGHT";
+		if(inputAttack) state = "ATTACK_SWORD_START";
+		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack)) state = "IDLE";
 	}
 
 	public void setKeyVariables(int key, boolean bool)
 	{
-		if(key == KeyEvent.VK_D) right = bool;
-		if(key == KeyEvent.VK_A) left = bool;
-		if(key == KeyEvent.VK_W) up = bool;
-		if(key == KeyEvent.VK_S) down = bool;
-		if(key == KeyEvent.VK_SPACE) attack = bool;
+		if(key == KeyEvent.VK_D) inputRight = bool;
+		if(key == KeyEvent.VK_A) inputLeft = bool;
+		if(key == KeyEvent.VK_W) inputUp = bool;
+		if(key == KeyEvent.VK_S) inputDown = bool;
+		if(key == KeyEvent.VK_SPACE) inputAttack = bool;
+	}
+
+	public Sword getSword()
+	{
+		return sword;
 	}
 }
