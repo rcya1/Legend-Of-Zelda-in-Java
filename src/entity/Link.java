@@ -35,6 +35,9 @@ public class Link extends MapObject
 		x = GamePanel.WIDTH / 2;
 		y = GamePanel.HEIGHT / 2;
 
+		drawX = x;
+		drawY = y;
+
 		moveSpeed = 1.5;
 
 		width = 16;
@@ -113,7 +116,7 @@ public class Link extends MapObject
 			if(swordTimer == 9)
 			{
 				int[] drawingCoordinates = MathHelper.getSwordOffset(x, y, 12, direction);
-				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction);
+				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, tileMap);
 			}
 			else if(swordTimer <= 2)
 			{
@@ -125,6 +128,28 @@ public class Link extends MapObject
 			{
 				state = "IDLE";
 				sword = null;
+			}
+			break;
+		case "TRANSITION":
+			//TODO Set longer unactive frames
+
+			velX = 0;
+			velY = 0;
+
+			x += transitionVelX;
+			y += transitionVelY;
+
+			transitionAmountX += transitionVelX;
+			transitionAmountY += transitionVelY;
+
+			if(Math.abs(transitionAmountX) == 20) transitionVelX = 0;
+			if(Math.abs(transitionAmountY) == 20) transitionVelY = 0;
+
+			if(transitionVelX == 0 && transitionVelY == 0)
+			{
+				state = "IDLE";
+				transitionAmountX = 0;
+				transitionAmountY = 0;
 			}
 			break;
 		default:
@@ -139,6 +164,9 @@ public class Link extends MapObject
 
 	public void draw(Graphics2D g2d)
 	{
+		drawX = x - tileMap.getX();
+		drawY = y - tileMap.getY();
+
 		if(sword != null) sword.draw(g2d);
 
 		switch(state)
@@ -147,42 +175,61 @@ public class Link extends MapObject
 			switch(direction)
 			{
 			case UP:
-				walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
 			case RIGHT:
-				walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
 			case DOWN:
-				walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
 			case LEFT:
-				walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+				walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
 			default:
 				break;
 			}
 			break;
 		case "UP":
-			walkUp.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			break;
 		case "DOWN":
-			walkDown.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			break;
 		case "RIGHT":
-			walkRight.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			break;
 		case "LEFT":
-			walkLeft.draw(g2d, x - width / 2, y - height / 2, width, height);
+			walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			break;
 		case "ATTACK_SWORD_START":
-			g2d.drawImage(swordAttack[direction.getInteger()], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
 			break;
 		case "ATTACK_SWORD":
-			g2d.drawImage(swordAttack[direction.getInteger()], x - width / 2, y - height / 2, width, height, null);
+			g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
+			break;
+		case "TRANSITION":
+			switch(direction)
+			{
+			case UP:
+				walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				break;
+			case RIGHT:
+				walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				break;
+			case DOWN:
+				walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				break;
+			case LEFT:
+				walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				break;
+			default:
+				break;
+			}
 			break;
 		default:
 			g2d.setColor(Color.RED);
-			g2d.drawRect(x - width / 2, y - height / 2, width, height);
+			g2d.drawRect(drawX - width / 2, drawY - height / 2, width, height);
 			break;
 		}
 	}
@@ -196,6 +243,8 @@ public class Link extends MapObject
 		if(inputRight) state = "RIGHT";
 		if(inputAttack) state = "ATTACK_SWORD_START";
 		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack)) state = "IDLE";
+
+		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
 	}
 
 	public void setKeyVariables(int key, boolean bool)

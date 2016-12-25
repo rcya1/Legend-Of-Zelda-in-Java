@@ -89,4 +89,14 @@ public class Animation
 	{
 		g2d.drawImage(currentImage, x, y, width, height,null);
 	}
+
+	public int getWidth()
+	{
+		return currentImage.getWidth();
+	}
+
+	public int getHeight()
+	{
+		return currentImage.getHeight();
+	}
 }

@@ -30,4 +30,23 @@ public class AnimationObject
 	{
 		return animation;
 	}
+
+	public int getX()
+	{
+		return x;
+	}
+	public int getY()
+	{
+		return y;
+	}
+
+	public int getWidth()
+	{
+		return getAnimation().getWidth();
+	}
+
+	public int getHeight()
+	{
+		return getAnimation().getHeight();
+	}
 }

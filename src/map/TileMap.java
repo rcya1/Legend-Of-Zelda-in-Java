@@ -1,13 +1,18 @@
 package map;
 
+import entity.Animation;
 import entity.AnimationObject;
+import entity.Link;
+import entity.MapObject;
 import entity.enemies.Enemy;
+import reference.Images;
 import reference.MapHelper;
 
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class TileMap
@@ -26,6 +31,8 @@ public class TileMap
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<AnimationObject> animations;
+
+	private Link link;
 
 	private Tile[][] tiles;
 
@@ -46,6 +53,8 @@ public class TileMap
 		tiles = new Tile[columns][rows];
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
+
+		link = new Link(this);
 	}
 
 	public void update()
@@ -55,6 +64,45 @@ public class TileMap
 
 		if(x % 256 == 0) velX = 0;
 		if(y % 192 == 0) velY = 0;
+
+		link.update();
+
+		Iterator enemyIterator = enemies.iterator();
+		while(enemyIterator.hasNext())
+		{
+			Enemy enemy = (Enemy) enemyIterator.next();
+
+			if(this.checkVisibility(enemy))
+			{
+				if(link.getSword() != null) enemy.setSword(link.getSword());
+				else enemy.setSword(null);
+
+				enemy.update();
+
+				if(enemy.getDestroyFlag())
+				{
+					enemyIterator.remove();
+					animations.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2, enemy.getY() - enemy.getHeight() / 2, new Animation(3, false, Images.Enemies.ENEMY_DEATH, 16, 16)));
+				}
+			}
+		}
+
+		Iterator animationIterator = animations.iterator();
+		while(animationIterator.hasNext())
+		{
+			AnimationObject animationObject = (AnimationObject) animationIterator.next();
+
+			if(this.checkVisibility(new Rectangle(animationObject.getX(), animationObject.getY(),
+					animationObject.getWidth(), animationObject.getHeight())))
+			{
+				animationObject.update();
+
+				if(animationObject.getAnimation().getIndex() == -1)
+				{
+					animationIterator.remove();
+				}
+			}
+		}
 	}
 
 	public void draw(Graphics2D g2d)
@@ -63,13 +111,22 @@ public class TileMap
 		{
 			for(int k = 0; k < rows; k++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i + x, heightOfTile * k + y,
+				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i - x, heightOfTile * k - y,
 						widthOfTile, heightOfTile, null);
 			}
 		}
 
-		for(Enemy enemy : enemies) enemy.draw(g2d);
-		for(AnimationObject animation : animations) animation.draw(g2d);
+		for(Enemy enemy : enemies)
+		{
+			if(this.checkVisibility(enemy)) enemy.draw(g2d);
+		}
+		for(AnimationObject animation : animations)
+		{
+			if(this.checkVisibility(new Rectangle(animation.getX(), animation.getY(), animation.getWidth(), animation.getHeight())))
+				animation.draw(g2d);
+		}
+
+		link.draw(g2d);
 	}
 
 	public void loadTiles(String filePath)
@@ -126,6 +183,21 @@ public class TileMap
 		}
 	}
 
+	public boolean checkVisibility(MapObject mapObject)
+	{
+		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
+		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
+
+		return visibleSector.intersects(object);
+	}
+
+	public boolean checkVisibility(Rectangle object)
+	{
+		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
+
+		return visibleSector.intersects(object);
+	}
+
 	public void setVector(int velX, int velY)
 	{
 		this.velX = velX;
@@ -156,6 +228,15 @@ public class TileMap
 		return rows;
 	}
 
+	public int getX()
+	{
+		return x;
+	}
+	public int getY()
+	{
+		return y;
+	}
+
 	public ArrayList<Enemy> getEnemies()
 	{
 		return enemies;
@@ -163,5 +244,10 @@ public class TileMap
 	public ArrayList<AnimationObject> getAnimations()
 	{
 		return animations;
+	}
+
+	public Link getLink()
+	{
+		return link;
 	}
 }

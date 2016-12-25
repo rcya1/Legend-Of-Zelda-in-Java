@@ -71,7 +71,7 @@ public class Octorok extends Enemy
 				shootingTimer++;
 				if(shootingTimer == 60)
 				{
-					pellet = new OctorokPellet(x, y, direction);
+					pellet = new OctorokPellet(x, y, direction, tileMap);
 				}
 			}
 			else
@@ -98,11 +98,14 @@ public class Octorok extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
+		drawX = x - tileMap.getX();
+		drawY = y - tileMap.getY();
+
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
 			AffineTransform transform = g2d.getTransform();
-			g2d.rotate(direction.getRadians(), x, y);
-			animation.draw(g2d, x - width / 2, y - height / 2, width, height);
+			g2d.rotate(direction.getRadians(), drawX, drawY);
+			animation.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			g2d.setTransform(transform);
 		}
 

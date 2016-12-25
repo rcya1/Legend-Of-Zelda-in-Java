@@ -14,6 +14,15 @@ public abstract class MapObject
 	protected int x;
 	protected int y;
 
+	protected int drawX;
+	protected int drawY;
+
+	protected int transitionAmountX;
+	protected int transitionAmountY;
+
+	protected int transitionVelX;
+	protected int transitionVelY;
+
 	protected int width;
 	protected int height;
 
@@ -134,6 +143,12 @@ public abstract class MapObject
 			}
 		}
 		return collisionFlag;
+	}
+
+	public void setTransitionVector(int transitionVelX, int transitionVelY)
+	{
+		this.transitionVelX = transitionVelX;
+		this.transitionVelY = transitionVelY;
 	}
 
 	public int getX()
