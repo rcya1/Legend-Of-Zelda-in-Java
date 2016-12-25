@@ -2,7 +2,6 @@ package entity;
 
 import map.Tile;
 import map.TileMap;
-import reference.MapHelper;
 import reference.MathHelper;
 
 import java.awt.*;

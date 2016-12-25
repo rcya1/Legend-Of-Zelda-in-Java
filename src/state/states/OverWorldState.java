@@ -1,19 +1,13 @@
 package state.states;
 
-import entity.Animation;
-import entity.AnimationObject;
 import entity.Link;
-import entity.enemies.Enemy;
 import main.GamePanel;
 import map.TileMap;
-import reference.Images;
 import state.State;
 import state.StateManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class OverWorldState extends State
 {

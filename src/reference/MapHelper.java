@@ -3,7 +3,6 @@ package reference;
 import entity.Direction;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;
-import map.Tile;
 import map.TileMap;
 
 public class MapHelper

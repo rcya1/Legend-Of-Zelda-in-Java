@@ -1,8 +1,7 @@
 package entity.enemies;
 
-import entity.Direction;
 import entity.Animation;
-
+import entity.Direction;
 import map.TileMap;
 import reference.Images;
 
