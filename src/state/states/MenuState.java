@@ -13,12 +13,17 @@ public class MenuState extends State
 		init();
 	}
 
-	public void draw(Graphics2D g2d)
+	public void init()
 	{
 
 	}
 
-	public void init()
+	public void update()
+	{
+
+	}
+
+	public void draw(Graphics2D g2d)
 	{
 
 	}
@@ -29,11 +34,6 @@ public class MenuState extends State
 	}
 
 	public void keyReleased(int key)
-	{
-
-	}
-
-	public void update()
 	{
 
 	}

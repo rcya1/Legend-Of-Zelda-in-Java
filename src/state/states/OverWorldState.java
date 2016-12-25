@@ -30,6 +30,11 @@ public class OverWorldState extends State
 		link = tileMap.getLink();
 	}
 
+	public void update()
+	{
+		tileMap.update();
+	}
+
 	public void draw(Graphics2D g2d)
 	{
 		g2d.setColor(Color.WHITE);
@@ -39,26 +44,21 @@ public class OverWorldState extends State
 
 	public void keyPressed(int key)
 	{
-		link.setKeyVariables(key, true);
+		link.setKeyVariable(key, true);
 		if(key == KeyEvent.VK_PERIOD)
 		{
-			tileMap.setVector(2, 0);
+			tileMap.setVector(4, 0);
 			link.setTransitionVector(1, 0);
 		}
 		if(key == KeyEvent.VK_SLASH)
 		{
-			tileMap.setVector(-2, 0);
+			tileMap.setVector(-4, 0);
 			link.setTransitionVector(-1, 0);
 		}
 	}
 
 	public void keyReleased(int key)
 	{
-		link.setKeyVariables(key, false);
-	}
-
-	public void update()
-	{
-		tileMap.update();
+		link.setKeyVariable(key, false);
 	}
 }

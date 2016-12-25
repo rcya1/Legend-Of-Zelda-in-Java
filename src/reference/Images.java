@@ -133,8 +133,12 @@ public class Images
 
 		private static final BufferedImage OCTOROK_SPRITES = loadSingleImage("/sprites/enemies/octorok/OctorokSprites.png");
 
-		public static final BufferedImage OCTOROK = OCTOROK_SPRITES.getSubimage(0, 0, WIDTH, HEIGHT);
-		public static final BufferedImage OCTOROK_2 = OCTOROK_SPRITES.getSubimage(WIDTH, 0, WIDTH, HEIGHT);
+		public static final BufferedImage OCTOROK = OCTOROK_SPRITES != null ?
+				OCTOROK_SPRITES.getSubimage(0, 0, WIDTH, HEIGHT) :
+				null;
+		public static final BufferedImage OCTOROK_2 = OCTOROK_SPRITES != null ?
+				OCTOROK_SPRITES.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				null;
 
 		public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/sprites/enemies/octorok/Pellet.png");
 	}

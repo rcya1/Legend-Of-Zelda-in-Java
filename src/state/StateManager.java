@@ -22,19 +22,14 @@ public class StateManager
 		loadState(currentState);
 	}
 
+	public void update()
+	{
+		if(states[currentState] != null) states[currentState].update();
+	}
+
 	public void draw(Graphics2D g2d)
 	{
 		if(states[currentState] != null) states[currentState].draw(g2d);
-	}
-
-	public void keyPressed(int key)
-	{
-		states[currentState].keyPressed(key);
-	}
-
-	public void keyReleased(int key)
-	{
-		states[currentState].keyReleased(key);
 	}
 
 	private void loadState(int state)
@@ -56,8 +51,13 @@ public class StateManager
 		states[state] = null;
 	}
 
-	public void update()
+	public void keyPressed(int key)
 	{
-		if(states[currentState] != null) states[currentState].update();
+		states[currentState].keyPressed(key);
+	}
+
+	public void keyReleased(int key)
+	{
+		states[currentState].keyReleased(key);
 	}
 }

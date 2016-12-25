@@ -1,9 +1,6 @@
 package map;
 
-import entity.Animation;
-import entity.AnimationObject;
-import entity.Link;
-import entity.MapObject;
+import entity.*;
 import entity.enemies.Enemy;
 import reference.Images;
 import reference.MapHelper;
@@ -32,6 +29,9 @@ public class TileMap
 	private int widthOfTile;
 	private int heightOfTile;
 
+	private int mapWidth;
+	private int mapHeight;
+
 	private ArrayList<Enemy> enemies;
 	private ArrayList<AnimationObject> animations;
 
@@ -53,6 +53,9 @@ public class TileMap
 		widthOfTile = 16;
 		heightOfTile = 16;
 
+		mapWidth = 256;
+		mapHeight = 192;
+
 		tiles = new Tile[columns][rows];
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
@@ -65,10 +68,33 @@ public class TileMap
 		x += velX;
 		y += velY;
 
-		if(x % 256 == 0) velX = 0;
-		if(y % 192 == 0) velY = 0;
+		if(x % mapWidth == 0) velX = 0;
+		if(y % mapHeight == 0) velY = 0;
 
 		link.update();
+
+		if(link.getX() - this.getX() <= widthOfTile && link.getDirection() == Direction.LEFT && !link.getState().equals("TRANSITION"))
+		{
+			this.setVector(-4, 0);
+			link.setTransitionVector(-1, 0);
+		}
+
+		if(link.getX() - this.getX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT && !link.getState().equals("TRANSITION"))
+		{
+			this.setVector(4, 0);
+			link.setTransitionVector(1, 0);
+		}
+		if(link.getY() - this.getY() <= heightOfTile && link.getDirection() == Direction.UP && !link.getState().equals("TRANSITION"))
+		{
+			this.setVector(0, -4);
+			link.setTransitionVector(0, -1);
+		}
+		if(link.getY() - this.getY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN && !link.getState().equals("TRANSITION"))
+		{
+			this.setVector(0, 4);
+			link.setTransitionVector(0, 1);
+		}
+
 
 		Iterator enemyIterator = enemies.iterator();
 		while(enemyIterator.hasNext())

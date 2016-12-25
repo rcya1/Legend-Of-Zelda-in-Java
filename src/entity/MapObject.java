@@ -16,11 +16,11 @@ public abstract class MapObject
 	protected int drawX;
 	protected int drawY;
 
-	protected int transitionAmountX;
-	protected int transitionAmountY;
+	int transitionAmountX;
+	int transitionAmountY;
 
-	protected int transitionVelX;
-	protected int transitionVelY;
+	int transitionVelX;
+	int transitionVelY;
 
 	protected int width;
 	protected int height;
@@ -169,8 +169,19 @@ public abstract class MapObject
 	{
 		return height;
 	}
+
 	public boolean getDestroyFlag()
 	{
 		return destroyFlag;
+	}
+
+	public Direction getDirection()
+	{
+		return direction;
+	}
+
+	public String getState()
+	{
+		return state;
 	}
 }

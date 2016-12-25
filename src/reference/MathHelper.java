@@ -37,15 +37,4 @@ public class MathHelper
 			return new int[] {x, y};
 		}
 	}
-
-	public static Enemy getEnemy(String string, int x, int y, TileMap tileMap)
-	{
-		switch(string)
-		{
-		case "A":
-			return new Octorok(x, y, Direction.getRandom(), tileMap);
-		default:
-			return null;
-		}
-	}
 }

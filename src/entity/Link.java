@@ -131,7 +131,9 @@ public class Link extends MapObject
 			}
 			break;
 		case "TRANSITION":
-			//TODO Set longer unactive frames
+			//TODO Set longer inactive frames
+
+			//TransitionAmountX determines distance went so far, but keeps going so that link suffers inactive frames
 
 			velX = 0;
 			velY = 0;
@@ -247,7 +249,7 @@ public class Link extends MapObject
 		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
 	}
 
-	public void setKeyVariables(int key, boolean bool)
+	public void setKeyVariable(int key, boolean bool)
 	{
 		if(key == KeyEvent.VK_D) inputRight = bool;
 		if(key == KeyEvent.VK_A) inputLeft = bool;

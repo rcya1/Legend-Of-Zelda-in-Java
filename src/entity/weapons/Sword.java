@@ -9,7 +9,7 @@ import java.awt.geom.AffineTransform;
 
 public class Sword extends Weapon
 {
-	TileMap tileMap;
+	private TileMap tileMap;
 
 	private int velX;
 	private int velY;
