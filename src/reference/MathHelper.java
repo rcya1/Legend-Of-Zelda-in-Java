@@ -1,9 +1,6 @@
 package reference;
 
 import entity.Direction;
-import entity.enemies.Enemy;
-import entity.enemies.Octorok;
-import map.TileMap;
 
 public class MathHelper
 {

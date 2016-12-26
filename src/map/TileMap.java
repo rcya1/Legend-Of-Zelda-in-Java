@@ -212,7 +212,7 @@ public class TileMap
 		}
 	}
 
-	public boolean checkVisibility(MapObject mapObject)
+	private boolean checkVisibility(MapObject mapObject)
 	{
 		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
 		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
@@ -220,7 +220,7 @@ public class TileMap
 		return visibleSector.intersects(object);
 	}
 
-	public boolean checkVisibility(Rectangle object)
+	private boolean checkVisibility(Rectangle object)
 	{
 		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
 
