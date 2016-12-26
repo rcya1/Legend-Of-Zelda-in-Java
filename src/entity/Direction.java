@@ -81,4 +81,18 @@ public enum Direction
 		else if(number < 4) return LEFT;
 		else return RIGHT;
 	}
+
+	public static Direction getExcludedRandom(Direction direction)
+	{
+		Direction chosenDirection = RIGHT;
+
+		double number = Math.random() * 4;
+		if(number < 1) chosenDirection = UP;
+		else if(number < 2) chosenDirection = RIGHT;
+		else if(number < 3) chosenDirection = DOWN;
+		else if(number < 4) chosenDirection = LEFT;
+
+		if(chosenDirection == direction) chosenDirection = getExcludedRandom(direction);
+		return chosenDirection;
+	}
 }

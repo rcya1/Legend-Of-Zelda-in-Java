@@ -85,7 +85,7 @@ public class Octorok extends Enemy
 		if(handleCollisions() && movementRefreshTimer == 0)
 		{
 			movementRefreshTimer = 120;
-			direction = Direction.getRandom();
+			direction = Direction.getExcludedRandom(direction);
 		}
 
 		if(movementRefreshTimer > 0) movementRefreshTimer --;
