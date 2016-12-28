@@ -24,6 +24,8 @@ public class Images
 		return null;
 	}
 
+	public static final BufferedImage MENU_TEMP = loadSingleImage("/menu/TEMP.png");
+
 	public static class Link
 	{
 		private static final BufferedImage LINK_WALK = loadSingleImage("/sprites/link/LinkWalk.png");

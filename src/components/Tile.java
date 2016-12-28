@@ -1,4 +1,4 @@
-package map;
+package components;
 
 import reference.Images;
 

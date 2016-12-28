@@ -2,9 +2,11 @@ package state.states;
 
 import entity.Link;
 import main.GamePanel;
-import map.TileMap;
+import components.OverWorld;
 import state.State;
 import state.StateManager;
+
+import components.Menu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,8 +14,10 @@ import java.awt.event.KeyEvent;
 public class OverWorldState extends State
 {
 	private Link link;
+	private OverWorld overWorld;
+	private Menu menu;
 
-	private TileMap tileMap;
+	private String state;
 
 	public OverWorldState(StateManager stateManager)
 	{
@@ -23,37 +27,77 @@ public class OverWorldState extends State
 
 	public void init()
 	{
-		tileMap = new TileMap(32, 12);
-		tileMap.loadTiles("/tileMaps/test.txt");
-		tileMap.loadEnemies("/tileMaps/testE.txt");
+		state = "OVERWORLD";
 
-		link = tileMap.getLink();
+		overWorld = new OverWorld(32, 12);
+		overWorld.loadTiles("/tileMaps/test.txt");
+		overWorld.loadEnemies("/tileMaps/testE.txt");
+		overWorld.setDrawCoordinates(0, 48);
+
+		menu = new Menu();
+		menu.setDrawCoordinates(0, -184);
+
+		link = overWorld.getLink();
 	}
 
 	public void update()
 	{
-		tileMap.update();
+		overWorld.updateDrawCoordinates();
+		menu.updateDrawCoordinates();
+
+		switch(state)
+		{
+		case "OVERWORLD":
+			overWorld.update();
+			break;
+		case "MENU":
+			menu.update();
+			break;
+		case "TRANSITION":
+			if(overWorld.getDrawCoordinates()[1] == 48)
+			{
+				state = "OVERWORLD";
+				overWorld.setDrawVector(0, 0);
+				menu.setDrawVector(0, 0);
+			}
+			else if(overWorld.getDrawCoordinates()[1] == 240)
+			{
+				state = "MENU";
+				overWorld.setDrawVector(0, 0);
+				menu.setDrawVector(0, 0);
+			}
+			break;
+		}
 	}
 
 	public void draw(Graphics2D g2d)
 	{
-		g2d.setColor(Color.WHITE);
-		g2d.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-		tileMap.draw(g2d);
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(-GamePanel.HEIGHT, 0, GamePanel.WIDTH, GamePanel.HEIGHT * 2);
+
+		overWorld.draw(g2d);
+		menu.draw(g2d);
 	}
 
 	public void keyPressed(int key)
 	{
 		link.setKeyVariable(key, true);
-		if(key == KeyEvent.VK_PERIOD)
+
+		if(key == KeyEvent.VK_ENTER)
 		{
-			tileMap.setVector(4, 0);
-			link.setTransitionVector(1, 0);
-		}
-		if(key == KeyEvent.VK_SLASH)
-		{
-			tileMap.setVector(-4, 0);
-			link.setTransitionVector(-1, 0);
+			switch(state)
+			{
+			case "OVERWORLD":
+				overWorld.setDrawVector(0, 2);
+				menu.setDrawVector(0, 2);
+				state = "TRANSITION";
+				break;
+			case "MENU":
+				overWorld.setDrawVector(0, -2);
+				menu.setDrawVector(0, -2);
+				state = "TRANSITION";
+				break;
+			}
 		}
 	}
 

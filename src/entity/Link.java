@@ -2,7 +2,7 @@ package entity;
 
 import entity.weapons.Sword;
 import main.GamePanel;
-import map.TileMap;
+import components.OverWorld;
 import reference.Images;
 import reference.MathHelper;
 
@@ -28,9 +28,9 @@ public class Link extends MapObject
 
 	private BufferedImage[] swordAttack;
 
-	public Link(TileMap tileMap)
+	public Link(OverWorld overWorld)
 	{
-		this.tileMap = tileMap;
+		this.overWorld = overWorld;
 
 		x = GamePanel.WIDTH / 2;
 		y = GamePanel.HEIGHT / 2;
@@ -116,7 +116,7 @@ public class Link extends MapObject
 			if(swordTimer == 9)
 			{
 				int[] drawingCoordinates = MathHelper.getSwordOffset(x, y, 12, direction);
-				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, tileMap);
+				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld);
 			}
 			else if(swordTimer <= 2)
 			{
@@ -166,8 +166,8 @@ public class Link extends MapObject
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = x - tileMap.getX();
-		drawY = y - tileMap.getY();
+		drawX = x - overWorld.getCameraX();
+		drawY = y - overWorld.getCameraY();
 
 		if(sword != null) sword.draw(g2d);
 

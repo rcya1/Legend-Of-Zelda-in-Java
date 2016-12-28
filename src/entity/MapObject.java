@@ -1,14 +1,14 @@
 package entity;
 
-import map.Tile;
-import map.TileMap;
+import components.Tile;
+import components.OverWorld;
 import reference.MathHelper;
 
 import java.awt.*;
 
 public abstract class MapObject
 {
-	protected TileMap tileMap;
+	protected OverWorld overWorld;
 
 	protected int x;
 	protected int y;
@@ -120,21 +120,21 @@ public abstract class MapObject
 		int entityWidth = width - collisionOffset;
 		int entityHeight = height - collisionOffset;
 
-		int leftColumn = (x - entityWidth / 2) / tileMap.getWidthOfTile();
-		int rightColumn = (x + entityWidth / 2) / tileMap.getWidthOfTile();
-		int topRow = (y - entityHeight / 2) / tileMap.getHeightOfTile();
-		int bottomRow = (y + entityHeight / 2) / tileMap.getHeightOfTile();
+		int leftColumn = (x - entityWidth / 2) / overWorld.getWidthOfTile();
+		int rightColumn = (x + entityWidth / 2) / overWorld.getWidthOfTile();
+		int topRow = (y - entityHeight / 2) / overWorld.getHeightOfTile();
+		int bottomRow = (y + entityHeight / 2) / overWorld.getHeightOfTile();
 
 		if(leftColumn < 0) leftColumn = 0;
-		if(rightColumn > tileMap.getColumns() - 1) rightColumn = tileMap.getColumns() - 1;
+		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
 		if(topRow < 0) topRow = 0;
-		if(bottomRow > tileMap.getRows() - 1) bottomRow = tileMap.getRows() - 1;
+		if(bottomRow > overWorld.getNumOfRows() - 1) bottomRow = overWorld.getNumOfRows() - 1;
 
 		for(int i = leftColumn; i <= rightColumn; i++)
 		{
 			for(int j = topRow; j <= bottomRow; j++)
 			{
-				Tile tile = tileMap.getTile(i, j);
+				Tile tile = overWorld.getTile(i, j);
 				if(!tile.isPassible())
 				{
 					collisionFlag = true;

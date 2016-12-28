@@ -1,19 +1,24 @@
 package entity;
 
+import components.OverWorld;
+
 import java.awt.*;
 
 public class AnimationObject
 {
+	private OverWorld overWorld;
+
 	private int x;
 	private int y;
 
 	private Animation animation;
 
-	public AnimationObject(int x, int y, Animation animation)
+	public AnimationObject(int x, int y, Animation animation, OverWorld overWorld)
 	{
 		this.x = x;
 		this.y = y;
 		this.animation = animation;
+		this.overWorld = overWorld;
 	}
 
 	public void update()
@@ -23,7 +28,7 @@ public class AnimationObject
 
 	public void draw(Graphics2D g2d)
 	{
-		animation.draw(g2d, x, y, 16, 16);
+		animation.draw(g2d, x - overWorld.getCameraX(), y - overWorld.getCameraY(), 16, 16);
 	}
 
 	public Animation getAnimation()

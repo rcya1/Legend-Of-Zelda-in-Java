@@ -1,4 +1,4 @@
-package map;
+package components;
 
 import entity.*;
 import entity.enemies.Enemy;
@@ -6,6 +6,7 @@ import reference.Images;
 import reference.MapHelper;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,17 +16,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
-public class TileMap
+public class OverWorld
 {
-	private int x;
-	private int y;
+	private int drawX;
+	private int drawY;
+	private int drawVelX;
+	private int drawVelY;
 
-	private int velX;
-	private int velY;
+	private int cameraX;
+	private int cameraY;
+	private int cameraVelX;
+	private int cameraVelY;
 
-	private int columns;
-	private int rows;
-
+	private int numOfColumns;
+	private int numOfRows;
 	private int widthOfTile;
 	private int heightOfTile;
 
@@ -34,21 +38,25 @@ public class TileMap
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<AnimationObject> animations;
-
 	private Link link;
 
 	private Tile[][] tiles;
 
-	public TileMap(int columns, int rows)
+	public OverWorld(int numOfColumns, int rows)
 	{
-		x = 0;
-		y = 0;
+		drawX = 0;
+		drawY = 0;
 
-		velX = 0;
-		velY = 0;
+		drawVelX = 0;
+		drawVelY = 0;
 
-		this.columns = columns;
-		this.rows = rows;
+		cameraX = 0;
+		cameraY = 0;
+		cameraVelX = 0;
+		cameraVelY = 0;
+
+		this.numOfColumns = numOfColumns;
+		this.numOfRows = rows;
 
 		widthOfTile = 16;
 		heightOfTile = 16;
@@ -56,7 +64,7 @@ public class TileMap
 		mapWidth = 256;
 		mapHeight = 192;
 
-		tiles = new Tile[columns][rows];
+		tiles = new Tile[numOfColumns][rows];
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
 
@@ -65,31 +73,31 @@ public class TileMap
 
 	public void update()
 	{
-		x += velX;
-		y += velY;
+		cameraX += cameraVelX;
+		cameraY += cameraVelY;
 
-		if(x % mapWidth == 0) velX = 0;
-		if(y % mapHeight == 0) velY = 0;
+		if(cameraX % mapWidth == 0) cameraVelX = 0;
+		if(cameraY % mapHeight == 0) cameraVelY = 0;
 
 		link.update();
 
-		if(link.getX() - this.getX() <= widthOfTile && link.getDirection() == Direction.LEFT && !link.getState().equals("TRANSITION"))
+		if(link.getX() - this.getCameraX() <= widthOfTile && link.getDirection() == Direction.LEFT && !link.getState().equals("TRANSITION"))
 		{
 			this.setVector(-4, 0);
 			link.setTransitionVector(-1, 0);
 		}
 
-		if(link.getX() - this.getX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT && !link.getState().equals("TRANSITION"))
+		if(link.getX() - this.getCameraX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT && !link.getState().equals("TRANSITION"))
 		{
 			this.setVector(4, 0);
 			link.setTransitionVector(1, 0);
 		}
-		if(link.getY() - this.getY() <= heightOfTile && link.getDirection() == Direction.UP && !link.getState().equals("TRANSITION"))
+		if(link.getY() - this.getCameraY() <= heightOfTile && link.getDirection() == Direction.UP && !link.getState().equals("TRANSITION"))
 		{
 			this.setVector(0, -4);
 			link.setTransitionVector(0, -1);
 		}
-		if(link.getY() - this.getY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN && !link.getState().equals("TRANSITION"))
+		if(link.getY() - this.getCameraY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN && !link.getState().equals("TRANSITION"))
 		{
 			this.setVector(0, 4);
 			link.setTransitionVector(0, 1);
@@ -111,7 +119,11 @@ public class TileMap
 				if(enemy.getDestroyFlag())
 				{
 					enemyIterator.remove();
-					animations.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2, enemy.getY() - enemy.getHeight() / 2, new Animation(3, false, Images.Enemies.ENEMY_DEATH, 16, 16)));
+					animations.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2,
+							enemy.getY() - enemy.getHeight() / 2,
+							new Animation(3, false,
+									Images.Enemies.ENEMY_DEATH, 16, 16),
+							this));
 				}
 			}
 		}
@@ -136,11 +148,14 @@ public class TileMap
 
 	public void draw(Graphics2D g2d)
 	{
-		for(int i = 0; i < columns; i++)
+		AffineTransform transform = g2d.getTransform();
+		g2d.translate(drawX, drawY);
+
+		for(int i = 0; i < numOfColumns; i++)
 		{
-			for(int k = 0; k < rows; k++)
+			for(int k = 0; k < numOfRows; k++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i - x, heightOfTile * k - y,
+				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i - cameraX, heightOfTile * k - cameraY,
 						widthOfTile, heightOfTile, null);
 			}
 		}
@@ -156,6 +171,8 @@ public class TileMap
 		}
 
 		link.draw(g2d);
+
+		g2d.setTransform(transform);
 	}
 
 	public void loadTiles(String filePath)
@@ -214,7 +231,7 @@ public class TileMap
 
 	private boolean checkVisibility(MapObject mapObject)
 	{
-		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
+		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
 		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
 
 		return visibleSector.intersects(object);
@@ -222,15 +239,21 @@ public class TileMap
 
 	private boolean checkVisibility(Rectangle object)
 	{
-		Rectangle visibleSector = new Rectangle(x, y, 256, 192);
+		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
 
 		return visibleSector.intersects(object);
 	}
 
+	public void updateDrawCoordinates()
+	{
+		drawX += drawVelX;
+		drawY += drawVelY;
+	}
+
 	public void setVector(int velX, int velY)
 	{
-		this.velX = velX;
-		this.velY = velY;
+		this.cameraVelX = velX;
+		this.cameraVelY = velY;
 	}
 
 	public Tile getTile(int column, int row)
@@ -248,22 +271,39 @@ public class TileMap
 		return heightOfTile;
 	}
 
-	public int getColumns()
+	public int getNumOfColumns()
 	{
-		return columns;
+		return numOfColumns;
 	}
-	public int getRows()
+	public int getNumOfRows()
 	{
-		return rows;
+		return numOfRows;
 	}
 
-	public int getX()
+	public int getCameraX()
 	{
-		return x;
+		return cameraX;
 	}
-	public int getY()
+	public int getCameraY()
 	{
-		return y;
+		return cameraY;
+	}
+
+	public void setDrawCoordinates(int drawX, int drawY)
+	{
+		this.drawX = drawX;
+		this.drawY = drawY;
+	}
+
+	public int[] getDrawCoordinates()
+	{
+		return new int[] {drawX, drawY};
+	}
+
+	public void setDrawVector(int drawVelX, int drawVelY)
+	{
+		this.drawVelX = drawVelX;
+		this.drawVelY = drawVelY;
 	}
 
 	public ArrayList<Enemy> getEnemies()

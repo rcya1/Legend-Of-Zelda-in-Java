@@ -1,7 +1,7 @@
 package entity.weapons;
 
 import entity.Direction;
-import map.TileMap;
+import components.OverWorld;
 import reference.Images;
 
 import java.awt.*;
@@ -9,14 +9,14 @@ import java.awt.geom.AffineTransform;
 
 public class Sword extends Weapon
 {
-	private TileMap tileMap;
+	private OverWorld overWorld;
 
 	private int velX;
 	private int velY;
 
 	private Direction direction;
 
-	public Sword(int x, int y, Direction direction, TileMap tileMap)
+	public Sword(int x, int y, Direction direction, OverWorld overWorld)
 	{
 		this.x = x;
 		this.y = y;
@@ -26,7 +26,7 @@ public class Sword extends Weapon
 
 		this.direction = direction;
 
-		this.tileMap = tileMap;
+		this.overWorld = overWorld;
 
 		width = 16;
 		height = 16;
@@ -42,8 +42,8 @@ public class Sword extends Weapon
 
 	public void draw(Graphics2D g2d)
 	{
-		int drawX = x - tileMap.getX();
-		int drawY = y - tileMap.getY();
+		int drawX = x - overWorld.getCameraX();
+		int drawY = y - overWorld.getCameraY();
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);

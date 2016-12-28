@@ -2,7 +2,7 @@ package entity.enemies;
 
 import entity.Animation;
 import entity.Direction;
-import map.TileMap;
+import components.OverWorld;
 import reference.Images;
 
 import java.awt.*;
@@ -17,14 +17,14 @@ public class Octorok extends Enemy
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, TileMap tileMap)
+	public Octorok(int x, int y, Direction direction, OverWorld overWorld)
 	{
 		this.x = x;
 		this.y = y;
 
 		this.direction = direction;
 
-		this.tileMap = tileMap;
+		this.overWorld = overWorld;
 
 		velX = 0;
 		velY = 0;
@@ -70,7 +70,7 @@ public class Octorok extends Enemy
 				shootingTimer++;
 				if(shootingTimer == 60)
 				{
-					pellet = new OctorokPellet(x, y, direction, tileMap);
+					pellet = new OctorokPellet(x, y, direction, overWorld);
 				}
 			}
 			else
@@ -97,8 +97,8 @@ public class Octorok extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = x - tileMap.getX();
-		drawY = y - tileMap.getY();
+		drawX = x - overWorld.getCameraX();
+		drawY = y - overWorld.getCameraY();
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
