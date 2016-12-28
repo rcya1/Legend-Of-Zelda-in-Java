@@ -78,9 +78,15 @@ public class Octorok extends Enemy
 				state = "MOVING";
 			}
 			break;
+		default:
+			break;
 		}
 
-		if(pellet != null) pellet.update();
+		if(pellet != null)
+		{
+			pellet.update();
+			if(!overWorld.checkVisibility(pellet.getRectangle())) pellet = null;
+		}
 
 		if(handleCollisions() && movementRefreshTimer == 0)
 		{

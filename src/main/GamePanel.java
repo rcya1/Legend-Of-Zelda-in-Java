@@ -22,8 +22,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private StateManager stateManager;
 
-	private final int FPS = 60;
-
 	GamePanel()
 	{
 		super();
@@ -91,14 +89,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 		long wait;
 		while(running)
 		{
-			start = System.nanoTime(); //Get Current Time of this Tick
+			start = System.nanoTime();
 			update();
 			draw();
 			drawToScreen();
 
+			int FPS = 60;
 			long targetTime = 1000 / FPS;
-			elapsed = System.nanoTime() - start; //Find how long the tick has been running
-			wait = targetTime - elapsed / 1000000; //Find how long to wait from target time and how long has passed
+			elapsed = System.nanoTime() - start;
+			wait = targetTime - elapsed / 1000000;
 			if(wait < 0) wait = 5;
 			try
 			{

@@ -56,4 +56,9 @@ class OctorokPellet
 		g2d.drawImage(Images.Enemies.OCTOROK_PELLET, drawX - width / 2, drawY - width / 2, width, height, null);
 		g2d.setTransform(transform);
 	}
+
+	Rectangle getRectangle()
+	{
+		return new Rectangle(x - width / 2, y - height / 2, width, height);
+	}
 }

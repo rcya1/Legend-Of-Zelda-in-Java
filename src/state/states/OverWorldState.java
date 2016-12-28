@@ -67,6 +67,8 @@ public class OverWorldState extends State
 				menu.setDrawVector(0, 0);
 			}
 			break;
+		default:
+			break;
 		}
 	}
 
@@ -85,17 +87,21 @@ public class OverWorldState extends State
 
 		if(key == KeyEvent.VK_ENTER)
 		{
+			int transitionSpeed = 4;
+
 			switch(state)
 			{
 			case "OVERWORLD":
-				overWorld.setDrawVector(0, 2);
-				menu.setDrawVector(0, 2);
+				overWorld.setDrawVector(0, transitionSpeed);
+				menu.setDrawVector(0, transitionSpeed);
 				state = "TRANSITION";
 				break;
 			case "MENU":
-				overWorld.setDrawVector(0, -2);
-				menu.setDrawVector(0, -2);
+				overWorld.setDrawVector(0, -transitionSpeed);
+				menu.setDrawVector(0, -transitionSpeed);
 				state = "TRANSITION";
+				break;
+			default:
 				break;
 			}
 		}

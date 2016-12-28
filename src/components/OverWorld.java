@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -177,10 +176,10 @@ public class OverWorld
 
 	public void loadTiles(String filePath)
 	{
-		try
+		try(BufferedReader bufferedReader = new BufferedReader(
+				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
+		)
 		{
-			InputStream inputStream = getClass().getResourceAsStream(filePath);
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.defaultCharset()));
 			String line;
 			int lineCount = 0;
 			while((line = bufferedReader.readLine()) != null)
@@ -203,10 +202,9 @@ public class OverWorld
 
 	public void loadEnemies(String filePath)
 	{
-		try
+		try(BufferedReader bufferedReader = new BufferedReader(
+				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset())))
 		{
-			InputStream inputStream = getClass().getResourceAsStream(filePath);
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.defaultCharset()));
 			String line;
 			int lineCount = 0;
 			while((line = bufferedReader.readLine()) != null)
@@ -229,7 +227,7 @@ public class OverWorld
 		}
 	}
 
-	private boolean checkVisibility(MapObject mapObject)
+	public boolean checkVisibility(MapObject mapObject)
 	{
 		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
 		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
@@ -237,7 +235,7 @@ public class OverWorld
 		return visibleSector.intersects(object);
 	}
 
-	private boolean checkVisibility(Rectangle object)
+	public boolean checkVisibility(Rectangle object)
 	{
 		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
 
@@ -304,15 +302,6 @@ public class OverWorld
 	{
 		this.drawVelX = drawVelX;
 		this.drawVelY = drawVelY;
-	}
-
-	public ArrayList<Enemy> getEnemies()
-	{
-		return enemies;
-	}
-	public ArrayList<AnimationObject> getAnimations()
-	{
-		return animations;
 	}
 
 	public Link getLink()
