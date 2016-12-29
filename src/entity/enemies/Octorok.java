@@ -3,6 +3,7 @@ package entity.enemies;
 import entity.Animation;
 import entity.Direction;
 import components.OverWorld;
+import entity.collectibles.Heart;
 import reference.Images;
 
 import java.awt.*;
@@ -40,6 +41,7 @@ public class Octorok extends Enemy
 		pellet = null;
 
 		health = 4;
+		damage = 4;
 	}
 
 	public void update()
@@ -88,7 +90,7 @@ public class Octorok extends Enemy
 			if(!overWorld.checkVisibility(pellet.getRectangle())) pellet = null;
 		}
 
-		if(handleCollisions() && movementRefreshTimer == 0)
+		if(handleTileCollisions() && movementRefreshTimer == 0)
 		{
 			movementRefreshTimer = 120;
 			direction = Direction.getExcludedRandom(direction);
@@ -115,5 +117,34 @@ public class Octorok extends Enemy
 		}
 
 		if(pellet != null) pellet.draw(g2d);
+	}
+
+	public void removePellet()
+	{
+		pellet = null;
+	}
+
+	public Rectangle getPelletCollisionBox()
+	{
+		if(pellet != null)
+		{
+			return pellet.getRectangle();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	public int getPelletDamage()
+	{
+		if(pellet != null)
+		{
+			return pellet.getDamage();
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }

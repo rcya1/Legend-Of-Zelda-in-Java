@@ -16,12 +16,6 @@ public abstract class MapObject
 	protected int drawX;
 	protected int drawY;
 
-	int transitionAmountX;
-	int transitionAmountY;
-
-	int transitionVelX;
-	int transitionVelY;
-
 	protected int width;
 	protected int height;
 
@@ -63,7 +57,7 @@ public abstract class MapObject
 		return thisRectangle.intersects(otherRectangle);
 	}
 
-	protected boolean handleCollisions()
+	protected boolean handleTileCollisions()
 	{
 		int collisionOffset = 6;
 
@@ -144,12 +138,6 @@ public abstract class MapObject
 		return collisionFlag;
 	}
 
-	public void setTransitionVector(int transitionVelX, int transitionVelY)
-	{
-		this.transitionVelX = transitionVelX;
-		this.transitionVelY = transitionVelY;
-	}
-
 	public int getX()
 	{
 		return x;
@@ -183,5 +171,10 @@ public abstract class MapObject
 	public String getState()
 	{
 		return state;
+	}
+
+	public int getHealth()
+	{
+		return health;
 	}
 }

@@ -34,7 +34,7 @@ public class OverWorldState extends State
 		overWorld.loadEnemies("/tileMaps/testE.txt");
 		overWorld.setDrawCoordinates(0, 48);
 
-		menu = new Menu();
+		menu = new Menu(overWorld);
 		menu.setDrawCoordinates(0, -184);
 
 		link = overWorld.getLink();
@@ -75,7 +75,7 @@ public class OverWorldState extends State
 	public void draw(Graphics2D g2d)
 	{
 		g2d.setColor(Color.BLACK);
-		g2d.fillRect(-GamePanel.HEIGHT, 0, GamePanel.WIDTH, GamePanel.HEIGHT * 2);
+		g2d.fillRect(0, -GamePanel.HEIGHT, GamePanel.WIDTH, GamePanel.HEIGHT * 2);
 
 		overWorld.draw(g2d);
 		menu.draw(g2d);

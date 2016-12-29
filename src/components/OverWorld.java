@@ -1,6 +1,7 @@
 package components;
 
 import entity.*;
+import entity.collectibles.Collectible;
 import entity.enemies.Enemy;
 import reference.Images;
 import reference.MapHelper;
@@ -37,6 +38,7 @@ public class OverWorld
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<AnimationObject> animations;
+	private ArrayList<Collectible> collectibles;
 	private Link link;
 
 	private Tile[][] tiles;
@@ -66,6 +68,7 @@ public class OverWorld
 		tiles = new Tile[numOfColumns][rows];
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
+		collectibles = new ArrayList<>();
 
 		link = new Link(this);
 	}
@@ -80,23 +83,27 @@ public class OverWorld
 
 		link.update();
 
-		if(link.getX() - this.getCameraX() <= widthOfTile && link.getDirection() == Direction.LEFT && !link.getState().equals("TRANSITION"))
+		if(link.getX() - this.getCameraX() <= widthOfTile && link.getDirection() == Direction.LEFT &&
+				!link.getState().equals("TRANSITION"))
 		{
 			this.setVector(-4, 0);
 			link.setTransitionVector(-1, 0);
 		}
 
-		if(link.getX() - this.getCameraX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT && !link.getState().equals("TRANSITION"))
+		if(link.getX() - this.getCameraX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT &&
+				!link.getState().equals("TRANSITION"))
 		{
 			this.setVector(4, 0);
 			link.setTransitionVector(1, 0);
 		}
-		if(link.getY() - this.getCameraY() <= heightOfTile && link.getDirection() == Direction.UP && !link.getState().equals("TRANSITION"))
+		if(link.getY() - this.getCameraY() <= heightOfTile && link.getDirection() == Direction.UP &&
+				!link.getState().equals("TRANSITION"))
 		{
 			this.setVector(0, -4);
 			link.setTransitionVector(0, -1);
 		}
-		if(link.getY() - this.getCameraY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN && !link.getState().equals("TRANSITION"))
+		if(link.getY() - this.getCameraY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN &&
+				!link.getState().equals("TRANSITION"))
 		{
 			this.setVector(0, 4);
 			link.setTransitionVector(0, 1);
@@ -143,6 +150,11 @@ public class OverWorld
 				}
 			}
 		}
+
+		for(Collectible collectible : collectibles)
+		{
+			collectible.update();
+		}
 	}
 
 	public void draw(Graphics2D g2d)
@@ -163,10 +175,16 @@ public class OverWorld
 		{
 			if(this.checkVisibility(enemy)) enemy.draw(g2d);
 		}
+
 		for(AnimationObject animation : animations)
 		{
 			if(this.checkVisibility(new Rectangle(animation.getX(), animation.getY(), animation.getWidth(), animation.getHeight())))
 				animation.draw(g2d);
+		}
+
+		for(Collectible collectible : collectibles)
+		{
+			collectible.draw(g2d);
 		}
 
 		link.draw(g2d);
@@ -254,6 +272,11 @@ public class OverWorld
 		this.cameraVelY = velY;
 	}
 
+	public void addCollectible(Collectible collectible)
+	{
+		collectibles.add(collectible);
+	}
+
 	public Tile getTile(int column, int row)
 	{
 		return tiles[column][row];
@@ -307,5 +330,15 @@ public class OverWorld
 	public Link getLink()
 	{
 		return link;
+	}
+
+	public ArrayList<Enemy> getEnemies()
+	{
+		return enemies;
+	}
+
+	public ArrayList<Collectible> getCollectibles()
+	{
+		return collectibles;
 	}
 }

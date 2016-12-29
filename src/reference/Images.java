@@ -7,8 +7,11 @@ import java.io.IOException;
 
 public class Images
 {
-	private static final int WIDTH = 16;
-	private static final int HEIGHT = 16;
+	private static final int TILE_WIDTH = 16;
+	private static final int TILE_HEIGHT = 16;
+
+	private static final int HEART_WIDTH = 8;
+	private static final int HEART_HEIGHT = 8;
 
 	private static BufferedImage loadSingleImage(String string)
 	{
@@ -24,7 +27,23 @@ public class Images
 		return null;
 	}
 
-	public static final BufferedImage MENU_TEMP = loadSingleImage("/menu/TEMP.png");
+	public static class Menu
+	{
+		public static final BufferedImage MENU_TEMP = loadSingleImage("/menu/TEMP.png");
+
+		private static final BufferedImage HEARTS = loadSingleImage("/menu/hearts/Hearts.png");
+
+		public static final BufferedImage HEART_EMPTY = HEARTS != null ?
+				HEARTS.getSubimage(0, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_HALF = HEARTS != null ?
+				HEARTS.getSubimage(HEART_WIDTH, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_FULL = HEARTS != null ?
+				HEARTS.getSubimage(HEART_WIDTH * 2, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_CONTAINER = loadSingleImage("/menu/hearts/HeartContainer.png");
+	}
 
 	public static class Link
 	{
@@ -34,49 +53,49 @@ public class Images
 		public static final BufferedImage SWORD = loadSingleImage("/sprites/link/items/Sword.png");
 
 		public static final BufferedImage LINK_DOWN = LINK_WALK != null ?
-				LINK_WALK.getSubimage(0, 0, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_DOWN_2 = LINK_WALK != null ?
-				LINK_WALK.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 
 		public static final BufferedImage LINK_UP = LINK_WALK != null ?
-				LINK_WALK.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_UP_2 = LINK_WALK != null ?
-				LINK_WALK.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 
 		public static final BufferedImage LINK_RIGHT = LINK_WALK != null ?
-				LINK_WALK.getSubimage(0, HEIGHT * 2, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_RIGHT_2 = LINK_WALK != null ?
-				LINK_WALK.getSubimage(WIDTH, HEIGHT * 2, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 
 		public static final BufferedImage LINK_LEFT = LINK_WALK != null ?
-				LINK_WALK.getSubimage(0, HEIGHT * 3, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_LEFT_2 = LINK_WALK != null ?
-				LINK_WALK.getSubimage(WIDTH, HEIGHT * 3, WIDTH, HEIGHT) :
+				LINK_WALK.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 
 
 		public static final BufferedImage LINK_ATTACK_SWORD_UP = LINK_ATTACK_SWORD != null ?
-				LINK_ATTACK_SWORD.getSubimage(0, 0, WIDTH, HEIGHT) :
+				LINK_ATTACK_SWORD.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_ATTACK_SWORD_RIGHT = LINK_ATTACK_SWORD != null ?
-				LINK_ATTACK_SWORD.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				LINK_ATTACK_SWORD.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_ATTACK_SWORD_DOWN = LINK_ATTACK_SWORD != null ?
-				LINK_ATTACK_SWORD.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
+				LINK_ATTACK_SWORD.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage LINK_ATTACK_SWORD_LEFT = LINK_ATTACK_SWORD != null ?
-				LINK_ATTACK_SWORD.getSubimage(WIDTH * 3, 0, WIDTH, HEIGHT) :
+				LINK_ATTACK_SWORD.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 	}
 
@@ -88,41 +107,41 @@ public class Images
 		private static final BufferedImage TILE_ROCKS_ORANGE = loadSingleImage("/sprites/blocks/rocks/RockOrangeTiles.png");
 
 		public static final BufferedImage ROCKS_GREEN_UP_LEFT = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(0, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_GREEN_UP = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_GREEN_UP_RIGHT = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_GREEN_DOWN_LEFT = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_GREEN_DOWN = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_GREEN_DOWN_RIGHT = TILE_ROCKS_GREEN != null ?
-				TILE_ROCKS_GREEN.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 		public static final BufferedImage ROCKS_ORANGE_UP_LEFT = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(0, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_ORANGE_UP = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_ORANGE_UP_RIGHT = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(WIDTH * 2, 0, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_ORANGE_DOWN_LEFT = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(0, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_ORANGE_DOWN = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(WIDTH, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage ROCKS_ORANGE_DOWN_RIGHT = TILE_ROCKS_ORANGE != null ?
-				TILE_ROCKS_ORANGE.getSubimage(WIDTH * 2, HEIGHT, WIDTH, HEIGHT) :
+				TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 		public static final BufferedImage ROCKS_GREEN_SINGLE = loadSingleImage("/sprites/blocks/rocks/RockGreenSingle.png");
@@ -136,10 +155,10 @@ public class Images
 		private static final BufferedImage OCTOROK_SPRITES = loadSingleImage("/sprites/enemies/octorok/OctorokSprites.png");
 
 		public static final BufferedImage OCTOROK = OCTOROK_SPRITES != null ?
-				OCTOROK_SPRITES.getSubimage(0, 0, WIDTH, HEIGHT) :
+				OCTOROK_SPRITES.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage OCTOROK_2 = OCTOROK_SPRITES != null ?
-				OCTOROK_SPRITES.getSubimage(WIDTH, 0, WIDTH, HEIGHT) :
+				OCTOROK_SPRITES.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 
 		public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/sprites/enemies/octorok/Pellet.png");

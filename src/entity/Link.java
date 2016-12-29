@@ -1,5 +1,10 @@
 package entity;
 
+import entity.collectibles.Collectible;
+import entity.collectibles.Heart;
+import entity.collectibles.HeartContainer;
+import entity.enemies.Enemy;
+import entity.enemies.Octorok;
 import entity.weapons.Sword;
 import main.GamePanel;
 import components.OverWorld;
@@ -9,9 +14,17 @@ import reference.MathHelper;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Link extends MapObject
 {
+	private int transitionAmountX;
+	private int transitionAmountY;
+
+	private int transitionVelX;
+	private int transitionVelY;
+
 	private boolean inputLeft;
 	private boolean inputUp;
 	private boolean inputRight;
@@ -27,6 +40,9 @@ public class Link extends MapObject
 	private Animation walkLeft;
 
 	private BufferedImage[] swordAttack;
+
+	private int healthContainers;
+	private int maxHealthContainers;
 
 	public Link(OverWorld overWorld)
 	{
@@ -56,6 +72,10 @@ public class Link extends MapObject
 		state = "IDLE";
 
 		direction = Direction.UP;
+
+		health = 24;
+		healthContainers = 3;
+		maxHealthContainers = 16;
 	}
 
 	public void update()
@@ -131,10 +151,6 @@ public class Link extends MapObject
 			}
 			break;
 		case "TRANSITION":
-			//TODO Set longer inactive frames
-
-			//TransitionAmountX determines distance went so far, but keeps going so that link suffers inactive frames
-
 			velX = 0;
 			velY = 0;
 
@@ -159,80 +175,89 @@ public class Link extends MapObject
 			break;
 		}
 
+		if(invincibilityFrames > 0) invincibilityFrames--;
+
 		if(sword != null) sword.update();
 
-		handleCollisions();
+		handleTileCollisions();
+
+		if(invincibilityFrames == 0) handleEnemyCollisions();
+
+		handleCollectibleCollisions();
 	}
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = x - overWorld.getCameraX();
-		drawY = y - overWorld.getCameraY();
-
-		if(sword != null) sword.draw(g2d);
-
-		switch(state)
+		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-		case "IDLE":
-			switch(direction)
+			drawX = x - overWorld.getCameraX();
+			drawY = y - overWorld.getCameraY();
+
+			if(sword != null) sword.draw(g2d);
+
+			switch(state)
 			{
-			case UP:
+			case "IDLE":
+				switch(direction)
+				{
+				case UP:
+					walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case RIGHT:
+					walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case DOWN:
+					walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case LEFT:
+					walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				default:
+					break;
+				}
+				break;
+			case "UP":
 				walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
-			case RIGHT:
-				walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-				break;
-			case DOWN:
+			case "DOWN":
 				walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
-			case LEFT:
-				walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-				break;
-			default:
-				break;
-			}
-			break;
-		case "UP":
-			walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-			break;
-		case "DOWN":
-			walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-			break;
-		case "RIGHT":
-			walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-			break;
-		case "LEFT":
-			walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-			break;
-		case "ATTACK_SWORD_START":
-			g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
-			break;
-		case "ATTACK_SWORD":
-			g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
-			break;
-		case "TRANSITION":
-			switch(direction)
-			{
-			case UP:
-				walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-				break;
-			case RIGHT:
+			case "RIGHT":
 				walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
-			case DOWN:
-				walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
-				break;
-			case LEFT:
+			case "LEFT":
 				walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 				break;
+			case "ATTACK_SWORD_START":
+				g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
+				break;
+			case "ATTACK_SWORD":
+				g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
+				break;
+			case "TRANSITION":
+				switch(direction)
+				{
+				case UP:
+					walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case RIGHT:
+					walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case DOWN:
+					walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				case LEFT:
+					walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					break;
+				default:
+					break;
+				}
+				break;
 			default:
+				g2d.setColor(Color.RED);
+				g2d.drawRect(drawX - width / 2, drawY - height / 2, width, height);
 				break;
 			}
-			break;
-		default:
-			g2d.setColor(Color.RED);
-			g2d.drawRect(drawX - width / 2, drawY - height / 2, width, height);
-			break;
 		}
 	}
 
@@ -249,6 +274,75 @@ public class Link extends MapObject
 		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
 	}
 
+	private void handleEnemyCollisions()
+	{
+		ArrayList<Enemy> enemies = overWorld.getEnemies();
+		for(Enemy enemy : enemies)
+		{
+			if(checkCollisionWith(enemy))
+			{
+				health -= enemy.getDamage();
+				invincibilityFrames = 30;
+			}
+
+			if(enemy instanceof Octorok)
+			{
+				Octorok octorok = (Octorok) enemy;
+
+				if(octorok.getPelletCollisionBox() != null)
+				{
+					if(checkCollisionWith(octorok.getPelletCollisionBox()))
+					{
+						health -= octorok.getPelletDamage();
+						invincibilityFrames = 30;
+						octorok.removePellet();
+					}
+				}
+			}
+		}
+	}
+
+	private void handleCollectibleCollisions()
+	{
+		ArrayList<Collectible> collectibles = overWorld.getCollectibles();
+		Iterator iterator = collectibles.iterator();
+		while(iterator.hasNext())
+		{
+			Collectible collectible = (Collectible) iterator.next();
+
+			if(checkCollisionWith(collectible.getRectangle()))
+			{
+				if(collectible instanceof Heart)
+				{
+					Heart heart = (Heart) collectible;
+
+					if(health + heart.getRestoreValue() > healthContainers * 8)
+					{
+						health = healthContainers * 8;
+					}
+					else if(health + heart.getRestoreValue() == healthContainers * 8)
+					{
+						health = healthContainers * 8;
+						iterator.remove();
+					}
+					else
+					{
+						health += heart.getRestoreValue();
+					}
+				}
+				else if(collectible instanceof HeartContainer)
+				{
+					if(healthContainers + 1 < maxHealthContainers)
+					{
+						healthContainers++;
+						health = healthContainers * 8;
+						iterator.remove();
+					}
+				}
+			}
+		}
+	}
+
 	public void setKeyVariable(int key, boolean bool)
 	{
 		if(key == KeyEvent.VK_D) inputRight = bool;
@@ -261,5 +355,15 @@ public class Link extends MapObject
 	public Sword getSword()
 	{
 		return sword;
+	}
+
+	public int getHealthContainers()
+	{
+		return healthContainers;
+	}
+	public void setTransitionVector(int transitionVelX, int transitionVelY)
+	{
+		this.transitionVelX = transitionVelX;
+		this.transitionVelY = transitionVelY;
 	}
 }

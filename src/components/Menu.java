@@ -6,6 +6,8 @@ import java.awt.*;
 
 public class Menu
 {
+	private OverWorld overWorld;
+
 	private int drawX;
 	private int drawY;
 	private int drawVelX;
@@ -14,7 +16,7 @@ public class Menu
 	private int width;
 	private int height;
 
-	public Menu()
+	public Menu(OverWorld overWorld)
 	{
 		drawX = 0;
 		drawY = 0;
@@ -24,6 +26,8 @@ public class Menu
 
 		width = 256;
 		height = 232;
+
+		this.overWorld = overWorld;
 	}
 
 	public void update()
@@ -33,7 +37,50 @@ public class Menu
 
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(Images.MENU_TEMP, drawX, drawY, width, height, null);
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(drawX, drawY, width, height);
+		g2d.drawImage(Images.Menu.MENU_TEMP, drawX, drawY, width, height, null);
+
+		//Draw Health Bar
+		int xRelativeToMenuOrigin = 176;
+		int yRelativeToMenuOrigin = 215;
+
+		for(int i = 0; i < overWorld.getLink().getHealthContainers(); i++)
+		{
+			int heartImageIndex = 0;
+			if(i > 7)
+			{
+				xRelativeToMenuOrigin = 112;
+				yRelativeToMenuOrigin = 206;
+			}
+
+			if(overWorld.getLink().getHealth() >= (i + 1) * 8)
+			{
+				heartImageIndex = 2;
+			}
+			else if(overWorld.getLink().getHealth() >= (i + 0.5) * 8)
+			{
+				heartImageIndex = 1;
+			}
+
+			switch(heartImageIndex)
+			{
+			case 0:
+				g2d.drawImage(Images.Menu.HEART_EMPTY, drawX + xRelativeToMenuOrigin + i * 8,
+						drawY + yRelativeToMenuOrigin, null);
+				break;
+			case 1:
+				g2d.drawImage(Images.Menu.HEART_HALF, drawX + xRelativeToMenuOrigin + i * 8,
+						drawY + yRelativeToMenuOrigin, null);
+				break;
+			case 2:
+				g2d.drawImage(Images.Menu.HEART_FULL	, drawX + xRelativeToMenuOrigin + i * 8,
+						drawY + yRelativeToMenuOrigin, null);
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	public void updateDrawCoordinates()

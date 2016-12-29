@@ -1,6 +1,8 @@
 package entity.enemies;
 
 import entity.MapObject;
+import entity.collectibles.Heart;
+import entity.collectibles.HeartContainer;
 import entity.weapons.Sword;
 import entity.weapons.Weapon;
 
@@ -20,6 +22,7 @@ public abstract class Enemy extends MapObject
 		if(health < 0)
 		{
 			destroyFlag = true;
+			overWorld.addCollectible(new Heart(x, y, overWorld));
 		}
 	}
 
@@ -45,5 +48,10 @@ public abstract class Enemy extends MapObject
 	{
 		this.sword = sword;
 		weapons = new Weapon[] {sword};
+	}
+
+	public int getDamage()
+	{
+		return damage;
 	}
 }

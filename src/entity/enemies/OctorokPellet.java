@@ -22,6 +22,8 @@ class OctorokPellet
 
 	private Direction direction;
 
+	private int damage;
+
 	OctorokPellet(int x, int y, Direction direction, OverWorld overWorld)
 	{
 		this.x = x;
@@ -38,6 +40,8 @@ class OctorokPellet
 
 		width = 16;
 		height = 16;
+
+		damage = 4;
 	}
 
 	void update()
@@ -60,5 +64,10 @@ class OctorokPellet
 	Rectangle getRectangle()
 	{
 		return new Rectangle(x - width / 2, y - height / 2, width, height);
+	}
+
+	int getDamage()
+	{
+		return damage;
 	}
 }
