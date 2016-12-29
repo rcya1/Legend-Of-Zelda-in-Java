@@ -1,7 +1,7 @@
 package entity;
 
-import components.Tile;
 import components.OverWorld;
+import components.Tile;
 import reference.MathHelper;
 
 import java.awt.*;
@@ -41,7 +41,7 @@ public abstract class MapObject
 	public abstract void draw(Graphics2D g2d);
 
 
-	protected boolean checkCollisionWith(MapObject other)
+	boolean checkCollisionWith(MapObject other)
 	{
 		Rectangle thisRectangle = new Rectangle(x - width / 2, y - width / 2, width, height);
 		Rectangle otherRectangle = new Rectangle(other.x - other.width / 2, other.y - other.height / 2,

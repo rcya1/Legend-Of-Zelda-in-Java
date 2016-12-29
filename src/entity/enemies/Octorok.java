@@ -1,9 +1,8 @@
 package entity.enemies;
 
+import components.OverWorld;
 import entity.Animation;
 import entity.Direction;
-import components.OverWorld;
-import entity.collectibles.Heart;
 import reference.Images;
 
 import java.awt.*;

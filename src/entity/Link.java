@@ -1,5 +1,6 @@
 package entity;
 
+import components.OverWorld;
 import entity.collectibles.Collectible;
 import entity.collectibles.Heart;
 import entity.collectibles.HeartContainer;
@@ -7,7 +8,6 @@ import entity.enemies.Enemy;
 import entity.enemies.Octorok;
 import entity.weapons.Sword;
 import main.GamePanel;
-import components.OverWorld;
 import reference.Images;
 import reference.MathHelper;
 

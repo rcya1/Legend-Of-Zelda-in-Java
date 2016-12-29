@@ -1,9 +1,9 @@
 package reference;
 
+import components.OverWorld;
 import entity.Direction;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;
-import components.OverWorld;
 
 public class MapHelper
 {

@@ -1,7 +1,5 @@
 package entity.collectibles;
 
-import entity.MapObject;
-
 import java.awt.*;
 
 public abstract class Collectible

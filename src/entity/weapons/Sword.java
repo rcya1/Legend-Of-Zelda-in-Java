@@ -1,7 +1,7 @@
 package entity.weapons;
 
-import entity.Direction;
 import components.OverWorld;
+import entity.Direction;
 import reference.Images;
 
 import java.awt.*;

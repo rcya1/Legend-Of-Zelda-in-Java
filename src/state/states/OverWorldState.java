@@ -1,12 +1,11 @@
 package state.states;
 
+import components.Menu;
+import components.OverWorld;
 import entity.Link;
 import main.GamePanel;
-import components.OverWorld;
 import state.State;
 import state.StateManager;
-
-import components.Menu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

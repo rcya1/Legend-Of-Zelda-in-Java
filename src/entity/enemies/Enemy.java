@@ -2,7 +2,6 @@ package entity.enemies;
 
 import entity.MapObject;
 import entity.collectibles.Heart;
-import entity.collectibles.HeartContainer;
 import entity.weapons.Sword;
 import entity.weapons.Weapon;
 
