@@ -316,18 +316,18 @@ public class Link extends MapObject
 				{
 					Heart heart = (Heart) collectible;
 
-					if(health + heart.getRestoreValue() > healthContainers * 8)
+					if(health != healthContainers * 8)
 					{
-						health = healthContainers * 8;
-					}
-					else if(health + heart.getRestoreValue() == healthContainers * 8)
-					{
-						health = healthContainers * 8;
-						iterator.remove();
-					}
-					else
-					{
-						health += heart.getRestoreValue();
+						if(health + heart.getRestoreValue() >= healthContainers * 8)
+						{
+							health = healthContainers * 8;
+							iterator.remove();
+						}
+						else
+						{
+							health += heart.getRestoreValue();
+							iterator.remove();
+						}
 					}
 				}
 				else if(collectible instanceof HeartContainer)
