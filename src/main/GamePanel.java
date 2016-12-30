@@ -22,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private StateManager stateManager;
 
+	public static final int FPS = 60;
+
 	GamePanel()
 	{
 		super();
@@ -94,7 +96,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 			draw();
 			drawToScreen();
 
-			int FPS = 60;
 			long targetTime = 1000 / FPS;
 			elapsed = System.nanoTime() - start;
 			wait = targetTime - elapsed / 1000000;

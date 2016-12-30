@@ -27,22 +27,11 @@ public class Images
 		return null;
 	}
 
-	public static class Menu
+	public static class Beginning
 	{
-		public static final BufferedImage MENU_TEMP = loadSingleImage("/menu/TEMP.png");
-
-		private static final BufferedImage HEARTS = loadSingleImage("/menu/hearts/Hearts.png");
-
-		public static final BufferedImage HEART_EMPTY = HEARTS != null ?
-				HEARTS.getSubimage(0, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_HALF = HEARTS != null ?
-				HEARTS.getSubimage(HEART_WIDTH, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_FULL = HEARTS != null ?
-				HEARTS.getSubimage(HEART_WIDTH * 2, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_CONTAINER = loadSingleImage("/menu/hearts/HeartContainer.png");
+		public static final BufferedImage TITLE = loadSingleImage("/beginning/Title.png");
+		public static final BufferedImage DISPLAY_ITEMS = loadSingleImage("/beginning/DisplayItems.png");
+		public static final BufferedImage SELECT_SAVE = loadSingleImage("/beginning/SelectSave.png");
 	}
 
 	public static class Link
@@ -162,5 +151,23 @@ public class Images
 				null;
 
 		public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/sprites/enemies/octorok/Pellet.png");
+	}
+
+	public static class Menu
+	{
+		public static final BufferedImage MENU_TEMP = loadSingleImage("/menu/TEMP.png");
+
+		private static final BufferedImage HEARTS = loadSingleImage("/menu/hearts/Hearts.png");
+
+		public static final BufferedImage HEART_EMPTY = HEARTS != null ?
+				HEARTS.getSubimage(0, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_HALF = HEARTS != null ?
+				HEARTS.getSubimage(HEART_WIDTH, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_FULL = HEARTS != null ?
+				HEARTS.getSubimage(HEART_WIDTH * 2, 0, HEART_WIDTH, HEART_HEIGHT) :
+				null;
+		public static final BufferedImage HEART_CONTAINER = loadSingleImage("/menu/hearts/HeartContainer.png");
 	}
 }

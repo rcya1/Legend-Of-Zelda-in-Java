@@ -1,16 +1,26 @@
 package state;
 
-import state.states.MenuState;
+import state.states.DisplayItemsState;
+import state.states.TitleState;
 import state.states.OverWorldState;
+import state.states.SelectSaveState;
 
 import java.awt.*;
 
 public class StateManager
 {
-	private static final int NUMBER_OF_STATES = 3;
+	private static final int NUMBER_OF_STATES = 4;
 
-	private static final int MENU_STATE = 0;
-	private static final int OVER_WORLD_STATE = 1;
+	public static final int TITLE_STATE = 0;
+	public static final int DISPLAY_ITEMS_STATE = 1;
+	public static final int SELECT_SAVE_STATE = 2;
+	public static final int OVER_WORLD_STATE = 3;
+
+	/* Beginning - TitleScreen
+	 * Wait - Items
+	 * Press Start - Select Save
+	 * Press Start - OverWorld
+	 */
 
 	private State[] states;
 	private int currentState;
@@ -18,7 +28,7 @@ public class StateManager
 	public StateManager()
 	{
 		states = new State[NUMBER_OF_STATES];
-		currentState = OVER_WORLD_STATE;
+		currentState = TITLE_STATE;
 		loadState(currentState);
 	}
 
@@ -34,7 +44,9 @@ public class StateManager
 
 	private void loadState(int state)
 	{
-		if(state == MENU_STATE) states[state] = new MenuState(this);
+		if(state == TITLE_STATE) states[state] = new TitleState(this);
+		if(state == DISPLAY_ITEMS_STATE) states[state] = new DisplayItemsState(this);
+		if(state == SELECT_SAVE_STATE) states[state] = new SelectSaveState(this);
 		if(state == OVER_WORLD_STATE) states[state] = new OverWorldState(this);
 	}
 
