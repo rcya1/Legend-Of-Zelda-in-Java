@@ -107,6 +107,8 @@ public class Octorok extends Enemy
 		drawX = x - overWorld.getCameraX();
 		drawY = y - overWorld.getCameraY();
 
+		if(pellet != null) pellet.draw(g2d);
+
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
 			AffineTransform transform = g2d.getTransform();
@@ -114,8 +116,6 @@ public class Octorok extends Enemy
 			animation.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
 			g2d.setTransform(transform);
 		}
-
-		if(pellet != null) pellet.draw(g2d);
 	}
 
 	public void removePellet()
