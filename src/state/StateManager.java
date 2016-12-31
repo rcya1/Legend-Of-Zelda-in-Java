@@ -1,9 +1,9 @@
 package state;
 
 import state.states.DisplayItemsState;
-import state.states.TitleState;
 import state.states.OverWorldState;
 import state.states.SelectSaveState;
+import state.states.TitleState;
 
 import java.awt.*;
 

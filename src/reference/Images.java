@@ -29,9 +29,80 @@ public class Images
 
 	public static class Beginning
 	{
-		public static final BufferedImage TITLE = loadSingleImage("/beginning/Title.png");
 		public static final BufferedImage DISPLAY_ITEMS = loadSingleImage("/beginning/DisplayItems.png");
 		public static final BufferedImage SELECT_SAVE = loadSingleImage("/beginning/SelectSave.png");
+
+		public static class Title
+		{
+			public static int TITLE_MAIN_WIDTH = 256;
+			public static int TITLE_MAIN_HEIGHT = 240;
+
+			private static final BufferedImage TITLE_MAIN = loadSingleImage("/beginning/title/TitleMain.png");
+			public static final BufferedImage TITLE_MAIN_1 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(0, 0, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+			public static final BufferedImage TITLE_MAIN_2 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(TITLE_MAIN_WIDTH, 0, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+			public static final BufferedImage TITLE_MAIN_3 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(TITLE_MAIN_WIDTH * 2, 0, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+			public static final BufferedImage TITLE_MAIN_4 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(0, TITLE_MAIN_HEIGHT, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+			public static final BufferedImage TITLE_MAIN_5 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+			public static final BufferedImage TITLE_MAIN_6 = TITLE_MAIN != null ?
+					TITLE_MAIN.getSubimage(TITLE_MAIN_WIDTH * 2, TITLE_MAIN_HEIGHT, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
+					null;
+
+			public static int WATERFALL_WIDTH = 32;
+			public static int WATERFALL_HEIGHT = 64;
+
+			private static final BufferedImage WATERFALL = loadSingleImage("/beginning/title/Waterfall.png");
+			public static final BufferedImage WATERFALL_1 = WATERFALL != null ?
+					WATERFALL.getSubimage(0, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WATERFALL_2 = WATERFALL != null ?
+					WATERFALL.getSubimage(WATERFALL_WIDTH, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WATERFALL_3 = WATERFALL != null ?
+					WATERFALL.getSubimage(WATERFALL_WIDTH * 2, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WATERFALL_4 = WATERFALL != null ?
+					WATERFALL.getSubimage(WATERFALL_WIDTH * 3, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+
+			private static final BufferedImage WAVES = loadSingleImage("/beginning/title/Waves.png");
+			public static final BufferedImage WAVES_1 = WAVES != null ?
+					WAVES.getSubimage(0, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_2 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_3 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH * 2, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_4 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH * 3, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_5 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH * 4, 0, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_6 = WAVES != null ?
+					WAVES.getSubimage(0, WATERFALL_HEIGHT, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_7 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH, WATERFALL_HEIGHT, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_8 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH * 2, WATERFALL_HEIGHT, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+			public static final BufferedImage WAVES_9 = WAVES != null ?
+					WAVES.getSubimage(WATERFALL_WIDTH * 3, WATERFALL_HEIGHT, WATERFALL_WIDTH, WATERFALL_HEIGHT) :
+					null;
+		}
 	}
 
 	public static class Link
