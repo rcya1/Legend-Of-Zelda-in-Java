@@ -8,8 +8,8 @@ import entity.enemies.Enemy;
 import entity.enemies.Octorok;
 import entity.weapons.Sword;
 import main.GamePanel;
-import reference.Images;
-import reference.MathHelper;
+import utility.Images;
+import utility.MathHelper;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

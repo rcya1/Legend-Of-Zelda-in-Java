@@ -3,8 +3,8 @@ package components;
 import entity.*;
 import entity.collectibles.Collectible;
 import entity.enemies.Enemy;
-import reference.Images;
-import reference.MapHelper;
+import utility.Images;
+import utility.MapHelper;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

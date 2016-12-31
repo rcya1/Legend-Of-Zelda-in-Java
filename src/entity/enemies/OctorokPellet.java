@@ -2,7 +2,7 @@ package entity.enemies;
 
 import components.OverWorld;
 import entity.Direction;
-import reference.Images;
+import utility.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

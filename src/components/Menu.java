@@ -1,6 +1,6 @@
 package components;
 
-import reference.Images;
+import utility.Images;
 
 import java.awt.*;
 

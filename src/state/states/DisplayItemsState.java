@@ -1,9 +1,10 @@
 package state.states;
 
 import main.GamePanel;
-import reference.Images;
 import state.State;
 import state.StateManager;
+import utility.Images;
+import utility.SoundPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -43,6 +44,7 @@ public class DisplayItemsState extends State
 		if(key == KeyEvent.VK_ENTER)
 		{
 			stateManager.setState(StateManager.SELECT_SAVE_STATE);
+			SoundPlayer.INTRO.stop();
 		}
 	}
 

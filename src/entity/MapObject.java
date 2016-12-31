@@ -2,7 +2,7 @@ package entity;
 
 import components.OverWorld;
 import components.Tile;
-import reference.MathHelper;
+import utility.MathHelper;
 
 import java.awt.*;
 

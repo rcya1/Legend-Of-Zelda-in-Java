@@ -1,8 +1,8 @@
 package state.states;
 
-import reference.Images;
 import state.State;
 import state.StateManager;
+import utility.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

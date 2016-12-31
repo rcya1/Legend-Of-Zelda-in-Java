@@ -1,7 +1,7 @@
 package entity.collectibles;
 
 import components.OverWorld;
-import reference.Images;
+import utility.Images;
 
 import java.awt.*;
 
