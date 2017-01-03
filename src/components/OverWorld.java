@@ -1,5 +1,7 @@
 package components;
 
+import components.tiles.Tile;
+import components.tiles.WarpTile;
 import entity.*;
 import entity.collectibles.Collectible;
 import entity.enemies.Enemy;
@@ -39,6 +41,7 @@ public class OverWorld
 	private ArrayList<Enemy> enemies;
 	private ArrayList<AnimationObject> animations;
 	private ArrayList<Collectible> collectibles;
+	private ArrayList<WarpTile> warpTiles;
 	private Link link;
 
 	private Tile[][] tiles;
@@ -69,6 +72,7 @@ public class OverWorld
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
 		collectibles = new ArrayList<>();
+		warpTiles = new ArrayList<>();
 
 		link = new Link(this);
 	}
@@ -187,6 +191,13 @@ public class OverWorld
 			collectible.draw(g2d);
 		}
 
+		for(WarpTile warpTile : warpTiles)
+		{
+			g2d.setColor(Color.RED);
+			g2d.fillRect(warpTile.getX() - this.getCameraX(), warpTile.getY() - this.getCameraY(),
+					warpTile.getWidth(), warpTile.getHeight());
+		}
+
 		link.draw(g2d);
 
 		g2d.setTransform(transform);
@@ -206,7 +217,18 @@ public class OverWorld
 				int characterCount = 0;
 				while(tokenizer.hasMoreElements())
 				{
-					tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(tokenizer.nextToken()));
+					String token = tokenizer.nextToken();
+					try
+					{
+						tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(token));
+					}
+					catch(NumberFormatException e)
+					{
+						warpTiles.add(MapHelper.parseWarpTile(token,
+								characterCount * widthOfTile,
+								lineCount * heightOfTile, this));
+						tiles[characterCount][lineCount] = Tile.parseID(0);
+					}
 					characterCount++;
 				}
 				lineCount++;
@@ -310,6 +332,14 @@ public class OverWorld
 		return cameraY;
 	}
 
+	public void setCameraX(int cameraX)
+	{
+		this.cameraX = cameraX;
+	}
+	public void setCameraY(int cameraY)
+	{
+		this.cameraY = cameraY;
+	}
 	public void setDrawCoordinates(int drawX, int drawY)
 	{
 		this.drawX = drawX;
@@ -327,6 +357,15 @@ public class OverWorld
 		this.drawVelY = drawVelY;
 	}
 
+	public int getMapWidth()
+	{
+		return mapWidth;
+	}
+
+	public int getMapHeight()
+	{
+		return mapHeight;
+	}
 	public Link getLink()
 	{
 		return link;
@@ -340,5 +379,10 @@ public class OverWorld
 	public ArrayList<Collectible> getCollectibles()
 	{
 		return collectibles;
+	}
+
+	public ArrayList<WarpTile> getWarpTiles()
+	{
+		return warpTiles;
 	}
 }

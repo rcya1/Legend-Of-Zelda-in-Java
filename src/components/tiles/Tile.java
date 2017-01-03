@@ -1,4 +1,4 @@
-package components;
+package components.tiles;
 
 import utility.Images;
 
@@ -59,8 +59,9 @@ public enum Tile
 			return ROCKS_ORANGE_DOWN_RIGHT;
 		case 14:
 			return ROCKS_ORANGE_SINGLE;
+		default:
+			return null;
 		}
-		return null;
 	}
 
 	public static BufferedImage getSprite(Tile tile)

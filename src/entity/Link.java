@@ -1,19 +1,20 @@
 package entity;
 
 import components.OverWorld;
+import components.tiles.WarpTile;
 import entity.collectibles.Collectible;
 import entity.collectibles.Heart;
 import entity.collectibles.HeartContainer;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;
 import entity.weapons.Sword;
-import main.GamePanel;
 import utility.Images;
 import utility.MathHelper;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -180,10 +181,9 @@ public class Link extends MapObject
 		if(sword != null) sword.update();
 
 		handleTileCollisions();
-
 		if(invincibilityFrames == 0) handleEnemyCollisions();
-
 		handleCollectibleCollisions();
+		handleWarpTileCollisions();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -339,6 +339,52 @@ public class Link extends MapObject
 						iterator.remove();
 					}
 				}
+			}
+		}
+	}
+
+	private void handleWarpTileCollisions()
+	{
+		ArrayList<WarpTile> warpTiles = overWorld.getWarpTiles();
+		WarpTile collidedWarpTile = new WarpTile(0, 0, 0, 0, false, ' ');
+		char id = ' ';
+
+		for(WarpTile warpTile : warpTiles)
+		{
+			if(this.checkCollisionWith(new Rectangle(warpTile.getX(), warpTile.getY(),
+					warpTile.getWidth(), warpTile.getHeight())))
+			{
+				collidedWarpTile = warpTile;
+				id = warpTile.getId();
+				break;
+			}
+		}
+
+		for(WarpTile warpTile : warpTiles)
+		{
+			int overWorldWidth = overWorld.getWidthOfTile();
+			int overWorldHeight = overWorld.getHeightOfTile();
+
+			if(warpTile.getId() == Character.toUpperCase(id) &&
+					!warpTile.equals(collidedWarpTile) &&
+					warpTile.getColumn(overWorldWidth) !=
+							collidedWarpTile.getColumn(overWorldWidth) &&
+					warpTile.getRow(overWorldHeight) !=
+							collidedWarpTile.getRow(overWorldHeight))
+			{
+				x = warpTile.getX() + overWorld.getWidthOfTile() / 2;
+				y = warpTile.getY() + overWorld.getHeightOfTile() / 2;
+
+				switch(direction)
+				{
+				case RIGHT: x += warpTile.getWidth(); break;
+				case UP: y -= warpTile.getHeight(); break;
+				case LEFT: x -= warpTile.getWidth(); break;
+				case DOWN: y += warpTile.getHeight(); break;
+				}
+
+				overWorld.setCameraX((x / overWorld.getMapWidth()) * overWorld.getMapWidth());
+				overWorld.setCameraY((y / overWorld.getMapHeight()) * overWorld.getMapHeight());
 			}
 		}
 	}
