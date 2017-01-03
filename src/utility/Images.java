@@ -29,7 +29,9 @@ public class Images
 
 	public static class Beginning
 	{
-		public static final BufferedImage DISPLAY_ITEMS = loadSingleImage("/textures/beginning/DisplayItems.png");
+		public static final BufferedImage DISPLAY_ITEMS_1 = loadSingleImage("/textures/beginning/displayItems/DisplayItems1.png");
+		public static final BufferedImage DISPLAY_ITEMS_2 = loadSingleImage("/textures/beginning/displayItems/DisplayItems2.png");
+
 		public static final BufferedImage SELECT_SAVE = loadSingleImage("/textures/beginning/SelectSave.png");
 
 		public static class Title

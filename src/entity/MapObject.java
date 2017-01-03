@@ -59,7 +59,7 @@ public abstract class MapObject
 
 	protected boolean handleTileCollisions()
 	{
-		int collisionOffset = 6;
+		int collisionOffset = 6; //Set to 4 maybe when doing pixel alignment
 
 		boolean collision = false;
 

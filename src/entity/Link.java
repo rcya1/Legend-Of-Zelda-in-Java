@@ -48,8 +48,8 @@ public class Link extends MapObject
 	{
 		this.overWorld = overWorld;
 
-		x = GamePanel.WIDTH / 2;
-		y = GamePanel.HEIGHT / 2;
+		x = 160;
+		y = 96;
 
 		drawX = x;
 		drawY = y;

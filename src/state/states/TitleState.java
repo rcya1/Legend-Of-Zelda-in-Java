@@ -43,12 +43,12 @@ public class TitleState extends State
 				Images.Beginning.Title.WAVES_6, Images.Beginning.Title.WAVES_7,
 				Images.Beginning.Title.WAVES_8, Images.Beginning.Title.WAVES_9);
 
-		if(!SoundPlayer.INTRO.isPlaying()) SoundPlayer.INTRO.loop();
+		if(!SoundPlayer.INTRO.isPlaying()) SoundPlayer.INTRO.play();
 	}
 
 	public void update()
 	{
-		if(timer >= (7 * GamePanel.FPS))
+		if(timer >= (9 * GamePanel.FPS))
 		{
 			if(fade < 255) fade += 4;
 			else if(timer >= (11 * GamePanel.FPS))
