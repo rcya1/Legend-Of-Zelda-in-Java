@@ -6,7 +6,7 @@ import entity.*;
 import entity.collectibles.Collectible;
 import entity.enemies.Enemy;
 import utility.Images;
-import utility.MapHelper;
+import utility.MapFactory;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -46,6 +46,8 @@ public class OverWorld
 
 	private Tile[][] tiles;
 
+	private MapFactory mapFactory;
+
 	public OverWorld(int numOfColumns, int rows)
 	{
 		drawX = 0;
@@ -75,6 +77,8 @@ public class OverWorld
 		warpTiles = new ArrayList<>();
 
 		link = new Link(this);
+
+		mapFactory = new MapFactory(this);
 	}
 
 	public void update()
@@ -224,9 +228,9 @@ public class OverWorld
 					}
 					catch(NumberFormatException e)
 					{
-						warpTiles.add(MapHelper.parseWarpTile(token,
+						warpTiles.add(mapFactory.buildWarpTile(token,
 								characterCount * widthOfTile,
-								lineCount * heightOfTile, this));
+								lineCount * heightOfTile));
 						tiles[characterCount][lineCount] = Tile.parseID(0);
 					}
 					characterCount++;
@@ -253,8 +257,8 @@ public class OverWorld
 				int characterCount = 0;
 				while(tokenizer.hasMoreElements())
 				{
-					Enemy enemy = MapHelper.parseEnemy(tokenizer.nextToken(), characterCount * widthOfTile,
-							lineCount * heightOfTile, this);
+					Enemy enemy = mapFactory.buildEnemy(tokenizer.nextToken(),
+							characterCount * widthOfTile, lineCount * heightOfTile);
 					if(enemy != null) enemies.add(enemy);
 					characterCount++;
 				}
@@ -267,7 +271,7 @@ public class OverWorld
 		}
 	}
 
-	public boolean checkVisibility(MapObject mapObject)
+	private boolean checkVisibility(MapObject mapObject)
 	{
 		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
 		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
@@ -288,7 +292,7 @@ public class OverWorld
 		drawY += drawVelY;
 	}
 
-	public void setVector(int velX, int velY)
+	private void setVector(int velX, int velY)
 	{
 		this.cameraVelX = velX;
 		this.cameraVelY = velY;

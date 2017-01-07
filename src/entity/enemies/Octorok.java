@@ -49,6 +49,9 @@ public class Octorok extends Enemy
 		{
 		case "MOVING":
 			double[] vector = direction.getVector(moveSpeed);
+			//velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+			//velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
 			velX = vector[0];
 			velY = vector[1];
 

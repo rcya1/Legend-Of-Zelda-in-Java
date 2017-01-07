@@ -3,6 +3,7 @@ package utility;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class SoundPlayer
 {
@@ -75,6 +76,12 @@ public class SoundPlayer
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public void setVolume(int relativeVolume)
+	{
+		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(relativeVolume);
 	}
 
 	public boolean isPlaying()

@@ -14,7 +14,6 @@ import utility.MathHelper;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -90,7 +89,7 @@ public class Link extends MapObject
 			checkFreeMovement();
 			break;
 		case "UP":
-			velX = 0;
+			velX = alignToGrid(x, 8);
 			velY = -moveSpeed;
 			direction = Direction.UP;
 
@@ -100,7 +99,7 @@ public class Link extends MapObject
 			break;
 		case "RIGHT":
 			velX = moveSpeed;
-			velY = 0;
+			velY = alignToGrid(y, 8);
 			direction = Direction.RIGHT;
 
 			walkRight.update();
@@ -108,7 +107,7 @@ public class Link extends MapObject
 			checkFreeMovement();
 			break;
 		case "DOWN":
-			velX = 0;
+			velX = alignToGrid(x, 8);;
 			velY = moveSpeed;
 			direction = Direction.DOWN;
 
@@ -118,7 +117,7 @@ public class Link extends MapObject
 			break;
 		case "LEFT":
 			velX = -moveSpeed;
-			velY = 0;
+			velY = alignToGrid(y, 8);;
 			direction = Direction.LEFT;
 
 			walkLeft.update();
@@ -346,7 +345,7 @@ public class Link extends MapObject
 	private void handleWarpTileCollisions()
 	{
 		ArrayList<WarpTile> warpTiles = overWorld.getWarpTiles();
-		WarpTile collidedWarpTile = new WarpTile(0, 0, 0, 0, false, ' ');
+		WarpTile collidedWarpTile = new WarpTile(0, 0, 0, 0, ' ');
 		char id = ' ';
 
 		for(WarpTile warpTile : warpTiles)

@@ -6,9 +6,16 @@ import entity.Direction;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;
 
-public class MapHelper
+public class MapFactory
 {
-	public static Enemy parseEnemy(String string, int x, int y, OverWorld overWorld)
+	private OverWorld overWorld;
+
+	public MapFactory(OverWorld overWorld)
+	{
+		this.overWorld = overWorld;
+	}
+
+	public Enemy buildEnemy(String string, int x, int y)
 	{
 		switch(string)
 		{
@@ -20,7 +27,7 @@ public class MapHelper
 		}
 	}
 
-	public static WarpTile parseWarpTile(String id, int x, int y, OverWorld overWorld)
+	public WarpTile buildWarpTile(String id, int x, int y)
 	{
 		return new WarpTile(x, y, overWorld.getWidthOfTile(), overWorld.getHeightOfTile(),
 				id.charAt(0));

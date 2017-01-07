@@ -59,7 +59,7 @@ public abstract class MapObject
 
 	protected boolean handleTileCollisions()
 	{
-		int collisionOffset = 6; //Set to 4 maybe when doing pixel alignment
+		int collisionOffset = 2; //Set to 4 maybe when doing pixel alignment
 
 		boolean collision = false;
 
@@ -136,6 +136,21 @@ public abstract class MapObject
 			}
 		}
 		return collisionFlag;
+	}
+
+	protected int alignToGrid(int value, int alignTo)
+	{
+		int extra = value % alignTo;
+		int halfway = (alignTo - 1) / 2;
+
+		if(extra > halfway)
+		{
+			return alignTo - extra;
+		}
+		else
+		{
+			return -extra;
+		}
 	}
 
 	public int getX()

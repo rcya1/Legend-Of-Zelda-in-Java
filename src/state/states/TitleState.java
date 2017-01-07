@@ -44,6 +44,7 @@ public class TitleState extends State
 				Images.Beginning.Title.WAVES_8, Images.Beginning.Title.WAVES_9);
 
 		if(!SoundPlayer.INTRO.isPlaying()) SoundPlayer.INTRO.play();
+		SoundPlayer.INTRO.setVolume(-10);
 	}
 
 	public void update()
