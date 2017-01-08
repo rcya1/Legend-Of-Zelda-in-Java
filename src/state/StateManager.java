@@ -22,7 +22,7 @@ public class StateManager
 	 * Press Start - OverWorld
 	 */
 
-	private State[] states;
+	private final State[] states;
 	private int currentState;
 
 	public StateManager()

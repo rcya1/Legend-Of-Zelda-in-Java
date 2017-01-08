@@ -2,13 +2,13 @@ package components.tiles;
 
 public class WarpTile
 {
-	private int x;
-	private int y;
+	private final int x;
+	private final int y;
 
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 
-	private char id;
+	private final char id;
 
 	//All warp tiles cannot warp to tiles that are on the same row or column as it
 

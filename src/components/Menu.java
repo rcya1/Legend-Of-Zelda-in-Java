@@ -6,15 +6,15 @@ import java.awt.*;
 
 public class Menu
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	private int drawX;
 	private int drawY;
 	private int drawVelX;
 	private int drawVelY;
 
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 
 	public Menu(OverWorld overWorld)
 	{

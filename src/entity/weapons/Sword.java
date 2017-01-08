@@ -9,12 +9,12 @@ import java.awt.geom.AffineTransform;
 
 public class Sword extends Weapon
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	private int velX;
 	private int velY;
 
-	private Direction direction;
+	private final Direction direction;
 
 	public Sword(int x, int y, Direction direction, OverWorld overWorld)
 	{

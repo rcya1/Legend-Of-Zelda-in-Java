@@ -36,8 +36,8 @@ public class Images
 
 		public static class Title
 		{
-			public static int TITLE_MAIN_WIDTH = 256;
-			public static int TITLE_MAIN_HEIGHT = 240;
+			public static final int TITLE_MAIN_WIDTH = 256;
+			public static final int TITLE_MAIN_HEIGHT = 240;
 
 			private static final BufferedImage TITLE_MAIN = loadSingleImage("/textures/beginning/title/TitleMain.png");
 			public static final BufferedImage TITLE_MAIN_1 = TITLE_MAIN != null ?
@@ -59,8 +59,8 @@ public class Images
 					TITLE_MAIN.getSubimage(TITLE_MAIN_WIDTH * 2, TITLE_MAIN_HEIGHT, TITLE_MAIN_WIDTH, TITLE_MAIN_HEIGHT) :
 					null;
 
-			public static int WATERFALL_WIDTH = 32;
-			public static int WATERFALL_HEIGHT = 64;
+			public static final int WATERFALL_WIDTH = 32;
+			public static final int WATERFALL_HEIGHT = 64;
 
 			private static final BufferedImage WATERFALL = loadSingleImage("/textures/beginning/title/Waterfall.png");
 			public static final BufferedImage WATERFALL_1 = WATERFALL != null ?

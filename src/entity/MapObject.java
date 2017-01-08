@@ -138,7 +138,7 @@ public abstract class MapObject
 		return collisionFlag;
 	}
 
-	protected int alignToGrid(int value, int alignTo)
+	int alignToGrid(int value, int alignTo)
 	{
 		int extra = value % alignTo;
 		int halfway = (alignTo - 1) / 2;

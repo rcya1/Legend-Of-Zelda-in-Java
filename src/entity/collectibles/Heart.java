@@ -7,9 +7,9 @@ import java.awt.*;
 
 public class Heart extends Collectible
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
-	private int restoreValue;
+	private final int restoreValue;
 
 	public Heart(int x, int y, OverWorld overWorld)
 	{

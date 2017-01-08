@@ -8,7 +8,7 @@ import entity.enemies.Octorok;
 
 public class MapFactory
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	public MapFactory(OverWorld overWorld)
 	{

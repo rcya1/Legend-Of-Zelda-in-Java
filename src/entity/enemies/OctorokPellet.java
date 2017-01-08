@@ -9,20 +9,20 @@ import java.awt.geom.AffineTransform;
 
 class OctorokPellet
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	private int x;
 	private int y;
 
-	private int velX;
-	private int velY;
+	private final int velX;
+	private final int velY;
 
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 
-	private Direction direction;
+	private final Direction direction;
 
-	private int damage;
+	private final int damage;
 
 	OctorokPellet(int x, int y, Direction direction, OverWorld overWorld)
 	{

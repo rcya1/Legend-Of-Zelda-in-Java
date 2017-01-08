@@ -5,16 +5,16 @@ import java.awt.image.BufferedImage;
 
 public class Animation
 {
-	private int speed;
-	private int frameCount;
+	private final int speed;
+	private final int frameCount;
 
 	private int timer;
 	private int index;
 
-	private BufferedImage[] images;
+	private final BufferedImage[] images;
 	private BufferedImage currentImage;
 
-	private boolean repeat;
+	private final boolean repeat;
 
 	public Animation(int speed, boolean repeat, BufferedImage... frames)
 	{

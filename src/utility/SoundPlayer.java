@@ -11,7 +11,7 @@ public class SoundPlayer
 
 	public static final SoundPlayer INTRO = new SoundPlayer("/sound/beginning/Intro.wav");
 
-	public SoundPlayer(String string)
+	private SoundPlayer(String string)
 	{
 		try
 		{

@@ -30,23 +30,23 @@ public class OverWorld
 	private int cameraVelX;
 	private int cameraVelY;
 
-	private int numOfColumns;
-	private int numOfRows;
-	private int widthOfTile;
-	private int heightOfTile;
+	private final int numOfColumns;
+	private final int numOfRows;
+	private final int widthOfTile;
+	private final int heightOfTile;
 
-	private int mapWidth;
-	private int mapHeight;
+	private final int mapWidth;
+	private final int mapHeight;
 
-	private ArrayList<Enemy> enemies;
-	private ArrayList<AnimationObject> animations;
-	private ArrayList<Collectible> collectibles;
-	private ArrayList<WarpTile> warpTiles;
-	private Link link;
+	private final ArrayList<Enemy> enemies;
+	private final ArrayList<AnimationObject> animations;
+	private final ArrayList<Collectible> collectibles;
+	private final ArrayList<WarpTile> warpTiles;
+	private final Link link;
 
-	private Tile[][] tiles;
+	private final Tile[][] tiles;
 
-	private MapFactory mapFactory;
+	private final MapFactory mapFactory;
 
 	public OverWorld(int numOfColumns, int rows)
 	{

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class HeartContainer extends Collectible
 {
-	OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	public HeartContainer(int x, int y, OverWorld overWorld)
 	{

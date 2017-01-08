@@ -13,7 +13,7 @@ public class Octorok extends Enemy
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	private Animation animation;
+	private final Animation animation;
 
 	private OctorokPellet pellet;
 

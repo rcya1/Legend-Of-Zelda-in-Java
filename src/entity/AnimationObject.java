@@ -6,12 +6,12 @@ import java.awt.*;
 
 public class AnimationObject
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
-	private int x;
-	private int y;
+	private final int x;
+	private final int y;
 
-	private Animation animation;
+	private final Animation animation;
 
 	public AnimationObject(int x, int y, Animation animation, OverWorld overWorld)
 	{

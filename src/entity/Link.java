@@ -34,15 +34,15 @@ public class Link extends MapObject
 	private Sword sword;
 	private int swordTimer;
 
-	private Animation walkUp;
-	private Animation walkRight;
-	private Animation walkDown;
-	private Animation walkLeft;
+	private final Animation walkUp;
+	private final Animation walkRight;
+	private final Animation walkDown;
+	private final Animation walkLeft;
 
-	private BufferedImage[] swordAttack;
+	private final BufferedImage[] swordAttack;
 
 	private int healthContainers;
-	private int maxHealthContainers;
+	private final int maxHealthContainers;
 
 	public Link(OverWorld overWorld)
 	{
@@ -107,7 +107,7 @@ public class Link extends MapObject
 			checkFreeMovement();
 			break;
 		case "DOWN":
-			velX = alignToGrid(x, 8);;
+			velX = alignToGrid(x, 8);
 			velY = moveSpeed;
 			direction = Direction.DOWN;
 
@@ -117,7 +117,7 @@ public class Link extends MapObject
 			break;
 		case "LEFT":
 			velX = -moveSpeed;
-			velY = alignToGrid(y, 8);;
+			velY = alignToGrid(y, 8);
 			direction = Direction.LEFT;
 
 			walkLeft.update();
