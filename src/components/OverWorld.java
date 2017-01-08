@@ -48,7 +48,7 @@ public class OverWorld
 
 	private final MapFactory mapFactory;
 
-	public OverWorld(int numOfColumns, int rows)
+	public OverWorld(int numOfColumns, int numOfRows, int cameraX, int cameraY)
 	{
 		drawX = 0;
 		drawY = 0;
@@ -56,13 +56,14 @@ public class OverWorld
 		drawVelX = 0;
 		drawVelY = 0;
 
-		cameraX = 0;
-		cameraY = 0;
+		this.cameraX = cameraX;
+		this.cameraY = cameraY;
+
 		cameraVelX = 0;
 		cameraVelY = 0;
 
 		this.numOfColumns = numOfColumns;
-		this.numOfRows = rows;
+		this.numOfRows = numOfRows;
 
 		widthOfTile = 16;
 		heightOfTile = 16;
@@ -70,7 +71,7 @@ public class OverWorld
 		mapWidth = 256;
 		mapHeight = 176;
 
-		tiles = new Tile[numOfColumns][rows];
+		tiles = new Tile[numOfColumns][numOfRows];
 		enemies = new ArrayList<>();
 		animations = new ArrayList<>();
 		collectibles = new ArrayList<>();
