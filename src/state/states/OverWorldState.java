@@ -28,9 +28,11 @@ public class OverWorldState extends State
 	{
 		state = "OVERWORLD";
 
-		overWorld = new OverWorld(32, 12);
-		overWorld.loadTiles("/tileMaps/test.txt");
-		overWorld.loadEnemies("/tileMaps/testE.txt");
+		overWorld = new OverWorld(48, 22);
+		overWorld.loadTiles("/tileMaps/tileMap.txt");
+		overWorld.loadEnemies("/tileMaps/tileMapE.txt");
+		overWorld.setCameraX(32 * 16);
+		overWorld.setCameraY(11 * 16);
 		overWorld.setDrawCoordinates(0, 48);
 
 		menu = new Menu(overWorld);
@@ -59,7 +61,7 @@ public class OverWorldState extends State
 				overWorld.setDrawVector(0, 0);
 				menu.setDrawVector(0, 0);
 			}
-			else if(overWorld.getDrawCoordinates()[1] == 240)
+			else if(overWorld.getDrawCoordinates()[1] == 216)
 			{
 				state = "MENU";
 				overWorld.setDrawVector(0, 0);

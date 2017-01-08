@@ -48,8 +48,8 @@ public class Link extends MapObject
 	{
 		this.overWorld = overWorld;
 
-		x = 160;
-		y = 96;
+		x = 160 + overWorld.getCameraX();
+		y = 96 + overWorld.getCameraY();
 
 		drawX = x;
 		drawY = y;

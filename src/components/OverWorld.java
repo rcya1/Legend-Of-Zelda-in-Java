@@ -68,7 +68,7 @@ public class OverWorld
 		heightOfTile = 16;
 
 		mapWidth = 256;
-		mapHeight = 192;
+		mapHeight = 176;
 
 		tiles = new Tile[numOfColumns][rows];
 		enemies = new ArrayList<>();

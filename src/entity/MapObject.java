@@ -43,23 +43,22 @@ public abstract class MapObject
 
 	boolean checkCollisionWith(MapObject other)
 	{
-		Rectangle thisRectangle = new Rectangle(x - width / 2, y - width / 2, width, height);
-		Rectangle otherRectangle = new Rectangle(other.x - other.width / 2, other.y - other.height / 2,
-				other.width, other.height);
-
-		return thisRectangle.intersects(otherRectangle);
+		return getRectangle().intersects(other.getRectangle());
 	}
 
 	protected boolean checkCollisionWith(Rectangle otherRectangle)
 	{
-		Rectangle thisRectangle = new Rectangle(x - width / 2, y - width / 2, width, height);
+		return getRectangle().intersects(otherRectangle);
+	}
 
-		return thisRectangle.intersects(otherRectangle);
+	private Rectangle getRectangle()
+	{
+		return new Rectangle(x - width / 2, y - height / 2, width, height);
 	}
 
 	protected boolean handleTileCollisions()
 	{
-		int collisionOffset = 2; //Set to 4 maybe when doing pixel alignment
+		int collisionOffset = 2;
 
 		boolean collision = false;
 
@@ -140,13 +139,16 @@ public abstract class MapObject
 
 	int alignToGrid(int value, int alignTo)
 	{
-		int extra = value % alignTo;
+		int extra = value % alignTo; //Figure out how much the value os off by
 		int halfway = (alignTo - 1) / 2;
+		//Find the halfway mark of the offset (subtract 1 because modulo returns 0-7)
 
+		//If the extra is greater than the halfway, return a vel that pushes it to the next mark
 		if(extra > halfway)
 		{
 			return alignTo - extra;
 		}
+		//Otherwise, return a vel that pushes it to the previous mark
 		else
 		{
 			return -extra;
