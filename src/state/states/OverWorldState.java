@@ -28,7 +28,7 @@ public class OverWorldState extends State
 	{
 		state = "OVERWORLD";
 
-		overWorld = new OverWorld(48, 22, 16 * 16, 11 * 16);
+		overWorld = new OverWorld(64, 33, 32 * 16, 22 * 16);
 		overWorld.loadTiles("/tileMaps/tileMap.txt");
 		overWorld.loadEnemies("/tileMaps/tileMapE.txt");
 		overWorld.setDrawCoordinates(0, 48);
@@ -79,7 +79,7 @@ public class OverWorldState extends State
 		overWorld.draw(g2d);
 		menu.draw(g2d);
 	}
-
+	
 	public void keyPressed(int key)
 	{
 		link.setKeyVariable(key, true);

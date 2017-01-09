@@ -264,6 +264,7 @@ public class Images
 			public static BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/green/Bush.png");
 			public static BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/green/Stairs.png");
 			public static BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
+			public static BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/green/Bridge.png");
 		}
 
 		public static class Orange
@@ -317,6 +318,7 @@ public class Images
 			public static BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/orange/Bush.png");
 			public static BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/orange/Stairs.png");
 			public static BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/orange/Ladder.png");
+			public static BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/orange/Bridge.png");
 		}
 	}
 

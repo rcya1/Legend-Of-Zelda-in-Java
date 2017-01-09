@@ -63,7 +63,10 @@ public enum Tile
 	ORANGE_WATER_CORNER_DOWN_LEFT,
 	ORANGE_WATER_CORNER_DOWN_RIGHT,
 
-	ENTRANCE;
+	ENTRANCE,
+
+	GREEN_BRIDGE,
+	ORANGE_BRIDGE;
 
 	public static Tile parseID(int id)
 	{
@@ -168,8 +171,13 @@ public enum Tile
 			return ORANGE_WATER_CORNER_DOWN_LEFT;
 		case 46:
 			return ORANGE_WATER_CORNER_DOWN_RIGHT;
+
 		case 47:
 			return ENTRANCE;
+		case 48:
+			return GREEN_BRIDGE;
+		case 49:
+			return ORANGE_BRIDGE;
 
 		default:
 			return null;
@@ -278,8 +286,14 @@ public enum Tile
 			return 45;
 		case ORANGE_WATER_CORNER_DOWN_RIGHT:
 			return 46;
+
 		case ENTRANCE:
 			return 47;
+
+		case GREEN_BRIDGE:
+			return 48;
+		case ORANGE_BRIDGE:
+			return 49;
 
 		default:
 			return 0;
@@ -392,6 +406,11 @@ public enum Tile
 
 		case ENTRANCE:
 			return Images.Blocks.ENTRANCE;
+
+		case GREEN_BRIDGE:
+			return Images.Blocks.Green.BRIDGE;
+		case ORANGE_BRIDGE:
+			return Images.Blocks.Orange.BRIDGE;
 		}
 		return null;
 	}
@@ -500,8 +519,14 @@ public enum Tile
 			return false;
 		case ORANGE_WATER_CORNER_DOWN_RIGHT:
 			return false;
+
 		case ENTRANCE:
 			return false;
+
+		case GREEN_BRIDGE:
+			return true;
+		case ORANGE_BRIDGE:
+			return true;
 		}
 
 		return true;
