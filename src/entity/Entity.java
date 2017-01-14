@@ -139,7 +139,7 @@ public abstract class Entity
 
 	int alignToGrid(int value, int alignTo)
 	{
-		int extra = value % alignTo; //Figure out how much the value os off by
+		int extra = value % alignTo; //Figure out how much the value is off by
 		int halfway = (alignTo - 1) / 2;
 		//Find the halfway mark of the offset (subtract 1 because modulo returns 0-7)
 

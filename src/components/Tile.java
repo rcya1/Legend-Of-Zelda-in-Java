@@ -343,6 +343,7 @@ public enum Tile
 			return Images.Blocks.Green.LADDER;
 		case GREEN_STAIRS:
 			return Images.Blocks.Green.STAIRS;
+				
 		case GREEN_WATER_UP_LEFT:
 			return Images.Blocks.Green.Water.WATER_UP_LEFT;
 		case GREEN_WATER_UP:
