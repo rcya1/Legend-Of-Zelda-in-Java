@@ -1,7 +1,7 @@
 package entity.enemies;
 
 import components.OverWorld;
-import entity.Animation;
+import components.Animation;
 import entity.Direction;
 import utility.Images;
 

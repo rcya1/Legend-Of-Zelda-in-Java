@@ -1,13 +1,9 @@
-package components.tiles;
+package components.map;
 
-public class WarpTile
+import java.awt.*;
+
+public class WarpTile extends MapItem
 {
-	private final int x;
-	private final int y;
-
-	private final int width;
-	private final int height;
-
 	private final char id;
 
 	//All warp tiles cannot warp to tiles that are on the same row or column as it
@@ -19,6 +15,17 @@ public class WarpTile
 		this.width = width;
 		this.height = height;
 		this.id = id;
+	}
+
+	public void update()
+	{
+
+	}
+
+	public void draw(Graphics2D g2d)
+	{
+		g2d.setColor(Color.RED);
+		g2d.fill(getRectangle());
 	}
 
 	public int getX()

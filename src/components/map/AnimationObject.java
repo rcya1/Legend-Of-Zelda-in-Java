@@ -1,16 +1,13 @@
-package entity;
+package components.map;
 
+import components.Animation;
 import components.OverWorld;
+import components.map.MapItem;
 
 import java.awt.*;
 
-public class AnimationObject
+public class AnimationObject extends MapItem
 {
-	private final OverWorld overWorld;
-
-	private final int x;
-	private final int y;
-
 	private final Animation animation;
 
 	public AnimationObject(int x, int y, Animation animation, OverWorld overWorld)

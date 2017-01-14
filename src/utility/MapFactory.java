@@ -1,7 +1,7 @@
 package utility;
 
 import components.OverWorld;
-import components.tiles.WarpTile;
+import components.map.WarpTile;
 import entity.Direction;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;

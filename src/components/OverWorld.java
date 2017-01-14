@@ -1,9 +1,10 @@
 package components;
 
-import components.tiles.Tile;
-import components.tiles.WarpTile;
+import components.map.AnimationObject;
+import components.map.MapItem;
+import components.map.WarpTile;
 import entity.*;
-import entity.collectibles.Collectible;
+import components.map.collectibles.Collectible;
 import entity.enemies.Enemy;
 import utility.Images;
 import utility.MapFactory;
@@ -39,9 +40,7 @@ public class OverWorld
 	private final int mapHeight;
 
 	private final ArrayList<Enemy> enemies;
-	private final ArrayList<AnimationObject> animations;
-	private final ArrayList<Collectible> collectibles;
-	private final ArrayList<WarpTile> warpTiles;
+	private final ArrayList<MapItem> mapItems;
 	private final Link link;
 
 	private final Tile[][] tiles;
@@ -73,9 +72,9 @@ public class OverWorld
 
 		tiles = new Tile[numOfColumns][numOfRows];
 		enemies = new ArrayList<>();
-		animations = new ArrayList<>();
-		collectibles = new ArrayList<>();
-		warpTiles = new ArrayList<>();
+		mapItems = new ArrayList<>();
+		//TODO WTF get this out of here and just use two, enemies and mapItems
+
 
 		link = new Link(this);
 
@@ -134,7 +133,7 @@ public class OverWorld
 				if(enemy.getDestroyFlag())
 				{
 					enemyIterator.remove();
-					animations.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2,
+					mapItems.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2,
 							enemy.getY() - enemy.getHeight() / 2,
 							new Animation(3, false,
 									Images.Enemies.ENEMY_DEATH, 16, 16),
@@ -143,26 +142,24 @@ public class OverWorld
 			}
 		}
 
-		Iterator animationIterator = animations.iterator();
-		while(animationIterator.hasNext())
+		Iterator mapItemIterator = mapItems.iterator();
+		while(mapItemIterator.hasNext())
 		{
-			AnimationObject animationObject = (AnimationObject) animationIterator.next();
+			MapItem mapItem = (MapItem) mapItemIterator.next();
 
-			if(this.checkVisibility(new Rectangle(animationObject.getX(), animationObject.getY(),
-					animationObject.getWidth(), animationObject.getHeight())))
+			if(checkVisibility(mapItem.getRectangle()))
 			{
-				animationObject.update();
+				mapItem.update();
 
-				if(animationObject.getAnimation().getIndex() == -1)
+				if(mapItem instanceof AnimationObject)
 				{
-					animationIterator.remove();
+					AnimationObject animationObject = (AnimationObject) mapItem;
+					if(animationObject.getAnimation().getIndex() == -1)
+					{
+						mapItemIterator.remove();
+					}
 				}
 			}
-		}
-
-		for(Collectible collectible : collectibles)
-		{
-			collectible.update();
 		}
 	}
 
@@ -185,22 +182,9 @@ public class OverWorld
 			if(this.checkVisibility(enemy)) enemy.draw(g2d);
 		}
 
-		for(AnimationObject animation : animations)
+		for(MapItem mapItem : mapItems)
 		{
-			if(this.checkVisibility(new Rectangle(animation.getX(), animation.getY(), animation.getWidth(), animation.getHeight())))
-				animation.draw(g2d);
-		}
-
-		for(Collectible collectible : collectibles)
-		{
-			collectible.draw(g2d);
-		}
-
-		for(WarpTile warpTile : warpTiles)
-		{
-			g2d.setColor(Color.RED);
-			g2d.fillRect(warpTile.getX() - this.getCameraX(), warpTile.getY() - this.getCameraY(),
-					warpTile.getWidth(), warpTile.getHeight());
+			if(checkVisibility(mapItem.getRectangle())) mapItem.draw(g2d);
 		}
 
 		link.draw(g2d);
@@ -229,7 +213,7 @@ public class OverWorld
 					}
 					catch(NumberFormatException e)
 					{
-						warpTiles.add(mapFactory.buildWarpTile(token,
+						mapItems.add(mapFactory.buildWarpTile(token,
 								characterCount * widthOfTile,
 								lineCount * heightOfTile));
 						tiles[characterCount][lineCount] = Tile.parseID(0);
@@ -272,10 +256,10 @@ public class OverWorld
 		}
 	}
 
-	private boolean checkVisibility(MapObject mapObject)
+	private boolean checkVisibility(Entity entity)
 	{
 		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
-		Rectangle object = new Rectangle(mapObject.getX(), mapObject.getY(), mapObject.getWidth(), mapObject.getHeight());
+		Rectangle object = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
 
 		return visibleSector.intersects(object);
 	}
@@ -301,7 +285,7 @@ public class OverWorld
 
 	public void addCollectible(Collectible collectible)
 	{
-		collectibles.add(collectible);
+		mapItems.add(collectible);
 	}
 
 	public Tile getTile(int column, int row)
@@ -381,13 +365,8 @@ public class OverWorld
 		return enemies;
 	}
 
-	public ArrayList<Collectible> getCollectibles()
+	public ArrayList<MapItem> getMapItems()
 	{
-		return collectibles;
-	}
-
-	public ArrayList<WarpTile> getWarpTiles()
-	{
-		return warpTiles;
+		return mapItems;
 	}
 }

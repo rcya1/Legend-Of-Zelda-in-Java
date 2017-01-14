@@ -1,13 +1,15 @@
 package entity;
 
+import components.Animation;
 import components.OverWorld;
-import components.tiles.WarpTile;
-import entity.collectibles.Collectible;
-import entity.collectibles.Heart;
-import entity.collectibles.HeartContainer;
+import components.map.MapItem;
+import components.map.WarpTile;
+import components.map.collectibles.Collectible;
+import components.map.collectibles.Heart;
+import components.map.collectibles.HeartContainer;
 import entity.enemies.Enemy;
 import entity.enemies.Octorok;
-import entity.weapons.Sword;
+import components.weapons.Sword;
 import utility.Images;
 import utility.MathHelper;
 
@@ -17,7 +19,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Link extends MapObject
+public class Link extends Entity
 {
 	private int transitionAmountX;
 	private int transitionAmountY;
@@ -181,8 +183,7 @@ public class Link extends MapObject
 
 		handleTileCollisions();
 		if(invincibilityFrames == 0) handleEnemyCollisions();
-		handleCollectibleCollisions();
-		handleWarpTileCollisions();
+		handleMapItemCollisions();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -301,89 +302,100 @@ public class Link extends MapObject
 		}
 	}
 
-	private void handleCollectibleCollisions()
+	private void handleMapItemCollisions()
 	{
-		ArrayList<Collectible> collectibles = overWorld.getCollectibles();
-		Iterator iterator = collectibles.iterator();
+		WarpTile collidedWarpTile;
+		char id;
+
+		ArrayList<MapItem> mapItems = overWorld.getMapItems();
+		Iterator iterator = mapItems.iterator();
 		while(iterator.hasNext())
 		{
-			Collectible collectible = (Collectible) iterator.next();
-
-			if(checkCollisionWith(collectible.getRectangle()))
+			MapItem mapItem = (MapItem) iterator.next();
+			if(mapItem instanceof Collectible)
 			{
-				if(collectible instanceof Heart)
+				Collectible collectible = (Collectible) mapItem;
+				if(checkCollisionWith(collectible.getRectangle()))
 				{
-					Heart heart = (Heart) collectible;
-
-					if(health != healthContainers * 8)
+					if(collectible instanceof Heart)
 					{
-						if(health + heart.getRestoreValue() >= healthContainers * 8)
+						Heart heart = (Heart) collectible;
+
+						if(health != healthContainers * 8)
 						{
-							health = healthContainers * 8;
-							iterator.remove();
+							if(health + heart.getRestoreValue() >= healthContainers * 8)
+							{
+								health = healthContainers * 8;
+								iterator.remove();
+							}
+							else
+							{
+								health += heart.getRestoreValue();
+								iterator.remove();
+							}
 						}
-						else
+					}
+					else if(collectible instanceof HeartContainer)
+					{
+						if(healthContainers + 1 < maxHealthContainers)
 						{
-							health += heart.getRestoreValue();
+							healthContainers++;
+							health = healthContainers * 8;
 							iterator.remove();
 						}
 					}
 				}
-				else if(collectible instanceof HeartContainer)
+			}
+			else if(mapItem instanceof WarpTile)
+			{
+				if(this.checkCollisionWith(mapItem.getRectangle()))
 				{
-					if(healthContainers + 1 < maxHealthContainers)
-					{
-						healthContainers++;
-						health = healthContainers * 8;
-						iterator.remove();
-					}
+					collidedWarpTile = (WarpTile) mapItem;
+					id = collidedWarpTile.getId();
+					teleportToWarpTile(collidedWarpTile, id);
+					break;
 				}
 			}
 		}
 	}
 
-	private void handleWarpTileCollisions()
+	private void teleportToWarpTile(WarpTile destination, char id)
 	{
-		ArrayList<WarpTile> warpTiles = overWorld.getWarpTiles();
-		WarpTile collidedWarpTile = new WarpTile(0, 0, 0, 0, ' ');
-		char id = ' ';
-
-		for(WarpTile warpTile : warpTiles)
+		for(MapItem mapItem : overWorld.getMapItems())
 		{
-			if(this.checkCollisionWith(new Rectangle(warpTile.getX(), warpTile.getY(),
-					warpTile.getWidth(), warpTile.getHeight())))
+			if(mapItem instanceof WarpTile)
 			{
-				collidedWarpTile = warpTile;
-				id = warpTile.getId();
-				break;
-			}
-		}
+				WarpTile warpTile = (WarpTile) mapItem;
 
-		for(WarpTile warpTile : warpTiles)
-		{
-			int overWorldWidth = overWorld.getWidthOfTile();
-			int overWorldHeight = overWorld.getHeightOfTile();
+				int overWorldWidth = overWorld.getWidthOfTile();
+				int overWorldHeight = overWorld.getHeightOfTile();
 
-			if(warpTile.getId() == Character.toUpperCase(id) &&
-					!warpTile.equals(collidedWarpTile) &&
-					warpTile.getColumn(overWorldWidth) !=
-							collidedWarpTile.getColumn(overWorldWidth) &&
-					warpTile.getRow(overWorldHeight) !=
-							collidedWarpTile.getRow(overWorldHeight))
-			{
-				x = warpTile.getX() + overWorld.getWidthOfTile() / 2;
-				y = warpTile.getY() + overWorld.getHeightOfTile() / 2;
-
-				switch(direction)
+				if(warpTile.getId() == Character.toUpperCase(id) && !warpTile.equals(destination) &&
+						warpTile.getColumn(overWorldWidth) != destination.getColumn(overWorldWidth) &&
+						warpTile.getRow(overWorldHeight) != destination.getRow(overWorldHeight))
 				{
-				case RIGHT: x += warpTile.getWidth(); break;
-				case UP: y -= warpTile.getHeight(); break;
-				case LEFT: x -= warpTile.getWidth(); break;
-				case DOWN: y += warpTile.getHeight(); break;
-				}
+					x = warpTile.getX() + overWorld.getWidthOfTile() / 2;
+					y = warpTile.getY() + overWorld.getHeightOfTile() / 2;
 
-				overWorld.setCameraX((x / overWorld.getMapWidth()) * overWorld.getMapWidth());
-				overWorld.setCameraY((y / overWorld.getMapHeight()) * overWorld.getMapHeight());
+					switch(direction)
+					{
+					case RIGHT:
+						x += warpTile.getWidth();
+						break;
+					case UP:
+						y -= warpTile.getHeight();
+						break;
+					case LEFT:
+						x -= warpTile.getWidth();
+						break;
+					case DOWN:
+						y += warpTile.getHeight();
+						break;
+					}
+
+					overWorld.setCameraX((x / overWorld.getMapWidth()) * overWorld.getMapWidth());
+					overWorld.setCameraY((y / overWorld.getMapHeight()) * overWorld.getMapHeight());
+				}
 			}
 		}
 	}

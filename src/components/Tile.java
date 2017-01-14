@@ -1,4 +1,4 @@
-package components.tiles;
+package components;
 
 import utility.Images;
 
@@ -478,13 +478,13 @@ public enum Tile
 		case GREEN_WATER_DOWN_RIGHT:
 			return false;
 		case GREEN_WATER_CORNER_UP_LEFT:
-			return false;
+			return true;
 		case GREEN_WATER_CORNER_UP_RIGHT:
-			return false;
+			return true;
 		case GREEN_WATER_CORNER_DOWN_LEFT:
-			return false;
+			return true;
 		case GREEN_WATER_CORNER_DOWN_RIGHT:
-			return false;
+			return true;
 
 		case ORANGE_BUSH:
 			return false;
@@ -512,13 +512,13 @@ public enum Tile
 		case ORANGE_WATER_DOWN_RIGHT:
 			return false;
 		case ORANGE_WATER_CORNER_UP_LEFT:
-			return false;
+			return true;
 		case ORANGE_WATER_CORNER_UP_RIGHT:
-			return false;
+			return true;
 		case ORANGE_WATER_CORNER_DOWN_LEFT:
-			return false;
+			return true;
 		case ORANGE_WATER_CORNER_DOWN_RIGHT:
-			return false;
+			return true;
 
 		case ENTRANCE:
 			return false;

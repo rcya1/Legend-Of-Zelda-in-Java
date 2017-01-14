@@ -1,13 +1,13 @@
 package entity.enemies;
 
-import entity.MapObject;
-import entity.collectibles.Heart;
-import entity.weapons.Sword;
-import entity.weapons.Weapon;
+import entity.Entity;
+import components.map.collectibles.Heart;
+import components.weapons.Sword;
+import components.weapons.Weapon;
 
 import java.awt.*;
 
-public abstract class Enemy extends MapObject
+public abstract class Enemy extends Entity
 {
 	private Sword sword = null;
 
@@ -31,8 +31,7 @@ public abstract class Enemy extends MapObject
 		{
 			if(weapon != null)
 			{
-				boolean collision = checkCollisionWith(new Rectangle(weapon.getX() - weapon.getWidth() / 2,
-						weapon.getY() - weapon.getHeight() / 2, weapon.getWidth(), weapon.getHeight()));
+				boolean collision = checkCollisionWith(weapon.getRectangle());
 
 				if(collision && invincibilityFrames == 0)
 				{

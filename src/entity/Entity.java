@@ -1,12 +1,12 @@
 package entity;
 
 import components.OverWorld;
-import components.tiles.Tile;
+import components.Tile;
 import utility.MathHelper;
 
 import java.awt.*;
 
-public abstract class MapObject
+public abstract class Entity
 {
 	protected OverWorld overWorld;
 
@@ -41,7 +41,7 @@ public abstract class MapObject
 	public abstract void draw(Graphics2D g2d);
 
 
-	boolean checkCollisionWith(MapObject other)
+	boolean checkCollisionWith(Entity other)
 	{
 		return getRectangle().intersects(other.getRectangle());
 	}

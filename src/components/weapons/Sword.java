@@ -1,4 +1,4 @@
-package entity.weapons;
+package components.weapons;
 
 import components.OverWorld;
 import entity.Direction;
