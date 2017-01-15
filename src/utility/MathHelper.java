@@ -1,6 +1,6 @@
 package utility;
 
-import entity.Direction;
+import components.entity.Direction;
 
 public class MathHelper
 {

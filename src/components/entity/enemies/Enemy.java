@@ -1,11 +1,9 @@
-package entity.enemies;
+package components.entity.enemies;
 
-import entity.Entity;
+import components.entity.Entity;
 import components.map.collectibles.Heart;
 import components.weapons.Sword;
 import components.weapons.Weapon;
-
-import java.awt.*;
 
 public abstract class Enemy extends Entity
 {

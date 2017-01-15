@@ -1,4 +1,4 @@
-package entity;
+package components.entity;
 
 public enum Direction
 {

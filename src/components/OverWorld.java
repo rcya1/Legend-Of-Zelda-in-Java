@@ -2,10 +2,9 @@ package components;
 
 import components.map.AnimationObject;
 import components.map.MapItem;
-import components.map.WarpTile;
-import entity.*;
+import components.entity.*;
 import components.map.collectibles.Collectible;
-import entity.enemies.Enemy;
+import components.entity.enemies.Enemy;
 import utility.Images;
 import utility.MapFactory;
 
@@ -73,8 +72,6 @@ public class OverWorld
 		tiles = new Tile[numOfColumns][numOfRows];
 		enemies = new ArrayList<>();
 		mapItems = new ArrayList<>();
-		//TODO WTF get this out of here and just use two, enemies and mapItems
-
 
 		link = new Link(this);
 
@@ -170,9 +167,9 @@ public class OverWorld
 
 		for(int i = 0; i < numOfColumns; i++)
 		{
-			for(int k = 0; k < numOfRows; k++)
+			for(int j = 0; j < numOfRows; j++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][k]), widthOfTile * i - cameraX, heightOfTile * k - cameraY,
+				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i - cameraX, heightOfTile * j - cameraY,
 						widthOfTile, heightOfTile, null);
 			}
 		}
@@ -368,5 +365,24 @@ public class OverWorld
 	public ArrayList<MapItem> getMapItems()
 	{
 		return mapItems;
+	}
+
+	private void drawDebug(Graphics2D g2d)
+	{
+		for(int i = 0; i < numOfColumns; i++)
+		{
+			for(int j = 0; j < numOfRows; j++)
+			{
+				if(!tiles[i][j].isPassible())
+				{
+					g2d.setColor(new Color(0, 255, 0, 100));
+					Rectangle tileRectangle = new Rectangle(i * this.getWidthOfTile() - this.getCameraX(),
+							j * this.getWidthOfTile() - this.getCameraY(),
+							this.getWidthOfTile(),
+							this.getHeightOfTile() / 2);
+					g2d.fill(tileRectangle);
+				}
+			}
+		}
 	}
 }

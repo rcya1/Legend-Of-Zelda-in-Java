@@ -1,8 +1,8 @@
-package entity.enemies;
+package components.entity.enemies;
 
 import components.OverWorld;
 import components.Animation;
-import entity.Direction;
+import components.entity.Direction;
 import utility.Images;
 
 import java.awt.*;

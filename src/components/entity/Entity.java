@@ -1,4 +1,4 @@
-package entity;
+package components.entity;
 
 import components.OverWorld;
 import components.Tile;
@@ -58,8 +58,6 @@ public abstract class Entity
 
 	protected boolean handleTileCollisions()
 	{
-		int collisionOffset = 2;
-
 		boolean collision = false;
 
 		subPixelXVelocity += velX;
@@ -84,39 +82,47 @@ public abstract class Entity
 		{
 			subPixelYVelocity = 0;
 			int temporaryX = x + MathHelper.sign(velX);
-			if(!checkCollisionWithTileMap(temporaryX, y, collisionOffset))
+			if(!checkCollisionWithTileMap(temporaryX, y))
 			{
 				x = temporaryX;
-				collision = true;
 			}
-			else break;
+			else
+			{
+				this.x += alignToGrid(x, 8);
+
+				collision = true;
+				break;
+			}
 		}
 
 		for(int i = 0; i < Math.abs(newVelY); i++)
 		{
 			subPixelXVelocity = 0;
 			int temporaryY = y + MathHelper.sign(velY);
-			if(!checkCollisionWithTileMap(x, temporaryY, collisionOffset))
+			if(!checkCollisionWithTileMap(x, temporaryY))
 			{
 				y = temporaryY;
-				collision = true;
 			}
-			else break;
+			else
+			{
+				this.y += alignToGrid(y, 8);
+
+				collision = true;
+				break;
+			}
 		}
 
 		return collision;
 	}
 
-	private boolean checkCollisionWithTileMap(int x, int y, int collisionOffset)
+	private boolean checkCollisionWithTileMap(int x, int y)
 	{
 		boolean collisionFlag = false;
-		int entityWidth = width - collisionOffset;
-		int entityHeight = height - collisionOffset;
 
-		int leftColumn = (x - entityWidth / 2) / overWorld.getWidthOfTile();
-		int rightColumn = (x + entityWidth / 2) / overWorld.getWidthOfTile();
-		int topRow = (y - entityHeight / 2) / overWorld.getHeightOfTile();
-		int bottomRow = (y + entityHeight / 2) / overWorld.getHeightOfTile();
+		int leftColumn = Math.round((x - width / 2) / overWorld.getWidthOfTile());
+		int rightColumn = Math.round((x + width / 2) / overWorld.getWidthOfTile());
+		int topRow = Math.round((y - height / 2) / overWorld.getHeightOfTile());
+		int bottomRow = Math.round((y + height / 2) / overWorld.getHeightOfTile());
 
 		if(leftColumn < 0) leftColumn = 0;
 		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
@@ -128,12 +134,16 @@ public abstract class Entity
 			for(int j = topRow; j <= bottomRow; j++)
 			{
 				Tile tile = overWorld.getTile(i, j);
-				if(!tile.isPassible())
+				Rectangle tileRectangle = new Rectangle(i * overWorld.getWidthOfTile(),
+						j * overWorld.getWidthOfTile(), overWorld.getWidthOfTile(),
+						overWorld.getHeightOfTile() / 2);
+				if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
 				{
 					collisionFlag = true;
 				}
 			}
 		}
+
 		return collisionFlag;
 	}
 
@@ -193,5 +203,32 @@ public abstract class Entity
 	public int getHealth()
 	{
 		return health;
+	}
+
+	void drawDebug(Graphics2D g2d)
+	{
+		g2d.setColor(new Color(255, 0, 0, 100));
+
+		int leftColumn = (x - width / 2) / overWorld.getWidthOfTile();
+		int rightColumn = (x + width / 2) / overWorld.getWidthOfTile();
+		int topRow = (y - height / 2) / overWorld.getHeightOfTile();
+		int bottomRow = (y + height / 2) / overWorld.getHeightOfTile();
+
+		if(leftColumn < 0) leftColumn = 0;
+		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
+		if(topRow < 0) topRow = 0;
+		if(bottomRow > overWorld.getNumOfRows() - 1) bottomRow = overWorld.getNumOfRows() - 1;
+
+		for(int i = leftColumn; i <= rightColumn; i++)
+		{
+			for(int j = topRow; j <= bottomRow; j++)
+			{
+				g2d.fillRect(i * 16 - overWorld.getCameraX(), j * 16 - overWorld.getCameraY(), 16, 16);
+			}
+		}
+
+		g2d.setColor(new Color(0, 0, 255, 100));
+		g2d.fillRect(x - overWorld.getCameraX() - width / 2, y - overWorld.getCameraY() - height / 2,
+				width, height);
 	}
 }

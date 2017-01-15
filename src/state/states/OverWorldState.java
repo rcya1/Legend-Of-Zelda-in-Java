@@ -2,7 +2,7 @@ package state.states;
 
 import components.Menu;
 import components.OverWorld;
-import entity.Link;
+import components.entity.Link;
 import main.GamePanel;
 import state.State;
 import state.StateManager;
