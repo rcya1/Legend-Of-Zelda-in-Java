@@ -11,11 +11,11 @@ class OctorokPellet
 {
 	private final OverWorld overWorld;
 
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 
-	private final int velX;
-	private final int velY;
+	private final double velX;
+	private final double velY;
 
 	private final int width;
 	private final int height;
@@ -24,7 +24,7 @@ class OctorokPellet
 
 	private final int damage;
 
-	OctorokPellet(int x, int y, Direction direction, OverWorld overWorld)
+	OctorokPellet(double x, double y, Direction direction, OverWorld overWorld)
 	{
 		this.x = x;
 		this.y = y;
@@ -52,8 +52,8 @@ class OctorokPellet
 
 	void draw(Graphics2D g2d)
 	{
-		int drawX = x - overWorld.getCameraX();
-		int drawY = y - overWorld.getCameraY();
+		int drawX = (int) x - overWorld.getCameraX();
+		int drawY = (int) y - overWorld.getCameraY();
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);
@@ -63,7 +63,7 @@ class OctorokPellet
 
 	Rectangle getRectangle()
 	{
-		return new Rectangle(x - width / 2, y - height / 2, width, height);
+		return new Rectangle((int) x - width / 2, (int) y - height / 2, width, height);
 	}
 
 	int getDamage()

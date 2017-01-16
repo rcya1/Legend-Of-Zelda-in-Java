@@ -130,8 +130,8 @@ public class OverWorld
 				if(enemy.getDestroyFlag())
 				{
 					enemyIterator.remove();
-					mapItems.add(new AnimationObject(enemy.getX() - enemy.getWidth() / 2,
-							enemy.getY() - enemy.getHeight() / 2,
+					mapItems.add(new AnimationObject((int) enemy.getX() - enemy.getWidth() / 2,
+							(int) enemy.getY() - enemy.getHeight() / 2,
 							new Animation(3, false,
 									Images.Enemies.ENEMY_DEATH, 16, 16),
 							this));
@@ -185,6 +185,8 @@ public class OverWorld
 		}
 
 		link.draw(g2d);
+
+		drawDebug(g2d);
 
 		g2d.setTransform(transform);
 	}
@@ -256,7 +258,8 @@ public class OverWorld
 	private boolean checkVisibility(Entity entity)
 	{
 		Rectangle visibleSector = new Rectangle(cameraX, cameraY, 256, 192);
-		Rectangle object = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
+		Rectangle object = new Rectangle((int) entity.getX(), (int) entity.getY(),
+				entity.getWidth(), entity.getHeight());
 
 		return visibleSector.intersects(object);
 	}

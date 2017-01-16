@@ -19,7 +19,7 @@ public abstract class Enemy extends Entity
 		if(health < 0)
 		{
 			destroyFlag = true;
-			overWorld.addCollectible(new Heart(x, y, overWorld));
+			overWorld.addCollectible(new Heart((int) x, (int) y, overWorld));
 		}
 	}
 

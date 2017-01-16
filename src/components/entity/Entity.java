@@ -5,13 +5,14 @@ import components.Tile;
 import utility.MathHelper;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public abstract class Entity
 {
 	protected OverWorld overWorld;
 
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 
 	protected int drawX;
 	protected int drawY;
@@ -53,76 +54,54 @@ public abstract class Entity
 
 	private Rectangle getRectangle()
 	{
-		return new Rectangle(x - width / 2, y - height / 2, width, height);
+		return new Rectangle((int) x - width / 2, (int) y - height / 2, width, height);
 	}
 
 	protected boolean handleTileCollisions()
 	{
-		boolean collision = false;
+		boolean collisionX = false;
+		boolean collisionY = false;
 
-		subPixelXVelocity += velX;
-		subPixelYVelocity += velY;
-
-		int newVelX = Math.round((float) subPixelXVelocity);
-		int newVelY = Math.round((float) subPixelYVelocity);
-
-		subPixelXVelocity = velX - newVelX;
-		subPixelYVelocity = velY - newVelY;
-
-		if(newVelX > Math.ceil(moveSpeed)) newVelX = (int) Math.ceil(newVelX);
-		if(newVelY > Math.ceil(moveSpeed)) newVelY = (int) Math.ceil(newVelY);
-
-		if(subPixelXVelocity > Math.ceil(moveSpeed)) subPixelXVelocity = (int) Math.ceil(moveSpeed);
-		if(subPixelYVelocity > Math.ceil(moveSpeed)) subPixelYVelocity = (int) Math.ceil(moveSpeed);
-
-		if(subPixelXVelocity < Math.floor(-moveSpeed)) subPixelXVelocity = (int) Math.floor(-moveSpeed);
-		if(subPixelYVelocity < Math.floor(-moveSpeed)) subPixelYVelocity = (int) Math.floor(-moveSpeed);
-
-		for(int i = 0; i < Math.abs(newVelX); i++)
+		if(checkCollisionWithTileMap(x + velX, y))
 		{
-			subPixelYVelocity = 0;
-			int temporaryX = x + MathHelper.sign(velX);
-			if(!checkCollisionWithTileMap(temporaryX, y))
-			{
-				x = temporaryX;
-			}
-			else
-			{
-				this.x += alignToGrid(x, 8);
-
-				collision = true;
-				break;
-			}
+			collisionX = true;
+		}
+		if(checkCollisionWithTileMap(x, y + velY))
+		{
+			collisionY = true;
 		}
 
-		for(int i = 0; i < Math.abs(newVelY); i++)
-		{
-			subPixelXVelocity = 0;
-			int temporaryY = y + MathHelper.sign(velY);
-			if(!checkCollisionWithTileMap(x, temporaryY))
-			{
-				y = temporaryY;
-			}
-			else
-			{
-				this.y += alignToGrid(y, 8);
+		x += velX;
+		y += velY;
 
-				collision = true;
-				break;
-			}
+		if(collisionX)
+		{
+			x = ((int) x / 8) * 8;
+			if(MathHelper.sign(velX) == -1) x += 8;
+			if(velX == 0 && direction == Direction.LEFT) x += 8;
+
+			alignToGrid(x, 8);
+		}
+		if(collisionY)
+		{
+			y = ((int) y / 8) * 8;
+			if(MathHelper.sign(velY) == -1) y += 8;
+			if(velY == 0 && direction == Direction.UP) y += 8;
+
+			alignToGrid(y, 8);
 		}
 
-		return collision;
+		return collisionX || collisionY;
 	}
 
-	private boolean checkCollisionWithTileMap(int x, int y)
+	private boolean checkCollisionWithTileMap(double x, double y)
 	{
 		boolean collisionFlag = false;
 
-		int leftColumn = Math.round((x - width / 2) / overWorld.getWidthOfTile());
-		int rightColumn = Math.round((x + width / 2) / overWorld.getWidthOfTile());
-		int topRow = Math.round((y - height / 2) / overWorld.getHeightOfTile());
-		int bottomRow = Math.round((y + height / 2) / overWorld.getHeightOfTile());
+		int leftColumn = (int) (x - width / 2) / overWorld.getWidthOfTile();
+		int rightColumn = (int) (x + width / 2) / overWorld.getWidthOfTile();
+		int topRow = (int) (y - height / 2) / overWorld.getHeightOfTile();
+		int bottomRow = (int) (y + height / 2) / overWorld.getHeightOfTile();
 
 		if(leftColumn < 0) leftColumn = 0;
 		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
@@ -135,8 +114,9 @@ public abstract class Entity
 			{
 				Tile tile = overWorld.getTile(i, j);
 				Rectangle tileRectangle = new Rectangle(i * overWorld.getWidthOfTile(),
-						j * overWorld.getWidthOfTile(), overWorld.getWidthOfTile(),
+						j * overWorld.getHeightOfTile(), overWorld.getWidthOfTile(),
 						overWorld.getHeightOfTile() / 2);
+
 				if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
 				{
 					collisionFlag = true;
@@ -147,9 +127,9 @@ public abstract class Entity
 		return collisionFlag;
 	}
 
-	int alignToGrid(int value, int alignTo)
+	int alignToGrid(double value, int alignTo)
 	{
-		int extra = value % alignTo; //Figure out how much the value is off by
+		int extra = (int) value % alignTo; //Figure out how much the value is off by
 		int halfway = (alignTo - 1) / 2;
 		//Find the halfway mark of the offset (subtract 1 because modulo returns 0-7)
 
@@ -165,12 +145,12 @@ public abstract class Entity
 		}
 	}
 
-	public int getX()
+	public double getX()
 	{
 		return x;
 	}
 
-	public int getY()
+	public double getY()
 	{
 		return y;
 	}
@@ -209,10 +189,10 @@ public abstract class Entity
 	{
 		g2d.setColor(new Color(255, 0, 0, 100));
 
-		int leftColumn = (x - width / 2) / overWorld.getWidthOfTile();
-		int rightColumn = (x + width / 2) / overWorld.getWidthOfTile();
-		int topRow = (y - height / 2) / overWorld.getHeightOfTile();
-		int bottomRow = (y + height / 2) / overWorld.getHeightOfTile();
+		int leftColumn = (int) (x - width / 2) / overWorld.getWidthOfTile();
+		int rightColumn = (int) (x + width / 2) / overWorld.getWidthOfTile();
+		int topRow = (int) (y - height / 2) / overWorld.getHeightOfTile();
+		int bottomRow = (int) (y + height / 2) / overWorld.getHeightOfTile();
 
 		if(leftColumn < 0) leftColumn = 0;
 		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
@@ -228,7 +208,10 @@ public abstract class Entity
 		}
 
 		g2d.setColor(new Color(0, 0, 255, 100));
-		g2d.fillRect(x - overWorld.getCameraX() - width / 2, y - overWorld.getCameraY() - height / 2,
-				width, height);
+
+		AffineTransform t = g2d.getTransform();
+		g2d.translate(-overWorld.getCameraX(), -overWorld.getCameraY());
+		g2d.fill(getRectangle());
+		g2d.setTransform(t);
 	}
 }

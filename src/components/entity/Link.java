@@ -53,10 +53,10 @@ public class Link extends Entity
 		x = 160 + overWorld.getCameraX();
 		y = 96 + overWorld.getCameraY();
 
-		drawX = x;
-		drawY = y;
+		drawX = (int) x;
+		drawY = (int) y;
 
-		moveSpeed = 1.5;
+		moveSpeed = 1.4;
 
 		width = 16;
 		height = 16;
@@ -137,7 +137,7 @@ public class Link extends Entity
 		case "ATTACK_SWORD":
 			if(swordTimer == 9)
 			{
-				int[] drawingCoordinates = MathHelper.getSwordOffset(x, y, 12, direction);
+				int[] drawingCoordinates = MathHelper.getSwordOffset((int) x, (int) y, 12, direction);
 				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld);
 			}
 			else if(swordTimer <= 2)
@@ -190,8 +190,8 @@ public class Link extends Entity
 	{
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-			drawX = x - overWorld.getCameraX();
-			drawY = y - overWorld.getCameraY();
+			drawX = (int) x - overWorld.getCameraX();
+			drawY = (int) y - overWorld.getCameraY();
 
 			if(sword != null) sword.draw(g2d);
 
@@ -393,8 +393,8 @@ public class Link extends Entity
 						break;
 					}
 
-					overWorld.setCameraX((x / overWorld.getMapWidth()) * overWorld.getMapWidth());
-					overWorld.setCameraY((y / overWorld.getMapHeight()) * overWorld.getMapHeight());
+					overWorld.setCameraX(((int) x / overWorld.getMapWidth()) * overWorld.getMapWidth());
+					overWorld.setCameraY(((int) y / overWorld.getMapHeight()) * overWorld.getMapHeight());
 				}
 			}
 		}
