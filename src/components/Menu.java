@@ -95,11 +95,6 @@ public class Menu
 		this.drawY = drawY;
 	}
 
-	public int[] getDrawCoordinates()
-	{
-		return new int[] {drawX, drawY};
-	}
-
 	public void setDrawVector(int drawVelX, int drawVelY)
 	{
 		this.drawVelX = drawVelX;

@@ -1,10 +1,12 @@
 package components;
 
+import components.entity.Direction;
+import components.entity.Entity;
+import components.entity.Link;
+import components.entity.enemies.Enemy;
 import components.map.AnimationObject;
 import components.map.MapItem;
-import components.entity.*;
 import components.map.collectibles.Collectible;
-import components.entity.enemies.Enemy;
 import utility.Images;
 import utility.MapFactory;
 
@@ -136,7 +138,6 @@ public class OverWorld
 							new Animation(3, false,
 									Images.Enemies.ENEMY_DEATH, 16, 16),
 							this));
-					if(true);
 				}
 			}
 		}

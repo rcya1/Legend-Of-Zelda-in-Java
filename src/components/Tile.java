@@ -2,7 +2,6 @@ package components;
 
 import utility.Images;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public enum Tile

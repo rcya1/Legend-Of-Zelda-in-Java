@@ -217,108 +217,108 @@ public class Images
 		{
 			public static class Water
 			{
-				private static BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/green/Water.png");
+				private static final BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/green/Water.png");
 				
-				public static BufferedImage WATER_UP_LEFT = WATER != null ? 
+				public static final BufferedImage WATER_UP_LEFT = WATER != null ?
 						WATER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) : 
 						null;
-				public static BufferedImage WATER_UP = WATER != null ?
+				public static final BufferedImage WATER_UP = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_UP_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_UP_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_LEFT = WATER != null ?
+				public static final BufferedImage WATER_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CENTER = WATER != null ?
+				public static final BufferedImage WATER_CENTER = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN_LEFT = WATER != null ?
+				public static final BufferedImage WATER_DOWN_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN = WATER != null ?
+				public static final BufferedImage WATER_DOWN = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_DOWN_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 
-				public static BufferedImage WATER_CORNER_UP_LEFT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_UP_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_UP_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_UP_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_DOWN_LEFT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_DOWN_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 			}
 
-			public static BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/green/Bush.png");
-			public static BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/green/Stairs.png");
-			public static BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
-			public static BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/green/Bridge.png");
+			public static final BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/green/Bush.png");
+			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/green/Stairs.png");
+			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
+			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/green/Bridge.png");
 		}
 
 		public static class Orange
 		{
 			public static class Water
 			{
-				private static BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/orange/Water.png");
+				private static final BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/orange/Water.png");
 
-				public static BufferedImage WATER_UP_LEFT = WATER != null ?
+				public static final BufferedImage WATER_UP_LEFT = WATER != null ?
 						WATER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_UP = WATER != null ?
+				public static final BufferedImage WATER_UP = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_UP_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_UP_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_LEFT = WATER != null ?
+				public static final BufferedImage WATER_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CENTER = WATER != null ?
+				public static final BufferedImage WATER_CENTER = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN_LEFT = WATER != null ?
+				public static final BufferedImage WATER_DOWN_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN = WATER != null ?
+				public static final BufferedImage WATER_DOWN = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_DOWN_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_DOWN_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 
-				public static BufferedImage WATER_CORNER_UP_LEFT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_UP_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_UP_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_UP_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_DOWN_LEFT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_DOWN_LEFT = WATER != null ?
 						WATER.getSubimage(0, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
 						null;
-				public static BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
+				public static final BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 			}
 
-			public static BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/orange/Bush.png");
-			public static BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/orange/Stairs.png");
-			public static BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/orange/Ladder.png");
-			public static BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/orange/Bridge.png");
+			public static final BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/orange/Bush.png");
+			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/orange/Stairs.png");
+			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/orange/Ladder.png");
+			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/orange/Bridge.png");
 		}
 	}
 

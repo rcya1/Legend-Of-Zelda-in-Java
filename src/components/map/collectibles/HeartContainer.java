@@ -1,6 +1,5 @@
 package components.map.collectibles;
 
-import components.map.MapItem;
 import components.OverWorld;
 import utility.Images;
 

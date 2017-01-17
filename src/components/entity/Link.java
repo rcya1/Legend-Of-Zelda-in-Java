@@ -2,13 +2,13 @@ package components.entity;
 
 import components.Animation;
 import components.OverWorld;
+import components.entity.enemies.Enemy;
+import components.entity.enemies.Octorok;
 import components.map.MapItem;
 import components.map.WarpTile;
 import components.map.collectibles.Collectible;
 import components.map.collectibles.Heart;
 import components.map.collectibles.HeartContainer;
-import components.entity.enemies.Enemy;
-import components.entity.enemies.Octorok;
 import components.weapons.Sword;
 import utility.Images;
 import utility.MathHelper;

@@ -2,7 +2,6 @@ package components.map;
 
 import components.Animation;
 import components.OverWorld;
-import components.map.MapItem;
 
 import java.awt.*;
 

@@ -7,15 +7,15 @@ import java.awt.image.BufferedImage;
 
 public abstract class MapItem
 {
-	public OverWorld overWorld;
+	protected OverWorld overWorld;
 
-	public int x;
-	public int y;
+	protected int x;
+	protected int y;
 
-	public int width;
-	public int height;
+	protected int width;
+	protected int height;
 
-	public BufferedImage bufferedImage;
+	protected BufferedImage bufferedImage;
 
 	public abstract void update();
 

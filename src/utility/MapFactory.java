@@ -1,10 +1,10 @@
 package utility;
 
 import components.OverWorld;
-import components.map.WarpTile;
 import components.entity.Direction;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;
+import components.map.WarpTile;
 
 public class MapFactory
 {
