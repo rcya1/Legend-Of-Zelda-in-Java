@@ -53,10 +53,10 @@ public class Link extends Entity
 		x = 160 + overWorld.getCameraX();
 		y = 96 + overWorld.getCameraY();
 
-		drawX = (int) x;
-		drawY = (int) y;
+		drawX = (int) Math.round(x);
+		drawY = (int) Math.round(y);
 
-		moveSpeed = 1.4;
+		moveSpeed = 1.5;
 
 		width = 16;
 		height = 16;
@@ -137,7 +137,8 @@ public class Link extends Entity
 		case "ATTACK_SWORD":
 			if(swordTimer == 9)
 			{
-				int[] drawingCoordinates = MathHelper.getSwordOffset((int) x, (int) y, 12, direction);
+				int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x),
+						(int) Math.round(y), 12, direction);
 				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld);
 			}
 			else if(swordTimer <= 2)
@@ -190,8 +191,9 @@ public class Link extends Entity
 	{
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-			drawX = (int) x - overWorld.getCameraX();
-			drawY = (int) y - overWorld.getCameraY();
+			drawX = (int) Math.round(x) - overWorld.getCameraX();
+			drawY = (int) Math.round(y) - overWorld.getCameraY();
+
 
 			if(sword != null) sword.draw(g2d);
 
@@ -259,6 +261,8 @@ public class Link extends Entity
 				break;
 			}
 		}
+
+//		drawDebug(g2d);
 	}
 
 	//Check for movement that you have when you can do anything, i.e. IDLE, or LEFT/RIGHT/UP/DOWN
@@ -348,7 +352,7 @@ public class Link extends Entity
 			}
 			else if(mapItem instanceof WarpTile)
 			{
-				if(this.checkCollisionWith(mapItem.getRectangle()))
+				if(checkCollisionWith(mapItem.getRectangle()))
 				{
 					collidedWarpTile = (WarpTile) mapItem;
 					id = collidedWarpTile.getId();
@@ -393,8 +397,8 @@ public class Link extends Entity
 						break;
 					}
 
-					overWorld.setCameraX(((int) x / overWorld.getMapWidth()) * overWorld.getMapWidth());
-					overWorld.setCameraY(((int) y / overWorld.getMapHeight()) * overWorld.getMapHeight());
+					overWorld.setCameraX((int) Math.round(x) / overWorld.getMapWidth() * overWorld.getMapWidth());
+					overWorld.setCameraY((int) Math.round(y) / overWorld.getMapHeight() * overWorld.getMapHeight());
 				}
 			}
 		}

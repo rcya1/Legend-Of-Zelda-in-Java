@@ -20,9 +20,6 @@ public abstract class Entity
 	protected int width;
 	protected int height;
 
-	private double subPixelXVelocity;
-	private double subPixelYVelocity;
-
 	protected double velX;
 	protected double velY;
 
@@ -36,6 +33,7 @@ public abstract class Entity
 	protected String state;
 
 	protected boolean destroyFlag;
+
 
 	public abstract void update();
 
@@ -54,7 +52,8 @@ public abstract class Entity
 
 	private Rectangle getRectangle()
 	{
-		return new Rectangle((int) x - width / 2, (int) y - height / 2, width, height);
+		return new Rectangle((int) Math.round(x - width / 2),
+				(int) Math.round(y - height / 2), width, height);
 	}
 
 	protected boolean handleTileCollisions()
@@ -62,6 +61,7 @@ public abstract class Entity
 		boolean collisionX = false;
 		boolean collisionY = false;
 
+		//TODO, run tests on the checkCollisionWithTileMap function
 		if(checkCollisionWithTileMap(x + velX, y))
 		{
 			collisionX = true;
@@ -76,32 +76,39 @@ public abstract class Entity
 
 		if(collisionX)
 		{
-			x = ((int) x / 8) * 8;
+			x = ((int) Math.round(x) / 8) * 8;
 			if(MathHelper.sign(velX) == -1) x += 8;
 			if(velX == 0 && direction == Direction.LEFT) x += 8;
 
-			alignToGrid(x, 8);
+			x += alignToGrid(x, 8);
+
+			velX = 0;
+			velY = 0;
 		}
+
 		if(collisionY)
 		{
-			y = ((int) y / 8) * 8;
+			y = ((int) Math.round(y) / 8) * 8;
 			if(MathHelper.sign(velY) == -1) y += 8;
 			if(velY == 0 && direction == Direction.UP) y += 8;
 
-			alignToGrid(y, 8);
+			y += alignToGrid(y, 8);
+
+			velX = 0;
+			velY = 0;
 		}
 
 		return collisionX || collisionY;
 	}
 
-	private boolean checkCollisionWithTileMap(double x, double y)
+	private boolean checkCollisionWithTileMap(double newX, double newY)
 	{
 		boolean collisionFlag = false;
 
-		int leftColumn = (int) (x - width / 2) / overWorld.getWidthOfTile();
-		int rightColumn = (int) (x + width / 2) / overWorld.getWidthOfTile();
-		int topRow = (int) (y - height / 2) / overWorld.getHeightOfTile();
-		int bottomRow = (int) (y + height / 2) / overWorld.getHeightOfTile();
+		int leftColumn = (int) Math.round(newX - width / 2) / overWorld.getWidthOfTile();
+		int rightColumn = (int) Math.round(newX + width / 2) / overWorld.getWidthOfTile();
+		int topRow = (int) Math.round(newY - height / 2) / overWorld.getHeightOfTile();
+		int bottomRow = (int) Math.round(newY + height / 2) / overWorld.getHeightOfTile();
 
 		if(leftColumn < 0) leftColumn = 0;
 		if(rightColumn > overWorld.getNumOfColumns() - 1) rightColumn = overWorld.getNumOfColumns() - 1;
@@ -116,8 +123,10 @@ public abstract class Entity
 				Rectangle tileRectangle = new Rectangle(i * overWorld.getWidthOfTile(),
 						j * overWorld.getHeightOfTile(), overWorld.getWidthOfTile(),
 						overWorld.getHeightOfTile() / 2);
+				Rectangle thisRectangle = new Rectangle((int) Math.round(newX) - width / 2,
+						(int) Math.round(newY) - height / 2, width, height);
 
-				if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
+				if(!tile.isPassible() && thisRectangle.intersects(tileRectangle))
 				{
 					collisionFlag = true;
 				}
@@ -129,7 +138,7 @@ public abstract class Entity
 
 	int alignToGrid(double value, int alignTo)
 	{
-		int extra = (int) value % alignTo; //Figure out how much the value is off by
+		int extra = (int) Math.round(value) % alignTo; //Figure out how much the value is off by
 		int halfway = (alignTo - 1) / 2;
 		//Find the halfway mark of the offset (subtract 1 because modulo returns 0-7)
 

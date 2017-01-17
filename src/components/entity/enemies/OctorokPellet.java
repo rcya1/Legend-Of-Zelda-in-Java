@@ -52,8 +52,8 @@ class OctorokPellet
 
 	void draw(Graphics2D g2d)
 	{
-		int drawX = (int) x - overWorld.getCameraX();
-		int drawY = (int) y - overWorld.getCameraY();
+		int drawX = (int) Math.round(x) - overWorld.getCameraX();
+		int drawY = (int) Math.round(y) - overWorld.getCameraY();
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);
@@ -63,7 +63,8 @@ class OctorokPellet
 
 	Rectangle getRectangle()
 	{
-		return new Rectangle((int) x - width / 2, (int) y - height / 2, width, height);
+		return new Rectangle((int) Math.round(x) - width / 2, (int) Math.round(y) - height / 2,
+				width, height);
 	}
 
 	int getDamage()

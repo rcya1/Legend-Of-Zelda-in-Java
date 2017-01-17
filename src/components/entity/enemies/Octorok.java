@@ -107,8 +107,8 @@ public class Octorok extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) x - overWorld.getCameraX();
-		drawY = (int) y - overWorld.getCameraY();
+		drawX = (int) Math.round(x) - overWorld.getCameraX();
+		drawY = (int) Math.round(y) - overWorld.getCameraY();
 
 		if(pellet != null) pellet.draw(g2d);
 
