@@ -14,6 +14,10 @@ public class AnimationObject extends MapItem
 	{
 		this.x = x;
 		this.y = y;
+
+		this.width = animation.getWidth();
+		this.height = animation.getHeight();
+
 		this.animation = animation;
 		this.overWorld = overWorld;
 	}

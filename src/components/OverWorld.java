@@ -136,6 +136,7 @@ public class OverWorld
 							new Animation(3, false,
 									Images.Enemies.ENEMY_DEATH, 16, 16),
 							this));
+					if(true);
 				}
 			}
 		}
