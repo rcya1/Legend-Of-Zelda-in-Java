@@ -61,7 +61,6 @@ public abstract class Entity
 		boolean collisionX = false;
 		boolean collisionY = false;
 
-		//TODO, run tests on the checkCollisionWithTileMap function
 		if(checkCollisionWithTileMap(x + velX, y))
 		{
 			collisionX = true;
@@ -120,15 +119,19 @@ public abstract class Entity
 			for(int j = topRow; j <= bottomRow; j++)
 			{
 				Tile tile = overWorld.getTile(i, j);
-				Rectangle tileRectangle = new Rectangle(i * overWorld.getWidthOfTile(),
-						j * overWorld.getHeightOfTile(), overWorld.getWidthOfTile(),
-						overWorld.getHeightOfTile() / 2);
-				Rectangle thisRectangle = new Rectangle((int) Math.round(newX) - width / 2,
-						(int) Math.round(newY) - height / 2, width, height);
-
-				if(!tile.isPassible() && thisRectangle.intersects(tileRectangle))
+				if(tile != null)
 				{
-					collisionFlag = true;
+					Rectangle tileRectangle = new Rectangle(i * overWorld.getWidthOfTile(),
+							j * overWorld.getHeightOfTile(), overWorld.getWidthOfTile(),
+							overWorld.getHeightOfTile() / 2);
+
+					Rectangle thisRectangle = new Rectangle((int) Math.round(newX) - width / 2,
+							(int) Math.round(newY) - height / 2, width, height);
+
+					if(!tile.isPassible() && thisRectangle.intersects(tileRectangle))
+					{
+						collisionFlag = true;
+					}
 				}
 			}
 		}

@@ -529,8 +529,9 @@ public enum Tile
 			return true;
 		case ORANGE_BRIDGE:
 			return true;
-		}
 
-		return true;
+		default:
+			return false;
+		}
 	}
 }
