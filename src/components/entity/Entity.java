@@ -139,7 +139,7 @@ public abstract class Entity
 		return collisionFlag;
 	}
 
-	int alignToGrid(double value, int alignTo)
+	public int alignToGrid(double value, int alignTo)
 	{
 		int extra = (int) Math.round(value) % alignTo; //Figure out how much the value is off by
 		int halfway = (alignTo - 1) / 2;

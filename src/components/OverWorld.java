@@ -172,7 +172,8 @@ public class OverWorld
 		{
 			for(int j = 0; j < numOfRows; j++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i - cameraX, heightOfTile * j - cameraY,
+				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i - cameraX,
+						heightOfTile * j - cameraY,
 						widthOfTile, heightOfTile, null);
 			}
 		}
@@ -333,6 +334,7 @@ public class OverWorld
 	{
 		this.cameraY = cameraY;
 	}
+
 	public void setDrawCoordinates(int drawX, int drawY)
 	{
 		this.drawX = drawX;
