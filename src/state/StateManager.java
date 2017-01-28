@@ -19,7 +19,7 @@ public class StateManager
 	/* Beginning - TitleScreen
 	 * Wait - Items
 	 * Press Start - Select Save
-	 * Press Start - OverWorld
+	 * Press Start - OldOverWorld
 	 */
 
 	private final State[] states;

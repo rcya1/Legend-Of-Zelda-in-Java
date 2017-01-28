@@ -1,7 +1,7 @@
 package components.entity.enemies;
 
 import components.Animation;
-import components.OverWorld;
+import components.Room;
 import components.entity.Direction;
 import utility.Images;
 
@@ -17,14 +17,14 @@ public class Octorok extends Enemy
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, OverWorld overWorld)
+	public Octorok(int x, int y, Direction direction, Room overWorld)
 	{
 		this.x = x;
 		this.y = y;
 
 		this.direction = direction;
 
-		this.overWorld = overWorld;
+		this.room = overWorld;
 
 		velX = 0;
 		velY = 0;
@@ -71,7 +71,7 @@ public class Octorok extends Enemy
 				shootingTimer++;
 				if(shootingTimer == 60)
 				{
-					pellet = new OctorokPellet(x, y, direction, overWorld);
+					pellet = new OctorokPellet(x, y, direction, room);
 				}
 			}
 			else
@@ -86,7 +86,8 @@ public class Octorok extends Enemy
 		if(pellet != null)
 		{
 			pellet.update();
-			if(!overWorld.checkVisibility(pellet.getRectangle())) pellet = null;
+			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
+			if(!screen.intersects(pellet.getRectangle())) pellet = null;
 		}
 
 		if(handleTileCollisions() && movementRefreshTimer == 0)
@@ -104,8 +105,8 @@ public class Octorok extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) Math.round(x) - overWorld.getCameraX();
-		drawY = (int) Math.round(y) - overWorld.getCameraY();
+		drawX = (int) Math.round(x);
+		drawY = (int) Math.round(y);
 
 		if(pellet != null) pellet.draw(g2d);
 

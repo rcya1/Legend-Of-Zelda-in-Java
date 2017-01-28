@@ -21,7 +21,7 @@ public class MapFactory
 		{
 		case "A":
 			return new Octorok(x + overWorld.getWidthOfTile() / 2, y + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(), overWorld);
+					Direction.getRandom(), overWorld.getCurrentRoom());
 		default:
 			return null;
 		}

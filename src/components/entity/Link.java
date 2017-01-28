@@ -21,6 +21,8 @@ import java.util.Iterator;
 
 public class Link extends Entity
 {
+	private OverWorld overWorld;
+
 	private int transitionAmountX;
 	private int transitionAmountY;
 
@@ -49,9 +51,10 @@ public class Link extends Entity
 	public Link(OverWorld overWorld)
 	{
 		this.overWorld = overWorld;
+		this.room = overWorld.getCurrentRoom();
 
-		x = 160 + overWorld.getCameraX();
-		y = 96 + overWorld.getCameraY();
+		x = 160;
+		y = 96;
 
 		drawX = (int) Math.round(x);
 		drawY = (int) Math.round(y);
@@ -82,6 +85,8 @@ public class Link extends Entity
 
 	public void update()
 	{
+		this.room = overWorld.getCurrentRoom();
+
 		switch(state)
 		{
 		case "IDLE":
@@ -139,7 +144,7 @@ public class Link extends Entity
 			{
 				int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x),
 						(int) Math.round(y), 12, direction);
-				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld);
+				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld.getCurrentRoom());
 			}
 			else if(swordTimer <= 2)
 			{
@@ -155,7 +160,7 @@ public class Link extends Entity
 			break;
 		case "TRANSITION":
 			velX = 0;
-			velY = 0;
+//			velY = 0;
 
 			x += transitionVelX;
 			y += transitionVelY;
@@ -163,16 +168,15 @@ public class Link extends Entity
 			transitionAmountX += transitionVelX;
 			transitionAmountY += transitionVelY;
 
-			if(Math.abs(transitionAmountX) == 20) transitionVelX = 0;
-			if(Math.abs(transitionAmountY) == 20) transitionVelY = 0;
+			if(Math.abs(transitionAmountX) == room.getMapWidth() - 20) transitionVelX = 0;
+			if(Math.abs(transitionAmountY) == room.getMapHeight() - 20) transitionVelY = 0;
 
 			if(transitionVelX == 0 && transitionVelY == 0)
 			{
 				transitionAmountX = 0;
 				transitionAmountY = 0;
 
-				int[] cameraVector = overWorld.getCameraVector();
-				if(cameraVector[0] == 0 && cameraVector[1] == 0)
+				if(!overWorld.isMoving())
 				{
 					this.state = "IDLE";
 				}
@@ -187,7 +191,7 @@ public class Link extends Entity
 
 		if(sword != null) sword.update();
 
-		handleTileCollisions();
+		if(!state.equals("TRANSITION")) handleTileCollisions();
 		if(invincibilityFrames == 0) handleEnemyCollisions();
 		handleMapItemCollisions();
 	}
@@ -196,8 +200,8 @@ public class Link extends Entity
 	{
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-			drawX = (int) Math.round(x) - overWorld.getCameraX();
-			drawY = (int) Math.round(y) - overWorld.getCameraY();
+			drawX = (int) Math.round(x);
+			drawY = (int) Math.round(y);
 
 
 			if(sword != null) sword.draw(g2d);
@@ -285,7 +289,7 @@ public class Link extends Entity
 
 	private void handleEnemyCollisions()
 	{
-		ArrayList<Enemy> enemies = overWorld.getEnemies();
+		ArrayList<Enemy> enemies = overWorld.getCurrentRoom().getEnemies();
 		for(Enemy enemy : enemies)
 		{
 			if(checkCollisionWith(enemy))
@@ -316,7 +320,7 @@ public class Link extends Entity
 		WarpTile collidedWarpTile;
 		char id;
 
-		ArrayList<MapItem> mapItems = overWorld.getMapItems();
+		ArrayList<MapItem> mapItems = overWorld.getCurrentRoom().getMapItems();
 		Iterator iterator = mapItems.iterator();
 		while(iterator.hasNext())
 		{
@@ -370,7 +374,7 @@ public class Link extends Entity
 
 	private void teleportToWarpTile(WarpTile destination, char id)
 	{
-		for(MapItem mapItem : overWorld.getMapItems())
+		for(MapItem mapItem : overWorld.getCurrentRoom().getMapItems())
 		{
 			if(mapItem instanceof WarpTile)
 			{
@@ -402,8 +406,8 @@ public class Link extends Entity
 						break;
 					}
 
-					overWorld.setCameraX((int) Math.round(x) / overWorld.getMapWidth() * overWorld.getMapWidth());
-					overWorld.setCameraY((int) Math.round(y) / overWorld.getMapHeight() * overWorld.getMapHeight());
+//					room.setCameraX((int) Math.round(x) / room.getMapWidth() * room.getMapWidth());
+//					room.setCameraY((int) Math.round(y) / room.getMapHeight() * room.getMapHeight());
 				}
 			}
 		}

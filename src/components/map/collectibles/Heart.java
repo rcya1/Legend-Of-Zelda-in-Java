@@ -1,13 +1,13 @@
 package components.map.collectibles;
 
-import components.OverWorld;
+import components.Room;
 import utility.Images;
 
 public class Heart extends Collectible
 {
 	private final int restoreValue;
 
-	public Heart(int x, int y, OverWorld overWorld)
+	public Heart(int x, int y, Room overWorld)
 	{
 		this.x = x;
 		this.y = y;
@@ -17,7 +17,7 @@ public class Heart extends Collectible
 
 		restoreValue = 8;
 
-		this.overWorld = overWorld;
+		this.room = overWorld;
 
 		this.bufferedImage = Images.Menu.HEART_FULL;
 	}

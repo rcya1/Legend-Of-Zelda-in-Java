@@ -28,9 +28,7 @@ public class OverWorldState extends State
 	{
 		state = "OVERWORLD";
 
-		overWorld = new OverWorld(80, 44, 48 * 16, 33 * 16);
-		overWorld.loadTiles("/tileMaps/tileMap.txt");
-		overWorld.loadEnemies("/tileMaps/tileMapE.txt");
+		overWorld = new OverWorld();
 		overWorld.setDrawCoordinates(0, 48);
 
 		menu = new Menu(overWorld);

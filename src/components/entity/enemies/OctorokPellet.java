@@ -1,6 +1,6 @@
 package components.entity.enemies;
 
-import components.OverWorld;
+import components.Room;
 import components.entity.Direction;
 import utility.Images;
 
@@ -9,7 +9,7 @@ import java.awt.geom.AffineTransform;
 
 class OctorokPellet
 {
-	private final OverWorld overWorld;
+	private final Room room;
 
 	private double x;
 	private double y;
@@ -24,7 +24,7 @@ class OctorokPellet
 
 	private final int damage;
 
-	OctorokPellet(double x, double y, Direction direction, OverWorld overWorld)
+	OctorokPellet(double x, double y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -36,7 +36,7 @@ class OctorokPellet
 
 		this.direction = direction;
 
-		this.overWorld = overWorld;
+		this.room = room;
 
 		width = 16;
 		height = 16;
@@ -52,8 +52,8 @@ class OctorokPellet
 
 	void draw(Graphics2D g2d)
 	{
-		int drawX = (int) Math.round(x) - overWorld.getCameraX();
-		int drawY = (int) Math.round(y) - overWorld.getCameraY();
+		int drawX = (int) Math.round(x);
+		int drawY = (int) Math.round(y);
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);

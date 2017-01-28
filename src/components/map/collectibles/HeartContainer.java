@@ -1,11 +1,11 @@
 package components.map.collectibles;
 
-import components.OverWorld;
+import components.Room;
 import utility.Images;
 
 public class HeartContainer extends Collectible
 {
-	public HeartContainer(int x, int y, OverWorld overWorld)
+	public HeartContainer(int x, int y, Room overWorld)
 	{
 		this.x = x;
 		this.y = y;
@@ -13,7 +13,7 @@ public class HeartContainer extends Collectible
 		this.width = 13;
 		this.height = 13;
 
-		this.overWorld = overWorld;
+		this.room = overWorld;
 
 		this.bufferedImage = Images.Menu.HEART_CONTAINER;
 	}

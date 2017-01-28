@@ -1,7 +1,7 @@
 package components.map;
 
 import components.Animation;
-import components.OverWorld;
+import components.Room;
 
 import java.awt.*;
 
@@ -9,7 +9,7 @@ public class AnimationObject extends MapItem
 {
 	private final Animation animation;
 
-	public AnimationObject(int x, int y, Animation animation, OverWorld overWorld)
+	public AnimationObject(int x, int y, Animation animation, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -18,7 +18,7 @@ public class AnimationObject extends MapItem
 		this.height = animation.getHeight();
 
 		this.animation = animation;
-		this.overWorld = overWorld;
+		this.room = room;
 	}
 
 	public void update()
@@ -28,7 +28,7 @@ public class AnimationObject extends MapItem
 
 	public void draw(Graphics2D g2d)
 	{
-		animation.draw(g2d, x - overWorld.getCameraX(), y - overWorld.getCameraY(), 16, 16);
+		animation.draw(g2d, x, y, 16, 16);
 	}
 
 	public Animation getAnimation()
