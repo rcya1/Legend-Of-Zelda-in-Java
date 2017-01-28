@@ -7,6 +7,7 @@ import javax.sound.sampled.FloatControl;
 
 public class SoundPlayer
 {
+	private final Object synchronizationLock = new Object();
 	private Clip clip;
 
 	public static final SoundPlayer INTRO = new SoundPlayer("/sound/beginning/Intro.wav");
@@ -34,7 +35,7 @@ public class SoundPlayer
 			{
 				new Thread(() ->
 				{
-					synchronized(clip)
+					synchronized(synchronizationLock)
 					{
 						clip.stop();
 						clip.setFramePosition(0);
@@ -63,7 +64,7 @@ public class SoundPlayer
 			{
 				new Thread(() ->
 				{
-					synchronized(clip)
+					synchronized(synchronizationLock)
 					{
 						clip.stop();
 						clip.setFramePosition(0);
