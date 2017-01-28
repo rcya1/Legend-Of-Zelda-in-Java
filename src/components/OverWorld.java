@@ -85,34 +85,40 @@ public class OverWorld
 		cameraX += cameraVelX;
 		cameraY += cameraVelY;
 
-		if(cameraX % mapWidth == 0) cameraVelX = 0;
-		if(cameraY % mapHeight == 0) cameraVelY = 0;
+		if(cameraX % mapWidth == 0)
+		{
+			cameraVelX = 0;
+		}
+		if(cameraY % mapHeight == 0)
+		{
+			cameraVelY = 0;
+		}
 
 		link.update();
 
 		if(link.getX() - this.getCameraX() <= widthOfTile && link.getDirection() == Direction.LEFT &&
 				!link.getState().equals("TRANSITION"))
 		{
-			this.setVector(-4, 0);
+			this.setCameraVector(-4, 0);
 			link.setTransitionVector(-1, 0);
 		}
 
 		if(link.getX() - this.getCameraX() >= mapWidth - widthOfTile && link.getDirection() == Direction.RIGHT &&
 				!link.getState().equals("TRANSITION"))
 		{
-			this.setVector(4, 0);
+			this.setCameraVector(4, 0);
 			link.setTransitionVector(1, 0);
 		}
 		if(link.getY() - this.getCameraY() <= heightOfTile && link.getDirection() == Direction.UP &&
 				!link.getState().equals("TRANSITION"))
 		{
-			this.setVector(0, -4);
+			this.setCameraVector(0, -4);
 			link.setTransitionVector(0, -1);
 		}
 		if(link.getY() - this.getCameraY() >= mapHeight - heightOfTile && link.getDirection() == Direction.DOWN &&
 				!link.getState().equals("TRANSITION"))
 		{
-			this.setVector(0, 4);
+			this.setCameraVector(0, 4);
 			link.setTransitionVector(0, 1);
 		}
 
@@ -282,10 +288,15 @@ public class OverWorld
 		drawY += drawVelY;
 	}
 
-	private void setVector(int velX, int velY)
+	private void setCameraVector(int velX, int velY)
 	{
 		this.cameraVelX = velX;
 		this.cameraVelY = velY;
+	}
+
+	public int[] getCameraVector()
+	{
+		return new int[] {cameraVelX, cameraVelY};
 	}
 
 	public void addCollectible(Collectible collectible)

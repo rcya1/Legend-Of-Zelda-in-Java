@@ -168,9 +168,14 @@ public class Link extends Entity
 
 			if(transitionVelX == 0 && transitionVelY == 0)
 			{
-				state = "IDLE";
 				transitionAmountX = 0;
 				transitionAmountY = 0;
+
+				int[] cameraVector = overWorld.getCameraVector();
+				if(cameraVector[0] == 0 && cameraVector[1] == 0)
+				{
+					this.state = "IDLE";
+				}
 			}
 			break;
 		default:
