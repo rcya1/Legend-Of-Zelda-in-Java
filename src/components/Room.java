@@ -136,7 +136,7 @@ public class Room
 		g2d.setTransform(transform);
 	}
 
-	public void loadTiles(String filePath)
+	void loadTiles(String filePath)
 	{
 		try(BufferedReader bufferedReader = new BufferedReader(
 				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
@@ -200,7 +200,7 @@ public class Room
 		}
 	}
 
-	public void updateDrawCoordinates()
+	void updateDrawCoordinates()
 	{
 		drawX += drawVelX;
 		drawY += drawVelY;
@@ -265,10 +265,6 @@ public class Room
 	public int getMapHeight()
 	{
 		return mapHeight;
-	}
-	public Link getLink()
-	{
-		return link;
 	}
 
 	public ArrayList<Enemy> getEnemies()

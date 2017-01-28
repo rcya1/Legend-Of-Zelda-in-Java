@@ -80,7 +80,7 @@ public class Animation
 		}
 	}
 
-	public int getIndex()
+	int getIndex()
 	{
 		return index;
 	}

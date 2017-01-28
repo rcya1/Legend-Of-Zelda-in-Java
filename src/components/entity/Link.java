@@ -160,7 +160,7 @@ public class Link extends Entity
 			break;
 		case "TRANSITION":
 			velX = 0;
-//			velY = 0;
+			velY = 0;
 
 			x += transitionVelX;
 			y += transitionVelY;

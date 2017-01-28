@@ -4,13 +4,12 @@ import components.Room;
 import components.entity.Direction;
 import utility.Images;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 class OctorokPellet
 {
-	private final Room room;
-
 	private double x;
 	private double y;
 
@@ -24,7 +23,7 @@ class OctorokPellet
 
 	private final int damage;
 
-	OctorokPellet(double x, double y, Direction direction, Room room)
+	OctorokPellet(double x, double y, Direction direction)
 	{
 		this.x = x;
 		this.y = y;
@@ -35,8 +34,6 @@ class OctorokPellet
 		velY = vector[1];
 
 		this.direction = direction;
-
-		this.room = room;
 
 		width = 16;
 		height = 16;

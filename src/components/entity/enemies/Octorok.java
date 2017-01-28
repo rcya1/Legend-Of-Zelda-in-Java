@@ -17,14 +17,14 @@ public class Octorok extends Enemy
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, Room overWorld)
+	public Octorok(int x, int y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
 
 		this.direction = direction;
 
-		this.room = overWorld;
+		this.room = room;
 
 		velX = 0;
 		velY = 0;
@@ -71,7 +71,7 @@ public class Octorok extends Enemy
 				shootingTimer++;
 				if(shootingTimer == 60)
 				{
-					pellet = new OctorokPellet(x, y, direction, room);
+					pellet = new OctorokPellet(x, y, direction);
 				}
 			}
 			else

@@ -5,7 +5,7 @@ import utility.Images;
 
 public class HeartContainer extends Collectible
 {
-	public HeartContainer(int x, int y, Room overWorld)
+	public HeartContainer(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -13,7 +13,7 @@ public class HeartContainer extends Collectible
 		this.width = 13;
 		this.height = 13;
 
-		this.room = overWorld;
+		this.room = room;
 
 		this.bufferedImage = Images.Menu.HEART_CONTAINER;
 	}

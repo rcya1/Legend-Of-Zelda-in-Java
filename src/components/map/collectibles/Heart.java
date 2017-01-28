@@ -7,7 +7,7 @@ public class Heart extends Collectible
 {
 	private final int restoreValue;
 
-	public Heart(int x, int y, Room overWorld)
+	public Heart(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -17,7 +17,7 @@ public class Heart extends Collectible
 
 		restoreValue = 8;
 
-		this.room = overWorld;
+		this.room = room;
 
 		this.bufferedImage = Images.Menu.HEART_FULL;
 	}
