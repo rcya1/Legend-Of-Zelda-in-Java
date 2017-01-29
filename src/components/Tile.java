@@ -90,7 +90,10 @@ public enum Tile
 	ORANGE_STATUE_ENTRANCE_UP,
 	ORANGE_STATUE_ENTRANCE_UP_RIGHT,
 	ORANGE_STATUE_ENTRANCE_DOWN_LEFT,
-	ORANGE_STATUE_ENTRANCE_DOWN_RIGHT;
+	ORANGE_STATUE_ENTRANCE_DOWN_RIGHT,
+
+	GREEN_STATUE_ENTRANCE_UP_ALT,
+	ORANGE_STATUE_ENTRANCE_UP_ALT;
 
 	public static Tile parseID(int id)
 	{
@@ -246,6 +249,11 @@ public enum Tile
 			return ORANGE_STATUE_ENTRANCE_DOWN_LEFT;
 		case 69:
 			return ORANGE_STATUE_ENTRANCE_DOWN_RIGHT;
+
+		case 70:
+			return GREEN_STATUE_ENTRANCE_UP_ALT;
+		case 71:
+			return ORANGE_STATUE_ENTRANCE_UP_ALT;
 
 		default:
 			return null;
@@ -406,6 +414,11 @@ public enum Tile
 			return 68;
 		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
 			return 69;
+
+		case GREEN_STATUE_ENTRANCE_UP_ALT:
+			return 70;
+		case ORANGE_STATUE_ENTRANCE_UP_ALT:
+			return 71;
 
 		default:
 			return 0;
@@ -568,6 +581,11 @@ public enum Tile
 			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_DOWN_LEFT;
 		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
 			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_DOWN_RIGHT;
+
+		case GREEN_STATUE_ENTRANCE_UP_ALT:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_UP_ALT;
+		case ORANGE_STATUE_ENTRANCE_UP_ALT:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_UP_ALT;
 		}
 		return null;
 	}
@@ -727,6 +745,11 @@ public enum Tile
 		case ORANGE_STATUE_ENTRANCE_DOWN_LEFT:
 			return false;
 		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case GREEN_STATUE_ENTRANCE_UP_ALT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP_ALT:
 			return false;
 
 		default:
