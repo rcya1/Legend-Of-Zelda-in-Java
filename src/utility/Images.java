@@ -261,6 +261,45 @@ public class Images
 						null;
 			}
 
+			public static class Entrances
+			{
+				private static final BufferedImage TREE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/green/TreeEntrance.png");
+
+				public static final BufferedImage TREE_ENTRANCE_UP_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+
+				private static final BufferedImage STATUE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/green/StatueEntrance.png");
+
+				public static final BufferedImage STATUE_ENTRANCE_UP_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+			}
+
 			public static final BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/green/Bush.png");
 			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/green/Stairs.png");
 			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
@@ -312,6 +351,45 @@ public class Images
 						null;
 				public static final BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+			}
+
+			public static class Entrances
+			{
+				private static final BufferedImage TREE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/green/TreeEntrance.png");
+
+				public static final BufferedImage TREE_ENTRANCE_UP_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+
+				private static final BufferedImage STATUE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/green/StatueEntrance.png");
+
+				public static final BufferedImage STATUE_ENTRANCE_UP_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 			}
 

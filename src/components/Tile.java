@@ -66,7 +66,31 @@ public enum Tile
 	ENTRANCE,
 
 	GREEN_BRIDGE,
-	ORANGE_BRIDGE;
+	ORANGE_BRIDGE,
+
+	GREEN_TREE_ENTRANCE_UP_LEFT,
+	GREEN_TREE_ENTRANCE_UP,
+	GREEN_TREE_ENTRANCE_UP_RIGHT,
+	GREEN_TREE_ENTRANCE_DOWN_LEFT,
+	GREEN_TREE_ENTRANCE_DOWN_RIGHT,
+
+	GREEN_STATUE_ENTRANCE_UP_LEFT,
+	GREEN_STATUE_ENTRANCE_UP,
+	GREEN_STATUE_ENTRANCE_UP_RIGHT,
+	GREEN_STATUE_ENTRANCE_DOWN_LEFT,
+	GREEN_STATUE_ENTRANCE_DOWN_RIGHT,
+
+	ORANGE_TREE_ENTRANCE_UP_LEFT,
+	ORANGE_TREE_ENTRANCE_UP,
+	ORANGE_TREE_ENTRANCE_UP_RIGHT,
+	ORANGE_TREE_ENTRANCE_DOWN_LEFT,
+	ORANGE_TREE_ENTRANCE_DOWN_RIGHT,
+
+	ORANGE_STATUE_ENTRANCE_UP_LEFT,
+	ORANGE_STATUE_ENTRANCE_UP,
+	ORANGE_STATUE_ENTRANCE_UP_RIGHT,
+	ORANGE_STATUE_ENTRANCE_DOWN_LEFT,
+	ORANGE_STATUE_ENTRANCE_DOWN_RIGHT;
 
 	public static Tile parseID(int id)
 	{
@@ -178,6 +202,50 @@ public enum Tile
 			return GREEN_BRIDGE;
 		case 49:
 			return ORANGE_BRIDGE;
+
+		case 50:
+			return GREEN_TREE_ENTRANCE_UP_LEFT;
+		case 51:
+			return GREEN_TREE_ENTRANCE_UP;
+		case 52:
+			return GREEN_TREE_ENTRANCE_UP_RIGHT;
+		case 53:
+			return GREEN_TREE_ENTRANCE_DOWN_LEFT;
+		case 54:
+			return GREEN_TREE_ENTRANCE_DOWN_RIGHT;
+
+		case 55:
+			return GREEN_STATUE_ENTRANCE_UP_LEFT;
+		case 56:
+			return GREEN_STATUE_ENTRANCE_UP;
+		case 57:
+			return GREEN_STATUE_ENTRANCE_UP_RIGHT;
+		case 58:
+			return GREEN_STATUE_ENTRANCE_DOWN_LEFT;
+		case 59:
+			return GREEN_STATUE_ENTRANCE_DOWN_RIGHT;
+
+		case 60:
+			return ORANGE_TREE_ENTRANCE_UP_LEFT;
+		case 61:
+			return ORANGE_TREE_ENTRANCE_UP;
+		case 62:
+			return ORANGE_TREE_ENTRANCE_UP_RIGHT;
+		case 63:
+			return ORANGE_TREE_ENTRANCE_DOWN_LEFT;
+		case 64:
+			return ORANGE_TREE_ENTRANCE_DOWN_RIGHT;
+
+		case 65:
+			return ORANGE_STATUE_ENTRANCE_UP_LEFT;
+		case 66:
+			return ORANGE_STATUE_ENTRANCE_UP;
+		case 67:
+			return ORANGE_STATUE_ENTRANCE_UP_RIGHT;
+		case 68:
+			return ORANGE_STATUE_ENTRANCE_DOWN_LEFT;
+		case 69:
+			return ORANGE_STATUE_ENTRANCE_DOWN_RIGHT;
 
 		default:
 			return null;
@@ -294,6 +362,50 @@ public enum Tile
 			return 48;
 		case ORANGE_BRIDGE:
 			return 49;
+
+		case GREEN_TREE_ENTRANCE_UP_LEFT:
+			return 50;
+		case GREEN_TREE_ENTRANCE_UP:
+			return 51;
+		case GREEN_TREE_ENTRANCE_UP_RIGHT:
+			return 52;
+		case GREEN_TREE_ENTRANCE_DOWN_LEFT:
+			return 53;
+		case GREEN_TREE_ENTRANCE_DOWN_RIGHT:
+			return 54;
+
+		case GREEN_STATUE_ENTRANCE_UP_LEFT:
+			return 55;
+		case GREEN_STATUE_ENTRANCE_UP:
+			return 56;
+		case GREEN_STATUE_ENTRANCE_UP_RIGHT:
+			return 57;
+		case GREEN_STATUE_ENTRANCE_DOWN_LEFT:
+			return 58;
+		case GREEN_STATUE_ENTRANCE_DOWN_RIGHT:
+			return 59;
+
+		case ORANGE_TREE_ENTRANCE_UP_LEFT:
+			return 60;
+		case ORANGE_TREE_ENTRANCE_UP:
+			return 61;
+		case ORANGE_TREE_ENTRANCE_UP_RIGHT:
+			return 62;
+		case ORANGE_TREE_ENTRANCE_DOWN_LEFT:
+			return 63;
+		case ORANGE_TREE_ENTRANCE_DOWN_RIGHT:
+			return 64;
+
+		case ORANGE_STATUE_ENTRANCE_UP_LEFT:
+			return 65;
+		case ORANGE_STATUE_ENTRANCE_UP:
+			return 66;
+		case ORANGE_STATUE_ENTRANCE_UP_RIGHT:
+			return 67;
+		case ORANGE_STATUE_ENTRANCE_DOWN_LEFT:
+			return 68;
+		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return 69;
 
 		default:
 			return 0;
@@ -412,6 +524,50 @@ public enum Tile
 			return Images.Blocks.Green.BRIDGE;
 		case ORANGE_BRIDGE:
 			return Images.Blocks.Orange.BRIDGE;
+
+		case GREEN_TREE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.Green.Entrances.TREE_ENTRANCE_UP_LEFT;
+		case GREEN_TREE_ENTRANCE_UP:
+			return Images.Blocks.Green.Entrances.TREE_ENTRANCE_UP;
+		case GREEN_TREE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.Green.Entrances.TREE_ENTRANCE_UP_RIGHT;
+		case GREEN_TREE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.Green.Entrances.TREE_ENTRANCE_DOWN_LEFT;
+		case GREEN_TREE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.Green.Entrances.TREE_ENTRANCE_DOWN_RIGHT;
+
+		case GREEN_STATUE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_UP_LEFT;
+		case GREEN_STATUE_ENTRANCE_UP:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_UP;
+		case GREEN_STATUE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_UP_RIGHT;
+		case GREEN_STATUE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_DOWN_LEFT;
+		case GREEN_STATUE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_DOWN_RIGHT;
+
+		case ORANGE_TREE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.Orange.Entrances.TREE_ENTRANCE_UP_LEFT;
+		case ORANGE_TREE_ENTRANCE_UP:
+			return Images.Blocks.Orange.Entrances.TREE_ENTRANCE_UP;
+		case ORANGE_TREE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.Orange.Entrances.TREE_ENTRANCE_UP_RIGHT;
+		case ORANGE_TREE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.Orange.Entrances.TREE_ENTRANCE_DOWN_LEFT;
+		case ORANGE_TREE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.Orange.Entrances.TREE_ENTRANCE_DOWN_RIGHT;
+
+		case ORANGE_STATUE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_UP_LEFT;
+		case ORANGE_STATUE_ENTRANCE_UP:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_UP;
+		case ORANGE_STATUE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_UP_RIGHT;
+		case ORANGE_STATUE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_DOWN_LEFT;
+		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_DOWN_RIGHT;
 		}
 		return null;
 	}
@@ -528,6 +684,50 @@ public enum Tile
 			return true;
 		case ORANGE_BRIDGE:
 			return true;
+
+		case GREEN_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case GREEN_TREE_ENTRANCE_UP:
+			return false;
+		case GREEN_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case GREEN_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case GREEN_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case GREEN_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_UP:
+			return false;
+		case GREEN_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case ORANGE_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_UP:
+			return false;
+		case ORANGE_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case ORANGE_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
 
 		default:
 			return false;
