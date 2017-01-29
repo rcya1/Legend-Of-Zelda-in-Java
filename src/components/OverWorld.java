@@ -34,8 +34,7 @@ public class OverWorld
 
 		mapFactory = new MapFactory(this);
 
-		currentRoom = new Room(this, mapFactory);
-		currentRoom.loadTiles("/tileMaps/test.txt");
+		currentRoom = new Room(22, this, mapFactory);
 
 		loadingRoom = null;
 	}
@@ -46,7 +45,8 @@ public class OverWorld
 		if(loadingRoom != null)
 		{
 			loadingRoom.updateDrawCoordinates();
-			if(loadingRoom.getDrawCoordinates()[0] % 256 == 0)
+			if(loadingRoom.getDrawCoordinates()[0] % 256 == 0 &&
+					loadingRoom.getDrawCoordinates()[1] % 176 == 0)
 			{
 				currentRoom.setDrawVector(0, 0);
 				loadingRoom.setDrawVector(0, 0);
@@ -62,9 +62,7 @@ public class OverWorld
 				!link.getState().equals("TRANSITION"))
 		{
 			link.setTransitionVector(4, 0);
-			loadingRoom = new Room(this, mapFactory);
-			loadingRoom.loadTiles("/tileMaps/testLoading.txt");
-			loadingRoom.loadEnemies("/tileMaps/testE.txt");
+			loadingRoom = new Room(currentRoom.getId() - 10, this, mapFactory);
 			loadingRoom.setDrawCoordinates(-loadingRoom.getMapWidth(), 0);
 			currentRoom.setDrawVector(4, 0);
 			loadingRoom.setDrawVector(4, 0);
@@ -78,8 +76,7 @@ public class OverWorld
 				!link.getState().equals("TRANSITION"))
 		{
 			link.setTransitionVector(-4, 0);
-			loadingRoom = new Room(this, mapFactory);
-			loadingRoom.loadTiles("/tileMaps/testLoading.txt");
+			loadingRoom = new Room(currentRoom.getId() + 10, this, mapFactory);
 			loadingRoom.setDrawCoordinates(loadingRoom.getMapWidth(), 0);
 			currentRoom.setDrawVector(-4, 0);
 			loadingRoom.setDrawVector(-4, 0);
@@ -92,8 +89,7 @@ public class OverWorld
 				!link.getState().equals("TRANSITION"))
 		{
 			link.setTransitionVector(0, 4);
-			loadingRoom = new Room(this, mapFactory);
-			loadingRoom.loadTiles("/tileMaps/testLoading.txt");
+			loadingRoom = new Room(currentRoom.getId() - 1, this, mapFactory);
 			loadingRoom.setDrawCoordinates(0, -loadingRoom.getMapHeight());
 			currentRoom.setDrawVector(0, 4);
 			loadingRoom.setDrawVector(0, 4);
@@ -106,8 +102,7 @@ public class OverWorld
 				!link.getState().equals("TRANSITION"))
 		{
 			link.setTransitionVector(0, -4);
-			loadingRoom = new Room(this, mapFactory);
-			loadingRoom.loadTiles("/tileMaps/testLoading.txt");
+			loadingRoom = new Room(currentRoom.getId() + 1, this, mapFactory);
 			loadingRoom.setDrawCoordinates(0, loadingRoom.getMapHeight());
 			currentRoom.setDrawVector(0, -4);
 			loadingRoom.setDrawVector(0, -4);

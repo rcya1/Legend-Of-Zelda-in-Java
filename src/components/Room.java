@@ -20,6 +20,8 @@ import java.util.StringTokenizer;
 
 public class Room
 {
+	private int id;
+
 	private int drawX;
 	private int drawY;
 	private int drawVelX;
@@ -41,8 +43,10 @@ public class Room
 
 	private final MapFactory mapFactory;
 
-	public Room(OverWorld overWorld, MapFactory mapFactory)
+	public Room(int id, OverWorld overWorld, MapFactory mapFactory)
 	{
+		this.id = id;
+
 		drawX = 0;
 		drawY = 0;
 
@@ -64,6 +68,8 @@ public class Room
 		link = overWorld.getLink();
 
 		this.mapFactory = mapFactory;
+
+		loadTiles();
 	}
 
 	public void update()
@@ -136,41 +142,70 @@ public class Room
 		g2d.setTransform(transform);
 	}
 
-	void loadTiles(String filePath)
+	void loadTiles()
 	{
-		try(BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
-		)
+		int screenColumn = (int) Math.ceil((double) id / 10);
+		int screenRow = id % 10;
+
+
+
+		for(int column = (screenColumn - 1) * numOfColumns; column < screenColumn * numOfColumns; column++)
 		{
-			String line;
-			int lineCount = 0;
-			while((line = bufferedReader.readLine()) != null)
+			for(int row = (screenRow - 1) * numOfRows; row < screenRow * numOfRows; row++)
 			{
-				StringTokenizer tokenizer = new StringTokenizer(line);
-				int characterCount = 0;
-				while(tokenizer.hasMoreElements())
+				String tile = mapFactory.getTile(column, row);
+
+				try
 				{
-					String token = tokenizer.nextToken();
-					try
-					{
-						tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(token));
-					}
-					catch(NumberFormatException e)
-					{
-						mapItems.add(mapFactory.buildWarpTile(token,
-								characterCount * widthOfTile,
-								lineCount * heightOfTile));
-						tiles[characterCount][lineCount] = Tile.parseID(0);
-					}
-					characterCount++;
+					tiles[column - ((screenColumn - 1) * numOfColumns)]
+							[row - (screenRow - 1) * numOfRows] =
+							Tile.parseID(Integer.parseInt(tile));
 				}
-				lineCount++;
+				catch(NumberFormatException e)
+				{
+					mapItems.add(mapFactory.buildWarpTile(tile,
+							column - (screenColumn - 1) * numOfColumns * widthOfTile,
+							row - (screenRow - 1) * numOfRows * heightOfTile));
+
+					tiles[column - (screenColumn - 1) * numOfColumns]
+							[row - (screenRow - 1) * numOfRows] = Tile.parseID(0);
+				}
 			}
 		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+
+//		try(BufferedReader bufferedReader = new BufferedReader(
+//				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
+//		)
+//		{
+//			String line;
+//			int lineCount = 0;
+//			while((line = bufferedReader.readLine()) != null)
+//			{
+//				StringTokenizer tokenizer = new StringTokenizer(line);
+//				int characterCount = 0;
+//				while(tokenizer.hasMoreElements())
+//				{
+//					String token = tokenizer.nextToken();
+//					try
+//					{
+//						tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(token));
+//					}
+//					catch(NumberFormatException e)
+//					{
+//						mapItems.add(mapFactory.buildWarpTile(token,
+//								characterCount * widthOfTile,
+//								lineCount * heightOfTile));
+//						tiles[characterCount][lineCount] = Tile.parseID(0);
+//					}
+//					characterCount++;
+//				}
+//				lineCount++;
+//			}
+//		}
+//		catch(IOException e)
+//		{
+//			e.printStackTrace();
+//		}
 	}
 
 	public void loadEnemies(String filePath)
@@ -265,6 +300,11 @@ public class Room
 	public int getMapHeight()
 	{
 		return mapHeight;
+	}
+
+	int getId()
+	{
+		return id;
 	}
 
 	public ArrayList<Enemy> getEnemies()
