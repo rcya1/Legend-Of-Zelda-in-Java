@@ -191,9 +191,12 @@ public class Link extends Entity
 
 		if(sword != null) sword.update();
 
-		if(!state.equals("TRANSITION")) handleTileCollisions();
-		if(invincibilityFrames == 0) handleEnemyCollisions();
-		handleMapItemCollisions();
+		if(!state.equals("TRANSITION"))
+		{
+			handleTileCollisions();
+			if(invincibilityFrames == 0) handleEnemyCollisions();
+			handleMapItemCollisions();
+		}
 	}
 
 	public void draw(Graphics2D g2d)

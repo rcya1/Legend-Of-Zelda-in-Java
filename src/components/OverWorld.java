@@ -64,6 +64,7 @@ public class OverWorld
 			link.setTransitionVector(4, 0);
 			loadingRoom = new Room(this, mapFactory);
 			loadingRoom.loadTiles("/tileMaps/testLoading.txt");
+			loadingRoom.loadEnemies("/tileMaps/testE.txt");
 			loadingRoom.setDrawCoordinates(-loadingRoom.getMapWidth(), 0);
 			currentRoom.setDrawVector(4, 0);
 			loadingRoom.setDrawVector(4, 0);
@@ -86,7 +87,7 @@ public class OverWorld
 			currentRoom.updateDrawCoordinates();
 			loadingRoom.updateDrawCoordinates();
 		}
-		if(link.getY() <= heightOfTile &&
+		if(link.getY() <= heightOfTile / 2 &&
 				link.getDirection() == Direction.UP &&
 				!link.getState().equals("TRANSITION"))
 		{
