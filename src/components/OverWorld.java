@@ -25,16 +25,16 @@ public class OverWorld
 
 	private MapFactory mapFactory;
 
-	public OverWorld()
+	public OverWorld(int startingRoom, String tileMapFilePath, int columns, int rows)
 	{
 		link = new Link(this);
 
 		widthOfTile = 16;
 		heightOfTile = 16;
 
-		mapFactory = new MapFactory(this);
+		mapFactory = new MapFactory(this, tileMapFilePath, columns, rows);
 
-		currentRoom = new Room(22, this, mapFactory);
+		currentRoom = new Room(startingRoom, this, mapFactory);
 
 		loadingRoom = null;
 	}

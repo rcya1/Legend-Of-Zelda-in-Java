@@ -18,14 +18,14 @@ public class MapFactory
 	private final OverWorld overWorld;
 	private final String[][] overWorldTiles;
 
-	public MapFactory(OverWorld overWorld)
+	public MapFactory(OverWorld overWorld, String tileMapFilePath, int columns, int rows)
 	{
 		this.overWorld = overWorld;
-		overWorldTiles = new String[80][44];
-		loadTiles("/tileMaps/tileMap.txt");
+		overWorldTiles = new String[columns][rows];
+		loadTiles(tileMapFilePath);
 	}
 
-	void loadTiles(String filePath)
+	private void loadTiles(String filePath)
 	{
 		try(BufferedReader bufferedReader = new BufferedReader(
 				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
