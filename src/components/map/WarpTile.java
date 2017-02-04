@@ -7,12 +7,12 @@ import java.awt.*;
 
 public class WarpTile extends MapItem
 {
-	private int destColumn;
-	private int destRow;
+	private final int destColumn;
+	private final int destRow;
 
-	private String type;
+	private final String type;
 
-	private Direction direction;
+	private final Direction direction;
 
 	public WarpTile(Room room, int column, int row,
 			int destColumn, int destRow, String type, Direction direction)

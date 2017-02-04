@@ -1,7 +1,6 @@
 package utility;
 
 import components.OverWorld;
-import components.Tile;
 import components.entity.Direction;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;

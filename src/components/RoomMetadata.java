@@ -8,10 +8,10 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-public class RoomMetadata
+class RoomMetadata
 {
-	private int id;
-	private OverWorld overWorld;
+	private final int id;
+	private final OverWorld overWorld;
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<WarpTile> warpTiles;

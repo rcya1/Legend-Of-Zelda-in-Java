@@ -1,10 +1,8 @@
 package components.entity.enemies;
 
-import components.Room;
 import components.entity.Direction;
 import utility.Images;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 

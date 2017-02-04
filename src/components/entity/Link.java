@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 public class Link extends Entity
 {
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
 	private int transitionAmountX;
 	private int transitionAmountY;

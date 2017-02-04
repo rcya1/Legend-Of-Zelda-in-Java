@@ -15,10 +15,10 @@ public class OverWorld
 	private Room currentRoom;
 	private Room loadingRoom;
 
-	private Link link;
+	private final Link link;
 
-	private int widthOfTile;
-	private int heightOfTile;
+	private final int widthOfTile;
+	private final int heightOfTile;
 
 	private int drawX;
 	private int drawY;
@@ -26,7 +26,7 @@ public class OverWorld
 	private int drawVelX;
 	private int drawVelY;
 
-	private MapFactory mapFactory;
+	private final MapFactory mapFactory;
 
 	private Document metadataDocument;
 

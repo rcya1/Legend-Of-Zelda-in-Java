@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 public class Room
 {
-	private int id;
+	private final int id;
 
 	private int drawX;
 	private int drawY;
