@@ -43,6 +43,8 @@ public class Room
 
 	private final MapFactory mapFactory;
 
+	private RoomMetadata roomMetadata;
+
 	public Room(int id, OverWorld overWorld, MapFactory mapFactory)
 	{
 		this.id = id;
@@ -144,10 +146,8 @@ public class Room
 
 	void loadTiles()
 	{
-		int screenColumn = (int) Math.ceil((double) id / 10);
+		int screenColumn = (int) Math.floor((double) id / 10);
 		int screenRow = id % 10;
-
-
 
 		for(int column = (screenColumn - 1) * numOfColumns; column < screenColumn * numOfColumns; column++)
 		{
@@ -233,6 +233,13 @@ public class Room
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public void setRoomMetadata(RoomMetadata roomMetadata)
+	{
+		this.roomMetadata = roomMetadata;
+		this.enemies.addAll(roomMetadata.getEnemies());
+		this.mapItems.addAll(roomMetadata.getWarpTiles());
 	}
 
 	void updateDrawCoordinates()

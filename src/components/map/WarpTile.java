@@ -2,7 +2,7 @@ package components.map;
 
 import java.awt.*;
 
-public class WarpTile extends MapItem //TODO REDO due to changes in overworld
+public class WarpTile extends MapItem
 {
 	private final char id;
 

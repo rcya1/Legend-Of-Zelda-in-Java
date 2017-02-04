@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OVERWORLD>
+	<ROOM id = "1-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "1-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "1-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "1-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "1-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "2-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "2-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "2-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "2-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "2-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "3-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "3-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "3-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "3-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "3-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "4-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "4-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "4-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "4-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "4-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "5-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "5-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "5-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "5-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "5-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "6-1">
+		<ENEMIES>
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+				<COL>5</COL>
+				<ROW>4</ROW>
+			</ENEMY>
+		</ENEMIES>
+
+		<WARPS>
+			<WARP>
+				<TYPE>STAIRS</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+
+				<RESULT>
+					<COL>8</COL>
+					<ROW>11</ROW>
+
+					<ITEM>TRUE</ITEM>
+				</RESULT>
+			</WARP>
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "6-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "6-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "6-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "6-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+</OVERWORLD>

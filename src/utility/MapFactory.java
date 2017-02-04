@@ -57,12 +57,14 @@ public class MapFactory
 		return overWorldTiles[column][row];
 	}
 
-	public Enemy buildEnemy(String string, int x, int y)
+	public Enemy buildEnemy(String string, int col, int row)
 	{
 		switch(string)
 		{
-		case "A":
-			return new Octorok(x + overWorld.getWidthOfTile() / 2, y + overWorld.getHeightOfTile() / 2,
+		case "OCTOROK":
+			return new Octorok(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
 					Direction.getRandom(), overWorld.getCurrentRoom());
 		default:
 			return null;

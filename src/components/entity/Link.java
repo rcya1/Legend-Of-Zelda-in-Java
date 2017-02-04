@@ -53,7 +53,7 @@ public class Link extends Entity
 		this.overWorld = overWorld;
 		this.room = overWorld.getCurrentRoom();
 
-		x = 160;
+		x = 100;
 		y = 96;
 
 		drawX = (int) Math.round(x);

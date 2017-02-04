@@ -55,7 +55,6 @@ public class StateManager
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
-		states[currentState].init();
 	}
 
 	private void unloadState(int state)
