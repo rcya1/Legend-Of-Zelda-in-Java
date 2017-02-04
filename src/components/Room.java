@@ -10,13 +10,8 @@ import utility.MapFactory;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.StringTokenizer;
 
 public class Room
 {
@@ -144,7 +139,7 @@ public class Room
 		g2d.setTransform(transform);
 	}
 
-	void loadTiles()
+	private void loadTiles()
 	{
 		int screenColumn = (int) Math.floor((double) id / 10);
 		int screenRow = id % 10;
@@ -155,87 +150,14 @@ public class Room
 			{
 				String tile = mapFactory.getTile(column, row);
 
-				try
-				{
-					tiles[column - ((screenColumn - 1) * numOfColumns)]
-							[row - (screenRow - 1) * numOfRows] =
-							Tile.parseID(Integer.parseInt(tile));
-				}
-				catch(NumberFormatException e)
-				{
-					mapItems.add(mapFactory.buildWarpTile(tile,
-							column - (screenColumn - 1) * numOfColumns * widthOfTile,
-							row - (screenRow - 1) * numOfRows * heightOfTile));
-
-					tiles[column - (screenColumn - 1) * numOfColumns]
-							[row - (screenRow - 1) * numOfRows] = Tile.parseID(0);
-				}
+				tiles[column - ((screenColumn - 1) * numOfColumns)]
+						[row - (screenRow - 1) * numOfRows] =
+						Tile.parseID(Integer.parseInt(tile));
 			}
-		}
-
-//		try(BufferedReader bufferedReader = new BufferedReader(
-//				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset()))
-//		)
-//		{
-//			String line;
-//			int lineCount = 0;
-//			while((line = bufferedReader.readLine()) != null)
-//			{
-//				StringTokenizer tokenizer = new StringTokenizer(line);
-//				int characterCount = 0;
-//				while(tokenizer.hasMoreElements())
-//				{
-//					String token = tokenizer.nextToken();
-//					try
-//					{
-//						tiles[characterCount][lineCount] = Tile.parseID(Integer.parseInt(token));
-//					}
-//					catch(NumberFormatException e)
-//					{
-//						mapItems.add(mapFactory.buildWarpTile(token,
-//								characterCount * widthOfTile,
-//								lineCount * heightOfTile));
-//						tiles[characterCount][lineCount] = Tile.parseID(0);
-//					}
-//					characterCount++;
-//				}
-//				lineCount++;
-//			}
-//		}
-//		catch(IOException e)
-//		{
-//			e.printStackTrace();
-//		}
-	}
-
-	public void loadEnemies(String filePath)
-	{
-		try(BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(getClass().getResourceAsStream(filePath), Charset.defaultCharset())))
-		{
-			String line;
-			int lineCount = 0;
-			while((line = bufferedReader.readLine()) != null)
-			{
-				StringTokenizer tokenizer = new StringTokenizer(line);
-				int characterCount = 0;
-				while(tokenizer.hasMoreElements())
-				{
-					Enemy enemy = mapFactory.buildEnemy(tokenizer.nextToken(),
-							characterCount * widthOfTile, lineCount * heightOfTile);
-					if(enemy != null) enemies.add(enemy);
-					characterCount++;
-				}
-				lineCount++;
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
 		}
 	}
 
-	public void setRoomMetadata(RoomMetadata roomMetadata)
+	void setRoomMetadata(RoomMetadata roomMetadata)
 	{
 		this.roomMetadata = roomMetadata;
 		this.enemies.addAll(roomMetadata.getEnemies());

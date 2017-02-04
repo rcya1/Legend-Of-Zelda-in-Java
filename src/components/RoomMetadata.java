@@ -60,8 +60,25 @@ public class RoomMetadata
 				String type = enemy.getElementsByTagName("TYPE").item(0).getTextContent();
 				int col = Integer.parseInt(enemy.getElementsByTagName("COL").item(0).getTextContent());
 				int row = Integer.parseInt(enemy.getElementsByTagName("ROW").item(0).getTextContent());
-				System.out.println(col);
 				enemies.add(overWorld.getMapFactory().buildEnemy(type, col, row));
+			}
+
+			Element warpsElement = (Element) thisRoom.getElementsByTagName("WARPS").item(0);
+			NodeList warpsList = warpsElement.getElementsByTagName("WARP");
+			for(int warpIndex = 0; warpIndex < warpsList.getLength(); warpIndex++)
+			{
+				Element warp = (Element) warpsList.item(warpIndex);
+				String type = warp.getElementsByTagName("TYPE").item(0).getTextContent();
+				String direction = warp.getElementsByTagName("DIRECTION").item(0).getTextContent();
+
+				int col = Integer.parseInt(warp.getElementsByTagName("COL").item(0).getTextContent());
+				int row = Integer.parseInt(warp.getElementsByTagName("ROW").item(0).getTextContent());
+
+				int destCol = Integer.parseInt(warp.getElementsByTagName("DEST-COL").item(0).getTextContent());
+				int destRow = Integer.parseInt(warp.getElementsByTagName("DEST-ROW").item(0).getTextContent());
+
+				warpTiles.add(overWorld.getMapFactory().buildWarpTile(col, row,
+						destCol, destRow, type, direction));
 			}
 		}
 	}

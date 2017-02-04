@@ -13,15 +13,13 @@
 		<WARPS>
 			<WARP>
 				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
+				<COL>4</COL>
+				<ROW>4</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
+				<DEST-COL>8</DEST-COL>
+				<DEST-ROW>10</DEST-ROW>
 
-					<ITEM>TRUE</ITEM>
-				</RESULT>
+				<DIRECTION>RIGHT</DIRECTION>
 			</WARP>
 		</WARPS>
 

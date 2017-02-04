@@ -1,20 +1,61 @@
 package components.map;
 
+import components.Room;
+import components.entity.Direction;
+
 import java.awt.*;
 
 public class WarpTile extends MapItem
 {
-	private final char id;
+	private int destColumn;
+	private int destRow;
 
-	//All warp tiles cannot warp to tiles that are on the same row or column as it
+	private String type;
 
-	public WarpTile(int x, int y, int width, int height, char id)
+	private Direction direction;
+
+	public WarpTile(Room room, int column, int row,
+			int destColumn, int destRow, String type, Direction direction)
 	{
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.id = id;
+		this.x = column * room.getWidthOfTile();
+		this.y = row * room.getHeightOfTile();
+
+		this.width = room.getWidthOfTile();
+		this.height = room.getHeightOfTile() / 2;
+
+		this.direction = direction;
+
+		if(direction != null)
+		{
+			switch(direction)
+			{
+			case DOWN:
+				this.height++;
+				break;
+			case LEFT:
+				this.width++;
+				break;
+			case UP:
+				this.y--;
+				this.height++;
+				break;
+			case RIGHT:
+				this.x--;
+				this.width++;
+				break;
+			}
+		}
+		else
+		{
+			this.x--;
+			this.y--;
+			this.width += 2;
+			this.height += 2;
+		}
+
+		this.destColumn = destColumn;
+		this.destRow = destRow;
+		this.type = type;
 	}
 
 	public void update()
@@ -24,8 +65,7 @@ public class WarpTile extends MapItem
 
 	public void draw(Graphics2D g2d)
 	{
-		g2d.setColor(Color.RED);
-		g2d.fill(getRectangle());
+
 	}
 
 	public int getX()
@@ -58,8 +98,23 @@ public class WarpTile extends MapItem
 		return height;
 	}
 
-	public char getId()
+	public int getDestColumn()
 	{
-		return id;
+		return destColumn;
+	}
+
+	public int getDestRow()
+	{
+		return destRow;
+	}
+
+	public String getType()
+	{
+		return type;
+	}
+
+	public Direction getDirection()
+	{
+		return direction;
 	}
 }

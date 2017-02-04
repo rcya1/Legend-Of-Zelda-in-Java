@@ -320,9 +320,6 @@ public class Link extends Entity
 
 	private void handleMapItemCollisions()
 	{
-		WarpTile collidedWarpTile;
-		char id;
-
 		ArrayList<MapItem> mapItems = overWorld.getCurrentRoom().getMapItems();
 		Iterator iterator = mapItems.iterator();
 		while(iterator.hasNext())
@@ -366,51 +363,21 @@ public class Link extends Entity
 			{
 				if(checkCollisionWith(mapItem.getRectangle()))
 				{
-					collidedWarpTile = (WarpTile) mapItem;
-					id = collidedWarpTile.getId();
-					teleportToWarpTile(collidedWarpTile, id);
-					break;
-				}
-			}
-		}
-	}
+					WarpTile warpTile = (WarpTile) mapItem;
 
-	private void teleportToWarpTile(WarpTile destination, char id)
-	{
-		for(MapItem mapItem : overWorld.getCurrentRoom().getMapItems())
-		{
-			if(mapItem instanceof WarpTile)
-			{
-				WarpTile warpTile = (WarpTile) mapItem;
-
-				int overWorldWidth = overWorld.getWidthOfTile();
-				int overWorldHeight = overWorld.getHeightOfTile();
-
-				if(warpTile.getId() == Character.toUpperCase(id) && !warpTile.equals(destination) &&
-						warpTile.getColumn(overWorldWidth) != destination.getColumn(overWorldWidth) &&
-						warpTile.getRow(overWorldHeight) != destination.getRow(overWorldHeight))
-				{
-					x = warpTile.getX() + overWorld.getWidthOfTile() / 2;
-					y = warpTile.getY() + overWorld.getHeightOfTile() / 2;
-
-					switch(direction)
+					if(warpTile.getDirection() != null)
 					{
-					case RIGHT:
-						x += warpTile.getWidth();
-						break;
-					case UP:
-						y -= warpTile.getHeight();
-						break;
-					case LEFT:
-						x -= warpTile.getWidth();
-						break;
-					case DOWN:
-						y += warpTile.getHeight();
-						break;
+						if(this.direction == warpTile.getDirection())
+						{
+							this.x = warpTile.getDestColumn() * room.getWidthOfTile() + room.getWidthOfTile() / 2;
+							this.y = warpTile.getDestRow() * room.getHeightOfTile() + room.getHeightOfTile() / 2;
+						}
 					}
-
-//					room.setCameraX((int) Math.round(x) / room.getMapWidth() * room.getMapWidth());
-//					room.setCameraY((int) Math.round(y) / room.getMapHeight() * room.getMapHeight());
+					else
+					{
+						this.x = warpTile.getDestColumn() * room.getWidthOfTile() + room.getWidthOfTile() / 2;
+						this.y = warpTile.getDestRow() * room.getHeightOfTile() + room.getHeightOfTile() / 2;
+					}
 				}
 			}
 		}

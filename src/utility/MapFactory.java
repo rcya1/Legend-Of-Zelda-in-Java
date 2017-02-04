@@ -71,9 +71,9 @@ public class MapFactory
 		}
 	}
 
-	public WarpTile buildWarpTile(String id, int x, int y)
+	public WarpTile buildWarpTile(int column, int row, int destColumn, int destRow, String type, String direction)
 	{
-		return new WarpTile(x, y, overWorld.getWidthOfTile(), overWorld.getHeightOfTile(),
-				id.charAt(0));
+		Direction dir = Direction.parseString(direction);
+		return new WarpTile(overWorld.getCurrentRoom(), column, row, destColumn, destRow, type, dir);
 	}
 }

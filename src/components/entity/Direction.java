@@ -95,4 +95,21 @@ public enum Direction
 		if(chosenDirection == direction) chosenDirection = getExcludedRandom(direction);
 		return chosenDirection;
 	}
+
+	public static Direction parseString(String direction)
+	{
+		switch(direction)
+		{
+		case "UP":
+			return UP;
+		case "RIGHT":
+			return RIGHT;
+		case "DOWN":
+			return DOWN;
+		case "LEFT":
+			return LEFT;
+		default:
+			return null;
+		}
+	}
 }
