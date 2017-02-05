@@ -161,6 +161,11 @@ public class OverWorld
 		return currentRoom;
 	}
 
+	public Room getLoadingRoom()
+	{
+		return loadingRoom;
+	}
+
 	public Link getLink()
 	{
 		return link;

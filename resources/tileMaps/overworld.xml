@@ -3,11 +3,7 @@
 <OVERWORLD>
 	<ROOM id = "1-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
@@ -280,7 +276,11 @@
 	</ROOM>
 	<ROOM id = "4-4">
 		<ENEMIES>
-
+			<ENEMY>
+				<TYPE>OCTOROK</TYPE>
+                <COL>2</COL>
+                <ROW>4</ROW>
+			</ENEMY>
 		</ENEMIES>
 
 		<WARPS>

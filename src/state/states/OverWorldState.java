@@ -28,7 +28,7 @@ public class OverWorldState extends State
 	{
 		state = "OVERWORLD";
 
-		overWorld = new OverWorld(11, "/tileMaps/overworld.txt", "/tileMaps/overworld.xml",
+		overWorld = new OverWorld(45, "/tileMaps/overworld.txt", "/tileMaps/overworld.xml",
 				96, 55);
 		overWorld.setDrawCoordinates(0, 48);
 

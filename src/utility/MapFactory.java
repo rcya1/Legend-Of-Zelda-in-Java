@@ -64,7 +64,9 @@ public class MapFactory
 			return new Octorok(col * overWorld.getWidthOfTile()
 					+ overWorld.getWidthOfTile() / 2,
 					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(), overWorld.getCurrentRoom());
+					Direction.getRandom(),
+					(overWorld.getLoadingRoom() != null) ?
+					overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
 		default:
 			return null;
 		}
@@ -73,6 +75,8 @@ public class MapFactory
 	public WarpTile buildWarpTile(int column, int row, int destColumn, int destRow, String type, String direction)
 	{
 		Direction dir = Direction.parseString(direction);
-		return new WarpTile(overWorld.getCurrentRoom(), column, row, destColumn, destRow, type, dir);
+		return new WarpTile((overWorld.getLoadingRoom() != null) ?
+				overWorld.getLoadingRoom() : overWorld.getCurrentRoom(),
+				column, row, destColumn, destRow, type, dir);
 	}
 }
