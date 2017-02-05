@@ -281,6 +281,21 @@
                 <COL>2</COL>
                 <ROW>4</ROW>
 			</ENEMY>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>6</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>10</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>13</COL>
+                <ROW>6</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -296,7 +311,16 @@
 		</ENEMIES>
 
 		<WARPS>
+            <WARP>
+                <TYPE>CAVE</TYPE>
+                <DIRECTION>UP</DIRECTION>
 
+                <COL>4</COL>
+                <ROW>1</ROW>
+
+                <DEST-COL>7</DEST-COL>
+                <DEST-ROW>8</DEST-ROW>
+            </WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>

@@ -29,17 +29,17 @@ public class WarpTile extends MapItem
 		{
 			switch(direction)
 			{
-			case DOWN:
-				this.height++;
-				break;
-			case LEFT:
-				this.width++;
-				break;
 			case UP:
-				this.y--;
 				this.height++;
 				break;
 			case RIGHT:
+				this.width++;
+				break;
+			case DOWN:
+				this.y--;
+				this.height++;
+				break;
+			case LEFT:
 				this.x--;
 				this.width++;
 				break;
