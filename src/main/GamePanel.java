@@ -67,13 +67,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		stateManager.keyPressed(e.getKeyCode());
+		if(e != null) stateManager.keyPressed(e.getKeyCode());
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		stateManager.keyReleased(e.getKeyCode());
+		if(e != null) stateManager.keyReleased(e.getKeyCode());
 	}
 
 	@Override
