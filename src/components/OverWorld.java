@@ -81,9 +81,8 @@ public class OverWorld
 
 		link.update();
 
-		if(link.getX() <= widthOfTile &&
-				link.getDirection() == Direction.LEFT &&
-				!link.getState().equals("TRANSITION"))
+		if(link.getX() <= widthOfTile && link.getDirection() == Direction.LEFT
+				&& !link.getState().equals("TRANSITION") && loadingRoom == null)
 		{
 			link.setTransitionVector(4, 0);
 			loadingRoom = new Room(currentRoom.getId() - 10, this, mapFactory);
@@ -96,9 +95,9 @@ public class OverWorld
 			loadingRoom.updateDrawCoordinates();
 		}
 
-		if(link.getX() >= currentRoom.getMapWidth() - widthOfTile &&
-				link.getDirection() == Direction.RIGHT &&
-				!link.getState().equals("TRANSITION"))
+		if(link.getX() >= currentRoom.getMapWidth() - widthOfTile
+				&& link.getDirection() == Direction.RIGHT
+				&& !link.getState().equals("TRANSITION") && loadingRoom == null)
 		{
 			link.setTransitionVector(-4, 0);
 			loadingRoom = new Room(currentRoom.getId() + 10, this, mapFactory);
@@ -110,9 +109,8 @@ public class OverWorld
 			currentRoom.updateDrawCoordinates();
 			loadingRoom.updateDrawCoordinates();
 		}
-		if(link.getY() <= heightOfTile / 2 &&
-				link.getDirection() == Direction.UP &&
-				!link.getState().equals("TRANSITION"))
+		if(link.getY() <= heightOfTile / 2 && link.getDirection() == Direction.UP &&
+				!link.getState().equals("TRANSITION") && loadingRoom == null)
 		{
 			link.setTransitionVector(0, 4);
 			loadingRoom = new Room(currentRoom.getId() - 1, this, mapFactory);
@@ -124,9 +122,9 @@ public class OverWorld
 			currentRoom.updateDrawCoordinates();
 			loadingRoom.updateDrawCoordinates();
 		}
-		if(link.getY() >= currentRoom.getMapHeight() - heightOfTile &&
-				link.getDirection() == Direction.DOWN &&
-				!link.getState().equals("TRANSITION"))
+		if(link.getY() >= currentRoom.getMapHeight() - heightOfTile
+				&& link.getDirection() == Direction.DOWN
+				&& !link.getState().equals("TRANSITION") && loadingRoom == null)
 		{
 			link.setTransitionVector(0, -4);
 			loadingRoom = new Room(currentRoom.getId() + 1, this, mapFactory);
@@ -216,6 +214,7 @@ public class OverWorld
 
 	public boolean isMoving()
 	{
-		return (currentRoom.getDrawVector()[0] != 0 && currentRoom.getDrawVector()[1] != 0);
+		return (currentRoom.getDrawVector()[0] != 0 && currentRoom.getDrawVector()[1] != 0)
+				&& (loadingRoom != null);
 	}
 }

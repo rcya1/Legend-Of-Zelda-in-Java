@@ -164,6 +164,11 @@ public class Room
 		this.mapItems.addAll(roomMetadata.getWarpTiles());
 	}
 
+	public RoomMetadata getRoomMetadata()
+	{
+		return roomMetadata;
+	}
+
 	void updateDrawCoordinates()
 	{
 		drawX += drawVelX;

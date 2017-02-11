@@ -410,7 +410,7 @@ public class Images
 
 		private static final BufferedImage OCTOROK_SPRITES = loadSingleImage("/textures/sprites/enemies/octorok/OctorokSprites.png");
 
-		public static final BufferedImage OCTOROK = OCTOROK_SPRITES != null ?
+		public static final BufferedImage OCTOROK_1 = OCTOROK_SPRITES != null ?
 				OCTOROK_SPRITES.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
 		public static final BufferedImage OCTOROK_2 = OCTOROK_SPRITES != null ?
@@ -418,7 +418,16 @@ public class Images
 				null;
 
 		public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/textures/sprites/enemies/octorok/Pellet.png");
-	}
+
+		private static final BufferedImage TEKTITE_SPRITES = loadSingleImage("/textures/sprites/enemies/tektite/Tektite.png");
+
+		public static final BufferedImage TEKTITE_1 = TEKTITE_SPRITES != null ?
+				TEKTITE_SPRITES.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage TEKTITE_2 = TEKTITE_SPRITES != null ?
+				TEKTITE_SPRITES.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		}
 
 	public static class Menu
 	{

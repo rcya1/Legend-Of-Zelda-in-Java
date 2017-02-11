@@ -212,7 +212,26 @@
 	</ROOM>
 	<ROOM id = "3-5">
 		<ENEMIES>
-
+			<ENEMY>
+				<TYPE>TEKTITE</TYPE>
+                <COL>3</COL>
+                <ROW>3</ROW>
+			</ENEMY>
+            <ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>1</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+            <ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>12</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+            <ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>9</COL>
+                <ROW>7</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>

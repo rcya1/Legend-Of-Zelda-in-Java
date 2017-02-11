@@ -4,6 +4,7 @@ import components.OverWorld;
 import components.entity.Direction;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;
+import components.entity.enemies.Tektite;
 import components.map.WarpTile;
 
 import java.io.BufferedReader;
@@ -67,6 +68,12 @@ public class MapFactory
 					Direction.getRandom(),
 					(overWorld.getLoadingRoom() != null) ?
 					overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "TEKTITE":
+			return new Tektite(col * overWorld.getWidthOfTile()
+				+ overWorld.getWidthOfTile() / 2,
+				row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+				(overWorld.getLoadingRoom() != null) ?
+						overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
 		default:
 			return null;
 		}

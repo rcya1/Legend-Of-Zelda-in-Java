@@ -35,7 +35,7 @@ public class Octorok extends Enemy
 		moveSpeed = 0.5;
 		state = "MOVING";
 
-		animation = new Animation(20, true, Images.Enemies.OCTOROK, Images.Enemies.OCTOROK_2);
+		animation = new Animation(20, true, Images.Enemies.OCTOROK_1, Images.Enemies.OCTOROK_2);
 
 		pellet = null;
 
