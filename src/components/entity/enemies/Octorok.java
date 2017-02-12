@@ -32,14 +32,14 @@ public class Octorok extends Enemy
 		width = 16;
 		height = 16;
 
-		moveSpeed = 0.5;
+		moveSpeed = 0.75;
 		state = "MOVING";
 
 		animation = new Animation(20, true, Images.Enemies.OCTOROK_1, Images.Enemies.OCTOROK_2);
 
 		pellet = null;
 
-		health = 4;
+		health = 2;
 		damage = 4;
 	}
 
