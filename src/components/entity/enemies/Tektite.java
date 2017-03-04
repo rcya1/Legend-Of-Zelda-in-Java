@@ -1,7 +1,7 @@
 package components.entity.enemies;
 
 import components.Animation;
-import components.Room;
+import components.OverWorldRoom;
 import utility.Images;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ public class Tektite extends Enemy
 
 	private double gravity;
 
-	public Tektite(int x, int y, Room room)
+	public Tektite(int x, int y, OverWorldRoom room)
 	{
 		this.x = x;
 		this.y = y;

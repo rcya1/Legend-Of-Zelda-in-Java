@@ -5,7 +5,8 @@ import javax.swing.*;
 class Game
 {
 	//Credit - Zephiel87 for Overworld Tileset
-	//Credit - Deathbringer for Enemies sprite
+	//Credit - Deathbringer for Enemies Sprites
+	//Credit - Ville10 for NPC Sprites
 
 	public static void main(String[] args)
 	{

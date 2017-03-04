@@ -1,6 +1,6 @@
 package components.weapons;
 
-import components.Room;
+import components.OverWorldRoom;
 import components.entity.Direction;
 import utility.Images;
 
@@ -14,7 +14,7 @@ public class Sword extends Weapon
 
 	private final Direction direction;
 
-	public Sword(int x, int y, Direction direction, Room room)
+	public Sword(int x, int y, Direction direction, OverWorldRoom room)
 	{
 		this.x = x;
 		this.y = y;

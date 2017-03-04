@@ -2,6 +2,8 @@ package components.entity;
 
 import components.Animation;
 import components.OverWorld;
+import components.RoomBase;
+import components.SecretRoom;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;
 import components.map.MapItem;
@@ -11,6 +13,7 @@ import components.map.collectibles.Heart;
 import components.map.collectibles.HeartContainer;
 import components.weapons.Sword;
 import utility.Images;
+import utility.MapFactory;
 import utility.MathHelper;
 
 import java.awt.*;
@@ -85,7 +88,7 @@ public class Link extends Entity
 
 	public void update()
 	{
-		this.room = overWorld.getCurrentRoom();
+		if(!(this.room instanceof SecretRoom)) this.room = overWorld.getCurrentRoom();
 
 		switch(state)
 		{
@@ -369,14 +372,26 @@ public class Link extends Entity
 					{
 						if(this.direction == warpTile.getDirection())
 						{
-							this.x = warpTile.getDestColumn() * room.getWidthOfTile() + room.getWidthOfTile() / 2;
-							this.y = warpTile.getDestRow() * room.getHeightOfTile() + room.getHeightOfTile() / 2;
+							this.x = warpTile.getDestColumn() * room.getWidthOfTile()
+									+ room.getWidthOfTile() / 2;
+							this.y = warpTile.getDestRow() * room.getHeightOfTile()
+									+ room.getHeightOfTile() / 2;
 						}
 					}
 					else
 					{
-						this.x = warpTile.getDestColumn() * room.getWidthOfTile() + room.getWidthOfTile() / 2;
-						this.y = warpTile.getDestRow() * room.getHeightOfTile() + room.getHeightOfTile() / 2;
+						this.x = warpTile.getDestColumn() * room.getWidthOfTile()
+								+ room.getWidthOfTile() / 2;
+						this.y = warpTile.getDestRow() * room.getHeightOfTile()
+								+ room.getHeightOfTile() / 2;
+					}
+
+					if(warpTile.getType().equals("CAVE"))
+					{
+						room = new SecretRoom(room.getId(), overWorld,
+								room.getMetadata(),
+								warpTile.getColumn(room.getWidthOfTile()),
+								warpTile.getRow(room.getHeightOfTile()));
 					}
 				}
 			}
@@ -405,5 +420,15 @@ public class Link extends Entity
 	{
 		this.transitionVelX = transitionVelX;
 		this.transitionVelY = transitionVelY;
+	}
+
+	public RoomBase getRoom()
+	{
+		return this.room;
+	}
+
+	public void setRoom(RoomBase room)
+	{
+		this.room = room;
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 public enum Tile
 {
+	CBOX,
 	EMPTY,
 	
 	ROCKS_GREEN_UP_LEFT,
@@ -93,12 +94,22 @@ public enum Tile
 	ORANGE_STATUE_ENTRANCE_DOWN_RIGHT,
 
 	GREEN_STATUE_ENTRANCE_UP_ALT,
-	ORANGE_STATUE_ENTRANCE_UP_ALT;
+	ORANGE_STATUE_ENTRANCE_UP_ALT,
+
+	ROCKS_DARK_ORANGE_UP_LEFT,
+	ROCKS_DARK_ORANGE_UP,
+	ROCKS_DARK_ORANGE_UP_RIGHT,
+	ROCKS_DARK_ORANGE_DOWN_LEFT,
+	ROCKS_DARK_ORANGE_DOWN,
+	ROCKS_DARK_ORANGE_DOWN_RIGHT,
+	ROCKS_DARK_ORANGE_SINGLE;
 
 	public static Tile parseID(int id)
 	{
 		switch(id)
 		{
+		case -1:
+			return CBOX;
 		case 0:
 			return EMPTY;
 		case 1:
@@ -255,6 +266,19 @@ public enum Tile
 		case 71:
 			return ORANGE_STATUE_ENTRANCE_UP_ALT;
 
+		case 72:
+			return ROCKS_DARK_ORANGE_UP_LEFT;
+		case 73:
+			return ROCKS_DARK_ORANGE_UP;
+		case 74:
+			return ROCKS_DARK_ORANGE_UP_RIGHT;
+		case 75:
+			return ROCKS_DARK_ORANGE_DOWN_LEFT;
+		case 76:
+			return ROCKS_DARK_ORANGE_DOWN;
+		case 77:
+			return ROCKS_DARK_ORANGE_DOWN_RIGHT;
+
 		default:
 			return null;
 		}
@@ -264,6 +288,8 @@ public enum Tile
 	{
 		switch(this)
 		{
+		case CBOX:
+			return -1;
 		case EMPTY:
 			return 0;
 
@@ -420,6 +446,19 @@ public enum Tile
 		case ORANGE_STATUE_ENTRANCE_UP_ALT:
 			return 71;
 
+		case ROCKS_DARK_ORANGE_UP_LEFT:
+			return 72;
+		case ROCKS_DARK_ORANGE_UP:
+			return 73;
+		case ROCKS_DARK_ORANGE_UP_RIGHT:
+			return 74;
+		case ROCKS_DARK_ORANGE_DOWN_LEFT:
+			return 75;
+		case ROCKS_DARK_ORANGE_DOWN:
+			return 76;
+		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
+			return 77;
+
 		default:
 			return 0;
 		}
@@ -429,6 +468,8 @@ public enum Tile
 	{
 		switch(tile)
 		{
+		case CBOX:
+			return new BufferedImage(16, 16, BufferedImage.TYPE_INT_RGB);
 		case EMPTY:
 			return Images.Blocks.EMPTY;
 			
@@ -586,6 +627,19 @@ public enum Tile
 			return Images.Blocks.Green.Entrances.STATUE_ENTRANCE_UP_ALT;
 		case ORANGE_STATUE_ENTRANCE_UP_ALT:
 			return Images.Blocks.Orange.Entrances.STATUE_ENTRANCE_UP_ALT;
+
+		case ROCKS_DARK_ORANGE_UP_LEFT:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_UP_LEFT;
+		case ROCKS_DARK_ORANGE_UP:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_UP;
+		case ROCKS_DARK_ORANGE_UP_RIGHT:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_UP_RIGHT;
+		case ROCKS_DARK_ORANGE_DOWN_LEFT:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_DOWN_LEFT;
+		case ROCKS_DARK_ORANGE_DOWN:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_DOWN;
+		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
+			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_DOWN_RIGHT;
 		}
 		return null;
 	}
@@ -594,6 +648,8 @@ public enum Tile
 	{
 		switch(this)
 		{
+		case CBOX:
+			return false;
 		case EMPTY:
 			return true;
 			
@@ -696,7 +752,7 @@ public enum Tile
 			return true;
 
 		case ENTRANCE:
-			return false;
+			return true;
 
 		case GREEN_BRIDGE:
 			return true;
@@ -750,6 +806,21 @@ public enum Tile
 		case GREEN_STATUE_ENTRANCE_UP_ALT:
 			return false;
 		case ORANGE_STATUE_ENTRANCE_UP_ALT:
+			return false;
+
+		case ROCKS_DARK_ORANGE_UP_LEFT:
+			return false;
+		case ROCKS_DARK_ORANGE_UP:
+			return false;
+		case ROCKS_DARK_ORANGE_UP_RIGHT:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN_LEFT:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
+			return false;
+		case ROCKS_DARK_ORANGE_SINGLE:
 			return false;
 
 		default:

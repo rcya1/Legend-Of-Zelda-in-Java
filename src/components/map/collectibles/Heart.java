@@ -1,13 +1,14 @@
 package components.map.collectibles;
 
-import components.Room;
+import components.OverWorldRoom;
+import components.RoomBase;
 import utility.Images;
 
 public class Heart extends Collectible
 {
 	private final int restoreValue;
 
-	public Heart(int x, int y, Room room)
+	public Heart(int x, int y, RoomBase room)
 	{
 		this.x = x;
 		this.y = y;

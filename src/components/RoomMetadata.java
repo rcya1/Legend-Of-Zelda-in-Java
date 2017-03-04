@@ -19,6 +19,9 @@ class RoomMetadata
 	private String roomType;
 	private String music;
 
+	private String caveNPC;
+	private String caveText;
+
 	RoomMetadata(int id, OverWorld overWorld)
 	{
 		this.id = id;
@@ -80,6 +83,13 @@ class RoomMetadata
 				warpTiles.add(overWorld.getMapFactory().buildWarpTile(col, row,
 						destCol, destRow, type, direction));
 			}
+
+			if(thisRoom.getElementsByTagName("HIDDEN-ROOM").getLength() > 0)
+			{
+				Element hiddenRoom = (Element) thisRoom.getElementsByTagName("HIDDEN-ROOM").item(0);
+				caveNPC = hiddenRoom.getElementsByTagName("NPC").item(0).getTextContent();
+				caveText = hiddenRoom.getElementsByTagName("TEXT").item(0).getTextContent();
+			}
 		}
 	}
 
@@ -91,6 +101,16 @@ class RoomMetadata
 	public ArrayList<WarpTile> getWarpTiles()
 	{
 		return warpTiles;
+	}
+
+	public String getCaveNPC()
+	{
+		return caveNPC;
+	}
+
+	public String getCaveText()
+	{
+		return caveText;
 	}
 
 	public String getRoomType()

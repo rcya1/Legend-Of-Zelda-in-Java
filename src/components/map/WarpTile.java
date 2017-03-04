@@ -1,6 +1,6 @@
 package components.map;
 
-import components.Room;
+import components.OverWorldRoom;
 import components.entity.Direction;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ public class WarpTile extends MapItem
 
 	private final Direction direction;
 
-	public WarpTile(Room room, int column, int row,
+	public WarpTile(OverWorldRoom room, int column, int row,
 			int destColumn, int destRow, String type, Direction direction)
 	{
 		this.x = column * room.getWidthOfTile();

@@ -1,7 +1,7 @@
 package components.entity.enemies;
 
 import components.Animation;
-import components.Room;
+import components.OverWorldRoom;
 import components.entity.Direction;
 import utility.Images;
 
@@ -17,7 +17,7 @@ public class Octorok extends Enemy
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, Room room)
+	public Octorok(int x, int y, Direction direction, OverWorldRoom room)
 	{
 		this.x = x;
 		this.y = y;

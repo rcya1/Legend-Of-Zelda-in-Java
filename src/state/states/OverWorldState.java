@@ -2,6 +2,7 @@ package state.states;
 
 import components.Menu;
 import components.OverWorld;
+import components.SecretRoom;
 import components.entity.Link;
 import main.GamePanel;
 import state.State;
@@ -9,6 +10,7 @@ import state.StateManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 
 public class OverWorldState extends State
 {
@@ -17,6 +19,9 @@ public class OverWorldState extends State
 	private Menu menu;
 
 	private String state;
+
+	private int midline;
+	private int midlineVel;
 
 	public OverWorldState(StateManager stateManager)
 	{
@@ -30,39 +35,40 @@ public class OverWorldState extends State
 
 		overWorld = new OverWorld(45, "/tileMaps/overworld.txt", "/tileMaps/overworld.xml",
 				96, 55);
-		overWorld.setDrawCoordinates(0, 48);
 
 		menu = new Menu(overWorld);
-		menu.setDrawCoordinates(0, -184);
+
+		midline = 48;
 
 		link = overWorld.getLink();
 	}
 
 	public void update()
 	{
-		overWorld.updateDrawCoordinates();
-		menu.updateDrawCoordinates();
+		midline += midlineVel;
 
 		switch(state)
 		{
 		case "OVERWORLD":
-			overWorld.update();
+			if(link.getRoom() instanceof SecretRoom)
+			{
+				((SecretRoom) link.getRoom()).update();
+			}
+			else overWorld.update();
 			break;
 		case "MENU":
 			menu.update();
 			break;
 		case "TRANSITION":
-			if(overWorld.getDrawCoordinates()[1] == 48)
+			if(midline == 48)
 			{
 				state = "OVERWORLD";
-				overWorld.setDrawVector(0, 0);
-				menu.setDrawVector(0, 0);
+				midlineVel = 0;
 			}
-			else if(overWorld.getDrawCoordinates()[1] == 216)
+			else if(midline == 216)
 			{
 				state = "MENU";
-				overWorld.setDrawVector(0, 0);
-				menu.setDrawVector(0, 0);
+				midlineVel = 0;
 			}
 			break;
 		default:
@@ -75,8 +81,21 @@ public class OverWorldState extends State
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, -GamePanel.HEIGHT, GamePanel.WIDTH, GamePanel.HEIGHT * 2);
 
-		overWorld.draw(g2d);
+		AffineTransform transform = g2d.getTransform();
+
+		g2d.translate(0, midline);
+		if(link.getRoom() instanceof SecretRoom)
+		{
+			((SecretRoom) link.getRoom()).draw(g2d);
+		}
+		else overWorld.draw(g2d);
+
+		g2d.setTransform(transform);
+
+		g2d.translate(0, midline - 232);
 		menu.draw(g2d);
+
+		g2d.setTransform(transform);
 	}
 	
 	public void keyPressed(int key)
@@ -85,18 +104,14 @@ public class OverWorldState extends State
 
 		if(key == KeyEvent.VK_ENTER)
 		{
-			int transitionSpeed = 4;
-
 			switch(state)
 			{
 			case "OVERWORLD":
-				overWorld.setDrawVector(0, transitionSpeed);
-				menu.setDrawVector(0, transitionSpeed);
+				midlineVel = 4;
 				state = "TRANSITION";
 				break;
 			case "MENU":
-				overWorld.setDrawVector(0, -transitionSpeed);
-				menu.setDrawVector(0, -transitionSpeed);
+				midlineVel = -4;
 				state = "TRANSITION";
 				break;
 			default:

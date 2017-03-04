@@ -1,13 +1,13 @@
 package components.map;
 
-import components.Room;
+import components.RoomBase;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class MapItem
 {
-	protected Room room;
+	protected RoomBase room;
 
 	protected int x;
 	protected int y;

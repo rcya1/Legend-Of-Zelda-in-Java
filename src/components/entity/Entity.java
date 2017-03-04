@@ -1,6 +1,6 @@
 package components.entity;
 
-import components.Room;
+import components.RoomBase;
 import components.Tile;
 import utility.MathHelper;
 
@@ -8,7 +8,7 @@ import java.awt.*;
 
 public abstract class Entity
 {
-	protected Room room;
+	protected RoomBase room;
 
 	protected double x;
 	protected double y;
@@ -190,6 +190,12 @@ public abstract class Entity
 	public int getHealth()
 	{
 		return health;
+	}
+
+	public void setCoordinates(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
 	}
 
 	void drawDebug(Graphics2D g2d)

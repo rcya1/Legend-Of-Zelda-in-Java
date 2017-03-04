@@ -1,11 +1,11 @@
 package components.map.collectibles;
 
-import components.Room;
+import components.OverWorldRoom;
 import utility.Images;
 
 public class HeartContainer extends Collectible
 {
-	public HeartContainer(int x, int y, Room room)
+	public HeartContainer(int x, int y, OverWorldRoom room)
 	{
 		this.x = x;
 		this.y = y;

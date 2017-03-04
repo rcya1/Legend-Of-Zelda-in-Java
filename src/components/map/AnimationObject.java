@@ -1,7 +1,8 @@
 package components.map;
 
 import components.Animation;
-import components.Room;
+import components.OverWorldRoom;
+import components.RoomBase;
 
 import java.awt.*;
 
@@ -9,7 +10,7 @@ public class AnimationObject extends MapItem
 {
 	private final Animation animation;
 
-	public AnimationObject(int x, int y, Animation animation, Room room)
+	public AnimationObject(int x, int y, Animation animation, RoomBase room)
 	{
 		this.x = x;
 		this.y = y;

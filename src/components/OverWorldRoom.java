@@ -13,7 +13,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Room
+public class OverWorldRoom implements RoomBase
 {
 	private final int id;
 
@@ -40,7 +40,7 @@ public class Room
 
 	private RoomMetadata roomMetadata;
 
-	public Room(int id, OverWorld overWorld, MapFactory mapFactory)
+	public OverWorldRoom(int id, OverWorld overWorld, MapFactory mapFactory)
 	{
 		this.id = id;
 
@@ -236,9 +236,14 @@ public class Room
 		return mapHeight;
 	}
 
-	int getId()
+	public int getId()
 	{
 		return id;
+	}
+
+	public RoomMetadata getMetadata()
+	{
+		return roomMetadata;
 	}
 
 	public ArrayList<Enemy> getEnemies()
