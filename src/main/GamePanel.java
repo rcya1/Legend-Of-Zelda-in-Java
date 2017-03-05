@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
@@ -60,6 +61,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	{
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g2d = (Graphics2D) image.getGraphics();
+
+		try
+		{
+			g2d.setFont(Font.createFont(Font.TRUETYPE_FONT,
+					this.getClass().getResourceAsStream("/fonts/Legend of Zelda.ttf"))
+					.deriveFont(7f));
+		}
+		catch(FontFormatException | IOException e)
+		{
+			e.printStackTrace();
+		}
+
 		running = true;
 		stateManager = new StateManager();
 	}

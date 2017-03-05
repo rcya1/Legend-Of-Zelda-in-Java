@@ -1,7 +1,7 @@
 package components.map.collectibles;
 
-import components.OverWorldRoom;
 import components.RoomBase;
+import components.entity.Link;
 import utility.Images;
 
 public class Heart extends Collectible
@@ -28,8 +28,22 @@ public class Heart extends Collectible
 
 	}
 
-	public int getRestoreValue()
+	public boolean action(Link link)
 	{
-		return restoreValue;
+		if(link.getHealth() != link.getHealthContainers() * 8)
+		{
+			if(link.getHealth() + restoreValue > link.getHealthContainers() * 8)
+			{
+				link.addHealth(link.getHealthContainers() * 8 - link.getHealth());
+			}
+			else
+			{
+				link.addHealth(restoreValue);
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 }

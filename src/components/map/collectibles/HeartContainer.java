@@ -1,6 +1,7 @@
 package components.map.collectibles;
 
 import components.OverWorldRoom;
+import components.entity.Link;
 import utility.Images;
 
 public class HeartContainer extends Collectible
@@ -21,5 +22,17 @@ public class HeartContainer extends Collectible
 	public void update()
 	{
 
+	}
+
+	public boolean action(Link link)
+	{
+		if(link.getHealthContainers() + 1 <= link.getMaxHealthContainers())
+		{
+			link.addHealthContainers(1);
+
+			return true;
+		}
+
+		return false;
 	}
 }

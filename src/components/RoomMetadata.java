@@ -15,6 +15,7 @@ class RoomMetadata
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<WarpTile> warpTiles;
+	private ArrayList<String[]> items;
 
 	private String roomType;
 	private String music;
@@ -54,6 +55,7 @@ class RoomMetadata
 
 			enemies = new ArrayList<>();
 			warpTiles = new ArrayList<>();
+			items = new ArrayList<>();
 
 			Element enemiesElement = (Element) thisRoom.getElementsByTagName("ENEMIES").item(0);
 			NodeList enemiesList = enemiesElement.getElementsByTagName("ENEMY");
@@ -89,6 +91,17 @@ class RoomMetadata
 				Element hiddenRoom = (Element) thisRoom.getElementsByTagName("HIDDEN-ROOM").item(0);
 				caveNPC = hiddenRoom.getElementsByTagName("NPC").item(0).getTextContent();
 				caveText = hiddenRoom.getElementsByTagName("TEXT").item(0).getTextContent();
+
+				NodeList itemNodes = thisRoom.getElementsByTagName("ITEMS");
+				for(int itemIndex = 0; itemIndex < itemNodes.getLength(); itemIndex++)
+				{
+					Element item = (Element) itemNodes.item(itemIndex);
+					items.add(new String[]
+							{
+									item.getElementsByTagName("COLLECTIBLE").item(0).getTextContent(),
+									item.getElementsByTagName("COST").item(0).getTextContent()
+							});
+				}
 			}
 		}
 	}
@@ -101,6 +114,11 @@ class RoomMetadata
 	public ArrayList<WarpTile> getWarpTiles()
 	{
 		return warpTiles;
+	}
+
+	public ArrayList<String[]> getItems()
+	{
+		return items;
 	}
 
 	public String getCaveNPC()

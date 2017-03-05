@@ -49,7 +49,7 @@ public abstract class Entity
 		return getRectangle().intersects(otherRectangle);
 	}
 
-	private Rectangle getRectangle()
+	public Rectangle getRectangle()
 	{
 		return new Rectangle((int) Math.round(x - width / 2),
 				(int) Math.round(y - height / 2), width, height);

@@ -2,20 +2,16 @@ package components;
 
 import components.entity.Direction;
 import components.entity.Link;
-import components.entity.enemies.Enemy;
 import components.map.AnimationObject;
-import components.map.MapItem;
 import components.map.collectibles.Collectible;
 import utility.Images;
-import utility.MapFactory;
+import utility.TextHelper;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.nio.charset.Charset;
 import java.util.StringTokenizer;
 
@@ -41,6 +37,8 @@ public class SecretRoom implements RoomBase
 
 	private AnimationObject fire1;
 	private AnimationObject fire2;
+
+	private Collectible[] items;
 
 	public SecretRoom(int id, OverWorld overWorld, RoomMetadata metadata, int warpColumn, int warpRow)
 	{
@@ -68,6 +66,18 @@ public class SecretRoom implements RoomBase
 				Images.Blocks.Secret.FIRE_1, Images.Blocks.Secret.FIRE_2), this);
 		fire2 = new AnimationObject(168, 64, new Animation(4, true,
 				Images.Blocks.Secret.FIRE_1, Images.Blocks.Secret.FIRE_2), this);
+
+		items = new Collectible[3];
+
+		for(int itemIndex = 0; itemIndex < metadata.getItems().size(); itemIndex++)
+		{
+			Rectangle rectangle = getItemLocation(itemIndex);
+			int x = (int) rectangle.getX();
+			int y = (int) rectangle.getY();
+
+			items[itemIndex] = Collectible.parse(metadata.getItems().get(itemIndex)[0],
+					x, y, this);
+		}
 	}
 
 	public void update()
@@ -84,6 +94,21 @@ public class SecretRoom implements RoomBase
 		fire2.update();
 
 		link.update();
+
+		for(int itemIndex = 0; itemIndex < metadata.getItems().size(); itemIndex++)
+		{
+			if(items[itemIndex] != null)
+			{
+				Rectangle rectangle = getItemLocation(itemIndex);
+
+				if(rectangle.intersects(link.getRectangle()))
+				{
+					if(items[itemIndex].action(link)) items[itemIndex] = null;
+				}
+			}
+
+			if(items[itemIndex] != null) items[itemIndex].update();
+		}
 	}
 
 	public void draw(Graphics2D g2d)
@@ -92,7 +117,8 @@ public class SecretRoom implements RoomBase
 		{
 			for(int j = 0; j < numOfRows; j++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i, heightOfTile * j, widthOfTile, heightOfTile, null);
+				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i,
+						heightOfTile * j, widthOfTile, heightOfTile, null);
 			}
 		}
 
@@ -108,6 +134,14 @@ public class SecretRoom implements RoomBase
 		}
 
 		g2d.drawImage(npcSprite, 120, 64, null);
+
+		for(Collectible item : items)
+		{
+			if(item != null) item.draw(g2d);
+		}
+
+		g2d.setColor(Color.WHITE);
+		TextHelper.drawCenteredString(metadata.getCaveText(), 38, g2d);
 
 		link.draw(g2d);
 	}
@@ -142,6 +176,29 @@ public class SecretRoom implements RoomBase
 	public Tile getTile(int column, int row)
 	{
 		return tiles[column][row];
+	}
+
+	private Rectangle getItemLocation(int itemIndex)
+	{
+		Rectangle rectangle;
+
+		switch(itemIndex)
+		{
+		case 0:
+			rectangle = new Rectangle(128, 96, 16, 16);
+			break;
+		case 1:
+			rectangle = new Rectangle(100, 96, 16, 16);
+			break;
+		case 2:
+			rectangle = new Rectangle(176, 96, 16, 16);
+			break;
+		default:
+			rectangle = new Rectangle(0, 0, 0, 0);
+			break;
+		}
+
+		return rectangle;
 	}
 
 	public int getWidthOfTile()

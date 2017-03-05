@@ -12,6 +12,7 @@ import components.map.collectibles.Collectible;
 import components.map.collectibles.Heart;
 import components.map.collectibles.HeartContainer;
 import components.weapons.Sword;
+import utility.Data;
 import utility.Images;
 import utility.MapFactory;
 import utility.MathHelper;
@@ -287,7 +288,7 @@ public class Link extends Entity
 		if(inputDown) state = "DOWN";
 		if(inputLeft) state = "LEFT";
 		if(inputRight) state = "RIGHT";
-		if(inputAttack) state = "ATTACK_SWORD_START";
+		if(inputAttack && Data.hasSword) state = "ATTACK_SWORD_START";
 		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack)) state = "IDLE";
 
 		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
@@ -333,33 +334,7 @@ public class Link extends Entity
 				Collectible collectible = (Collectible) mapItem;
 				if(checkCollisionWith(collectible.getRectangle()))
 				{
-					if(collectible instanceof Heart)
-					{
-						Heart heart = (Heart) collectible;
-
-						if(health != healthContainers * 8)
-						{
-							if(health + heart.getRestoreValue() >= healthContainers * 8)
-							{
-								health = healthContainers * 8;
-								iterator.remove();
-							}
-							else
-							{
-								health += heart.getRestoreValue();
-								iterator.remove();
-							}
-						}
-					}
-					else if(collectible instanceof HeartContainer)
-					{
-						if(healthContainers + 1 < maxHealthContainers)
-						{
-							healthContainers++;
-							health = healthContainers * 8;
-							iterator.remove();
-						}
-					}
+					if(collectible.action(this)) iterator.remove();
 				}
 			}
 			else if(mapItem instanceof WarpTile)
@@ -416,6 +391,21 @@ public class Link extends Entity
 	{
 		return healthContainers;
 	}
+	public int getMaxHealthContainers()
+	{
+		return maxHealthContainers;
+	}
+
+	public void addHealth(int restorePoints)
+	{
+		health += restorePoints;
+	}
+
+	public void addHealthContainers(int containers)
+	{
+		healthContainers += containers;
+	}
+
 	public void setTransitionVector(int transitionVelX, int transitionVelY)
 	{
 		this.transitionVelX = transitionVelX;
