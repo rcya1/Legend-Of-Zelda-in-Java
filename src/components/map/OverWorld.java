@@ -1,5 +1,8 @@
-package components;
+package components.map;
 
+import components.map.rooms.OverWorldRoom;
+import components.map.rooms.RoomMetadata;
+import components.map.rooms.SecretRoom;
 import components.entity.Direction;
 import components.entity.Link;
 import org.w3c.dom.Document;
@@ -8,7 +11,6 @@ import utility.MapFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 public class OverWorld
 {
@@ -165,12 +167,12 @@ public class OverWorld
 		return heightOfTile;
 	}
 
-	Document getMetadataDocument()
+	public Document getMetadataDocument()
 	{
 		return metadataDocument;
 	}
 
-	MapFactory getMapFactory()
+	public MapFactory getMapFactory()
 	{
 		return mapFactory;
 	}

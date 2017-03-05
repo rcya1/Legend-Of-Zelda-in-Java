@@ -1,7 +1,7 @@
 package components.entity;
 
-import components.RoomBase;
-import components.Tile;
+import components.map.rooms.RoomBase;
+import utility.Tile;
 import utility.MathHelper;
 
 import java.awt.*;

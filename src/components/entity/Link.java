@@ -1,20 +1,17 @@
 package components.entity;
 
-import components.Animation;
-import components.OverWorld;
-import components.RoomBase;
-import components.SecretRoom;
+import utility.Animation;
+import components.map.OverWorld;
+import components.map.rooms.RoomBase;
+import components.map.rooms.SecretRoom;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;
-import components.map.MapItem;
+import components.items.MapItem;
 import components.map.WarpTile;
-import components.map.collectibles.Collectible;
-import components.map.collectibles.Heart;
-import components.map.collectibles.HeartContainer;
-import components.weapons.Sword;
+import components.items.collectibles.Collectible;
+import components.items.weapons.Sword;
 import utility.Data;
 import utility.Images;
-import utility.MapFactory;
 import utility.MathHelper;
 
 import java.awt.*;

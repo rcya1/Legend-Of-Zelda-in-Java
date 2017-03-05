@@ -1,5 +1,6 @@
 package components;
 
+import components.map.OverWorld;
 import utility.Images;
 
 import java.awt.*;

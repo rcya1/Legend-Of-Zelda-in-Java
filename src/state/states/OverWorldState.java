@@ -1,8 +1,8 @@
 package state.states;
 
 import components.Menu;
-import components.OverWorld;
-import components.SecretRoom;
+import components.map.OverWorld;
+import components.map.rooms.SecretRoom;
 import components.entity.Link;
 import main.GamePanel;
 import state.State;

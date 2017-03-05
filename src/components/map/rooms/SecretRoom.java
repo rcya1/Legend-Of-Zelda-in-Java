@@ -1,9 +1,12 @@
-package components;
+package components.map.rooms;
 
+import utility.Animation;
+import utility.Tile;
 import components.entity.Direction;
 import components.entity.Link;
 import components.map.AnimationObject;
-import components.map.collectibles.Collectible;
+import components.map.OverWorld;
+import components.items.collectibles.Collectible;
 import utility.Images;
 import utility.TextHelper;
 

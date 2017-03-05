@@ -1,6 +1,7 @@
 package components.map;
 
-import components.OverWorldRoom;
+import components.items.MapItem;
+import components.map.rooms.OverWorldRoom;
 import components.entity.Direction;
 
 import java.awt.*;

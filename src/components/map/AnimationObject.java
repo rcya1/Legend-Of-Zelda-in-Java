@@ -1,8 +1,8 @@
 package components.map;
 
-import components.Animation;
-import components.OverWorldRoom;
-import components.RoomBase;
+import components.items.MapItem;
+import utility.Animation;
+import components.map.rooms.RoomBase;
 
 import java.awt.*;
 

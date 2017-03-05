@@ -1,6 +1,7 @@
-package components;
+package components.map.rooms;
 
 import components.entity.enemies.Enemy;
+import components.map.OverWorld;
 import components.map.WarpTile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -8,7 +9,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-class RoomMetadata
+public class RoomMetadata
 {
 	private final int id;
 	private final OverWorld overWorld;
@@ -23,7 +24,7 @@ class RoomMetadata
 	private String caveNPC;
 	private String caveText;
 
-	RoomMetadata(int id, OverWorld overWorld)
+	public RoomMetadata(int id, OverWorld overWorld)
 	{
 		this.id = id;
 		this.overWorld = overWorld;

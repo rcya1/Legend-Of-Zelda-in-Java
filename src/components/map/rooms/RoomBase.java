@@ -1,6 +1,7 @@
-package components;
+package components.map.rooms;
 
-import components.map.collectibles.Collectible;
+import utility.Tile;
+import components.items.collectibles.Collectible;
 
 public interface RoomBase
 {

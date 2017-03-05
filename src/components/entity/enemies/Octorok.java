@@ -1,7 +1,7 @@
 package components.entity.enemies;
 
-import components.Animation;
-import components.OverWorldRoom;
+import utility.Animation;
+import components.map.rooms.OverWorldRoom;
 import components.entity.Direction;
 import utility.Images;
 

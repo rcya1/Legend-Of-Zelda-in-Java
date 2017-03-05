@@ -1,10 +1,13 @@
-package components;
+package components.map.rooms;
 
+import utility.Animation;
+import utility.Tile;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
 import components.map.AnimationObject;
-import components.map.MapItem;
-import components.map.collectibles.Collectible;
+import components.items.MapItem;
+import components.map.OverWorld;
+import components.items.collectibles.Collectible;
 import utility.Images;
 import utility.MapFactory;
 
@@ -157,7 +160,7 @@ public class OverWorldRoom implements RoomBase
 		}
 	}
 
-	void setRoomMetadata(RoomMetadata roomMetadata)
+	public void setRoomMetadata(RoomMetadata roomMetadata)
 	{
 		this.roomMetadata = roomMetadata;
 		this.enemies.addAll(roomMetadata.getEnemies());
@@ -169,7 +172,7 @@ public class OverWorldRoom implements RoomBase
 		return roomMetadata;
 	}
 
-	void updateDrawCoordinates()
+	public void updateDrawCoordinates()
 	{
 		drawX += drawVelX;
 		drawY += drawVelY;
@@ -204,24 +207,24 @@ public class OverWorldRoom implements RoomBase
 		return numOfRows;
 	}
 
-	void setDrawCoordinates(int drawX, int drawY)
+	public void setDrawCoordinates(int drawX, int drawY)
 	{
 		this.drawX = drawX;
 		this.drawY = drawY;
 	}
 
-	int[] getDrawCoordinates()
+	public int[] getDrawCoordinates()
 	{
 		return new int[] {drawX, drawY};
 	}
 
-	void setDrawVector(int drawVelX, int drawVelY)
+	public void setDrawVector(int drawVelX, int drawVelY)
 	{
 		this.drawVelX = drawVelX;
 		this.drawVelY = drawVelY;
 	}
 
-	int[] getDrawVector()
+	public int[] getDrawVector()
 	{
 		return new int[] {drawVelX, drawVelY};
 	}
