@@ -70,6 +70,42 @@
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
 	</ROOM>
+    <ROOM id = "1-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "1-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "1-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 
 	<ROOM id = "2-1">
 		<ENEMIES>
@@ -146,6 +182,42 @@
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
 	</ROOM>
+    <ROOM id = "2-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "2-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "2-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 
 	<ROOM id = "3-1">
 		<ENEMIES>
@@ -241,6 +313,42 @@
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
 	</ROOM>
+    <ROOM id = "3-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "3-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "3-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 
 	<ROOM id = "4-1">
 		<ENEMIES>
@@ -356,6 +464,42 @@
 			</ITEMS>
 		</HIDDEN-ROOM>
 	</ROOM>
+    <ROOM id = "4-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "4-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "4-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 
 	<ROOM id = "5-1">
 		<ENEMIES>
@@ -432,6 +576,42 @@
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
 	</ROOM>
+    <ROOM id = "5-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "5-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "5-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 
 	<ROOM id = "6-1">
 		<ENEMIES>
@@ -508,4 +688,488 @@
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
 	</ROOM>
+    <ROOM id = "6-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "6-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "6-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "7-1">
+        <ENEMIES>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>5</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+        </ENEMIES>
+
+        <WARPS>
+            <WARP>
+                <TYPE>STAIRS</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+
+                <RESULT>
+                    <COL>8</COL>
+                    <ROW>11</ROW>
+
+                    <ITEM>TRUE</ITEM>
+                </RESULT>
+            </WARP>
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "7-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "8-1">
+        <ENEMIES>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>5</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+        </ENEMIES>
+
+        <WARPS>
+            <WARP>
+                <TYPE>STAIRS</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+
+                <RESULT>
+                    <COL>8</COL>
+                    <ROW>11</ROW>
+
+                    <ITEM>TRUE</ITEM>
+                </RESULT>
+            </WARP>
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "8-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "9-1">
+        <ENEMIES>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>5</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+        </ENEMIES>
+
+        <WARPS>
+            <WARP>
+                <TYPE>STAIRS</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+
+                <RESULT>
+                    <COL>8</COL>
+                    <ROW>11</ROW>
+
+                    <ITEM>TRUE</ITEM>
+                </RESULT>
+            </WARP>
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "9-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "10-1">
+        <ENEMIES>
+            <ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>5</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+        </ENEMIES>
+
+        <WARPS>
+            <WARP>
+                <TYPE>STAIRS</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+
+                <RESULT>
+                    <COL>8</COL>
+                    <ROW>11</ROW>
+
+                    <ITEM>TRUE</ITEM>
+                </RESULT>
+            </WARP>
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "10-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
 </OVERWORLD>

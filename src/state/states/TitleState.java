@@ -1,6 +1,6 @@
 package state.states;
 
-import components.Animation;
+import utility.Animation;
 import main.GamePanel;
 import state.State;
 import state.StateManager;

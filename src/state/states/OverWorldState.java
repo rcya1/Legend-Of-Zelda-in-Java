@@ -34,7 +34,7 @@ public class OverWorldState extends State
 		state = "OVERWORLD";
 
 		overWorld = new OverWorld(45, "/tileMaps/overworld.txt", "/tileMaps/overworld.xml",
-				96, 55);
+				160, 66);
 
 		menu = new Menu(overWorld);
 

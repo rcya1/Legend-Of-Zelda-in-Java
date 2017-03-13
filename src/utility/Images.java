@@ -165,6 +165,7 @@ public class Images
 	{
 		public static final BufferedImage EMPTY = loadSingleImage("/textures/sprites/blocks/Empty.png");
 		public static final BufferedImage ENTRANCE = loadSingleImage("/textures/sprites/blocks/Entrance.png");
+		public static final BufferedImage EMPTY_GRAY = loadSingleImage("/textures/sprites/blocks/EmptyGray.png");
 
 		public static class Secret
 		{
@@ -184,44 +185,45 @@ public class Images
 			private static final BufferedImage TILE_ROCKS_GREEN = loadSingleImage("/textures/sprites/blocks/rocks/RockGreenTiles.png");
 			private static final BufferedImage TILE_ROCKS_ORANGE = loadSingleImage("/textures/sprites/blocks/rocks/RockOrangeTiles.png");
 			private static final BufferedImage TILE_ROCKS_DARK_ORANGE = loadSingleImage("/textures/sprites/blocks/rocks/RockDarkOrangeTiles.png");
+			private static final BufferedImage TILE_ROCKS_WHITE = loadSingleImage("/textures/sprites/blocks/rocks/RockWhiteTiles.png");
 
 			public static final BufferedImage ROCKS_GREEN_UP_LEFT = TILE_ROCKS_GREEN != null ?
-							TILE_ROCKS_GREEN.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_GREEN.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_GREEN_UP = TILE_ROCKS_GREEN != null ?
 					TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 			public static final BufferedImage ROCKS_GREEN_UP_RIGHT = TILE_ROCKS_GREEN != null ?
-							TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_GREEN_DOWN_LEFT = TILE_ROCKS_GREEN != null ?
-							TILE_ROCKS_GREEN.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_GREEN.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_GREEN_DOWN = TILE_ROCKS_GREEN != null ?
-							TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_GREEN_DOWN_RIGHT = TILE_ROCKS_GREEN != null ?
-							TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_GREEN.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 
 			public static final BufferedImage ROCKS_ORANGE_UP_LEFT = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_ORANGE_UP = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_ORANGE_UP_RIGHT = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_ORANGE_DOWN_LEFT = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_ORANGE_DOWN = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 			public static final BufferedImage ROCKS_ORANGE_DOWN_RIGHT = TILE_ROCKS_ORANGE != null ?
-							TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
-							null;
+					TILE_ROCKS_ORANGE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 
 			public static final BufferedImage ROCKS_DARK_ORANGE_UP_LEFT = TILE_ROCKS_DARK_ORANGE != null ?
 					TILE_ROCKS_DARK_ORANGE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
@@ -242,8 +244,28 @@ public class Images
 					TILE_ROCKS_DARK_ORANGE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
+			public static final BufferedImage ROCKS_WHITE_UP_LEFT = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCKS_WHITE_UP = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCKS_WHITE_UP_RIGHT = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCKS_WHITE_DOWN_LEFT = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCKS_WHITE_DOWN = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCKS_WHITE_DOWN_RIGHT = TILE_ROCKS_WHITE != null ?
+					TILE_ROCKS_WHITE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
 			public static final BufferedImage ROCKS_GREEN_SINGLE = loadSingleImage("/textures/sprites/blocks/rocks/RockGreenSingle.png");
 			public static final BufferedImage ROCKS_ORANGE_SINGLE = loadSingleImage("/textures/sprites/blocks/rocks/RockOrangeSingle.png");
+			public static final BufferedImage ROCKS_WHITE_SINGLE = loadSingleImage("/textures/sprites/blocks/rocks/RockWhiteSingle.png");
 		}
 
 		public static class Green
@@ -251,9 +273,9 @@ public class Images
 			public static class Water
 			{
 				private static final BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/green/Water.png");
-				
+
 				public static final BufferedImage WATER_UP_LEFT = WATER != null ?
-						WATER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) : 
+						WATER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 						null;
 				public static final BufferedImage WATER_UP = WATER != null ?
 						WATER.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
@@ -339,6 +361,7 @@ public class Images
 			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/green/Stairs.png");
 			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
 			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/green/Bridge.png");
+			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/green/Sand.png");
 		}
 
 		public static class Orange
@@ -434,6 +457,104 @@ public class Images
 			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/orange/Stairs.png");
 			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/orange/Ladder.png");
 			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/orange/Bridge.png");
+			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/orange/Sand.png");
+		}
+
+		public static class White
+		{
+			public static class Water
+			{
+				private static final BufferedImage WATER = loadSingleImage("/textures/sprites/blocks/white/Water.png");
+
+				public static final BufferedImage WATER_UP_LEFT = WATER != null ?
+						WATER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_UP = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_UP_RIGHT = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_LEFT = WATER != null ?
+						WATER.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_CENTER = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_RIGHT = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_DOWN_LEFT = WATER != null ?
+						WATER.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_DOWN = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_DOWN_RIGHT = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+
+				public static final BufferedImage WATER_CORNER_UP_LEFT = WATER != null ?
+						WATER.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_CORNER_UP_RIGHT = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_CORNER_DOWN_LEFT = WATER != null ?
+						WATER.getSubimage(0, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage WATER_CORNER_DOWN_RIGHT = WATER != null ?
+						WATER.getSubimage(TILE_WIDTH, TILE_HEIGHT * 4, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+			}
+
+			public static class Entrances
+			{
+				private static final BufferedImage TREE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/white/TreeEntrance.png");
+
+				public static final BufferedImage TREE_ENTRANCE_UP_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_UP_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_LEFT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage TREE_ENTRANCE_DOWN_RIGHT = TREE_ENTRANCE != null ?
+						TREE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+
+				private static final BufferedImage STATUE_ENTRANCE = loadSingleImage("/textures/sprites/blocks/white/StatueEntrance.png");
+
+				public static final BufferedImage STATUE_ENTRANCE_UP_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_UP_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_LEFT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+				public static final BufferedImage STATUE_ENTRANCE_DOWN_RIGHT = STATUE_ENTRANCE != null ?
+						STATUE_ENTRANCE.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+						null;
+
+				public static final BufferedImage STATUE_ENTRANCE_UP_ALT = loadSingleImage("/textures/sprites/blocks/white/StatueEntranceAlt.png");
+			}
+
+			public static final BufferedImage GRAVE = loadSingleImage("/textures/sprites/blocks/white/Grave.png");
+			public static final BufferedImage STAIRS = loadSingleImage("/textures/sprites/blocks/white/Stairs.png");
+			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/white/Ladder.png");
+			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/white/Bridge.png");
+			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/white/Sand.png");
+			public static final BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/white/Bush.png");
 		}
 	}
 
@@ -460,7 +581,7 @@ public class Images
 		public static final BufferedImage TEKTITE_2 = TEKTITE_SPRITES != null ?
 				TEKTITE_SPRITES.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
-		}
+	}
 
 	public static class Menu
 	{

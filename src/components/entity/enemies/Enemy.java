@@ -1,9 +1,9 @@
 package components.entity.enemies;
 
 import components.entity.Entity;
-import components.map.collectibles.Heart;
-import components.weapons.Sword;
-import components.weapons.Weapon;
+import components.items.collectibles.Heart;
+import components.items.weapons.Sword;
+import components.items.weapons.Weapon;
 
 public abstract class Enemy extends Entity
 {

@@ -1,4 +1,4 @@
-package components;
+package utility;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -80,7 +80,7 @@ public class Animation
 		}
 	}
 
-	int getIndex()
+	public int getIndex()
 	{
 		return index;
 	}

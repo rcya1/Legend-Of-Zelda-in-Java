@@ -1,6 +1,4 @@
-package components;
-
-import utility.Images;
+package utility;
 
 import java.awt.image.BufferedImage;
 
@@ -8,7 +6,7 @@ public enum Tile
 {
 	CBOX,
 	EMPTY,
-	
+
 	ROCKS_GREEN_UP_LEFT,
 	ROCKS_GREEN_UP,
 	ROCKS_GREEN_UP_RIGHT,
@@ -102,7 +100,56 @@ public enum Tile
 	ROCKS_DARK_ORANGE_DOWN_LEFT,
 	ROCKS_DARK_ORANGE_DOWN,
 	ROCKS_DARK_ORANGE_DOWN_RIGHT,
-	ROCKS_DARK_ORANGE_SINGLE;
+
+	ROCKS_WHITE_UP_LEFT,
+	ROCKS_WHITE_UP,
+	ROCKS_WHITE_UP_RIGHT,
+	ROCKS_WHITE_DOWN_LEFT,
+	ROCKS_WHITE_DOWN,
+	ROCKS_WHITE_DOWN_RIGHT,
+	ROCKS_WHITE_SINGLE,
+
+	WHITE_GRAVE,
+	WHITE_LADDER,
+	WHITE_STAIRS,
+
+	WHITE_WATER_UP_LEFT,
+	WHITE_WATER_UP,
+	WHITE_WATER_UP_RIGHT,
+	WHITE_WATER_LEFT,
+	WHITE_WATER_CENTER,
+	WHITE_WATER_RIGHT,
+	WHITE_WATER_DOWN_LEFT,
+	WHITE_WATER_DOWN,
+	WHITE_WATER_DOWN_RIGHT,
+
+	WHITE_WATER_CORNER_UP_LEFT,
+	WHITE_WATER_CORNER_UP_RIGHT,
+	WHITE_WATER_CORNER_DOWN_LEFT,
+	WHITE_WATER_CORNER_DOWN_RIGHT,
+
+	WHITE_TREE_ENTRANCE_UP_LEFT,
+	WHITE_TREE_ENTRANCE_UP,
+	WHITE_TREE_ENTRANCE_UP_RIGHT,
+	WHITE_TREE_ENTRANCE_DOWN_LEFT,
+	WHITE_TREE_ENTRANCE_DOWN_RIGHT,
+
+	WHITE_STATUE_ENTRANCE_UP_LEFT,
+	WHITE_STATUE_ENTRANCE_UP,
+	WHITE_STATUE_ENTRANCE_UP_RIGHT,
+	WHITE_STATUE_ENTRANCE_DOWN_LEFT,
+	WHITE_STATUE_ENTRANCE_DOWN_RIGHT,
+
+	WHITE_STATUE_ENTRANCE_UP_ALT,
+
+	GREEN_SAND,
+	ORANGE_SAND,
+	WHITE_SAND,
+
+	EMPTY_GRAY,
+
+	WHITE_BRIDGE,
+	WHITE_BUSH;
 
 	public static Tile parseID(int id)
 	{
@@ -112,6 +159,7 @@ public enum Tile
 			return CBOX;
 		case 0:
 			return EMPTY;
+
 		case 1:
 			return ROCKS_GREEN_UP_LEFT;
 		case 2:
@@ -126,7 +174,7 @@ public enum Tile
 			return ROCKS_GREEN_DOWN_RIGHT;
 		case 7:
 			return ROCKS_GREEN_SINGLE;
-			
+
 		case 8:
 			return ROCKS_ORANGE_UP_LEFT;
 		case 9:
@@ -279,6 +327,94 @@ public enum Tile
 		case 77:
 			return ROCKS_DARK_ORANGE_DOWN_RIGHT;
 
+		case 78:
+			return ROCKS_WHITE_UP_LEFT;
+		case 79:
+			return ROCKS_WHITE_UP;
+		case 80:
+			return ROCKS_WHITE_UP_RIGHT;
+		case 81:
+			return ROCKS_WHITE_DOWN_LEFT;
+		case 82:
+			return ROCKS_WHITE_DOWN;
+		case 83:
+			return ROCKS_WHITE_DOWN_RIGHT;
+		case 84:
+			return ROCKS_WHITE_SINGLE;
+
+		case 85:
+			return WHITE_GRAVE;
+		case 86:
+			return WHITE_LADDER;
+		case 87:
+			return WHITE_STAIRS;
+
+		case 88:
+			return WHITE_WATER_UP_LEFT;
+		case 89:
+			return WHITE_WATER_UP;
+		case 90:
+			return WHITE_WATER_UP_RIGHT;
+		case 91:
+			return WHITE_WATER_LEFT;
+		case 92:
+			return WHITE_WATER_CENTER;
+		case 93:
+			return WHITE_WATER_RIGHT;
+		case 94:
+			return WHITE_WATER_DOWN_LEFT;
+		case 95:
+			return WHITE_WATER_DOWN;
+		case 96:
+			return WHITE_WATER_DOWN_RIGHT;
+		case 97:
+			return WHITE_WATER_CORNER_UP_LEFT;
+		case 98:
+			return WHITE_WATER_CORNER_UP_RIGHT;
+		case 99:
+			return WHITE_WATER_CORNER_DOWN_LEFT;
+		case 100:
+			return WHITE_WATER_CORNER_DOWN_RIGHT;
+
+		case 101:
+			return WHITE_TREE_ENTRANCE_UP_LEFT;
+		case 102:
+			return WHITE_TREE_ENTRANCE_UP;
+		case 103:
+			return WHITE_TREE_ENTRANCE_UP_RIGHT;
+		case 104:
+			return WHITE_TREE_ENTRANCE_DOWN_LEFT;
+		case 105:
+			return WHITE_TREE_ENTRANCE_DOWN_RIGHT;
+
+		case 106:
+			return WHITE_STATUE_ENTRANCE_UP_LEFT;
+		case 107:
+			return WHITE_STATUE_ENTRANCE_UP;
+		case 108:
+			return WHITE_STATUE_ENTRANCE_UP_RIGHT;
+		case 109:
+			return WHITE_STATUE_ENTRANCE_DOWN_LEFT;
+		case 110:
+			return WHITE_STATUE_ENTRANCE_DOWN_RIGHT;
+		case 111:
+			return WHITE_STATUE_ENTRANCE_UP_ALT;
+
+		case 112:
+			return GREEN_SAND;
+		case 113:
+			return ORANGE_SAND;
+		case 114:
+			return WHITE_SAND;
+
+		case 115:
+			return EMPTY_GRAY;
+
+		case 116:
+			return WHITE_BRIDGE;
+		case 117:
+			return WHITE_BUSH;
+
 		default:
 			return null;
 		}
@@ -288,10 +424,10 @@ public enum Tile
 	{
 		switch(this)
 		{
-		case CBOX:
-			return -1;
 		case EMPTY:
 			return 0;
+		case CBOX:
+			return -1;
 
 		case ROCKS_GREEN_UP_LEFT:
 			return 1;
@@ -459,6 +595,94 @@ public enum Tile
 		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
 			return 77;
 
+		case ROCKS_WHITE_UP_LEFT:
+			return 78;
+		case ROCKS_WHITE_UP:
+			return 79;
+		case ROCKS_WHITE_UP_RIGHT:
+			return 80;
+		case ROCKS_WHITE_DOWN_LEFT:
+			return 81;
+		case ROCKS_WHITE_DOWN:
+			return 82;
+		case ROCKS_WHITE_DOWN_RIGHT:
+			return 83;
+		case ROCKS_WHITE_SINGLE:
+			return 84;
+
+		case WHITE_GRAVE:
+			return 85;
+		case WHITE_LADDER:
+			return 86;
+		case WHITE_STAIRS:
+			return 87;
+
+		case WHITE_WATER_UP_LEFT:
+			return 88;
+		case WHITE_WATER_UP:
+			return 89;
+		case WHITE_WATER_UP_RIGHT:
+			return 90;
+		case WHITE_WATER_LEFT:
+			return 91;
+		case WHITE_WATER_CENTER:
+			return 92;
+		case WHITE_WATER_RIGHT:
+			return 93;
+		case WHITE_WATER_DOWN_LEFT:
+			return 94;
+		case WHITE_WATER_DOWN:
+			return 95;
+		case WHITE_WATER_DOWN_RIGHT:
+			return 96;
+		case WHITE_WATER_CORNER_UP_LEFT:
+			return 97;
+		case WHITE_WATER_CORNER_UP_RIGHT:
+			return 98;
+		case WHITE_WATER_CORNER_DOWN_LEFT:
+			return 99;
+		case WHITE_WATER_CORNER_DOWN_RIGHT:
+			return 100;
+
+		case WHITE_TREE_ENTRANCE_UP_LEFT:
+			return 101;
+		case WHITE_TREE_ENTRANCE_UP:
+			return 102;
+		case WHITE_TREE_ENTRANCE_UP_RIGHT:
+			return 103;
+		case WHITE_TREE_ENTRANCE_DOWN_LEFT:
+			return 104;
+		case WHITE_TREE_ENTRANCE_DOWN_RIGHT:
+			return 105;
+
+		case WHITE_STATUE_ENTRANCE_UP_LEFT:
+			return 106;
+		case WHITE_STATUE_ENTRANCE_UP:
+			return 107;
+		case WHITE_STATUE_ENTRANCE_UP_RIGHT:
+			return 108;
+		case WHITE_STATUE_ENTRANCE_DOWN_LEFT:
+			return 109;
+		case WHITE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return 110;
+		case WHITE_STATUE_ENTRANCE_UP_ALT:
+			return 111;
+
+		case GREEN_SAND:
+			return 112;
+		case ORANGE_SAND:
+			return 113;
+		case WHITE_SAND:
+			return 114;
+
+		case EMPTY_GRAY:
+			return 115;
+
+		case WHITE_BRIDGE:
+			return 116;
+		case WHITE_BUSH:
+			return 117;
+
 		default:
 			return 0;
 		}
@@ -472,7 +696,7 @@ public enum Tile
 			return new BufferedImage(16, 16, BufferedImage.TYPE_INT_RGB);
 		case EMPTY:
 			return Images.Blocks.EMPTY;
-			
+
 		case ROCKS_GREEN_UP_LEFT:
 			return Images.Blocks.Rocks.ROCKS_GREEN_UP_LEFT;
 		case ROCKS_GREEN_UP:
@@ -487,7 +711,7 @@ public enum Tile
 			return Images.Blocks.Rocks.ROCKS_GREEN_DOWN_RIGHT;
 		case ROCKS_GREEN_SINGLE:
 			return Images.Blocks.Rocks.ROCKS_GREEN_SINGLE;
-			
+
 		case ROCKS_ORANGE_UP_LEFT:
 			return Images.Blocks.Rocks.ROCKS_ORANGE_UP_LEFT;
 		case ROCKS_ORANGE_UP:
@@ -509,7 +733,7 @@ public enum Tile
 			return Images.Blocks.Green.LADDER;
 		case GREEN_STAIRS:
 			return Images.Blocks.Green.STAIRS;
-				
+
 		case GREEN_WATER_UP_LEFT:
 			return Images.Blocks.Green.Water.WATER_UP_LEFT;
 		case GREEN_WATER_UP:
@@ -640,6 +864,90 @@ public enum Tile
 			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_DOWN;
 		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
 			return Images.Blocks.Rocks.ROCKS_DARK_ORANGE_DOWN_RIGHT;
+
+		case ROCKS_WHITE_UP_LEFT:
+			return Images.Blocks.Rocks.ROCKS_WHITE_UP_LEFT;
+		case ROCKS_WHITE_UP:
+			return Images.Blocks.Rocks.ROCKS_WHITE_UP;
+		case ROCKS_WHITE_UP_RIGHT:
+			return Images.Blocks.Rocks.ROCKS_WHITE_UP_RIGHT;
+		case ROCKS_WHITE_DOWN_LEFT:
+			return Images.Blocks.Rocks.ROCKS_WHITE_DOWN_LEFT;
+		case ROCKS_WHITE_DOWN:
+			return Images.Blocks.Rocks.ROCKS_WHITE_DOWN;
+		case ROCKS_WHITE_DOWN_RIGHT:
+			return Images.Blocks.Rocks.ROCKS_WHITE_DOWN_RIGHT;
+		case ROCKS_WHITE_SINGLE:
+			return Images.Blocks.Rocks.ROCKS_WHITE_SINGLE;
+		case WHITE_GRAVE:
+			return Images.Blocks.White.GRAVE;
+		case WHITE_LADDER:
+			return Images.Blocks.White.LADDER;
+		case WHITE_STAIRS:
+			return Images.Blocks.White.STAIRS;
+		case WHITE_WATER_UP_LEFT:
+			return Images.Blocks.White.Water.WATER_UP_LEFT;
+		case WHITE_WATER_UP:
+			return Images.Blocks.White.Water.WATER_UP;
+		case WHITE_WATER_UP_RIGHT:
+			return Images.Blocks.White.Water.WATER_UP_RIGHT;
+		case WHITE_WATER_LEFT:
+			return Images.Blocks.White.Water.WATER_LEFT;
+		case WHITE_WATER_CENTER:
+			return Images.Blocks.White.Water.WATER_CENTER;
+		case WHITE_WATER_RIGHT:
+			return Images.Blocks.White.Water.WATER_RIGHT;
+		case WHITE_WATER_DOWN_LEFT:
+			return Images.Blocks.White.Water.WATER_DOWN_LEFT;
+		case WHITE_WATER_DOWN:
+			return Images.Blocks.White.Water.WATER_DOWN;
+		case WHITE_WATER_DOWN_RIGHT:
+			return Images.Blocks.White.Water.WATER_DOWN_RIGHT;
+		case WHITE_WATER_CORNER_UP_LEFT:
+			return Images.Blocks.White.Water.WATER_CORNER_UP_LEFT;
+		case WHITE_WATER_CORNER_UP_RIGHT:
+			return Images.Blocks.White.Water.WATER_CORNER_UP_RIGHT;
+		case WHITE_WATER_CORNER_DOWN_LEFT:
+			return Images.Blocks.White.Water.WATER_CORNER_DOWN_LEFT;
+		case WHITE_WATER_CORNER_DOWN_RIGHT:
+			return Images.Blocks.White.Water.WATER_CORNER_DOWN_RIGHT;
+		case WHITE_TREE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.White.Entrances.TREE_ENTRANCE_UP_LEFT;
+		case WHITE_TREE_ENTRANCE_UP:
+			return Images.Blocks.White.Entrances.TREE_ENTRANCE_UP;
+		case WHITE_TREE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.White.Entrances.TREE_ENTRANCE_UP_RIGHT;
+		case WHITE_TREE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.White.Entrances.TREE_ENTRANCE_DOWN_LEFT;
+		case WHITE_TREE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.White.Entrances.TREE_ENTRANCE_DOWN_RIGHT;
+		case WHITE_STATUE_ENTRANCE_UP_LEFT:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_UP_LEFT;
+		case WHITE_STATUE_ENTRANCE_UP:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_UP;
+		case WHITE_STATUE_ENTRANCE_UP_RIGHT:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_UP_RIGHT;
+		case WHITE_STATUE_ENTRANCE_DOWN_LEFT:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_DOWN_LEFT;
+		case WHITE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_DOWN_RIGHT;
+		case WHITE_STATUE_ENTRANCE_UP_ALT:
+			return Images.Blocks.White.Entrances.STATUE_ENTRANCE_UP_ALT;
+
+		case GREEN_SAND:
+			return Images.Blocks.Green.SAND;
+		case ORANGE_SAND:
+			return Images.Blocks.Orange.SAND;
+		case WHITE_SAND:
+			return Images.Blocks.White.SAND;
+
+		case EMPTY_GRAY:
+			return Images.Blocks.EMPTY_GRAY;
+
+		case WHITE_BRIDGE:
+			return Images.Blocks.White.BRIDGE;
+		case WHITE_BUSH:
+			return Images.Blocks.White.BUSH;
 		}
 		return null;
 	}
@@ -652,7 +960,7 @@ public enum Tile
 			return false;
 		case EMPTY:
 			return true;
-			
+
 		case ROCKS_GREEN_UP_LEFT:
 			return false;
 		case ROCKS_GREEN_UP:
@@ -667,7 +975,7 @@ public enum Tile
 			return false;
 		case ROCKS_GREEN_SINGLE:
 			return false;
-			
+
 		case ROCKS_ORANGE_UP_LEFT:
 			return false;
 		case ROCKS_ORANGE_UP:
@@ -752,7 +1060,7 @@ public enum Tile
 			return true;
 
 		case ENTRANCE:
-			return true;
+			return false;
 
 		case GREEN_BRIDGE:
 			return true;
@@ -820,7 +1128,93 @@ public enum Tile
 			return false;
 		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
 			return false;
-		case ROCKS_DARK_ORANGE_SINGLE:
+
+		case ROCKS_WHITE_UP_LEFT:
+			return false;
+		case ROCKS_WHITE_UP:
+			return false;
+		case ROCKS_WHITE_UP_RIGHT:
+			return false;
+		case ROCKS_WHITE_DOWN_LEFT	:
+			return false;
+		case ROCKS_WHITE_DOWN:
+			return false;
+		case ROCKS_WHITE_DOWN_RIGHT:
+			return false;
+		case ROCKS_WHITE_SINGLE:
+			return false;
+
+		case WHITE_GRAVE:
+			return false;
+		case WHITE_LADDER:
+			return true;
+		case WHITE_STAIRS:
+			return false;
+
+		case WHITE_WATER_UP_LEFT:
+			return false;
+		case WHITE_WATER_UP:
+			return false;
+		case WHITE_WATER_UP_RIGHT:
+			return false;
+		case WHITE_WATER_LEFT:
+			return false;
+		case WHITE_WATER_CENTER:
+			return false;
+		case WHITE_WATER_RIGHT:
+			return false;
+		case WHITE_WATER_DOWN_LEFT:
+			return false;
+		case WHITE_WATER_DOWN:
+			return false;
+		case WHITE_WATER_DOWN_RIGHT:
+			return false;
+		case WHITE_WATER_CORNER_UP_LEFT:
+			return false;
+		case WHITE_WATER_CORNER_UP_RIGHT:
+			return false;
+		case WHITE_WATER_CORNER_DOWN_LEFT:
+			return false;
+		case WHITE_WATER_CORNER_DOWN_RIGHT:
+			return false;
+
+		case WHITE_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case WHITE_TREE_ENTRANCE_UP:
+			return false;
+		case WHITE_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case WHITE_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case WHITE_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case WHITE_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP_ALT:
+			return false;
+
+		case GREEN_SAND:
+			return true;
+		case ORANGE_SAND:
+			return true;
+		case WHITE_SAND:
+			return true;
+
+		case EMPTY_GRAY:
+			return true;
+
+		case WHITE_BRIDGE:
+			return true;
+		case WHITE_BUSH:
 			return false;
 
 		default:

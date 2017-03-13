@@ -1,6 +1,6 @@
-package components.weapons;
+package components.items.weapons;
 
-import components.map.MapItem;
+import components.items.MapItem;
 
 import java.awt.*;
 
