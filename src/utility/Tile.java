@@ -952,6 +952,276 @@ public enum Tile
 		return null;
 	}
 
+	public boolean isWater()
+	{
+		switch(this)
+		{
+		case CBOX:
+			return false;
+		case EMPTY:
+			return false;
+
+		case ROCKS_GREEN_UP_LEFT:
+			return false;
+		case ROCKS_GREEN_UP:
+			return false;
+		case ROCKS_GREEN_UP_RIGHT:
+			return false;
+		case ROCKS_GREEN_DOWN_LEFT:
+			return false;
+		case ROCKS_GREEN_DOWN:
+			return false;
+		case ROCKS_GREEN_DOWN_RIGHT:
+			return false;
+		case ROCKS_GREEN_SINGLE:
+			return false;
+
+		case ROCKS_ORANGE_UP_LEFT:
+			return false;
+		case ROCKS_ORANGE_UP:
+			return false;
+		case ROCKS_ORANGE_UP_RIGHT:
+			return false;
+		case ROCKS_ORANGE_DOWN_LEFT:
+			return false;
+		case ROCKS_ORANGE_DOWN:
+			return false;
+		case ROCKS_ORANGE_DOWN_RIGHT:
+			return false;
+		case ROCKS_ORANGE_SINGLE:
+			return false;
+
+		case GREEN_BUSH:
+			return false;
+		case GREEN_LADDER:
+			return false;
+		case GREEN_STAIRS:
+			return false;
+
+		case GREEN_WATER_UP_LEFT:
+			return false;
+		case GREEN_WATER_UP:
+			return false;
+		case GREEN_WATER_UP_RIGHT:
+			return false;
+		case GREEN_WATER_LEFT:
+			return false;
+		case GREEN_WATER_CENTER:
+			return true;
+		case GREEN_WATER_RIGHT:
+			return false;
+		case GREEN_WATER_DOWN_LEFT:
+			return false;
+		case GREEN_WATER_DOWN:
+			return false;
+		case GREEN_WATER_DOWN_RIGHT:
+			return false;
+		case GREEN_WATER_CORNER_UP_LEFT:
+			return false;
+		case GREEN_WATER_CORNER_UP_RIGHT:
+			return false;
+		case GREEN_WATER_CORNER_DOWN_LEFT:
+			return false;
+		case GREEN_WATER_CORNER_DOWN_RIGHT:
+			return false;
+
+		case ORANGE_BUSH:
+			return false;
+		case ORANGE_LADDER:
+			return false;
+		case ORANGE_STAIRS:
+			return false;
+
+		case ORANGE_WATER_UP_LEFT:
+			return false;
+		case ORANGE_WATER_UP:
+			return false;
+		case ORANGE_WATER_UP_RIGHT:
+			return false;
+		case ORANGE_WATER_LEFT:
+			return false;
+		case ORANGE_WATER_CENTER:
+			return true;
+		case ORANGE_WATER_RIGHT:
+			return false;
+		case ORANGE_WATER_DOWN_LEFT:
+			return false;
+		case ORANGE_WATER_DOWN:
+			return false;
+		case ORANGE_WATER_DOWN_RIGHT:
+			return false;
+		case ORANGE_WATER_CORNER_UP_LEFT:
+			return false;
+		case ORANGE_WATER_CORNER_UP_RIGHT:
+			return false;
+		case ORANGE_WATER_CORNER_DOWN_LEFT:
+			return false;
+		case ORANGE_WATER_CORNER_DOWN_RIGHT:
+			return false;
+
+		case ENTRANCE:
+			return false;
+
+		case GREEN_BRIDGE:
+			return false;
+		case ORANGE_BRIDGE:
+			return false;
+
+		case GREEN_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case GREEN_TREE_ENTRANCE_UP:
+			return false;
+		case GREEN_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case GREEN_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case GREEN_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case GREEN_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_UP:
+			return false;
+		case GREEN_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case GREEN_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case ORANGE_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_UP:
+			return false;
+		case ORANGE_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case ORANGE_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case ORANGE_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case GREEN_STATUE_ENTRANCE_UP_ALT:
+			return false;
+		case ORANGE_STATUE_ENTRANCE_UP_ALT:
+			return false;
+
+		case ROCKS_DARK_ORANGE_UP_LEFT:
+			return false;
+		case ROCKS_DARK_ORANGE_UP:
+			return false;
+		case ROCKS_DARK_ORANGE_UP_RIGHT:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN_LEFT:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN:
+			return false;
+		case ROCKS_DARK_ORANGE_DOWN_RIGHT:
+			return false;
+
+		case ROCKS_WHITE_UP_LEFT:
+			return false;
+		case ROCKS_WHITE_UP:
+			return false;
+		case ROCKS_WHITE_UP_RIGHT:
+			return false;
+		case ROCKS_WHITE_DOWN_LEFT	:
+			return false;
+		case ROCKS_WHITE_DOWN:
+			return false;
+		case ROCKS_WHITE_DOWN_RIGHT:
+			return false;
+		case ROCKS_WHITE_SINGLE:
+			return false;
+
+		case WHITE_GRAVE:
+			return false;
+		case WHITE_LADDER:
+			return false;
+		case WHITE_STAIRS:
+			return false;
+
+		case WHITE_WATER_UP_LEFT:
+			return false;
+		case WHITE_WATER_UP:
+			return false;
+		case WHITE_WATER_UP_RIGHT:
+			return false;
+		case WHITE_WATER_LEFT:
+			return false;
+		case WHITE_WATER_CENTER:
+			return true;
+		case WHITE_WATER_RIGHT:
+			return false;
+		case WHITE_WATER_DOWN_LEFT:
+			return false;
+		case WHITE_WATER_DOWN:
+			return false;
+		case WHITE_WATER_DOWN_RIGHT:
+			return false;
+		case WHITE_WATER_CORNER_UP_LEFT:
+			return false;
+		case WHITE_WATER_CORNER_UP_RIGHT:
+			return false;
+		case WHITE_WATER_CORNER_DOWN_LEFT:
+			return false;
+		case WHITE_WATER_CORNER_DOWN_RIGHT:
+			return false;
+
+		case WHITE_TREE_ENTRANCE_UP_LEFT:
+			return false;
+		case WHITE_TREE_ENTRANCE_UP:
+			return false;
+		case WHITE_TREE_ENTRANCE_UP_RIGHT:
+			return false;
+		case WHITE_TREE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case WHITE_TREE_ENTRANCE_DOWN_RIGHT:
+			return false;
+
+		case WHITE_STATUE_ENTRANCE_UP_LEFT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP_RIGHT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_DOWN_LEFT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_DOWN_RIGHT:
+			return false;
+		case WHITE_STATUE_ENTRANCE_UP_ALT:
+			return false;
+
+		case GREEN_SAND:
+			return false;
+		case ORANGE_SAND:
+			return false;
+		case WHITE_SAND:
+			return false;
+
+		case EMPTY_GRAY:
+			return false;
+
+		case WHITE_BRIDGE:
+			return false;
+		case WHITE_BUSH:
+			return false;
+
+		default:
+			return false;
+		}
+	}
+
 	public boolean isPassible()
 	{
 		switch(this)

@@ -391,7 +391,11 @@
 	</ROOM>
 	<ROOM id = "4-3">
 		<ENEMIES>
-
+			<ENEMY>
+				<TYPE>PEAHAT</TYPE>
+				<COL>5</COL>
+				<ROW>5</ROW>
+			</ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -403,26 +407,26 @@
 	</ROOM>
 	<ROOM id = "4-4">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-                <COL>2</COL>
-                <ROW>4</ROW>
-			</ENEMY>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>6</COL>
-                <ROW>6</ROW>
-            </ENEMY>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>10</COL>
-                <ROW>3</ROW>
-            </ENEMY>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>13</COL>
-                <ROW>6</ROW>
-            </ENEMY>
+			<!--<ENEMY>-->
+				<!--<TYPE>OCTOROK</TYPE>-->
+                <!--<COL>2</COL>-->
+                <!--<ROW>4</ROW>-->
+			<!--</ENEMY>-->
+            <!--<ENEMY>-->
+                <!--<TYPE>OCTOROK</TYPE>-->
+                <!--<COL>6</COL>-->
+                <!--<ROW>6</ROW>-->
+            <!--</ENEMY>-->
+            <!--<ENEMY>-->
+                <!--<TYPE>OCTOROK</TYPE>-->
+                <!--<COL>10</COL>-->
+                <!--<ROW>3</ROW>-->
+            <!--</ENEMY>-->
+            <!--<ENEMY>-->
+                <!--<TYPE>OCTOROK</TYPE>-->
+                <!--<COL>13</COL>-->
+                <!--<ROW>6</ROW>-->
+            <!--</ENEMY>-->
 		</ENEMIES>
 
 		<WARPS>

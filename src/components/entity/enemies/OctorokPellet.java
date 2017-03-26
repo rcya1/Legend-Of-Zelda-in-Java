@@ -52,7 +52,7 @@ class OctorokPellet
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);
-		g2d.drawImage(Images.Enemies.OCTOROK_PELLET, drawX - width / 2, drawY - width / 2, width, height, null);
+		g2d.drawImage(Images.Enemies.Octorok.OCTOROK_PELLET, drawX - width / 2, drawY - width / 2, width, height, null);
 		g2d.setTransform(transform);
 	}
 

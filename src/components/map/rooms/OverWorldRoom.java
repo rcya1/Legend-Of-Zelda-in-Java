@@ -259,6 +259,11 @@ public class OverWorldRoom implements RoomBase
 		return mapItems;
 	}
 
+	public Link getLink()
+	{
+		return link;
+	}
+
 	private void drawDebug(Graphics2D g2d)
 	{
 		for(int i = 0; i < numOfColumns; i++)

@@ -31,7 +31,8 @@ public class Tektite extends Enemy
 		moveSpeed = 0;
 		state = "IDLE";
 
-		animation = new Animation(10, true, Images.Enemies.TEKTITE_1, Images.Enemies.TEKTITE_2);
+		animation = new Animation(10, true, Images.Enemies.Tektite.TEKTITE_1,
+				Images.Enemies.Tektite.TEKTITE_2);
 
 		health = 2;
 		damage = 4;

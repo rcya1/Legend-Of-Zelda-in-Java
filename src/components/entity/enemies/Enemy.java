@@ -15,6 +15,7 @@ public abstract class Enemy extends Entity
 
 	public void update()
 	{
+		checkDamageCollisions();
 		if(invincibilityFrames > 0) invincibilityFrames--;
 		if(health < 0)
 		{

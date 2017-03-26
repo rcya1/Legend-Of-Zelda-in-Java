@@ -241,6 +241,11 @@ public class SecretRoom implements RoomBase
 		return metadata;
 	}
 
+	public Link getLink()
+	{
+		return link;
+	}
+
 	public void addCollectible(Collectible collectible)
 	{
 

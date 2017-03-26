@@ -1,10 +1,8 @@
 package utility;
 
+import components.entity.enemies.*;
 import components.map.OverWorld;
 import components.entity.Direction;
-import components.entity.enemies.Enemy;
-import components.entity.enemies.Octorok;
-import components.entity.enemies.Tektite;
 import components.map.WarpTile;
 
 import java.io.BufferedReader;
@@ -74,6 +72,40 @@ public class MapFactory
 				row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
 				(overWorld.getLoadingRoom() != null) ?
 						overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "OCTOROK-BLUE":
+			return new OctorokBlue(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+					Direction.getRandom(),
+					(overWorld.getLoadingRoom() != null) ?
+							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "LEEVER":
+			return new Leever(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+					Direction.getRandom(),
+					(overWorld.getLoadingRoom() != null) ?
+							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "LEEVER-BLUE":
+			return new LeeverBlue(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+					Direction.getRandom(),
+					(overWorld.getLoadingRoom() != null) ?
+							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "PEAHAT":
+			return new Peahat(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+					(int) (Math.random() * 8),
+					(overWorld.getLoadingRoom() != null) ?
+							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+		case "ZOLA":
+			return new Zola(col * overWorld.getWidthOfTile()
+					+ overWorld.getWidthOfTile() / 2,
+					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
+					(overWorld.getLoadingRoom() != null) ?
+							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
 		default:
 			return null;
 		}

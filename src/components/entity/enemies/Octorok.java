@@ -1,5 +1,6 @@
 package components.entity.enemies;
 
+import components.map.rooms.RoomBase;
 import utility.Animation;
 import components.map.rooms.OverWorldRoom;
 import components.entity.Direction;
@@ -13,11 +14,11 @@ public class Octorok extends Enemy
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	private final Animation animation;
+	Animation animation;
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, OverWorldRoom room)
+	public Octorok(int x, int y, Direction direction, RoomBase room)
 	{
 		this.x = x;
 		this.y = y;
@@ -35,7 +36,7 @@ public class Octorok extends Enemy
 		moveSpeed = 0.75;
 		state = "MOVING";
 
-		animation = new Animation(20, true, Images.Enemies.OCTOROK_1, Images.Enemies.OCTOROK_2);
+		animation = new Animation(20, true, Images.Enemies.Octorok.OCTOROK_1, Images.Enemies.Octorok.OCTOROK_2);
 
 		pellet = null;
 
@@ -97,8 +98,6 @@ public class Octorok extends Enemy
 		}
 
 		if(movementRefreshTimer > 0) movementRefreshTimer --;
-
-		checkDamageCollisions();
 
 		super.update();
 	}

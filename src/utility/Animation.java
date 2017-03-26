@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Animation
 {
-	private final int speed;
+	private int speed;
 	private final int frameCount;
 
 	private int timer;
@@ -80,6 +80,11 @@ public class Animation
 		}
 	}
 
+	public void reset()
+	{
+		index = 0;
+	}
+
 	public int getIndex()
 	{
 		return index;
@@ -98,5 +103,16 @@ public class Animation
 	public int getHeight()
 	{
 		return currentImage.getHeight();
+	}
+
+	public void setSpeed(int speed)
+	{
+		this.speed = speed;
+		if(timer > speed) timer = speed;
+	}
+
+	public int getSpeed()
+	{
+		return speed;
 	}
 }

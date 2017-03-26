@@ -562,25 +562,129 @@ public class Images
 	{
 		public static final BufferedImage ENEMY_DEATH = loadSingleImage("/textures/sprites/enemies/Death.png");
 
-		private static final BufferedImage OCTOROK_SPRITES = loadSingleImage("/textures/sprites/enemies/octorok/OctorokSprites.png");
+		public static class Octorok
+		{
+			private static final BufferedImage OCTOROK = loadSingleImage("/textures/sprites/enemies/octorok/Octorok.png");
 
-		public static final BufferedImage OCTOROK_1 = OCTOROK_SPRITES != null ?
-				OCTOROK_SPRITES.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
-				null;
-		public static final BufferedImage OCTOROK_2 = OCTOROK_SPRITES != null ?
-				OCTOROK_SPRITES.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
-				null;
+			public static final BufferedImage OCTOROK_1 = OCTOROK != null ?
+					OCTOROK.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage OCTOROK_2 = OCTOROK != null ?
+					OCTOROK.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 
-		public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/textures/sprites/enemies/octorok/Pellet.png");
+			private static final BufferedImage OCTOROK_BLUE = loadSingleImage("/textures/sprites/enemies/octorok/OctorokBlue.png");
 
-		private static final BufferedImage TEKTITE_SPRITES = loadSingleImage("/textures/sprites/enemies/tektite/Tektite.png");
+			public static final BufferedImage OCTOROK_BLUE_1 = OCTOROK_BLUE != null ?
+					OCTOROK_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage OCTOROK_BLUE_2 = OCTOROK_BLUE != null ?
+					OCTOROK_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 
-		public static final BufferedImage TEKTITE_1 = TEKTITE_SPRITES != null ?
-				TEKTITE_SPRITES.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
-				null;
-		public static final BufferedImage TEKTITE_2 = TEKTITE_SPRITES != null ?
-				TEKTITE_SPRITES.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
-				null;
+			public static final BufferedImage OCTOROK_PELLET = loadSingleImage("/textures/sprites/enemies/octorok/Pellet.png");
+		}
+
+		public static class Tektite
+		{
+			private static final BufferedImage TEKTITE = loadSingleImage("/textures/sprites/enemies/tektite/Tektite.png");
+
+			public static final BufferedImage TEKTITE_1 = TEKTITE != null ?
+					TEKTITE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage TEKTITE_2 = TEKTITE != null ?
+					TEKTITE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
+
+		public static class Leever
+		{
+			private static final BufferedImage LEEVER = loadSingleImage("/textures/sprites/enemies/leever/Leever.png");
+
+			public static final BufferedImage LEEVER_1 = LEEVER != null ?
+					LEEVER.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_2 = LEEVER != null ?
+					LEEVER.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_MIDBURROW = LEEVER != null ?
+					LEEVER.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LEEVER_BURROW_1 = LEEVER != null ?
+					LEEVER.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_BURROW_2 = LEEVER != null ?
+					LEEVER.getSubimage(TILE_WIDTH * 4, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			private static final BufferedImage LEEVER_BLUE = loadSingleImage("/textures/sprites/enemies/leever/LeeverBlue.png");
+
+			public static final BufferedImage LEEVER_BLUE_1 = LEEVER_BLUE != null ?
+					LEEVER_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_BLUE_2 = LEEVER_BLUE != null ?
+					LEEVER_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_BLUE_MIDBURROW = LEEVER_BLUE != null ?
+					LEEVER_BLUE.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LEEVER_BLUE_BURROW_1 = LEEVER_BLUE != null ?
+					LEEVER_BLUE.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LEEVER_BLUE_BURROW_2 = LEEVER_BLUE != null ?
+					LEEVER_BLUE.getSubimage(TILE_WIDTH * 4, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
+
+		public static class Peahat
+		{
+			private static final BufferedImage PEAHAT = loadSingleImage("/textures/sprites/enemies/peahat/Peahat.png");
+
+			public static final BufferedImage PEAHAT_1 = PEAHAT != null ?
+					PEAHAT.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage PEAHAT_2 = PEAHAT != null ?
+					PEAHAT.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
+
+		public static class Zola
+		{
+			private static final BufferedImage ZOLA = loadSingleImage("/textures/sprites/enemies/zola/Zola.png");
+
+			public static final BufferedImage ZOLA_FRONT = ZOLA != null ?
+					ZOLA.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_BACK = ZOLA != null ?
+					ZOLA.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			private static final BufferedImage ZOLA_FIREBALL = loadSingleImage("/textures/sprites/enemies/zola/ZolaFireball.png");
+
+			public static final BufferedImage ZOLA_FIREBALL_1 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_2 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_3 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_4 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_5 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_6 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_FIREBALL_7 = ZOLA_FIREBALL != null ?
+					ZOLA_FIREBALL.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
 	}
 
 	public static class Menu
