@@ -111,8 +111,7 @@ public class Images
 	{
 		private static final BufferedImage LINK_WALK = loadSingleImage("/textures/sprites/link/LinkWalk.png");
 		private static final BufferedImage LINK_ATTACK_SWORD = loadSingleImage("/textures/sprites/link/LinkAttackSword.png");
-
-		public static final BufferedImage SWORD = loadSingleImage("/textures/sprites/link/items/Sword.png");
+		private static final BufferedImage LINK_ITEM = loadSingleImage("/textures/sprites/link/LinkItem.png");
 
 		public static final BufferedImage LINK_DOWN = LINK_WALK != null ?
 				LINK_WALK.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
@@ -146,7 +145,6 @@ public class Images
 				null;
 
 
-
 		public static final BufferedImage LINK_ATTACK_SWORD_UP = LINK_ATTACK_SWORD != null ?
 				LINK_ATTACK_SWORD.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
@@ -159,6 +157,27 @@ public class Images
 		public static final BufferedImage LINK_ATTACK_SWORD_LEFT = LINK_ATTACK_SWORD != null ?
 				LINK_ATTACK_SWORD.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
 				null;
+
+
+		public static final BufferedImage LINK_ITEM_UP = LINK_ITEM != null ?
+				LINK_ITEM.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage LINK_ITEM_RIGHT = LINK_ITEM != null ?
+				LINK_ITEM.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage LINK_ITEM_DOWN = LINK_ITEM != null ?
+				LINK_ITEM.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage LINK_ITEM_LEFT = LINK_ITEM != null ?
+				LINK_ITEM.getSubimage(TILE_WIDTH * 3, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+
+		public static final BufferedImage SWORD = loadSingleImage("/textures/sprites/link/items/Sword.png");
+
+		public static class Items
+		{
+			public static final BufferedImage ARROW = loadSingleImage("/textures/sprites/link/items/Arrow.png");
+		}
 	}
 
 	public static class Blocks

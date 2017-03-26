@@ -83,6 +83,8 @@ public class OverWorldRoom implements RoomBase
 
 			if(link.getSword() != null) enemy.setSword(link.getSword());
 			else enemy.setSword(null);
+			if(link.getArrow() != null) enemy.setArrow(link.getArrow());
+			else enemy.setArrow(null);
 
 			enemy.update();
 

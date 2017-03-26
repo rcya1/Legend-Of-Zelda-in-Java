@@ -40,12 +40,9 @@ public class Sword extends Weapon
 
 	public void draw(Graphics2D g2d)
 	{
-		int drawX = x;
-		int drawY = y;
-
 		AffineTransform transform = g2d.getTransform();
-		g2d.rotate(direction.getRadians(), drawX, drawY);
-		g2d.drawImage(Images.Link.SWORD, drawX - width / 2, drawY - width / 2, width, height, null);
+		g2d.rotate(direction.getRadians(), x, y);
+		g2d.drawImage(Images.Link.SWORD, x - width / 2, y - width / 2, width, height, null);
 		g2d.setTransform(transform);
 	}
 

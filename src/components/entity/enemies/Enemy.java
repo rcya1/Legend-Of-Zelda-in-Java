@@ -2,14 +2,16 @@ package components.entity.enemies;
 
 import components.entity.Entity;
 import components.items.collectibles.Heart;
+import components.items.weapons.Arrow;
 import components.items.weapons.Sword;
 import components.items.weapons.Weapon;
 
 public abstract class Enemy extends Entity
 {
 	private Sword sword = null;
+	private Arrow arrow = null;
 
-	private Weapon[] weapons = {sword};
+	private Weapon[] weapons = {sword, arrow};
 
 	int damage;
 
@@ -44,7 +46,13 @@ public abstract class Enemy extends Entity
 	public void setSword(Sword sword)
 	{
 		this.sword = sword;
-		weapons = new Weapon[] {sword};
+		weapons = new Weapon[] {sword, arrow};
+	}
+
+	public void setArrow(Arrow arrow)
+	{
+		this.arrow = arrow;
+		weapons = new Weapon[] {sword, arrow};
 	}
 
 	public int getDamage()

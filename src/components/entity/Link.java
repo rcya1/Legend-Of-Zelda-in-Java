@@ -1,5 +1,8 @@
 package components.entity;
 
+import components.items.player.Bow;
+import components.items.player.Item;
+import components.items.weapons.Arrow;
 import utility.Animation;
 import components.map.OverWorld;
 import components.map.rooms.RoomBase;
@@ -35,9 +38,15 @@ public class Link extends Entity
 	private boolean inputRight;
 	private boolean inputDown;
 	private boolean inputAttack;
+	private boolean inputItem;
 
 	private Sword sword;
 	private int swordTimer;
+
+	private Item item;
+	private int itemTimer;
+
+	private Arrow arrow;
 
 	private final Animation walkUp;
 	private final Animation walkRight;
@@ -82,6 +91,8 @@ public class Link extends Entity
 		health = 24;
 		healthContainers = 3;
 		maxHealthContainers = 16;
+
+		item = null;
 	}
 
 	public void update()
@@ -159,6 +170,17 @@ public class Link extends Entity
 				sword = null;
 			}
 			break;
+		case "ITEM_USE":
+			if(item != null)
+			{
+				if(itemTimer == 0) itemTimer = 30;
+				if(itemTimer == 20) item.action(this);
+
+				if(itemTimer > 0) itemTimer--;
+				if(itemTimer == 0) state = "IDLE";
+			}
+			else state = "IDLE";
+			break;
 		case "TRANSITION":
 			velX = 0;
 			velY = 0;
@@ -191,6 +213,12 @@ public class Link extends Entity
 		if(invincibilityFrames > 0) invincibilityFrames--;
 
 		if(sword != null) sword.update();
+		if(arrow != null) 
+		{
+			arrow.update();
+			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
+			if(!screen.intersects(arrow.getRectangle())) arrow = null;
+		}
 
 		if(!state.equals("TRANSITION"))
 		{
@@ -204,11 +232,12 @@ public class Link extends Entity
 	{
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-			drawX = (int) Math.round(x);
-			drawY = (int) Math.round(y);
+			drawX = (int) Math.round(x) - width / 2;
+			drawY = (int) Math.round(y) - height / 2;
 
 
 			if(sword != null) sword.draw(g2d);
+			if(arrow != null) arrow.draw(g2d);
 
 			switch(state)
 			{
@@ -216,53 +245,72 @@ public class Link extends Entity
 				switch(direction)
 				{
 				case UP:
-					walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkUp.draw(g2d, drawX, drawY, width, height);
 					break;
 				case RIGHT:
-					walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkRight.draw(g2d, drawX, drawY, width, height);
 					break;
 				case DOWN:
-					walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkDown.draw(g2d, drawX, drawY, width, height);
 					break;
 				case LEFT:
-					walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkLeft.draw(g2d, drawX, drawY, width, height);
 					break;
 				default:
 					break;
 				}
 				break;
 			case "UP":
-				walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				walkUp.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "DOWN":
-				walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				walkDown.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "RIGHT":
-				walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				walkRight.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "LEFT":
-				walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				walkLeft.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "ATTACK_SWORD_START":
-				g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
+				g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
 				break;
 			case "ATTACK_SWORD":
-				g2d.drawImage(swordAttack[direction.getInteger()], drawX - width / 2, drawY - height / 2, width, height, null);
+				g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
+				break;
+			case "ITEM_USE":
+				switch(direction)
+				{
+				case UP:
+					g2d.drawImage(Images.Link.LINK_ITEM_UP, drawX, drawY, width, height, null);
+					break;
+				case RIGHT:
+					g2d.drawImage(Images.Link.LINK_ITEM_RIGHT, drawX, drawY, width, height, null);
+					break;
+				case DOWN:
+					g2d.drawImage(Images.Link.LINK_ITEM_DOWN, drawX, drawY, width, height, null);
+					break;
+				case LEFT:
+					g2d.drawImage(Images.Link.LINK_ITEM_LEFT, drawX, drawY, width, height, null);
+					break;
+				default:
+					break;
+				}
 				break;
 			case "TRANSITION":
 				switch(direction)
 				{
 				case UP:
-					walkUp.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkUp.draw(g2d, drawX, drawY, width, height);
 					break;
 				case RIGHT:
-					walkRight.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkRight.draw(g2d, drawX, drawY, width, height);
 					break;
 				case DOWN:
-					walkDown.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkDown.draw(g2d, drawX, drawY, width, height);
 					break;
 				case LEFT:
-					walkLeft.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+					walkLeft.draw(g2d, drawX, drawY, width, height);
 					break;
 				default:
 					break;
@@ -270,7 +318,7 @@ public class Link extends Entity
 				break;
 			default:
 				g2d.setColor(Color.RED);
-				g2d.drawRect(drawX - width / 2, drawY - height / 2, width, height);
+				g2d.drawRect(drawX, drawY, width, height);
 				break;
 			}
 		}
@@ -286,7 +334,9 @@ public class Link extends Entity
 		if(inputLeft) state = "LEFT";
 		if(inputRight) state = "RIGHT";
 		if(inputAttack && Data.hasSword) state = "ATTACK_SWORD_START";
-		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack)) state = "IDLE";
+		if(inputItem && item != null) state = "ITEM_USE";
+		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack || inputItem))
+			state = "IDLE";
 
 		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
 	}
@@ -377,11 +427,22 @@ public class Link extends Entity
 		if(key == KeyEvent.VK_W) inputUp = bool;
 		if(key == KeyEvent.VK_S) inputDown = bool;
 		if(key == KeyEvent.VK_SPACE) inputAttack = bool;
+		if(key == KeyEvent.VK_SHIFT) inputItem = bool;
 	}
 
 	public Sword getSword()
 	{
 		return sword;
+	}
+
+	public void setArrow(Arrow arrow)
+	{
+		this.arrow = arrow;
+	}
+
+	public Arrow getArrow()
+	{
+		return arrow;
 	}
 
 	public int getHealthContainers()

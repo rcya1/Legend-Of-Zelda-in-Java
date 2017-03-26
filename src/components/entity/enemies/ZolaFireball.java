@@ -57,10 +57,7 @@ public class ZolaFireball
 		int drawX = (int) Math.round(x);
 		int drawY = (int) Math.round(y);
 
-//		AffineTransform transform = g2d.getTransform();
-//		g2d.rotate(angle, drawX, drawY);
 		animation.draw(g2d, drawX, drawY, width, height);
-//		g2d.setTransform(transform);
 	}
 
 	Rectangle getRectangle()
