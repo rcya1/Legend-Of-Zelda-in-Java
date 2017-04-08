@@ -1,7 +1,7 @@
 package components.items.weapons;
 
 import components.entity.Direction;
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import utility.Images;
 
 import java.awt.*;
@@ -9,9 +9,9 @@ import java.awt.geom.AffineTransform;
 
 public class Arrow extends Weapon
 {
-	Direction direction;
+	private Direction direction;
 
-	public Arrow(int x, int y, Direction direction, RoomBase room)
+	public Arrow(int x, int y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -36,5 +36,10 @@ public class Arrow extends Weapon
 		g2d.rotate(direction.getRadians(), x, y);
 		g2d.drawImage(Images.Link.Items.ARROW, x - width / 2, y - width / 2, width, height, null);
 		g2d.setTransform(transform);
+	}
+
+	public boolean callsInvincibility()
+	{
+		return true;
 	}
 }

@@ -1,8 +1,7 @@
 package components.entity.enemies;
 
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import utility.Animation;
-import components.map.rooms.OverWorldRoom;
 import components.entity.Direction;
 import utility.Images;
 
@@ -18,7 +17,7 @@ public class Octorok extends Enemy
 
 	private OctorokPellet pellet;
 
-	public Octorok(int x, int y, Direction direction, RoomBase room)
+	public Octorok(int x, int y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -46,43 +45,55 @@ public class Octorok extends Enemy
 
 	public void update()
 	{
-		switch(state)
+		if(getStunTimer() == 0)
 		{
-		case "MOVING":
-			double[] vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-			animation.update();
-
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 300) < 2)
+			switch(state)
 			{
-				state = "SHOOTING";
-				shootingTimer = 0;
-			}
+			case "MOVING":
+				double[] vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			break;
-		case "SHOOTING":
-			velX = 0;
-			velY = 0;
+				animation.update();
 
-			if(shootingTimer < 90)
-			{
-				shootingTimer++;
-				if(shootingTimer == 60)
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 300) < 2)
 				{
-					pellet = new OctorokPellet(x, y, direction);
+					state = "SHOOTING";
+					shootingTimer = 0;
 				}
+
+				break;
+			case "SHOOTING":
+				velX = 0;
+				velY = 0;
+
+				if(shootingTimer < 90)
+				{
+					shootingTimer++;
+					if(shootingTimer == 60)
+					{
+						pellet = new OctorokPellet(x, y, direction);
+					}
+				}
+				else
+				{
+					state = "MOVING";
+				}
+				break;
+			default:
+				break;
 			}
-			else
+
+			if(handleTileCollisions() && movementRefreshTimer == 0)
 			{
-				state = "MOVING";
+				movementRefreshTimer = 120;
+				direction = Direction.getExcludedRandom(direction);
 			}
-			break;
-		default:
-			break;
+
+			if(movementRefreshTimer > 0) movementRefreshTimer--;
 		}
+		else setStunTimer(getStunTimer() - 1);
 
 		if(pellet != null)
 		{
@@ -90,15 +101,6 @@ public class Octorok extends Enemy
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
 			if(!screen.intersects(pellet.getRectangle())) pellet = null;
 		}
-
-		if(handleTileCollisions() && movementRefreshTimer == 0)
-		{
-			movementRefreshTimer = 120;
-			direction = Direction.getExcludedRandom(direction);
-		}
-
-		if(movementRefreshTimer > 0) movementRefreshTimer --;
-
 		super.update();
 	}
 

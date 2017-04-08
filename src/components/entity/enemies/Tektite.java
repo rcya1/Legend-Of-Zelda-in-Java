@@ -42,44 +42,46 @@ public class Tektite extends Enemy
 
 	public void update()
 	{
-		switch(state)
+		if(getStunTimer() == 0)
 		{
-		case "IDLE":
-			animation.update();
-
-			if(Math.random() * 75 >= 74)
+			switch(state)
 			{
-				generateTargetTile();
+			case "IDLE":
+				animation.update();
 
-				state = "JUMPING";
-				double distance = (targetColumn * width) - x;
-				double framesForJump = 40;
-				velX = distance / framesForJump;
-				velY = framesForJump * gravity / 2;
+				if(Math.random() * 75 >= 74)
+				{
+					generateTargetTile();
+
+					state = "JUMPING";
+					double distance = (targetColumn * width) - x;
+					double framesForJump = 40;
+					velX = distance / framesForJump;
+					velY = framesForJump * gravity / 2;
+				}
+				break;
+			case "JUMPING":
+				x += velX;
+				y += velY;
+
+				velY -= gravity;
+
+				if(Math.abs((targetColumn * room.getWidthOfTile()) - x) < 3 && Math.abs(targetRow * room.getHeightOfTile() - y) < 10)
+				{
+					velX = 0;
+					velY = 0;
+					x = targetColumn * room.getWidthOfTile();
+					y = targetRow * room.getHeightOfTile();
+
+					state = "IDLE";
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		case "JUMPING":
-			x += velX;
-			y += velY;
-
-			velY -= gravity;
-
-			if(Math.abs((targetColumn * room.getWidthOfTile()) - x) < 3 &&
-					Math.abs(targetRow * room.getHeightOfTile() - y) < 10)
-			{
-				velX = 0;
-				velY = 0;
-				x = targetColumn * room.getWidthOfTile();
-				y = targetRow * room.getHeightOfTile();
-
-				state = "IDLE";
-			}
-			break;
-		default:
-			break;
 		}
 
-		checkDamageCollisions();
+		else setStunTimer(getStunTimer() - 1);
 
 		super.update();
 	}

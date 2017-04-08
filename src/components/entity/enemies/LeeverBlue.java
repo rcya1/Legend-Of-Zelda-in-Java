@@ -1,7 +1,7 @@
 package components.entity.enemies;
 
 import components.entity.Direction;
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
 
@@ -12,7 +12,7 @@ public class LeeverBlue extends Leever
 	private int movementRefreshTimer;
 	private Animation tunnel;
 
-	public LeeverBlue(int x, int y, Direction direction, RoomBase room)
+	public LeeverBlue(int x, int y, Direction direction, Room room)
 	{
 		super(x, y, direction, room);
 
@@ -31,59 +31,63 @@ public class LeeverBlue extends Leever
 
 	public void update()
 	{
-		switch(state)
+		if(getStunTimer() == 0)
 		{
-		case "MOVING":
-			double[] vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-			normal.update();
-
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 500) > 498)
+			switch(state)
 			{
-				state = "BURROW";
-			}
-			break;
-		case "BURROW":
-			burrow.update();
-			if(burrow.getIndex() == -1)
-			{
-				state = "TUNNEL";
-				burrow.reset();
-			}
-			break;
-		case "TUNNEL":
-			vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+			case "MOVING":
+				double[] vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			tunnel.update();
+				normal.update();
 
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 500) > 498)
-			{
-				state = "EMERGE";
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 500) > 498)
+				{
+					state = "BURROW";
+				}
+				break;
+			case "BURROW":
+				burrow.update();
+				if(burrow.getIndex() == -1)
+				{
+					state = "TUNNEL";
+					burrow.reset();
+				}
+				break;
+			case "TUNNEL":
+				vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
+				tunnel.update();
+
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 500) > 498)
+				{
+					state = "EMERGE";
+				}
+				break;
+			case "EMERGE":
+				emerge.update();
+				if(emerge.getIndex() == -1)
+				{
+					state = "MOVING";
+					emerge.reset();
+				}
+				break;
 			}
-			break;
-		case "EMERGE":
-			emerge.update();
-			if(emerge.getIndex() == -1)
+
+			if(handleTileCollisions() && movementRefreshTimer == 0)
 			{
-				state = "MOVING";
-				emerge.reset();
+				movementRefreshTimer = 120;
+				direction = Direction.getExcludedRandom(direction);
 			}
-			break;
+
+			if(movementRefreshTimer > 0) movementRefreshTimer--;
 		}
-
-		if(handleTileCollisions() && movementRefreshTimer == 0)
-		{
-			movementRefreshTimer = 120;
-			direction = Direction.getExcludedRandom(direction);
-		}
-
-		if(movementRefreshTimer > 0) movementRefreshTimer --;
+		else setStunTimer(getStunTimer() - 1);
 
 		super.update(true);
 	}

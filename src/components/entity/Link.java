@@ -1,11 +1,13 @@
 package components.entity;
 
+import components.items.player.BoomerangItem;
 import components.items.player.Bow;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
+import components.items.weapons.Boomerang;
 import utility.Animation;
 import components.map.OverWorld;
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import components.map.rooms.SecretRoom;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.Octorok;
@@ -47,6 +49,7 @@ public class Link extends Entity
 	private int itemTimer;
 
 	private Arrow arrow;
+	private Boomerang boomerang;
 
 	private final Animation walkUp;
 	private final Animation walkRight;
@@ -81,8 +84,7 @@ public class Link extends Entity
 		walkDown = new Animation(5, true, Images.Link.LINK_DOWN, Images.Link.LINK_DOWN_2);
 		walkLeft = new Animation(5, true, Images.Link.LINK_LEFT, Images.Link.LINK_LEFT_2);
 
-		swordAttack = new BufferedImage[] {Images.Link.LINK_ATTACK_SWORD_UP, Images.Link.LINK_ATTACK_SWORD_RIGHT,
-				                           Images.Link.LINK_ATTACK_SWORD_DOWN, Images.Link.LINK_ATTACK_SWORD_LEFT};
+		swordAttack = new BufferedImage[] {Images.Link.LINK_ATTACK_SWORD_UP, Images.Link.LINK_ATTACK_SWORD_RIGHT, Images.Link.LINK_ATTACK_SWORD_DOWN, Images.Link.LINK_ATTACK_SWORD_LEFT};
 
 		state = "IDLE";
 
@@ -92,7 +94,7 @@ public class Link extends Entity
 		healthContainers = 3;
 		maxHealthContainers = 16;
 
-		item = null;
+		item = new BoomerangItem();
 	}
 
 	public void update()
@@ -154,8 +156,7 @@ public class Link extends Entity
 		case "ATTACK_SWORD":
 			if(swordTimer == 9)
 			{
-				int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x),
-						(int) Math.round(y), 12, direction);
+				int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x), (int) Math.round(y), 12, direction);
 				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld.getCurrentRoom());
 			}
 			else if(swordTimer <= 2)
@@ -171,6 +172,9 @@ public class Link extends Entity
 			}
 			break;
 		case "ITEM_USE":
+			velX = 0;
+			velY = 0;
+
 			if(item != null)
 			{
 				if(itemTimer == 0) itemTimer = 30;
@@ -191,8 +195,10 @@ public class Link extends Entity
 			transitionAmountX += transitionVelX;
 			transitionAmountY += transitionVelY;
 
-			if(Math.abs(transitionAmountX) == room.getMapWidth() - 20) transitionVelX = 0;
-			if(Math.abs(transitionAmountY) == room.getMapHeight() - 20) transitionVelY = 0;
+			if(Math.abs(transitionAmountX) == room.getMapWidth() - 20)
+				transitionVelX = 0;
+			if(Math.abs(transitionAmountY) == room.getMapHeight() - 20)
+				transitionVelY = 0;
 
 			if(transitionVelX == 0 && transitionVelY == 0)
 			{
@@ -213,11 +219,27 @@ public class Link extends Entity
 		if(invincibilityFrames > 0) invincibilityFrames--;
 
 		if(sword != null) sword.update();
-		if(arrow != null) 
+		if(arrow != null)
 		{
 			arrow.update();
+
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
 			if(!screen.intersects(arrow.getRectangle())) arrow = null;
+		}
+
+		if(boomerang != null)
+		{
+			boomerang.update();
+
+			if(boomerang.getReturnTimer() == 0 && getRectangle().intersects(boomerang.getRectangle()))
+			{
+				boomerang = null;
+			}
+			else
+			{
+				Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
+				if(!screen.intersects(boomerang.getRectangle())) boomerang = null;
+			}
 		}
 
 		if(!state.equals("TRANSITION"))
@@ -238,6 +260,7 @@ public class Link extends Entity
 
 			if(sword != null) sword.draw(g2d);
 			if(arrow != null) arrow.draw(g2d);
+			if(boomerang != null) boomerang.draw(g2d);
 
 			switch(state)
 			{
@@ -445,6 +468,16 @@ public class Link extends Entity
 		return arrow;
 	}
 
+	public void setBoomerang(Boomerang boomerang)
+	{
+		this.boomerang = boomerang;
+	}
+
+	public Boomerang getBoomerang()
+	{
+		return boomerang;
+	}
+
 	public int getHealthContainers()
 	{
 		return healthContainers;
@@ -470,12 +503,12 @@ public class Link extends Entity
 		this.transitionVelY = transitionVelY;
 	}
 
-	public RoomBase getRoom()
+	public Room getRoom()
 	{
 		return this.room;
 	}
 
-	public void setRoom(RoomBase room)
+	public void setRoom(Room room)
 	{
 		this.room = room;
 	}

@@ -10,11 +10,6 @@ public class Bow extends Item
 
 	}
 
-	public void update()
-	{
-
-	}
-
 	public void action(Link link)
 	{
 		link.setArrow(new Arrow((int) link.getX(), (int) link.getY(),

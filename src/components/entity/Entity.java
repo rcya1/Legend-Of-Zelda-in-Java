@@ -1,6 +1,6 @@
 package components.entity;
 
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import utility.Tile;
 import utility.MathHelper;
 
@@ -8,7 +8,7 @@ import java.awt.*;
 
 public abstract class Entity
 {
-	protected RoomBase room;
+	protected Room room;
 
 	protected double x;
 	protected double y;

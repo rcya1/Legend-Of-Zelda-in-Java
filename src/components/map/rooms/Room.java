@@ -4,7 +4,7 @@ import components.entity.Link;
 import utility.Tile;
 import components.items.collectibles.Collectible;
 
-public interface RoomBase
+public interface Room
 {
 	int getMapWidth();
 	int getMapHeight();

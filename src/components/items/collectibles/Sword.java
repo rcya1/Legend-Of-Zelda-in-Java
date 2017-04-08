@@ -1,6 +1,6 @@
 package components.items.collectibles;
 
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import components.entity.Link;
 import utility.Data;
 import utility.Images;
@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Sword extends Collectible
 {
-	Sword(int x, int y, RoomBase room)
+	Sword(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;

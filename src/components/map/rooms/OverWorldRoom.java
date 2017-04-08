@@ -16,7 +16,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class OverWorldRoom implements RoomBase
+public class OverWorldRoom implements Room
 {
 	private final int id;
 
@@ -85,6 +85,8 @@ public class OverWorldRoom implements RoomBase
 			else enemy.setSword(null);
 			if(link.getArrow() != null) enemy.setArrow(link.getArrow());
 			else enemy.setArrow(null);
+			if(link.getBoomerang() != null) enemy.setBoomerang(link.getBoomerang());
+			else enemy.setBoomerang(null);
 
 			enemy.update();
 

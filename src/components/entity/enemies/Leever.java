@@ -2,7 +2,7 @@ package components.entity.enemies;
 
 import components.entity.Direction;
 import components.entity.Link;
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
 
@@ -17,7 +17,7 @@ public class Leever extends Enemy //TODO Fix the Directions
 	private int targetColumn;
 	private int targetRow;
 
-	public Leever(int x, int y, Direction direction, RoomBase room)
+	public Leever(int x, int y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -48,67 +48,68 @@ public class Leever extends Enemy //TODO Fix the Directions
 
 	public void update()
 	{
-		switch(state)
+		if(getStunTimer() == 0)
 		{
-		case "NORMAL":
-			double[] vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-			Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(),
-					room.getMapHeight() - room.getHeightOfTile());
-			if(Math.random() * 1000 > 999 || handleTileCollisions() ||
-					!screen.intersects(getRectangle())) state = "BURROW";
-			normal.update();
-			break;
-		case "BURROW":
-			if(targetColumn == -2)
+			switch(state)
 			{
+			case "NORMAL":
+				double[] vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
+				Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(), room.getMapHeight() - room.getHeightOfTile());
+				if(Math.random() * 1000 > 999 || handleTileCollisions() || !screen.intersects(getRectangle()))
+					state = "BURROW";
+				normal.update();
+				break;
+			case "BURROW":
+				if(targetColumn == -2)
+				{
+					Link link = room.getLink();
+					targetColumn = ((int) link.getX() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
+					targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
+				}
+
+				if(burrow.getIndex() == -1)
+				{
+					this.x = targetColumn * room.getWidthOfTile();
+					this.y = targetRow * room.getHeightOfTile();
+
+					targetColumn = -2;
+					targetRow = -2;
+
+					state = "EMERGE";
+
+					burrow.reset();
+				}
+				burrow.update();
+				break;
+			case "EMERGE":
 				Link link = room.getLink();
-				targetColumn = ((int) link.getX() / room.getWidthOfTile()) +
-						(3 - (int) (Math.random() * 6));
-				targetRow = ((int) link.getY() / room.getWidthOfTile()) +
-						(3 - (int) (Math.random() * 6));
+				int columnDifference = ((int) link.getX() / room.getWidthOfTile()) - targetColumn;
+				int rowDifference = ((int) link.getY() / room.getHeightOfTile()) - targetRow;
+
+				if(columnDifference >= rowDifference)
+				{
+					if(columnDifference > 0) direction = Direction.LEFT;
+					else direction = Direction.RIGHT;
+				}
+				else
+				{
+					if(rowDifference > 0) direction = Direction.UP;
+					else direction = Direction.DOWN;
+				}
+
+				if(emerge.getIndex() == -1)
+				{
+					state = "NORMAL";
+					emerge.reset();
+				}
+				emerge.update();
+				break;
 			}
-
-			if(burrow.getIndex() == -1)
-			{
-				this.x = targetColumn * room.getWidthOfTile();
-				this.y = targetRow * room.getHeightOfTile();
-
-				targetColumn = -2;
-				targetRow = -2;
-
-				state = "EMERGE";
-
-				burrow.reset();
-			}
-			burrow.update();
-			break;
-		case "EMERGE":
-			Link link = room.getLink();
-			int columnDifference = ((int) link.getX() / room.getWidthOfTile()) - targetColumn;
-			int rowDifference = ((int) link.getY() / room.getHeightOfTile()) - targetRow;
-
-			if(columnDifference >= rowDifference)
-			{
-				if(columnDifference > 0) direction = Direction.LEFT;
-				else direction = Direction.RIGHT;
-			}
-			else
-			{
-				if(rowDifference > 0) direction = Direction.UP;
-				else direction = Direction.DOWN;
-			}
-
-			if(emerge.getIndex() == -1)
-			{
-				state = "NORMAL";
-				emerge.reset();
-			}
-			emerge.update();
-			break;
 		}
+		else setStunTimer(getStunTimer() - 1);
 
 		super.update();
 	}

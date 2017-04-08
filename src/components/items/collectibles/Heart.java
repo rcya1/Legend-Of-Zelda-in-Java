@@ -1,6 +1,6 @@
 package components.items.collectibles;
 
-import components.map.rooms.RoomBase;
+import components.map.rooms.Room;
 import components.entity.Link;
 import utility.Images;
 
@@ -8,7 +8,7 @@ public class Heart extends Collectible
 {
 	private final int restoreValue;
 
-	public Heart(int x, int y, RoomBase room)
+	public Heart(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;

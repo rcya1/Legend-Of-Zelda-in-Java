@@ -177,6 +177,7 @@ public class Images
 		public static class Items
 		{
 			public static final BufferedImage ARROW = loadSingleImage("/textures/sprites/link/items/Arrow.png");
+			public static final BufferedImage BOOMERANG = loadSingleImage("/textures/sprites/link/items/Boomerang.png");
 		}
 	}
 

@@ -1,5 +1,6 @@
 package components.items.weapons;
 
+import components.entity.enemies.Enemy;
 import components.items.MapItem;
 
 import java.awt.*;
@@ -7,6 +8,13 @@ import java.awt.*;
 public abstract class Weapon extends MapItem
 {
 	int damage;
+
+	public void action(Enemy enemy)
+	{
+		//Normally do Nothing
+	}
+
+	public abstract boolean callsInvincibility();
 
 	public int getDamage()
 	{

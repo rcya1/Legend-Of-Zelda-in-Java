@@ -53,4 +53,9 @@ public class Sword extends Weapon
 		velX = -vector[0];
 		velY = -vector[1];
 	}
+
+	public boolean callsInvincibility()
+	{
+		return true;
+	}
 }

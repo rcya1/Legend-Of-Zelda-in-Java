@@ -2,5 +2,5 @@ package utility;
 
 public class Data
 {
-	public static boolean hasSword;
+	public static boolean hasSword = true;
 }
