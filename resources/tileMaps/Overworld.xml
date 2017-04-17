@@ -7,16 +7,7 @@
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>4</COL>
-				<ROW>4</ROW>
 
-				<DEST-COL>8</DEST-COL>
-				<DEST-ROW>10</DEST-ROW>
-
-				<DIRECTION>RIGHT</DIRECTION>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -109,26 +100,11 @@
 
 	<ROOM id = "2-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
-
-					<ITEM>TRUE</ITEM>
-				</RESULT>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -221,26 +197,11 @@
 
 	<ROOM id = "3-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
-
-					<ITEM>TRUE</ITEM>
-				</RESULT>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -284,26 +245,7 @@
 	</ROOM>
 	<ROOM id = "3-5">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>TEKTITE</TYPE>
-                <COL>3</COL>
-                <ROW>3</ROW>
-			</ENEMY>
-            <ENEMY>
-                <TYPE>TEKTITE</TYPE>
-                <COL>1</COL>
-                <ROW>7</ROW>
-            </ENEMY>
-            <ENEMY>
-                <TYPE>TEKTITE</TYPE>
-                <COL>12</COL>
-                <ROW>2</ROW>
-            </ENEMY>
-            <ENEMY>
-                <TYPE>TEKTITE</TYPE>
-                <COL>9</COL>
-                <ROW>7</ROW>
-            </ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
@@ -352,26 +294,11 @@
 
 	<ROOM id = "4-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
-
-					<ITEM>TRUE</ITEM>
-				</RESULT>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -391,11 +318,7 @@
 	</ROOM>
 	<ROOM id = "4-3">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
@@ -407,26 +330,7 @@
 	</ROOM>
 	<ROOM id = "4-4">
 		<ENEMIES>
-			<!--<ENEMY>-->
-				<!--<TYPE>OCTOROK</TYPE>-->
-                <!--<COL>2</COL>-->
-                <!--<ROW>4</ROW>-->
-			<!--</ENEMY>-->
-            <!--<ENEMY>-->
-                <!--<TYPE>OCTOROK</TYPE>-->
-                <!--<COL>6</COL>-->
-                <!--<ROW>6</ROW>-->
-            <!--</ENEMY>-->
-            <!--<ENEMY>-->
-                <!--<TYPE>OCTOROK</TYPE>-->
-                <!--<COL>10</COL>-->
-                <!--<ROW>3</ROW>-->
-            <!--</ENEMY>-->
-            <!--<ENEMY>-->
-                <!--<TYPE>OCTOROK</TYPE>-->
-                <!--<COL>13</COL>-->
-                <!--<ROW>6</ROW>-->
-            <!--</ENEMY>-->
+
 		</ENEMIES>
 
 		<WARPS>
@@ -442,31 +346,11 @@
 		</ENEMIES>
 
 		<WARPS>
-            <WARP>
-                <TYPE>CAVE</TYPE>
-                <DIRECTION>UP</DIRECTION>
 
-                <COL>4</COL>
-                <ROW>1</ROW>
-
-                <DEST-COL>7</DEST-COL>
-                <DEST-ROW>8</DEST-ROW>
-            </WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
 		<MUSIC>OVERWORLD</MUSIC>
-
-		<HIDDEN-ROOM>
-			<NPC>OLD-MAN</NPC>
-			<TEXT>IT'S  DANGEROUS  TO  GO-ALONE!  TAKE  THIS.</TEXT>
-			<ITEMS>
-				<ITEM>
-					<COST>0</COST>
-					<COLLECTIBLE>SWORD</COLLECTIBLE>
-				</ITEM>
-			</ITEMS>
-		</HIDDEN-ROOM>
 	</ROOM>
     <ROOM id = "4-6">
         <ENEMIES>
@@ -507,26 +391,11 @@
 
 	<ROOM id = "5-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
-
-					<ITEM>TRUE</ITEM>
-				</RESULT>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -619,26 +488,11 @@
 
 	<ROOM id = "6-1">
 		<ENEMIES>
-			<ENEMY>
-				<TYPE>OCTOROK</TYPE>
-				<COL>5</COL>
-				<ROW>4</ROW>
-			</ENEMY>
+
 		</ENEMIES>
 
 		<WARPS>
-			<WARP>
-				<TYPE>STAIRS</TYPE>
-				<COL>5</COL>
-				<ROW>5</ROW>
 
-				<RESULT>
-					<COL>8</COL>
-					<ROW>11</ROW>
-
-					<ITEM>TRUE</ITEM>
-				</RESULT>
-			</WARP>
 		</WARPS>
 
 		<ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -731,26 +585,11 @@
 
     <ROOM id = "7-1">
         <ENEMIES>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>5</COL>
-                <ROW>4</ROW>
-            </ENEMY>
+
         </ENEMIES>
 
         <WARPS>
-            <WARP>
-                <TYPE>STAIRS</TYPE>
-                <COL>5</COL>
-                <ROW>5</ROW>
 
-                <RESULT>
-                    <COL>8</COL>
-                    <ROW>11</ROW>
-
-                    <ITEM>TRUE</ITEM>
-                </RESULT>
-            </WARP>
         </WARPS>
 
         <ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -843,26 +682,11 @@
 
     <ROOM id = "8-1">
         <ENEMIES>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>5</COL>
-                <ROW>4</ROW>
-            </ENEMY>
+
         </ENEMIES>
 
         <WARPS>
-            <WARP>
-                <TYPE>STAIRS</TYPE>
-                <COL>5</COL>
-                <ROW>5</ROW>
 
-                <RESULT>
-                    <COL>8</COL>
-                    <ROW>11</ROW>
-
-                    <ITEM>TRUE</ITEM>
-                </RESULT>
-            </WARP>
         </WARPS>
 
         <ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -946,8 +770,28 @@
         </ENEMIES>
 
         <WARPS>
+            <WARP>
+                <TYPE>CAVE</TYPE>
+                <DIRECTION>UP</DIRECTION>
 
+                <COL>4</COL>
+                <ROW>1</ROW>
+
+                <DEST-COL>7</DEST-COL>
+                <DEST-ROW>10</DEST-ROW>
+            </WARP>
         </WARPS>
+
+        <HIDDEN-ROOM>
+            <NPC>OLD-MAN</NPC>
+            <TEXT>IT'S  DANGEROUS  TO  GO-ALONE!  TAKE  THIS.</TEXT>
+            <ITEMS>
+                <ITEM>
+                    <COST>0</COST>
+                    <COLLECTIBLE>SWORD</COLLECTIBLE>
+                </ITEM>
+            </ITEMS>
+        </HIDDEN-ROOM>
 
         <ROOM-TYPE>NORMAL</ROOM-TYPE>
         <MUSIC>OVERWORLD</MUSIC>
@@ -955,26 +799,11 @@
 
     <ROOM id = "9-1">
         <ENEMIES>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>5</COL>
-                <ROW>4</ROW>
-            </ENEMY>
+
         </ENEMIES>
 
         <WARPS>
-            <WARP>
-                <TYPE>STAIRS</TYPE>
-                <COL>5</COL>
-                <ROW>5</ROW>
 
-                <RESULT>
-                    <COL>8</COL>
-                    <ROW>11</ROW>
-
-                    <ITEM>TRUE</ITEM>
-                </RESULT>
-            </WARP>
         </WARPS>
 
         <ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -1067,26 +896,11 @@
 
     <ROOM id = "10-1">
         <ENEMIES>
-            <ENEMY>
-                <TYPE>OCTOROK</TYPE>
-                <COL>5</COL>
-                <ROW>4</ROW>
-            </ENEMY>
+
         </ENEMIES>
 
         <WARPS>
-            <WARP>
-                <TYPE>STAIRS</TYPE>
-                <COL>5</COL>
-                <ROW>5</ROW>
 
-                <RESULT>
-                    <COL>8</COL>
-                    <ROW>11</ROW>
-
-                    <ITEM>TRUE</ITEM>
-                </RESULT>
-            </WARP>
         </WARPS>
 
         <ROOM-TYPE>NORMAL</ROOM-TYPE>
@@ -1165,6 +979,588 @@
         <MUSIC>OVERWORLD</MUSIC>
     </ROOM>
     <ROOM id = "10-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+	<ROOM id = "11-1">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-6">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-7">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "11-8">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+	<ROOM id = "12-1">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-2">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-3">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-4">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-5">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-6">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-7">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+		<ROOM-TYPE>NORMAL</ROOM-TYPE>
+		<MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+	<ROOM id = "12-8">
+		<ENEMIES>
+
+		</ENEMIES>
+
+		<WARPS>
+
+		</WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+	</ROOM>
+
+    <ROOM id = "13-1">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "13-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "14-1">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "14-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "15-1">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "15-8">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+
+    <ROOM id = "16-1">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-2">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-3">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-4">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-5">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-6">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-7">
+        <ENEMIES>
+
+        </ENEMIES>
+
+        <WARPS>
+
+        </WARPS>
+
+        <ROOM-TYPE>NORMAL</ROOM-TYPE>
+        <MUSIC>OVERWORLD</MUSIC>
+    </ROOM>
+    <ROOM id = "16-8">
         <ENEMIES>
 
         </ENEMIES>

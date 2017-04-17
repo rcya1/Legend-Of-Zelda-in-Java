@@ -99,7 +99,10 @@ public class Link extends Entity
 
 	public void update()
 	{
-		if(!(this.room instanceof SecretRoom)) this.room = overWorld.getCurrentRoom();
+		if(!(this.room instanceof SecretRoom))
+		{
+			this.room = overWorld.getCurrentRoom();
+		}
 
 		switch(state)
 		{
@@ -402,7 +405,11 @@ public class Link extends Entity
 			if(mapItem instanceof Collectible)
 			{
 				Collectible collectible = (Collectible) mapItem;
-				if(checkCollisionWith(collectible.getRectangle()))
+
+				Rectangle collectiblePickUpRectangle = new Rectangle((int) this.x - this.width / 2,
+						(int) this.y - height / 2, this.width * 2, this.height * 2);
+
+				if(collectiblePickUpRectangle.intersects(collectible.getRectangle()))
 				{
 					if(collectible.action(this)) iterator.remove();
 				}

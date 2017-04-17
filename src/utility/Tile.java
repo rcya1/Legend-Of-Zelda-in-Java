@@ -1085,7 +1085,7 @@ public enum Tile
 			return true;
 
 		case ENTRANCE:
-			return false;
+			return true;
 
 		case GREEN_BRIDGE:
 			return true;
