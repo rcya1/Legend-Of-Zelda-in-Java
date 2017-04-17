@@ -382,6 +382,7 @@ public class Images
 			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/green/Ladder.png");
 			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/green/Bridge.png");
 			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/green/Sand.png");
+			public static final BufferedImage WATERFALL = loadSingleImage("/textures/sprites/blocks/green/Waterfall.png");
 		}
 
 		public static class Orange
@@ -478,6 +479,7 @@ public class Images
 			public static final BufferedImage LADDER = loadSingleImage("/textures/sprites/blocks/orange/Ladder.png");
 			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/orange/Bridge.png");
 			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/orange/Sand.png");
+			public static final BufferedImage WATERFALL = loadSingleImage("/textures/sprites/blocks/orange/Waterfall.png");
 		}
 
 		public static class White
@@ -575,6 +577,7 @@ public class Images
 			public static final BufferedImage BRIDGE = loadSingleImage("/textures/sprites/blocks/white/Bridge.png");
 			public static final BufferedImage SAND = loadSingleImage("/textures/sprites/blocks/white/Sand.png");
 			public static final BufferedImage BUSH = loadSingleImage("/textures/sprites/blocks/white/Bush.png");
+			public static final BufferedImage WATERFALL = loadSingleImage("/textures/sprites/blocks/white/Waterfall.png");
 		}
 	}
 
