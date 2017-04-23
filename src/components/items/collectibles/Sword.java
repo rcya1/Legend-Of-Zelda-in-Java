@@ -29,12 +29,12 @@ public class Sword extends Collectible
 
 	public void draw(Graphics2D g2d)
 	{
-		if(!Data.hasSword) super.draw(g2d);
+		if(Data.swordLevel == 0) super.draw(g2d);
 	}
 
 	public boolean action(Link link)
 	{
-		Data.hasSword = true;
+		Data.swordLevel = 1;
 		return true;
 	}
 }

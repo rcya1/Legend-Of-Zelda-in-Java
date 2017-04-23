@@ -712,19 +712,42 @@ public class Images
 
 	public static class Menu
 	{
-		public static final BufferedImage MENU_TEMP = loadSingleImage("/textures/menu/TEMP.png");
+		public static final BufferedImage MENU = loadSingleImage("/textures/menu/menu.png");
 
-		private static final BufferedImage HEARTS = loadSingleImage("/textures/menu/hearts/Hearts.png");
+		public static class Items
+		{
+			public static BufferedImage SELECTOR = loadSingleImage("/textures/menu/items/selector.png");
+			public static BufferedImage BOOMERANG = loadSingleImage("/textures/menu/items/boomerang.png");
+			public static BufferedImage BOOMERANG_MAGIC = loadSingleImage("/textures/menu/items/boomerangMagic.png");
+			public static BufferedImage BOMBS = loadSingleImage("/textures/menu/items/bombs.png");
+			public static BufferedImage BOW = loadSingleImage("/textures/menu/items/bow.png");
+			public static BufferedImage ARROW = loadSingleImage("/textures/menu/items/arrow.png");
+			public static BufferedImage ARROW_SILVER = loadSingleImage("/textures/menu/items/arrowSilver.png");
+			public static BufferedImage CANDLE_BLUE = loadSingleImage("/textures/menu/items/candleBlue.png");
+			public static BufferedImage CANDLE_RED = loadSingleImage("/textures/menu/items/candleRed.png");
+			public static BufferedImage WHISTLE = loadSingleImage("/textures/menu/items/whistle.png");
+			public static BufferedImage BAIT = loadSingleImage("/textures/menu/items/bait.png");
+			public static BufferedImage LETTER = loadSingleImage("/textures/menu/items/letter.png");
+			public static BufferedImage POTION_BLUE = loadSingleImage("/textures/menu/items/potionBlue.png");
+			public static BufferedImage POTION_RED = loadSingleImage("/textures/menu/items/potionRed.png");
+			public static BufferedImage MAGIC_WAND = loadSingleImage("/textures/menu/items/magicWand.png");
 
-		public static final BufferedImage HEART_EMPTY = HEARTS != null ?
-				HEARTS.getSubimage(0, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_HALF = HEARTS != null ?
-				HEARTS.getSubimage(HEART_WIDTH, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_FULL = HEARTS != null ?
-				HEARTS.getSubimage(HEART_WIDTH * 2, 0, HEART_WIDTH, HEART_HEIGHT) :
-				null;
-		public static final BufferedImage HEART_CONTAINER = loadSingleImage("/textures/menu/hearts/HeartContainer.png");
+		}
+
+		public static class Hearts
+		{
+			private static final BufferedImage HEARTS = loadSingleImage("/textures/menu/hearts/Hearts.png");
+
+			public static final BufferedImage HEART_EMPTY = HEARTS != null ?
+					HEARTS.getSubimage(0, 0, HEART_WIDTH, HEART_HEIGHT) :
+					null;
+			public static final BufferedImage HEART_HALF = HEARTS != null ?
+					HEARTS.getSubimage(HEART_WIDTH, 0, HEART_WIDTH, HEART_HEIGHT) :
+					null;
+			public static final BufferedImage HEART_FULL = HEARTS != null ?
+					HEARTS.getSubimage(HEART_WIDTH * 2, 0, HEART_WIDTH, HEART_HEIGHT) :
+					null;
+			public static final BufferedImage HEART_CONTAINER = loadSingleImage("/textures/menu/hearts/HeartContainer.png");
+		}
 	}
 }

@@ -118,6 +118,8 @@ public class OverWorldState extends State
 				break;
 			}
 		}
+
+		if(state.equals("MENU")) menu.keyPressed(key);
 	}
 
 	public void keyReleased(int key)

@@ -10,6 +10,9 @@ import java.awt.geom.AffineTransform;
 
 public class Boomerang extends Weapon
 {
+	private double x;
+	private double y;
+
 	private double velX;
 	private double velY;
 
@@ -17,7 +20,7 @@ public class Boomerang extends Weapon
 
 	private int animationTimer;
 
-	public Boomerang(int x, int y, Direction direction, Room room)
+	public Boomerang(double x, double y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -60,7 +63,8 @@ public class Boomerang extends Weapon
 		else if(animationTimer % 16 < 8) g2d.rotate(Math.PI, x, y);
 		else if(animationTimer % 16 < 12) g2d.rotate(Math.PI * 1.5, x, y);
 
-		g2d.drawImage(Images.Link.Items.BOOMERANG, x - width / 2, y - width / 2, width, height, null);
+		g2d.drawImage(Images.Link.Items.BOOMERANG, (int) x - width / 2, (int) y - width / 2,
+				width, height, null);
 
 		g2d.setTransform(transform);
 	}
@@ -79,5 +83,10 @@ public class Boomerang extends Weapon
 	public int getReturnTimer()
 	{
 		return returnTimer;
+	}
+
+	public Rectangle getRectangle()
+	{
+		return new Rectangle((int) x, (int) y, width, height);
 	}
 }

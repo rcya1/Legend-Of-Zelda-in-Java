@@ -1,7 +1,5 @@
 package components.entity;
 
-import components.items.player.BoomerangItem;
-import components.items.player.Bow;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
 import components.items.weapons.Boomerang;
@@ -94,7 +92,7 @@ public class Link extends Entity
 		healthContainers = 3;
 		maxHealthContainers = 16;
 
-		item = new BoomerangItem();
+		item = null;
 	}
 
 	public void update()
@@ -359,7 +357,7 @@ public class Link extends Entity
 		if(inputDown) state = "DOWN";
 		if(inputLeft) state = "LEFT";
 		if(inputRight) state = "RIGHT";
-		if(inputAttack && Data.hasSword) state = "ATTACK_SWORD_START";
+		if(inputAttack && Data.swordLevel > 0) state = "ATTACK_SWORD_START";
 		if(inputItem && item != null) state = "ITEM_USE";
 		if(!(inputUp || inputDown || inputLeft || inputRight || inputAttack || inputItem))
 			state = "IDLE";
@@ -483,6 +481,11 @@ public class Link extends Entity
 	public Boomerang getBoomerang()
 	{
 		return boomerang;
+	}
+
+	public void setItem(Item item)
+	{
+		this.item = item;
 	}
 
 	public int getHealthContainers()

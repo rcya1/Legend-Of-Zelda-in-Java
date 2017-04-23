@@ -20,7 +20,7 @@ public class Heart extends Collectible
 
 		this.room = room;
 
-		this.bufferedImage = Images.Menu.HEART_FULL;
+		this.bufferedImage = Images.Menu.Hearts.HEART_FULL;
 	}
 
 	public void update()

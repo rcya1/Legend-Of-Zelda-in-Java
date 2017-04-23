@@ -16,7 +16,7 @@ public class HeartContainer extends Collectible
 
 		this.room = room;
 
-		this.bufferedImage = Images.Menu.HEART_CONTAINER;
+		this.bufferedImage = Images.Menu.Hearts.HEART_CONTAINER;
 	}
 
 	public void update()
