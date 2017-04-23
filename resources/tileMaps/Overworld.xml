@@ -766,7 +766,11 @@
     </ROOM>
     <ROOM id = "8-8">
         <ENEMIES>
-
+            <ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>6</COL>
+                <ROW>6</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>

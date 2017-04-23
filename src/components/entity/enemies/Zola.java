@@ -54,19 +54,27 @@ public class Zola extends Enemy
 
 				if(warpTimer == 119)
 				{
-					double destX = x + (64 - Math.random() * 128);
-					double destY = y + (64 - Math.random() * 128);
+					double destX = x + (4 * room.getWidthOfTile() -
+							Math.round(Math.random() * 8 * room.getWidthOfTile()));
+					double destY = y + (4 * room.getHeightOfTile() -
+							Math.round(Math.random() * 8 * room.getHeightOfTile()));
 
-					while(!(destX > 0 && destY > 0 && destX < room.getMapWidth() && destY < room.getMapHeight()))
+					while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
+							&& destY < room.getMapHeight()))
 					{
-						destX = x + (64 - Math.random() * 128);
-						destY = y + (64 - Math.random() * 128);
+						destX = x + (4 * room.getWidthOfTile() -
+								Math.round(Math.random() * 8 * room.getWidthOfTile()));
+						destY = y + (4 * room.getHeightOfTile() -
+								Math.round(Math.random() * 8 * room.getHeightOfTile()));
 					}
 
-					while(!room.getTile((int) destX / 16, (int) destY / 16).isWater())
+					while(!room.getTile((int) destX / room.getWidthOfTile(),
+							(int) destY / room.getHeightOfTile()).isWater())
 					{
-						destX = x + (64 - Math.random() * 128);
-						destY = y + (64 - Math.random() * 128);
+						destX = x + (4 * room.getWidthOfTile() -
+								Math.round(Math.random() * 8 * room.getWidthOfTile()));
+						destY = y + (4 * room.getHeightOfTile() -
+								Math.round(Math.random() * 8 * room.getHeightOfTile()));
 					}
 
 					this.x = destX;

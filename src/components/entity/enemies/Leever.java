@@ -8,7 +8,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class Leever extends Enemy //TODO Fix the Directions
+public class Leever extends Enemy
 {
 	Animation normal;
 	Animation burrow;
@@ -68,15 +68,34 @@ public class Leever extends Enemy //TODO Fix the Directions
 					Link link = room.getLink();
 					targetColumn = ((int) link.getX() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
 					targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
+
+					while(!(targetColumn > 0 && targetRow > 0 &&
+							targetColumn < room.getNumOfColumns() &&
+							targetRow < room.getNumOfRows()))
+					{
+						targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
+								(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
+								/ room.getWidthOfTile());
+						targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
+								(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
+								/ room.getHeightOfTile());
+					}
+
+					while(!room.getTile(targetColumn, targetRow).isPassible())
+					{
+						targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
+								(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
+								/ room.getWidthOfTile());
+						targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
+								(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
+								/ room.getHeightOfTile());
+					}
 				}
 
 				if(burrow.getIndex() == -1)
 				{
 					this.x = targetColumn * room.getWidthOfTile();
 					this.y = targetRow * room.getHeightOfTile();
-
-					targetColumn = -2;
-					targetRow = -2;
 
 					state = "EMERGE";
 
@@ -86,22 +105,25 @@ public class Leever extends Enemy //TODO Fix the Directions
 				break;
 			case "EMERGE":
 				Link link = room.getLink();
-				int columnDifference = ((int) link.getX() / room.getWidthOfTile()) - targetColumn;
-				int rowDifference = ((int) link.getY() / room.getHeightOfTile()) - targetRow;
+				double columnDifference = link.getX() / room.getWidthOfTile() - targetColumn;
+				double rowDifference = link.getY() / room.getHeightOfTile() - targetRow;
 
 				if(columnDifference >= rowDifference)
 				{
-					if(columnDifference > 0) direction = Direction.LEFT;
+					if(columnDifference < 0) direction = Direction.LEFT;
 					else direction = Direction.RIGHT;
 				}
 				else
 				{
-					if(rowDifference > 0) direction = Direction.UP;
+					if(rowDifference < 0) direction = Direction.UP;
 					else direction = Direction.DOWN;
 				}
 
 				if(emerge.getIndex() == -1)
 				{
+					targetColumn = -2;
+					targetRow = -2;
+
 					state = "NORMAL";
 					emerge.reset();
 				}
