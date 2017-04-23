@@ -17,8 +17,6 @@ public class ZolaFireball
 	private final int width;
 	private final int height;
 
-	private final double angle;
-
 	private final int damage;
 
 	private final Animation animation;
@@ -31,8 +29,6 @@ public class ZolaFireball
 		velX = Math.cos(angle) * 2;
 		velY = Math.sin(angle) * 2;
 
-		this.angle = angle;
-
 		width = 16;
 		height = 16;
 
@@ -41,7 +37,8 @@ public class ZolaFireball
 		animation = new Animation(1, true, Images.Enemies.Zola.ZOLA_FIREBALL_1,
 				Images.Enemies.Zola.ZOLA_FIREBALL_2, Images.Enemies.Zola.ZOLA_FIREBALL_3,
 				Images.Enemies.Zola.ZOLA_FIREBALL_4, Images.Enemies.Zola.ZOLA_FIREBALL_5,
-				Images.Enemies.Zola.ZOLA_FIREBALL_5, Images.Enemies.Zola.ZOLA_FIREBALL_7);
+				Images.Enemies.Zola.ZOLA_FIREBALL_5, Images.Enemies.Zola.ZOLA_FIREBALL_6,
+				Images.Enemies.Zola.ZOLA_FIREBALL_7);
 	}
 
 	void update()
