@@ -43,7 +43,8 @@ public class SecretRoom implements Room
 
 	private Collectible[] items;
 
-	public SecretRoom(int id, OverWorld overWorld, RoomMetadata metadata, int warpColumn, int warpRow)
+	public SecretRoom(int id, OverWorld overWorld, RoomMetadata metadata,
+			int warpColumn, int warpRow)
 	{
 		this.id = id;
 
