@@ -1,16 +1,19 @@
 package components.entity.enemies;
 
 import components.map.rooms.Room;
+import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
 
-public class Zola extends Enemy //TODO Add the Warping animation
+public class Zola extends Enemy
 {
 	private boolean facingUp;
 
 	private int timer;
 	private int warpTimer;
+
+	private Animation warping;
 
 	private ZolaFireball fireball;
 
@@ -35,6 +38,9 @@ public class Zola extends Enemy //TODO Add the Warping animation
 
 		timer = 0;
 		warpTimer = 0;
+
+		warping = new Animation(5, true, Images.Enemies.Zola.ZOLA_WARP_1,
+				Images.Enemies.Zola.ZOLA_WARP_2);
 	}
 
 	public void update()
@@ -44,6 +50,8 @@ public class Zola extends Enemy //TODO Add the Warping animation
 			switch(state)
 			{
 			case "WARPING":
+				invincibilityFrames = 1;
+
 				if(warpTimer == 119)
 				{
 					double destX = x + (64 - Math.random() * 128);
@@ -69,10 +77,10 @@ public class Zola extends Enemy //TODO Add the Warping animation
 					state = "SHOOTING";
 					warpTimer = 0;
 
-					if(room.getLink().getY() > y) facingUp = false;
-					else facingUp = true;
+					facingUp = !(room.getLink().getY() > y);
 				}
 				warpTimer++;
+				warping.update();
 				break;
 			case "SHOOTING":
 				if(timer == 60)
@@ -103,8 +111,8 @@ public class Zola extends Enemy //TODO Add the Warping animation
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) Math.round(x);
-		drawY = (int) Math.round(y);
+		drawX = (int) Math.round(x) - width / 2;
+		drawY = (int) Math.round(y) - height / 2;
 
 		if(fireball != null) fireball.draw(g2d);
 
@@ -118,6 +126,11 @@ public class Zola extends Enemy //TODO Add the Warping animation
 			{
 				g2d.drawImage(Images.Enemies.Zola.ZOLA_FRONT, drawX, drawY, width, height, null);
 			}
+		}
+
+		if(state.equals("WARPING"))
+		{
+			warping.draw(g2d, drawX, drawY, width, height);
 		}
 	}
 }

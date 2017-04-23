@@ -121,20 +121,20 @@ public class Leever extends Enemy //TODO Fix the Directions
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) Math.round(x);
-		drawY = (int) Math.round(y);
+		drawX = (int) Math.round(x) - width / 2;
+		drawY = (int) Math.round(y) - height / 2;
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
 			switch(state)
 			{
 			case "NORMAL":
-				normal.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				normal.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "BURROW":
-				burrow.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				burrow.draw(g2d, drawX, drawY, width, height);
 			case "EMERGE":
-				emerge.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+				emerge.draw(g2d, drawX, drawY, width, height);
 			}
 		}
 	}

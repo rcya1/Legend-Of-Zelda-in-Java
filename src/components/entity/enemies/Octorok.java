@@ -106,16 +106,16 @@ public class Octorok extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) Math.round(x);
-		drawY = (int) Math.round(y);
+		drawX = (int) Math.round(x) - width / 2;
+		drawY = (int) Math.round(y) - height / 2;
 
 		if(pellet != null) pellet.draw(g2d);
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
 			AffineTransform transform = g2d.getTransform();
-			g2d.rotate(direction.getRadians(), drawX, drawY);
-			animation.draw(g2d, drawX - width / 2, drawY - height / 2, width, height);
+			g2d.rotate(direction.getRadians(), drawX + width / 2, drawY + height / 2);
+			animation.draw(g2d, drawX, drawY, width, height);
 			g2d.setTransform(transform);
 		}
 	}

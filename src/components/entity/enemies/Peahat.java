@@ -13,7 +13,6 @@ public class Peahat extends Enemy
 	private Animation animation;
 
 	private double speed;
-	private boolean speedingUp;
 	private int timer;
 
 	public Peahat(int x, int y, int direction, Room room)
@@ -29,7 +28,6 @@ public class Peahat extends Enemy
 		this.room = room;
 
 		speed = 10;
-		speedingUp = false;
 		timer = 0;
 
 		animation = new Animation(10, true, Images.Enemies.Peahat.PEAHAT_1, Images.Enemies.Peahat.PEAHAT_2);
@@ -82,8 +80,8 @@ public class Peahat extends Enemy
 
 	public void draw(Graphics2D g2d)
 	{
-		drawX = (int) Math.round(x);
-		drawY = (int) Math.round(y);
+		drawX = (int) Math.round(x) - width / 2;
+		drawY = (int) Math.round(y) - height / 2;
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{

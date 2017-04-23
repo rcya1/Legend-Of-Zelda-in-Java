@@ -684,6 +684,15 @@ public class Images
 					ZOLA.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
+			private static final BufferedImage ZOLA_WARP = loadSingleImage("/textures/sprites/enemies/zola/ZolaWarp.png");
+
+			public static final BufferedImage ZOLA_WARP_1 = ZOLA_WARP != null ?
+					ZOLA_WARP.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ZOLA_WARP_2 = ZOLA_WARP != null ?
+					ZOLA_WARP.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
 			private static final BufferedImage ZOLA_FIREBALL = loadSingleImage("/textures/sprites/enemies/zola/ZolaFireball.png");
 
 			public static final BufferedImage ZOLA_FIREBALL_1 = ZOLA_FIREBALL != null ?

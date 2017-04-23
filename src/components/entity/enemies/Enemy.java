@@ -30,7 +30,7 @@ public abstract class Enemy extends Entity
 		}
 	}
 
-	void checkDamageCollisions()
+	private void checkDamageCollisions()
 	{
 		for(Weapon weapon : weapons)
 		{
@@ -71,7 +71,7 @@ public abstract class Enemy extends Entity
 		return damage;
 	}
 
-	public int getStunTimer()
+	int getStunTimer()
 	{
 		return stunTimer;
 	}
