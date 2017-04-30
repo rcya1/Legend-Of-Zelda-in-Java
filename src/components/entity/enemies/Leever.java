@@ -70,8 +70,8 @@ public class Leever extends Enemy
 					targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
 
 					while(!(targetColumn > 0 && targetRow > 0 &&
-							targetColumn < room.getNumOfColumns() &&
-							targetRow < room.getNumOfRows()))
+							targetColumn < room.getNumOfColumns() - 1 &&
+							targetRow < room.getNumOfRows() - 1))
 					{
 						targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
 								(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
