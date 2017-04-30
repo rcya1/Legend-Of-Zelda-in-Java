@@ -225,7 +225,8 @@ public class Link extends Entity
 			arrow.update();
 
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
-			if(!screen.intersects(arrow.getRectangle())) arrow = null;
+			if(arrow != null)
+				if(!screen.intersects(arrow.getRectangle())) arrow = null;
 		}
 
 		if(boomerang != null)

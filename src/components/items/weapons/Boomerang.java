@@ -4,6 +4,7 @@ import components.entity.Direction;
 import components.entity.enemies.Enemy;
 import components.map.rooms.Room;
 import utility.Images;
+import utility.Tile;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -49,6 +50,35 @@ public class Boomerang extends Weapon
 
 		this.x += velX;
 		this.y += velY;
+
+		int leftColumn = (int) Math.round(x - width / 2) / room.getWidthOfTile();
+		int rightColumn = (int) Math.round(x + width / 2) / room.getWidthOfTile();
+		int topRow = (int) Math.round(y - height / 2) / room.getHeightOfTile();
+		int bottomRow = (int) Math.round(y + height / 2) / room.getHeightOfTile();
+
+		if(leftColumn < 0) leftColumn = 0;
+		if(rightColumn > room.getNumOfColumns() - 1) rightColumn = room.getNumOfColumns() - 1;
+		if(topRow < 0) topRow = 0;
+		if(bottomRow > room.getNumOfRows() - 1) bottomRow = room.getNumOfRows() - 1;
+
+		for(int i = leftColumn; i <= rightColumn; i++)
+		{
+			for(int j = topRow; j <= bottomRow; j++)
+			{
+				Tile tile = room.getTile(i, j);
+				if(tile != null)
+				{
+					Rectangle tileRectangle = new Rectangle(i * room.getWidthOfTile(),
+							j * room.getHeightOfTile(), room.getWidthOfTile(),
+							room.getHeightOfTile() / 2);
+
+					if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
+					{
+						returnTimer = 0;
+					}
+				}
+			}
+		}
 
 		if(returnTimer > 0) returnTimer--;
 

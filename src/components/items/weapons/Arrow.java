@@ -3,6 +3,7 @@ package components.items.weapons;
 import components.entity.Direction;
 import components.map.rooms.Room;
 import utility.Images;
+import utility.Tile;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -18,6 +19,8 @@ public class Arrow extends Weapon
 
 		this.direction = direction;
 
+		this.room = room;
+
 		width = 16;
 		height = 16;
 
@@ -26,8 +29,37 @@ public class Arrow extends Weapon
 
 	public void update()
 	{
-		this.x += direction.getVector(2)[0];
-		this.y += direction.getVector(2)[1];
+		x += direction.getVector(2)[0];
+		y += direction.getVector(2)[1];
+
+		int leftColumn = Math.round(x - width / 2) / room.getWidthOfTile();
+		int rightColumn = Math.round(x + width / 2) / room.getWidthOfTile();
+		int topRow = Math.round(y - height / 2) / room.getHeightOfTile();
+		int bottomRow = Math.round(y + height / 2) / room.getHeightOfTile();
+
+		if(leftColumn < 0) leftColumn = 0;
+		if(rightColumn > room.getNumOfColumns() - 1) rightColumn = room.getNumOfColumns() - 1;
+		if(topRow < 0) topRow = 0;
+		if(bottomRow > room.getNumOfRows() - 1) bottomRow = room.getNumOfRows() - 1;
+
+		for(int i = leftColumn; i <= rightColumn; i++)
+		{
+			for(int j = topRow; j <= bottomRow; j++)
+			{
+				Tile tile = room.getTile(i, j);
+				if(tile != null)
+				{
+					Rectangle tileRectangle = new Rectangle(i * room.getWidthOfTile(),
+							j * room.getHeightOfTile(), room.getWidthOfTile(),
+							room.getHeightOfTile() / 2);
+
+					if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
+					{
+						room.getLink().setArrow(null);
+					}
+				}
+			}
+		}
 	}
 
 	public void draw(Graphics2D g2d)

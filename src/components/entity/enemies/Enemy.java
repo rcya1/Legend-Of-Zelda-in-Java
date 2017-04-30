@@ -43,6 +43,11 @@ public abstract class Enemy extends Entity
 					health -= weapon.getDamage();
 					weapon.action(this);
 					if(weapon.callsInvincibility()) invincibilityFrames = 30;
+
+					if(weapon instanceof Arrow)
+					{
+						room.getLink().setArrow(null);
+					}
 				}
 			}
 		}
