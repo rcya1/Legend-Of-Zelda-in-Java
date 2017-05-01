@@ -368,7 +368,7 @@ public class Link extends Entity
 
 	private void handleEnemyCollisions()
 	{
-		ArrayList<Enemy> enemies = overWorld.getCurrentRoom().getEnemies();
+		ArrayList<Enemy> enemies = room.getEnemies();
 		for(Enemy enemy : enemies)
 		{
 			if(checkCollisionWith(enemy))
@@ -396,7 +396,7 @@ public class Link extends Entity
 
 	private void handleMapItemCollisions()
 	{
-		ArrayList<MapItem> mapItems = overWorld.getCurrentRoom().getMapItems();
+		ArrayList<MapItem> mapItems = room.getMapItems();
 		Iterator iterator = mapItems.iterator();
 		while(iterator.hasNext())
 		{

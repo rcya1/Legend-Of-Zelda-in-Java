@@ -1,5 +1,7 @@
 package components.map.rooms;
 
+import components.entity.enemies.Enemy;
+import components.items.MapItem;
 import utility.Animation;
 import utility.Tile;
 import components.entity.Direction;
@@ -16,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class SecretRoom implements Room
@@ -180,6 +183,16 @@ public class SecretRoom implements Room
 	public Tile getTile(int column, int row)
 	{
 		return tiles[column][row];
+	}
+
+	public ArrayList<Enemy> getEnemies()
+	{
+		return new ArrayList<>();
+	}
+
+	@Override public ArrayList<MapItem> getMapItems()
+	{
+		return new ArrayList<>();
 	}
 
 	private Rectangle getItemLocation(int itemIndex)

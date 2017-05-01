@@ -1,8 +1,12 @@
 package components.map.rooms;
 
 import components.entity.Link;
+import components.entity.enemies.Enemy;
+import components.items.MapItem;
 import utility.Tile;
 import components.items.collectibles.Collectible;
+
+import java.util.ArrayList;
 
 public interface Room
 {
@@ -18,6 +22,10 @@ public interface Room
 	int getId();
 
 	Tile getTile(int column, int row);
+
+	ArrayList<Enemy> getEnemies();
+
+	ArrayList<MapItem> getMapItems();
 
 	void addCollectible(Collectible collectible);
 
