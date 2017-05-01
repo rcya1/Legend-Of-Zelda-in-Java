@@ -13,7 +13,7 @@ public class Octorok extends Enemy
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	Animation animation;
+	protected Animation animation;
 
 	private OctorokPellet pellet;
 
@@ -45,55 +45,51 @@ public class Octorok extends Enemy
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		switch(state)
 		{
-			switch(state)
+		case "MOVING":
+			double[] vector = direction.getVector(moveSpeed);
+			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
+			animation.update();
+
+			if((Math.random() * 100) < 2) direction = Direction.getRandom();
+			if((Math.random() * 300) < 2)
 			{
-			case "MOVING":
-				double[] vector = direction.getVector(moveSpeed);
-				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-				animation.update();
-
-				if((Math.random() * 100) < 2) direction = Direction.getRandom();
-				if((Math.random() * 300) < 2)
-				{
-					state = "SHOOTING";
-					shootingTimer = 0;
-				}
-
-				break;
-			case "SHOOTING":
-				velX = 0;
-				velY = 0;
-
-				if(shootingTimer < 90)
-				{
-					shootingTimer++;
-					if(shootingTimer == 60)
-					{
-						pellet = new OctorokPellet(x, y, direction);
-					}
-				}
-				else
-				{
-					state = "MOVING";
-				}
-				break;
-			default:
-				break;
+				state = "SHOOTING";
+				shootingTimer = 0;
 			}
 
-			if(handleTileCollisions() && movementRefreshTimer == 0)
-			{
-				movementRefreshTimer = 120;
-				direction = Direction.getExcludedRandom(direction);
-			}
+			break;
+		case "SHOOTING":
+			velX = 0;
+			velY = 0;
 
-			if(movementRefreshTimer > 0) movementRefreshTimer--;
+			if(shootingTimer < 90)
+			{
+				shootingTimer++;
+				if(shootingTimer == 60)
+				{
+					pellet = new OctorokPellet(x, y, direction);
+				}
+			}
+			else
+			{
+				state = "MOVING";
+			}
+			break;
+		default:
+			break;
 		}
-		else setStunTimer(getStunTimer() - 1);
+
+		if(handleTileCollisions() && movementRefreshTimer == 0)
+		{
+			movementRefreshTimer = 120;
+			direction = Direction.getExcludedRandom(direction);
+		}
+
+		if(movementRefreshTimer > 0) movementRefreshTimer--;
 
 		if(pellet != null)
 		{

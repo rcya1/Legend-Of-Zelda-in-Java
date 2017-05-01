@@ -48,90 +48,86 @@ public class Leever extends Enemy
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		switch(state)
 		{
-			switch(state)
+		case "NORMAL":
+			double[] vector = direction.getVector(moveSpeed);
+			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
+			Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(), room.getMapHeight() - room.getHeightOfTile());
+			if(Math.random() * 1000 > 999 || handleTileCollisions() || !screen.intersects(getRectangle()))
+				state = "BURROW";
+			normal.update();
+			break;
+		case "BURROW":
+			if(targetColumn == -2)
 			{
-			case "NORMAL":
-				double[] vector = direction.getVector(moveSpeed);
-				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-				Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(), room.getMapHeight() - room.getHeightOfTile());
-				if(Math.random() * 1000 > 999 || handleTileCollisions() || !screen.intersects(getRectangle()))
-					state = "BURROW";
-				normal.update();
-				break;
-			case "BURROW":
-				if(targetColumn == -2)
-				{
-					Link link = room.getLink();
-					targetColumn = ((int) link.getX() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
-					targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
-
-					while(!(targetColumn > 0 && targetRow > 0 &&
-							targetColumn < room.getNumOfColumns() - 1 &&
-							targetRow < room.getNumOfRows() - 1))
-					{
-						targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
-								(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
-								/ room.getWidthOfTile());
-						targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
-								(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
-								/ room.getHeightOfTile());
-					}
-
-					while(!room.getTile(targetColumn, targetRow).isPassible())
-					{
-						targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
-								(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
-								/ room.getWidthOfTile());
-						targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
-								(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
-								/ room.getHeightOfTile());
-					}
-				}
-
-				if(burrow.getIndex() == -1)
-				{
-					this.x = targetColumn * room.getWidthOfTile();
-					this.y = targetRow * room.getHeightOfTile();
-
-					state = "EMERGE";
-
-					burrow.reset();
-				}
-				burrow.update();
-				break;
-			case "EMERGE":
 				Link link = room.getLink();
-				double columnDifference = link.getX() / room.getWidthOfTile() - targetColumn;
-				double rowDifference = link.getY() / room.getHeightOfTile() - targetRow;
+				targetColumn = ((int) link.getX() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
+				targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
 
-				if(columnDifference >= rowDifference)
+				while(!(targetColumn > 0 && targetRow > 0 &&
+						targetColumn < room.getNumOfColumns() - 1 &&
+						targetRow < room.getNumOfRows() - 1))
 				{
-					if(columnDifference < 0) direction = Direction.LEFT;
-					else direction = Direction.RIGHT;
-				}
-				else
-				{
-					if(rowDifference < 0) direction = Direction.UP;
-					else direction = Direction.DOWN;
+					targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
+							(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
+							/ room.getWidthOfTile());
+					targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
+							(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
+							/ room.getHeightOfTile());
 				}
 
-				if(emerge.getIndex() == -1)
+				while(!room.getTile(targetColumn, targetRow).isPassible())
 				{
-					targetColumn = -2;
-					targetRow = -2;
-
-					state = "NORMAL";
-					emerge.reset();
+					targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
+							(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
+							/ room.getWidthOfTile());
+					targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
+							(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
+							/ room.getHeightOfTile());
 				}
-				emerge.update();
-				break;
 			}
+
+			if(burrow.getIndex() == -1)
+			{
+				this.x = targetColumn * room.getWidthOfTile();
+				this.y = targetRow * room.getHeightOfTile();
+
+				state = "EMERGE";
+
+				burrow.reset();
+			}
+			burrow.update();
+			break;
+		case "EMERGE":
+			Link link = room.getLink();
+			double columnDifference = link.getX() / room.getWidthOfTile() - targetColumn;
+			double rowDifference = link.getY() / room.getHeightOfTile() - targetRow;
+
+			if(columnDifference >= rowDifference)
+			{
+				if(columnDifference < 0) direction = Direction.LEFT;
+				else direction = Direction.RIGHT;
+			}
+			else
+			{
+				if(rowDifference < 0) direction = Direction.UP;
+				else direction = Direction.DOWN;
+			}
+
+			if(emerge.getIndex() == -1)
+			{
+				targetColumn = -2;
+				targetRow = -2;
+
+				state = "NORMAL";
+				emerge.reset();
+			}
+			emerge.update();
+			break;
 		}
-		else setStunTimer(getStunTimer() - 1);
 
 		super.update();
 	}

@@ -38,39 +38,35 @@ public class Peahat extends Enemy
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		if(Math.random() * 250 > 248)
 		{
-			if(Math.random() * 250 > 248)
+			int newDirection = (int) (Math.random() * 8);
+			while(newDirection == direction)
 			{
-				int newDirection = (int) (Math.random() * 8);
-				while(newDirection == direction)
-				{
-					newDirection = (int) (Math.random() * 8);
-				}
-
-				direction = newDirection;
+				newDirection = (int) (Math.random() * 8);
 			}
 
-			double angle = direction * Math.PI / 4;
-
-			velX = Math.cos(angle) * speed / 10;
-			velY = Math.sin(angle) * speed / 10;
-
-			x += velX;
-			y += velY;
-
-			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
-			if(!screen.intersects(getRectangle()))
-			{
-				direction = ((direction + 4) + (int) (Math.random() * 3 - 1.5)) % 8;
-			}
-
-			animation.setSpeed((int) (15 - speed));
-			if(animation.getSpeed() == 14) animation.setSpeed(120);
-
-			animation.update();
+			direction = newDirection;
 		}
-		else setStunTimer(getStunTimer() - 1);
+
+		double angle = direction * Math.PI / 4;
+
+		velX = Math.cos(angle) * speed / 10;
+		velY = Math.sin(angle) * speed / 10;
+
+		x += velX;
+		y += velY;
+
+		Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
+		if(!screen.intersects(getRectangle()))
+		{
+			direction = ((direction + 4) + (int) (Math.random() * 3 - 1.5)) % 8;
+		}
+
+		animation.setSpeed((int) (15 - speed));
+		if(animation.getSpeed() == 14) animation.setSpeed(120);
+
+		animation.update();
 
 		super.update();
 

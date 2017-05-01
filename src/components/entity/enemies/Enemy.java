@@ -21,6 +21,13 @@ public abstract class Enemy extends Entity
 
 	public void update()
 	{
+		updateHealth();
+	}
+
+	public void updateHealth()
+	{
+		if(stunTimer > 0) stunTimer--;
+
 		checkDamageCollisions();
 		if(invincibilityFrames > 0) invincibilityFrames--;
 		if(health < 0)
@@ -76,7 +83,7 @@ public abstract class Enemy extends Entity
 		return damage;
 	}
 
-	int getStunTimer()
+	public int getStunTimer()
 	{
 		return stunTimer;
 	}

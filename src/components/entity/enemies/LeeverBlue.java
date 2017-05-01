@@ -31,63 +31,59 @@ public class LeeverBlue extends Leever
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		switch(state)
 		{
-			switch(state)
+		case "MOVING":
+			double[] vector = direction.getVector(moveSpeed);
+			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+
+			normal.update();
+
+			if((Math.random() * 100) < 2) direction = Direction.getRandom();
+			if((Math.random() * 500) > 498)
 			{
-			case "MOVING":
-				double[] vector = direction.getVector(moveSpeed);
-				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-				normal.update();
-
-				if((Math.random() * 100) < 2) direction = Direction.getRandom();
-				if((Math.random() * 500) > 498)
-				{
-					state = "BURROW";
-				}
-				break;
-			case "BURROW":
-				burrow.update();
-				if(burrow.getIndex() == -1)
-				{
-					state = "TUNNEL";
-					burrow.reset();
-				}
-				break;
-			case "TUNNEL":
-				vector = direction.getVector(moveSpeed);
-				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
-
-				tunnel.update();
-
-				if((Math.random() * 100) < 2) direction = Direction.getRandom();
-				if((Math.random() * 500) > 498)
-				{
-					state = "EMERGE";
-				}
-				break;
-			case "EMERGE":
-				emerge.update();
-				if(emerge.getIndex() == -1)
-				{
-					state = "MOVING";
-					emerge.reset();
-				}
-				break;
+				state = "BURROW";
 			}
-
-			if(handleTileCollisions() && movementRefreshTimer == 0)
+			break;
+		case "BURROW":
+			burrow.update();
+			if(burrow.getIndex() == -1)
 			{
-				movementRefreshTimer = 120;
-				direction = Direction.getExcludedRandom(direction);
+				state = "TUNNEL";
+				burrow.reset();
 			}
+			break;
+		case "TUNNEL":
+			vector = direction.getVector(moveSpeed);
+			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			if(movementRefreshTimer > 0) movementRefreshTimer--;
+			tunnel.update();
+
+			if((Math.random() * 100) < 2) direction = Direction.getRandom();
+			if((Math.random() * 500) > 498)
+			{
+				state = "EMERGE";
+			}
+			break;
+		case "EMERGE":
+			emerge.update();
+			if(emerge.getIndex() == -1)
+			{
+				state = "MOVING";
+				emerge.reset();
+			}
+			break;
 		}
-		else setStunTimer(getStunTimer() - 1);
+
+		if(handleTileCollisions() && movementRefreshTimer == 0)
+		{
+			movementRefreshTimer = 120;
+			direction = Direction.getExcludedRandom(direction);
+		}
+
+		if(movementRefreshTimer > 0) movementRefreshTimer--;
 
 		super.update(true);
 	}

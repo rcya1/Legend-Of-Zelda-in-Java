@@ -45,67 +45,63 @@ public class Zola extends Enemy
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		switch(state)
 		{
-			switch(state)
+		case "WARPING":
+			invincibilityFrames = 1;
+
+			if(warpTimer == 119)
 			{
-			case "WARPING":
-				invincibilityFrames = 1;
+				double destX = x + (4 * room.getWidthOfTile() -
+						Math.round(Math.random() * 8 * room.getWidthOfTile()));
+				double destY = y + (4 * room.getHeightOfTile() -
+						Math.round(Math.random() * 8 * room.getHeightOfTile()));
 
-				if(warpTimer == 119)
+				while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
+						&& destY < room.getMapHeight()))
 				{
-					double destX = x + (4 * room.getWidthOfTile() -
+					destX = x + (4 * room.getWidthOfTile() -
 							Math.round(Math.random() * 8 * room.getWidthOfTile()));
-					double destY = y + (4 * room.getHeightOfTile() -
+					destY = y + (4 * room.getHeightOfTile() -
 							Math.round(Math.random() * 8 * room.getHeightOfTile()));
-
-					while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
-							&& destY < room.getMapHeight()))
-					{
-						destX = x + (4 * room.getWidthOfTile() -
-								Math.round(Math.random() * 8 * room.getWidthOfTile()));
-						destY = y + (4 * room.getHeightOfTile() -
-								Math.round(Math.random() * 8 * room.getHeightOfTile()));
-					}
-
-					while(!room.getTile((int) destX / room.getWidthOfTile(),
-							(int) destY / room.getHeightOfTile()).isWater())
-					{
-						destX = x + (4 * room.getWidthOfTile() -
-								Math.round(Math.random() * 8 * room.getWidthOfTile()));
-						destY = y + (4 * room.getHeightOfTile() -
-								Math.round(Math.random() * 8 * room.getHeightOfTile()));
-					}
-
-					this.x = destX;
-					this.y = destY;
 				}
-				if(warpTimer > 120)
+
+				while(!room.getTile((int) destX / room.getWidthOfTile(),
+						(int) destY / room.getHeightOfTile()).isWater())
 				{
-					state = "SHOOTING";
-					warpTimer = 0;
-
-					facingUp = !(room.getLink().getY() > y);
-				}
-				warpTimer++;
-				warping.update();
-				break;
-			case "SHOOTING":
-				if(timer == 60)
-				{
-					fireball = new ZolaFireball(x, y, Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2, room.getLink().getX() - x));
-				}
-				if(timer > 120)
-				{
-					state = "WARPING";
-					timer = 0;
+					destX = x + (4 * room.getWidthOfTile() -
+							Math.round(Math.random() * 8 * room.getWidthOfTile()));
+					destY = y + (4 * room.getHeightOfTile() -
+							Math.round(Math.random() * 8 * room.getHeightOfTile()));
 				}
 
-				timer++;
-				break;
+				this.x = destX;
+				this.y = destY;
 			}
+			if(warpTimer > 120)
+			{
+				state = "SHOOTING";
+				warpTimer = 0;
+
+				facingUp = !(room.getLink().getY() > y);
+			}
+			warpTimer++;
+			warping.update();
+			break;
+		case "SHOOTING":
+			if(timer == 60)
+			{
+				fireball = new ZolaFireball(x, y, Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2, room.getLink().getX() - x));
+			}
+			if(timer > 120)
+			{
+				state = "WARPING";
+				timer = 0;
+			}
+
+			timer++;
+			break;
 		}
-		else setStunTimer(getStunTimer() - 1);
 
 		if(fireball != null)
 		{

@@ -88,7 +88,8 @@ public class OverWorldRoom implements Room
 			if(link.getBoomerang() != null) enemy.setBoomerang(link.getBoomerang());
 			else enemy.setBoomerang(null);
 
-			enemy.update();
+			if(enemy.getStunTimer() != 0) enemy.update();
+			else enemy.updateHealth();
 
 			if(enemy.getDestroyFlag())
 			{

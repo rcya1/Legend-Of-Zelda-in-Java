@@ -1,5 +1,6 @@
 package components.entity.enemies;
 
+import components.map.rooms.Room;
 import utility.Animation;
 import components.map.rooms.OverWorldRoom;
 import utility.Images;
@@ -8,14 +9,14 @@ import java.awt.*;
 
 public class Tektite extends Enemy
 {
-	private final Animation animation;
+	protected Animation animation;
 
-	private int targetColumn;
-	private int targetRow;
+	int targetColumn;
+	int targetRow;
 
-	private double gravity;
+	double gravity;
 
-	public Tektite(int x, int y, OverWorldRoom room)
+	public Tektite(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -42,46 +43,41 @@ public class Tektite extends Enemy
 
 	public void update()
 	{
-		if(getStunTimer() == 0)
+		switch(state)
 		{
-			switch(state)
+		case "IDLE":
+			animation.update();
+
+			if(Math.random() * 75 >= 74)
 			{
-			case "IDLE":
-				animation.update();
+				generateTargetTile();
 
-				if(Math.random() * 75 >= 74)
-				{
-					generateTargetTile();
-
-					state = "JUMPING";
-					double distance = (targetColumn * width) - x;
-					double framesForJump = 40;
-					velX = distance / framesForJump;
-					velY = framesForJump * gravity / 2;
-				}
-				break;
-			case "JUMPING":
-				x += velX;
-				y += velY;
-
-				velY -= gravity;
-
-				if(Math.abs((targetColumn * room.getWidthOfTile()) - x) < 3 && Math.abs(targetRow * room.getHeightOfTile() - y) < 10)
-				{
-					velX = 0;
-					velY = 0;
-					x = targetColumn * room.getWidthOfTile();
-					y = targetRow * room.getHeightOfTile();
-
-					state = "IDLE";
-				}
-				break;
-			default:
-				break;
+				state = "JUMPING";
+				double distance = (targetColumn * width) - x;
+				double framesForJump = 40;
+				velX = distance / framesForJump;
+				velY = framesForJump * gravity / 2;
 			}
-		}
+			break;
+		case "JUMPING":
+			x += velX;
+			y += velY;
 
-		else setStunTimer(getStunTimer() - 1);
+			velY -= gravity;
+
+			if(Math.abs((targetColumn * room.getWidthOfTile()) - x) < 3 && Math.abs(targetRow * room.getHeightOfTile() - y) < 10)
+			{
+				velX = 0;
+				velY = 0;
+				x = targetColumn * room.getWidthOfTile();
+				y = targetRow * room.getHeightOfTile();
+
+				state = "IDLE";
+			}
+			break;
+		default:
+			break;
+		}
 
 		super.update();
 	}
@@ -97,7 +93,7 @@ public class Tektite extends Enemy
 		}
 	}
 
-	private void generateTargetTile()
+	void generateTargetTile()
 	{
 		switch((int) (Math.random() * 8))
 		{
