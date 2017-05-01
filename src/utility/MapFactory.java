@@ -4,6 +4,7 @@ import components.entity.enemies.*;
 import components.map.OverWorld;
 import components.entity.Direction;
 import components.map.WarpTile;
+import components.map.rooms.Room;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,55 +58,29 @@ public class MapFactory
 
 	public Enemy buildEnemy(String string, int col, int row)
 	{
+		int x = col * overWorld.getWidthOfTile() + overWorld.getWidthOfTile() / 2;
+		int y = row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2;
+		Room room = (overWorld.getLoadingRoom() != null) ?
+				overWorld.getLoadingRoom() : overWorld.getCurrentRoom();
+
 		switch(string)
 		{
 		case "OCTOROK":
-			return new Octorok(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(),
-					(overWorld.getLoadingRoom() != null) ?
-					overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new Octorok(x, y, Direction.getRandom(), room);
 		case "TEKTITE":
-			return new Tektite(col * overWorld.getWidthOfTile()
-				+ overWorld.getWidthOfTile() / 2,
-				row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-				(overWorld.getLoadingRoom() != null) ?
-						overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new Tektite(x, y, room);
+		case "TEKTITE-BLUE":
+			return new TektiteBlue(x, y, room);
 		case "OCTOROK-BLUE":
-			return new OctorokBlue(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(),
-					(overWorld.getLoadingRoom() != null) ?
-							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new OctorokBlue(x, y, Direction.getRandom(), room);
 		case "LEEVER":
-			return new Leever(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(),
-					(overWorld.getLoadingRoom() != null) ?
-							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new Leever(x, y, Direction.getRandom(), room);
 		case "LEEVER-BLUE":
-			return new LeeverBlue(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					Direction.getRandom(),
-					(overWorld.getLoadingRoom() != null) ?
-							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new LeeverBlue(x, y, Direction.getRandom(), room);
 		case "PEAHAT":
-			return new Peahat(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					(int) (Math.random() * 8),
-					(overWorld.getLoadingRoom() != null) ?
-							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new Peahat(x, y, (int) (Math.random() * 8), room);
 		case "ZOLA":
-			return new Zola(col * overWorld.getWidthOfTile()
-					+ overWorld.getWidthOfTile() / 2,
-					row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2,
-					(overWorld.getLoadingRoom() != null) ?
-							overWorld.getLoadingRoom() : overWorld.getCurrentRoom());
+			return new Zola(x, y, room);
 		default:
 			return null;
 		}

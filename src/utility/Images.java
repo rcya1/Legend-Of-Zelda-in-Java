@@ -618,6 +618,15 @@ public class Images
 			public static final BufferedImage TEKTITE_2 = TEKTITE != null ?
 					TEKTITE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
+
+			private static final BufferedImage TEKTITE_BLUE = loadSingleImage("/textures/sprites/enemies/tektite/TektiteBlue.png");
+
+			public static final BufferedImage TEKTITE_BLUE_1 = TEKTITE_BLUE != null ?
+					TEKTITE_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage TEKTITE_BLUE_2 = TEKTITE_BLUE != null ?
+					TEKTITE_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
 		}
 
 		public static class Leever
