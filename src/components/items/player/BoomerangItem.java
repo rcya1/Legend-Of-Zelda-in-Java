@@ -12,7 +12,10 @@ public class BoomerangItem extends Item
 
 	public void action(Link link)
 	{
-		link.setBoomerang(new Boomerang((int) link.getX(), (int) link.getY(),
-				link.getDirection(), link.getRoom()));
+		if(link.getBoomerang() == null)
+		{
+			link.setBoomerang(new Boomerang((int) link.getX(), (int) link.getY(),
+					link.getDirection(), link.getRoom()));
+		}
 	}
 }

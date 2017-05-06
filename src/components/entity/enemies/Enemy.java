@@ -10,6 +10,7 @@ import components.items.weapons.Weapon;
 public abstract class Enemy extends Entity
 {
 	private int stunTimer = 0;
+	private int maxHealth = health;
 
 	private Sword sword = null;
 	private Arrow arrow = null;
@@ -26,7 +27,11 @@ public abstract class Enemy extends Entity
 
 	public void updateHealth()
 	{
-		if(stunTimer > 0) stunTimer--;
+		if(stunTimer > 0)
+		{
+			if(maxHealth < 2) destroyFlag = true;
+			stunTimer--;
+		}
 
 		checkDamageCollisions();
 		if(invincibilityFrames > 0) invincibilityFrames--;
