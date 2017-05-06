@@ -13,7 +13,14 @@ public class MolblinBlue extends Molblin
 
 		this.moveSpeed = 0.5;
 
-		animation = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_BLUE_1, Images.Enemies.Molblin.MOLBLIN_BLUE_2);
+		up = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_BLUE_UP,
+				Images.Enemies.Molblin.MOLBLIN_BLUE_UP_2);
+		right = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_BLUE_RIGHT,
+				Images.Enemies.Molblin.MOLBLIN_BLUE_RIGHT_2);
+		down = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_BLUE_DOWN,
+				Images.Enemies.Molblin.MOLBLIN_BLUE_DOWN_2);
+		left = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_BLUE_LEFT,
+				Images.Enemies.Molblin.MOLBLIN_BLUE_LEFT_2);
 
 		this.health = 6;
 	}

@@ -7,6 +7,7 @@ import utility.Images;
 import java.awt.*;
 
 public class Zola extends Enemy //TODO Divide teleporting code into other methods
+		//TODO Make a Teleporting Enemies Interface
 {
 	private boolean facingUp;
 

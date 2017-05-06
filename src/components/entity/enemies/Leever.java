@@ -9,6 +9,7 @@ import utility.Images;
 import java.awt.*;
 
 public class Leever extends Enemy //TODO Divide tunnelling code into other methods
+	//TODO Make a Teleporting Enemies Interface
 {
 	Animation normal;
 	Animation burrow;

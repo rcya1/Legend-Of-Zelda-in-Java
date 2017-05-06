@@ -81,6 +81,10 @@ public class MapFactory
 			return new Peahat(x, y, (int) (Math.random() * 8), room);
 		case "ZOLA":
 			return new Zola(x, y, room);
+		case "MOLBLIN":
+			return new Molblin(x, y, Direction.getRandom(), room);
+		case "MOLBLIN-BLUE":
+			return new MolblinBlue(x, y, Direction.getRandom(), room);
 		default:
 			return null;
 		}

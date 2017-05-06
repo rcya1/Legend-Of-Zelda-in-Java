@@ -6,14 +6,16 @@ import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 public class Molblin extends Enemy implements ProjectileEnemy
 {
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	protected Animation animation;
+	protected Animation up;
+	protected Animation right;
+	protected Animation down;
+	protected Animation left;
 
 	private MolblinSpear spear;
 
@@ -35,7 +37,14 @@ public class Molblin extends Enemy implements ProjectileEnemy
 		moveSpeed = 0.5;
 		state = "MOVING";
 
-		animation = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_1, Images.Enemies.Molblin.MOLBLIN_2);
+		up = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_UP,
+				Images.Enemies.Molblin.MOLBLIN_UP_2);
+		right = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_RIGHT,
+				Images.Enemies.Molblin.MOLBLIN_RIGHT_2);
+		down = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_DOWN,
+				Images.Enemies.Molblin.MOLBLIN_DOWN_2);
+		left = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_LEFT,
+				Images.Enemies.Molblin.MOLBLIN_LEFT_2);
 
 		spear = null;
 
@@ -52,7 +61,21 @@ public class Molblin extends Enemy implements ProjectileEnemy
 			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
 			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			animation.update();
+			switch(direction)
+			{
+			case UP:
+				up.update();
+				break;
+			case RIGHT:
+				right.update();
+				break;
+			case DOWN:
+				down.update();
+				break;
+			case LEFT:
+				left.update();
+				break;
+			}
 
 			if((Math.random() * 100) < 2) direction = Direction.getRandom();
 			if((Math.random() * 300) < 2)
@@ -113,10 +136,21 @@ public class Molblin extends Enemy implements ProjectileEnemy
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
-			AffineTransform transform = g2d.getTransform();
-			g2d.rotate(direction.getRadians(), drawX + width / 2, drawY + height / 2);
-			animation.draw(g2d, drawX, drawY, width, height);
-			g2d.setTransform(transform);
+			switch(direction)
+			{
+			case UP:
+				up.draw(g2d, drawX, drawY, width, height);
+				break;
+			case RIGHT:
+				right.draw(g2d, drawX, drawY, width, height);
+				break;
+			case DOWN:
+				down.draw(g2d, drawX, drawY, width, height);
+				break;
+			case LEFT:
+				left.draw(g2d, drawX, drawY, width, height);
+				break;
+			}
 		}
 	}
 

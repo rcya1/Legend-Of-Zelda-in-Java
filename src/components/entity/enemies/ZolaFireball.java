@@ -51,10 +51,10 @@ public class ZolaFireball
 
 	public void draw(Graphics2D g2d)
 	{
-		int drawX = (int) Math.round(x);
-		int drawY = (int) Math.round(y);
+		int drawX = (int) Math.round(x) - width / 2;
+		int drawY = (int) Math.round(y) - height / 2;
 
-		animation.draw(g2d, drawX - width / 2, drawY - width / 2, width, height);
+		animation.draw(g2d, drawX, drawY, width, height);
 	}
 
 	Rectangle getRectangle()
