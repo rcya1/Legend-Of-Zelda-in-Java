@@ -6,7 +6,7 @@ import utility.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class OctorokPellet //TODO Add Shield Deflect
+class MolblinSpear //TODO Add Shield Deflect
 {
 	private double x;
 	private double y;
@@ -21,7 +21,7 @@ class OctorokPellet //TODO Add Shield Deflect
 
 	private final int damage;
 
-	OctorokPellet(double x, double y, Direction direction)
+	MolblinSpear(double x, double y, Direction direction)
 	{
 		this.x = x;
 		this.y = y;
@@ -52,7 +52,8 @@ class OctorokPellet //TODO Add Shield Deflect
 
 		AffineTransform transform = g2d.getTransform();
 		g2d.rotate(direction.getRadians(), drawX, drawY);
-		g2d.drawImage(Images.Enemies.Octorok.OCTOROK_PELLET, drawX - width / 2, drawY - width / 2, width, height, null);
+		g2d.drawImage(Images.Enemies.Molblin.MOLBLIN_SPEAR,
+				drawX - width / 2, drawY - width / 2, width, height, null);
 		g2d.setTransform(transform);
 	}
 

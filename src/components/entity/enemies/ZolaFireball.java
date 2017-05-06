@@ -54,7 +54,7 @@ public class ZolaFireball
 		int drawX = (int) Math.round(x);
 		int drawY = (int) Math.round(y);
 
-		animation.draw(g2d, drawX, drawY, width, height);
+		animation.draw(g2d, drawX - width / 2, drawY - width / 2, width, height);
 	}
 
 	Rectangle getRectangle()

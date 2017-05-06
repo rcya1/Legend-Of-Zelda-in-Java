@@ -8,7 +8,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class Leever extends Enemy
+public class Leever extends Enemy //TODO Divide tunnelling code into other methods
 {
 	Animation normal;
 	Animation burrow;
@@ -42,8 +42,8 @@ public class Leever extends Enemy
 		burrow = new Animation(10, false, Images.Enemies.Leever.LEEVER_MIDBURROW, Images.Enemies.Leever.LEEVER_BURROW_1, Images.Enemies.Leever.LEEVER_BURROW_2);
 		emerge = new Animation(10, false, Images.Enemies.Leever.LEEVER_BURROW_2, Images.Enemies.Leever.LEEVER_BURROW_1, Images.Enemies.Leever.LEEVER_MIDBURROW);
 
-		health = 2;
-		damage = 4;
+		health = 4;
+		damage = 1;
 	}
 
 	public void update()
@@ -64,29 +64,38 @@ public class Leever extends Enemy
 			if(targetColumn == -2)
 			{
 				Link link = room.getLink();
-				targetColumn = ((int) link.getX() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
-				targetRow = ((int) link.getY() / room.getWidthOfTile()) + (3 - (int) (Math.random() * 6));
+				targetColumn = (int) (link.getX() / room.getWidthOfTile())
+						+ (3 - (int) (Math.random() * 6));
+				targetRow = (int) (link.getY() / room.getWidthOfTile())
+						+ (3 - (int) (Math.random() * 6));
 
 				while(!(targetColumn > 0 && targetRow > 0 &&
 						targetColumn < room.getNumOfColumns() - 1 &&
 						targetRow < room.getNumOfRows() - 1))
 				{
-					targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
-							(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
-							/ room.getWidthOfTile());
-					targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
-							(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
-							/ room.getHeightOfTile());
+					targetColumn = (int) (link.getX() / room.getWidthOfTile())
+							+ (3 - (int) (Math.random() * 6));
+					targetRow = (int) (link.getY() / room.getWidthOfTile())
+							+ (3 - (int) (Math.random() * 6));
+
 				}
 
 				while(!room.getTile(targetColumn, targetRow).isPassible())
 				{
-					targetColumn = (int) Math.round((link.getX() + (3 * room.getWidthOfTile() -
-							(int) Math.round(Math.random() * 6 * room.getWidthOfTile())))
-							/ room.getWidthOfTile());
-					targetRow = (int) Math.round((link.getY() + (3 * room.getHeightOfTile() -
-							(int) Math.round(Math.random() * 6 * room.getHeightOfTile())))
-							/ room.getHeightOfTile());
+					targetColumn = (int) (link.getX() / room.getWidthOfTile())
+							+ (3 - (int) (Math.random() * 6));
+					targetRow = (int) (link.getY() / room.getWidthOfTile())
+							+ (3 - (int) (Math.random() * 6));
+
+					while(!(targetColumn > 0 && targetRow > 0 &&
+							targetColumn < room.getNumOfColumns() - 1 &&
+							targetRow < room.getNumOfRows() - 1))
+					{
+						targetColumn = (int) (link.getX() / room.getWidthOfTile())
+								+ (3 - (int) (Math.random() * 6));
+						targetRow = (int) (link.getY() / room.getWidthOfTile())
+								+ (3 - (int) (Math.random() * 6));
+					}
 				}
 			}
 

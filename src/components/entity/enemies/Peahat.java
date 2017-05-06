@@ -32,8 +32,8 @@ public class Peahat extends Enemy
 
 		animation = new Animation(10, true, Images.Enemies.Peahat.PEAHAT_1, Images.Enemies.Peahat.PEAHAT_2);
 
-		health = 2;
-		damage = 4;
+		health = 4;
+		damage = 1;
 	}
 
 	public void update()
@@ -71,6 +71,10 @@ public class Peahat extends Enemy
 		super.update();
 
 		speed = (Math.cos(timer / 90) * 5) + 5;
+
+		if(speed > 2) invincibilityFrames = 1;
+		else invincibilityFrames = 0;
+
 		timer++;
 	}
 

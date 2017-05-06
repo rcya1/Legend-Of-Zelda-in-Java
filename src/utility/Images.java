@@ -726,6 +726,29 @@ public class Images
 					ZOLA_FIREBALL.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 		}
+
+		public static class Molblin
+		{
+			private static final BufferedImage MOLBLIN = loadSingleImage("/textures/sprites/enemies/octorok/Molblin.png");
+
+			public static final BufferedImage MOLBLIN_1 = MOLBLIN != null ?
+					MOLBLIN.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage MOLBLIN_2 = MOLBLIN != null ?
+					MOLBLIN.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			private static final BufferedImage MOLBLIN_BLUE = loadSingleImage("/textures/sprites/enemies/molblin/MolblinBlue.png");
+
+			public static final BufferedImage MOLBLIN_BLUE_1 = MOLBLIN_BLUE != null ?
+					MOLBLIN_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage MOLBLIN_BLUE_2 = MOLBLIN_BLUE != null ?
+					MOLBLIN_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage MOLBLIN_SPEAR = loadSingleImage("/textures/sprites/enemies/molblin/Spear.png");
+		}
 	}
 
 	public static class Menu

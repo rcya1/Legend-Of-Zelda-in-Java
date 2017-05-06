@@ -16,8 +16,8 @@ public class LeeverBlue extends Leever
 	{
 		super(x, y, direction, room);
 
-		health = 4;
-		damage = 4;
+		health = 8;
+		damage = 2;
 
 		movementRefreshTimer = 0;
 
@@ -45,6 +45,11 @@ public class LeeverBlue extends Leever
 			{
 				state = "BURROW";
 			}
+
+			if(x < 0) direction = Direction.RIGHT;
+			if(y < 0) direction = Direction.DOWN;
+			if(x > room.getMapWidth()) direction = Direction.LEFT;
+			if(y > room.getMapHeight()) direction = Direction.UP;
 			break;
 		case "BURROW":
 			burrow.update();
@@ -66,6 +71,13 @@ public class LeeverBlue extends Leever
 			{
 				state = "EMERGE";
 			}
+
+			if(x < 0) direction = Direction.RIGHT;
+			if(y < 0) direction = Direction.DOWN;
+			if(x > room.getMapWidth()) direction = Direction.LEFT;
+			if(y > room.getMapHeight()) direction = Direction.UP;
+
+			invincibilityFrames = 1;
 			break;
 		case "EMERGE":
 			emerge.update();
@@ -74,6 +86,8 @@ public class LeeverBlue extends Leever
 				state = "MOVING";
 				emerge.reset();
 			}
+
+			invincibilityFrames = 0;
 			break;
 		}
 

@@ -35,8 +35,8 @@ public class Tektite extends Enemy
 		animation = new Animation(10, true, Images.Enemies.Tektite.TEKTITE_1,
 				Images.Enemies.Tektite.TEKTITE_2);
 
-		health = 2;
-		damage = 4;
+		health = 1;
+		damage = 1;
 
 		gravity = -0.3;
 	}

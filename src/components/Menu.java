@@ -93,11 +93,11 @@ public class Menu
 				yOrigin = 206;
 			}
 
-			if(overWorld.getLink().getHealth() >= (i + 1) * 8)
+			if(overWorld.getLink().getHealth() >= (i + 1) * 2)
 			{
 				heartImageIndex = 2;
 			}
-			else if(overWorld.getLink().getHealth() >= (i + 0.5) * 8)
+			else if(overWorld.getLink().getHealth() >= (i + 0.5) * 2)
 			{
 				heartImageIndex = 1;
 			}

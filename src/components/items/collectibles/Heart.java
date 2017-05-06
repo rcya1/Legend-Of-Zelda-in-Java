@@ -16,7 +16,7 @@ public class Heart extends Collectible
 		this.width = 8;
 		this.height = 8;
 
-		restoreValue = 8;
+		restoreValue = 2;
 
 		this.room = room;
 
@@ -30,11 +30,11 @@ public class Heart extends Collectible
 
 	public boolean action(Link link)
 	{
-		if(link.getHealth() != link.getHealthContainers() * 8)
+		if(link.getHealth() != link.getHealthContainers() * 2)
 		{
-			if(link.getHealth() + restoreValue > link.getHealthContainers() * 8)
+			if(link.getHealth() + restoreValue > link.getHealthContainers() * 2)
 			{
-				link.addHealth(link.getHealthContainers() * 8 - link.getHealth());
+				link.addHealth(link.getHealthContainers() * 2 - link.getHealth());
 			}
 			else
 			{

@@ -6,7 +6,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class Zola extends Enemy
+public class Zola extends Enemy //TODO Divide teleporting code into other methods
 {
 	private boolean facingUp;
 
@@ -31,8 +31,8 @@ public class Zola extends Enemy
 
 		fireball = null;
 
-		health = 2;
-		damage = 4;
+		health = 4;
+		damage = 1;
 
 		facingUp = false;
 
@@ -50,7 +50,7 @@ public class Zola extends Enemy
 		case "WARPING":
 			invincibilityFrames = 1;
 
-			if(warpTimer == 119)
+			if(warpTimer == 90)
 			{
 				double destX = x + (4 * room.getWidthOfTile() -
 						Math.round(Math.random() * 8 * room.getWidthOfTile()));
@@ -66,13 +66,22 @@ public class Zola extends Enemy
 							Math.round(Math.random() * 8 * room.getHeightOfTile()));
 				}
 
-				while(!room.getTile((int) destX / room.getWidthOfTile(),
-						(int) destY / room.getHeightOfTile()).isWater())
+				while(!room.getTile((int) (destX / room.getWidthOfTile()),
+								(int) (destY / room.getHeightOfTile())).isWater())
 				{
 					destX = x + (4 * room.getWidthOfTile() -
 							Math.round(Math.random() * 8 * room.getWidthOfTile()));
 					destY = y + (4 * room.getHeightOfTile() -
 							Math.round(Math.random() * 8 * room.getHeightOfTile()));
+
+					while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
+							&& destY < room.getMapHeight()))
+					{
+						destX = x + (4 * room.getWidthOfTile() -
+								Math.round(Math.random() * 8 * room.getWidthOfTile()));
+						destY = y + (4 * room.getHeightOfTile() -
+								Math.round(Math.random() * 8 * room.getHeightOfTile()));
+					}
 				}
 
 				this.x = destX;
@@ -82,6 +91,9 @@ public class Zola extends Enemy
 			{
 				state = "SHOOTING";
 				warpTimer = 0;
+
+				this.health += 2;
+				if(this.health > 4) this.health = 4;
 
 				facingUp = !(room.getLink().getY() > y);
 			}

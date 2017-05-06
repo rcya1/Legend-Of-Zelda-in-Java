@@ -12,8 +12,9 @@ public class OctorokBlue extends Octorok
 		super(x, y, direction, room);
 
 		this.moveSpeed = 0.5;
-		this.health = 4;
 
 		animation = new Animation(20, true, Images.Enemies.Octorok.OCTOROK_BLUE_1, Images.Enemies.Octorok.OCTOROK_BLUE_2);
+
+		this.health = 4;
 	}
 }

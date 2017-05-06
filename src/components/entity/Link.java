@@ -1,5 +1,7 @@
 package components.entity;
 
+import components.entity.enemies.Molblin;
+import components.entity.enemies.ProjectileEnemy;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
 import components.items.weapons.Boomerang;
@@ -88,7 +90,7 @@ public class Link extends Entity
 
 		direction = Direction.UP;
 
-		health = 24;
+		health = 6;
 		healthContainers = 3;
 		maxHealthContainers = 16;
 
@@ -377,17 +379,17 @@ public class Link extends Entity
 				invincibilityFrames = 30;
 			}
 
-			if(enemy instanceof Octorok)
+			if(enemy instanceof ProjectileEnemy)
 			{
-				Octorok octorok = (Octorok) enemy;
+				ProjectileEnemy projectileEnemy = (ProjectileEnemy) enemy;
 
-				if(octorok.getPelletCollisionBox() != null)
+				if(projectileEnemy.getProjectileCollisionBox() != null)
 				{
-					if(checkCollisionWith(octorok.getPelletCollisionBox()))
+					if(checkCollisionWith(projectileEnemy.getProjectileCollisionBox()))
 					{
-						health -= octorok.getPelletDamage();
+						health -= projectileEnemy.getProjectileDamage();
 						invincibilityFrames = 30;
-						octorok.removePellet();
+						projectileEnemy.removeProjectile();
 					}
 				}
 			}

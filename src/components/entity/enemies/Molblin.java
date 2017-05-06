@@ -1,25 +1,23 @@
 package components.entity.enemies;
 
+import components.entity.Direction;
 import components.map.rooms.Room;
 import utility.Animation;
-import components.entity.Direction;
 import utility.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-import static components.entity.Direction.RIGHT;
-
-public class Octorok extends Enemy implements ProjectileEnemy
+public class Molblin extends Enemy implements ProjectileEnemy
 {
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
 	protected Animation animation;
 
-	private OctorokPellet pellet;
+	private MolblinSpear spear;
 
-	public Octorok(int x, int y, Direction direction, Room room)
+	public Molblin(int x, int y, Direction direction, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -37,11 +35,11 @@ public class Octorok extends Enemy implements ProjectileEnemy
 		moveSpeed = 0.5;
 		state = "MOVING";
 
-		animation = new Animation(20, true, Images.Enemies.Octorok.OCTOROK_1, Images.Enemies.Octorok.OCTOROK_2);
+		animation = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_1, Images.Enemies.Molblin.MOLBLIN_2);
 
-		pellet = null;
+		spear = null;
 
-		health = 1;
+		health = 4;
 		damage = 1;
 	}
 
@@ -77,7 +75,7 @@ public class Octorok extends Enemy implements ProjectileEnemy
 				shootingTimer++;
 				if(shootingTimer == 60)
 				{
-					pellet = new OctorokPellet(x, y, direction);
+					spear = new MolblinSpear(x, y, direction);
 				}
 			}
 			else
@@ -97,11 +95,11 @@ public class Octorok extends Enemy implements ProjectileEnemy
 
 		if(movementRefreshTimer > 0) movementRefreshTimer--;
 
-		if(pellet != null)
+		if(spear != null)
 		{
-			pellet.update();
+			spear.update();
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
-			if(!screen.intersects(pellet.getRectangle())) pellet = null;
+			if(!screen.intersects(spear.getRectangle())) spear = null;
 		}
 		super.update();
 	}
@@ -111,7 +109,7 @@ public class Octorok extends Enemy implements ProjectileEnemy
 		drawX = (int) Math.round(x) - width / 2;
 		drawY = (int) Math.round(y) - height / 2;
 
-		if(pellet != null) pellet.draw(g2d);
+		if(spear != null) spear.draw(g2d);
 
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
@@ -124,14 +122,14 @@ public class Octorok extends Enemy implements ProjectileEnemy
 
 	public void removeProjectile()
 	{
-		pellet = null;
+		spear = null;
 	}
 
 	public Rectangle getProjectileCollisionBox()
 	{
-		if(pellet != null)
+		if(spear != null)
 		{
-			return pellet.getRectangle();
+			return spear.getRectangle();
 		}
 		else
 		{
@@ -141,9 +139,9 @@ public class Octorok extends Enemy implements ProjectileEnemy
 
 	public int getProjectileDamage()
 	{
-		if(pellet != null)
+		if(spear != null)
 		{
-			return pellet.getDamage();
+			return spear.getDamage();
 		}
 		else
 		{

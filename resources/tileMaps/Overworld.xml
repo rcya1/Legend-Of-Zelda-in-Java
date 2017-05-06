@@ -1178,7 +1178,31 @@
     </ROOM>
     <ROOM id = "10-6">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>3</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>4</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>7</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>10</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>ZOLA</TYPE>
+                <COL>13</COL>
+                <ROW>6</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1190,7 +1214,31 @@
     </ROOM>
     <ROOM id = "10-7">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>4</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>4</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>8</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>12</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>ZOLA</TYPE>
+                <COL>11</COL>
+                <ROW>2</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1202,7 +1250,31 @@
     </ROOM>
     <ROOM id = "10-8">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>2</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>6</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>6</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>11</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>9</COL>
+                <ROW>9</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1275,7 +1347,31 @@
 	</ROOM>
 	<ROOM id = "11-6">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>6</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>7</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>7</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>12</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>ZOLA</TYPE>
+                <COL>5</COL>
+                <ROW>9</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1287,7 +1383,26 @@
 	</ROOM>
 	<ROOM id = "11-7">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>3</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>12</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>11</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>13</COL>
+                <ROW>3</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1299,7 +1414,26 @@
 	</ROOM>
 	<ROOM id = "11-8">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>4</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>8</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>11</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>12</COL>
+                <ROW>7</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1372,7 +1506,7 @@
 	</ROOM>
 	<ROOM id = "12-6">
 		<ENEMIES>
-
+			
 		</ENEMIES>
 
 		<WARPS>
