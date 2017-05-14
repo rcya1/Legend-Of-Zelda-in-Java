@@ -731,24 +731,24 @@ public class Images
 		{
 			private static final BufferedImage MOLBLIN = loadSingleImage("/textures/sprites/enemies/molblin/Molblin.png");
 
-			public static final BufferedImage MOLBLIN_DOWN = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_UP = MOLBLIN != null ?
 					MOLBLIN.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_DOWN_2 = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_UP_2 = MOLBLIN != null ?
 					MOLBLIN.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
-			public static final BufferedImage MOLBLIN_UP = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_RIGHT = MOLBLIN != null ?
 					MOLBLIN.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_UP_2 = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_RIGHT_2 = MOLBLIN != null ?
 					MOLBLIN.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
-			public static final BufferedImage MOLBLIN_RIGHT = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_DOWN = MOLBLIN != null ?
 					MOLBLIN.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_RIGHT_2 = MOLBLIN != null ?
+			public static final BufferedImage MOLBLIN_DOWN_2 = MOLBLIN != null ?
 					MOLBLIN.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
@@ -759,26 +759,26 @@ public class Images
 					MOLBLIN.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
-			private static final BufferedImage MOLBLIN_BLUE = loadSingleImage("/textures/sprites/enemies/octorok/MolblinBlue.png");
+			private static final BufferedImage MOLBLIN_BLUE = loadSingleImage("/textures/sprites/enemies/molblin/MolblinBlue.png");
 
-			public static final BufferedImage MOLBLIN_BLUE_DOWN = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_UP = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_BLUE_DOWN_2 = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_UP_2 = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
-			public static final BufferedImage MOLBLIN_BLUE_UP = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_RIGHT = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_BLUE_UP_2 = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_RIGHT_2 = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 
-			public static final BufferedImage MOLBLIN_BLUE_RIGHT = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_DOWN = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 					null;
-			public static final BufferedImage MOLBLIN_BLUE_RIGHT_2 = MOLBLIN_BLUE != null ?
+			public static final BufferedImage MOLBLIN_BLUE_DOWN_2 = MOLBLIN_BLUE != null ?
 					MOLBLIN_BLUE.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 

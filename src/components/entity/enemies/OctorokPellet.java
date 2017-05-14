@@ -6,7 +6,7 @@ import utility.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class OctorokPellet //TODO Break when hit wall
+class OctorokPellet
 {
 	private double x;
 	private double y;

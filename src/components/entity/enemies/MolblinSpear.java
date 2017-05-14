@@ -6,7 +6,7 @@ import utility.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class MolblinSpear //TODO Break when hit wall
+class MolblinSpear
 {
 	private double x;
 	private double y;

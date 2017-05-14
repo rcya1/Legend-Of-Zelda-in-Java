@@ -4,6 +4,7 @@ import components.map.rooms.Room;
 import utility.Animation;
 import components.entity.Direction;
 import utility.Images;
+import utility.Tile;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -100,10 +101,56 @@ public class Octorok extends Enemy implements ProjectileEnemy, ProjectileDeflect
 		if(pellet != null)
 		{
 			pellet.update();
+
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
 			if(!screen.intersects(pellet.getRectangle())) pellet = null;
+
+			if(pellet != null) handlePelletWallCollision();
 		}
 		super.update();
+	}
+
+	private void handlePelletWallCollision()
+	{
+		double x = pellet.getRectangle().getCenterX();
+		double y = pellet.getRectangle().getCenterY();
+
+		int width = (int) pellet.getRectangle().getWidth();
+		int height = (int) pellet.getRectangle().getHeight();
+
+		int leftColumn = (int) Math.round(x - width / 2) / room.getWidthOfTile();
+		int rightColumn = (int) Math.round(x + width / 2) / room.getWidthOfTile();
+		int topRow = (int) Math.round(y - height / 2) / room.getHeightOfTile();
+		int bottomRow = (int) Math.round(y + height / 2) / room.getHeightOfTile();
+
+		if(leftColumn < 0) leftColumn = 0;
+		if(rightColumn > room.getNumOfColumns() - 1) rightColumn = room.getNumOfColumns() - 1;
+		if(topRow < 0) topRow = 0;
+		if(bottomRow > room.getNumOfRows() - 1) bottomRow = room.getNumOfRows() - 1;
+
+		for(int i = leftColumn; i <= rightColumn; i++)
+		{
+			for(int j = topRow; j <= bottomRow; j++)
+			{
+				Tile tile = room.getTile(i, j);
+				if(tile != null)
+				{
+					Rectangle tileRectangle = new Rectangle(i * room.getWidthOfTile(),
+							j * room.getHeightOfTile(), room.getWidthOfTile(),
+							room.getHeightOfTile() / 2);
+
+					if(!tile.isPassible() && pellet.getRectangle().intersects(tileRectangle))
+					{
+						pellet = null;
+						break;
+					}
+				}
+
+				if(pellet == null) break;
+			}
+
+			if(pellet == null) break;
+		}
 	}
 
 	public void draw(Graphics2D g2d)

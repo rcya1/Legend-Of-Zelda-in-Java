@@ -386,8 +386,11 @@ public class Link extends Entity
 
 						if(projectileEnemy instanceof ProjectileDeflectibleEnemy)
 						{
-							ProjectileDeflectibleEnemy projectileDeflectibleEnemy = (ProjectileDeflectibleEnemy) projectileEnemy;
-							if((projectileDeflectibleEnemy.getShieldRequiredLevel() <= Data.shieldLevel && projectileDeflectibleEnemy.getProjectileDirection().getOpposite() == direction))
+							ProjectileDeflectibleEnemy projectileDeflectibleEnemy =
+									(ProjectileDeflectibleEnemy) projectileEnemy;
+							if((projectileDeflectibleEnemy.getShieldRequiredLevel() <=
+									Data.shieldLevel && projectileDeflectibleEnemy.
+									getProjectileDirection().getOpposite() == direction))
 							{
 								projectileEnemy.removeProjectile();
 								return;

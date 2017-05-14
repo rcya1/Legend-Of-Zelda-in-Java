@@ -4,6 +4,7 @@ import components.entity.Direction;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
+import utility.Tile;
 
 import java.awt.*;
 
@@ -121,10 +122,56 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 		if(spear != null)
 		{
 			spear.update();
+
 			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
 			if(!screen.intersects(spear.getRectangle())) spear = null;
+
+			if(spear != null) handleSpearWallCollision();
 		}
 		super.update();
+	}
+
+	private void handleSpearWallCollision()
+	{
+		double x = spear.getRectangle().getCenterX();
+		double y = spear.getRectangle().getCenterY();
+
+		int width = (int) spear.getRectangle().getWidth();
+		int height = (int) spear.getRectangle().getHeight();
+
+		int leftColumn = (int) Math.round(x - width / 2) / room.getWidthOfTile();
+		int rightColumn = (int) Math.round(x + width / 2) / room.getWidthOfTile();
+		int topRow = (int) Math.round(y - height / 2) / room.getHeightOfTile();
+		int bottomRow = (int) Math.round(y + height / 2) / room.getHeightOfTile();
+
+		if(leftColumn < 0) leftColumn = 0;
+		if(rightColumn > room.getNumOfColumns() - 1) rightColumn = room.getNumOfColumns() - 1;
+		if(topRow < 0) topRow = 0;
+		if(bottomRow > room.getNumOfRows() - 1) bottomRow = room.getNumOfRows() - 1;
+
+		for(int i = leftColumn; i <= rightColumn; i++)
+		{
+			for(int j = topRow; j <= bottomRow; j++)
+			{
+				Tile tile = room.getTile(i, j);
+				if(tile != null)
+				{
+					Rectangle tileRectangle = new Rectangle(i * room.getWidthOfTile(),
+							j * room.getHeightOfTile(), room.getWidthOfTile(),
+							room.getHeightOfTile() / 2);
+
+					if(!tile.isPassible() && spear.getRectangle().intersects(tileRectangle))
+					{
+						spear = null;
+						break;
+					}
+				}
+
+				if(spear == null) break;
+			}
+
+			if(spear == null) break;
+		}
 	}
 
 	public void draw(Graphics2D g2d)
