@@ -10,7 +10,7 @@ import java.awt.geom.AffineTransform;
 
 import static components.entity.Direction.RIGHT;
 
-public class Octorok extends Enemy implements ProjectileEnemy
+public class Octorok extends Enemy implements ProjectileEnemy, ProjectileDeflectibleEnemy
 {
 	private int shootingTimer;
 	private int movementRefreshTimer;
@@ -149,5 +149,15 @@ public class Octorok extends Enemy implements ProjectileEnemy
 		{
 			return 0;
 		}
+	}
+
+	public int getShieldRequiredLevel()
+	{
+		return 0;
+	}
+
+	public Direction getProjectileDirection()
+	{
+		return pellet.getDirection();
 	}
 }

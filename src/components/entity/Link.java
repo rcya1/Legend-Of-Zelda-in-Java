@@ -1,7 +1,6 @@
 package components.entity;
 
-import components.entity.enemies.Molblin;
-import components.entity.enemies.ProjectileEnemy;
+import components.entity.enemies.*;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
 import components.items.weapons.Boomerang;
@@ -9,8 +8,6 @@ import utility.Animation;
 import components.map.OverWorld;
 import components.map.rooms.Room;
 import components.map.rooms.SecretRoom;
-import components.entity.enemies.Enemy;
-import components.entity.enemies.Octorok;
 import components.items.MapItem;
 import components.map.WarpTile;
 import components.items.collectibles.Collectible;
@@ -382,11 +379,21 @@ public class Link extends Entity
 			if(enemy instanceof ProjectileEnemy)
 			{
 				ProjectileEnemy projectileEnemy = (ProjectileEnemy) enemy;
-
 				if(projectileEnemy.getProjectileCollisionBox() != null)
 				{
 					if(checkCollisionWith(projectileEnemy.getProjectileCollisionBox()))
 					{
+
+						if(projectileEnemy instanceof ProjectileDeflectibleEnemy)
+						{
+							ProjectileDeflectibleEnemy projectileDeflectibleEnemy = (ProjectileDeflectibleEnemy) projectileEnemy;
+							if((projectileDeflectibleEnemy.getShieldRequiredLevel() <= Data.shieldLevel && projectileDeflectibleEnemy.getProjectileDirection().getOpposite() == direction))
+							{
+								projectileEnemy.removeProjectile();
+								return;
+							}
+						}
+
 						health -= projectileEnemy.getProjectileDamage();
 						invincibilityFrames = 30;
 						projectileEnemy.removeProjectile();

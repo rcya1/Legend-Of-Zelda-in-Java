@@ -8,8 +8,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class Leever extends Enemy //TODO Divide tunnelling code into other methods
-	//TODO Make a Teleporting Enemies Interface
+public class Leever extends TeleportingEnemy
 {
 	Animation normal;
 	Animation burrow;
@@ -56,51 +55,22 @@ public class Leever extends Enemy //TODO Divide tunnelling code into other metho
 			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
 			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(), room.getMapHeight() - room.getHeightOfTile());
-			if(Math.random() * 1000 > 999 || handleTileCollisions() || !screen.intersects(getRectangle()))
+			Rectangle screen = new Rectangle(room.getMapWidth() - room.getWidthOfTile(),
+					room.getMapHeight() - room.getHeightOfTile());
+
+			if(Math.random() * 1000 > 999 || handleTileCollisions() ||
+					!screen.intersects(getRectangle()))
 				state = "BURROW";
+
 			normal.update();
 			break;
 		case "BURROW":
 			if(targetColumn == -2)
 			{
-				Link link = room.getLink();
-				targetColumn = (int) (link.getX() / room.getWidthOfTile())
-						+ (3 - (int) (Math.random() * 6));
-				targetRow = (int) (link.getY() / room.getWidthOfTile())
-						+ (3 - (int) (Math.random() * 6));
 
-				while(!(targetColumn > 0 && targetRow > 0 &&
-						targetColumn < room.getNumOfColumns() - 1 &&
-						targetRow < room.getNumOfRows() - 1))
-				{
-					targetColumn = (int) (link.getX() / room.getWidthOfTile())
-							+ (3 - (int) (Math.random() * 6));
-					targetRow = (int) (link.getY() / room.getWidthOfTile())
-							+ (3 - (int) (Math.random() * 6));
-
-				}
-
-				while(!room.getTile(targetColumn, targetRow).isPassible())
-				{
-					targetColumn = (int) (link.getX() / room.getWidthOfTile())
-							+ (3 - (int) (Math.random() * 6));
-					targetRow = (int) (link.getY() / room.getWidthOfTile())
-							+ (3 - (int) (Math.random() * 6));
-
-					while(!(targetColumn > 0 && targetRow > 0 &&
-							targetColumn < room.getNumOfColumns() - 1 &&
-							targetRow < room.getNumOfRows() - 1))
-					{
-						targetColumn = (int) (link.getX() / room.getWidthOfTile())
-								+ (3 - (int) (Math.random() * 6));
-						targetRow = (int) (link.getY() / room.getWidthOfTile())
-								+ (3 - (int) (Math.random() * 6));
-					}
-				}
 			}
 
-			if(burrow.getIndex() == -1)
+			if(burrow.isOver())
 			{
 				this.x = targetColumn * room.getWidthOfTile();
 				this.y = targetRow * room.getHeightOfTile();
@@ -127,7 +97,7 @@ public class Leever extends Enemy //TODO Divide tunnelling code into other metho
 				else direction = Direction.DOWN;
 			}
 
-			if(emerge.getIndex() == -1)
+			if(emerge.isOver())
 			{
 				targetColumn = -2;
 				targetRow = -2;
@@ -145,6 +115,45 @@ public class Leever extends Enemy //TODO Divide tunnelling code into other metho
 	public void update(boolean callSuper)
 	{
 		super.update();
+	}
+
+	private void warp()
+	{
+		generateTargetLocation();
+
+		//Make sure the coordinates are in bounds
+		while(!checkTargetIsInMap(targetColumn, targetRow))
+		{
+			generateTargetLocation();
+		}
+
+		//Check if the coordinates are passable
+		while(!checkTargetIsAvailable(targetColumn, targetRow))
+		{
+			generateTargetLocation();
+
+			//Make sure the new coordinates are in bounds
+			while(!checkTargetIsInMap(targetColumn, targetRow))
+			{
+				generateTargetLocation();
+			}
+			//If the coordinates are no longer passable, the loop starts over
+		}
+	}
+
+	void generateTargetLocation()
+	{
+		Link link = room.getLink();
+
+		targetColumn = (int) (link.getX() / room.getWidthOfTile())
+				+ (3 - (int) (Math.random() * 6));
+		targetRow = (int) (link.getY() / room.getWidthOfTile())
+				+ (3 - (int) (Math.random() * 6));
+	}
+
+	boolean checkTargetIsAvailable(double destX, double destY)
+	{
+		return room.getTile(targetColumn, targetRow).isPassible();
 	}
 
 	public void draw(Graphics2D g2d)

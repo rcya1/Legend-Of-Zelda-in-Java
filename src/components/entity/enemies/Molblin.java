@@ -7,7 +7,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class Molblin extends Enemy implements ProjectileEnemy
+public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflectibleEnemy
 {
 	private int shootingTimer;
 	private int movementRefreshTimer;
@@ -181,5 +181,15 @@ public class Molblin extends Enemy implements ProjectileEnemy
 		{
 			return 0;
 		}
+	}
+
+	public int getShieldRequiredLevel()
+	{
+		return 0;
+	}
+
+	public Direction getProjectileDirection()
+	{
+		return spear.getDirection();
 	}
 }

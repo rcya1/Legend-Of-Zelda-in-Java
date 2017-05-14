@@ -6,7 +6,7 @@ import utility.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class MolblinSpear //TODO Add Shield Deflect
+class MolblinSpear //TODO Break when hit wall
 {
 	private double x;
 	private double y;
@@ -66,5 +66,10 @@ class MolblinSpear //TODO Add Shield Deflect
 	int getDamage()
 	{
 		return damage;
+	}
+
+	Direction getDirection()
+	{
+		return direction;
 	}
 }

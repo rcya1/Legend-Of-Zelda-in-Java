@@ -53,7 +53,7 @@ public class LeeverBlue extends Leever
 			break;
 		case "BURROW":
 			burrow.update();
-			if(burrow.getIndex() == -1)
+			if(burrow.isOver())
 			{
 				state = "TUNNEL";
 				burrow.reset();
@@ -81,7 +81,7 @@ public class LeeverBlue extends Leever
 			break;
 		case "EMERGE":
 			emerge.update();
-			if(emerge.getIndex() == -1)
+			if(emerge.isOver())
 			{
 				state = "MOVING";
 				emerge.reset();

@@ -21,6 +21,23 @@ public enum Direction
 		}
 	}
 
+	public Direction getOpposite()
+	{
+		switch(this)
+		{
+		case UP:
+			return DOWN;
+		case RIGHT:
+			return LEFT;
+		case DOWN:
+			return UP;
+		case LEFT:
+			return RIGHT;
+		default:
+			return UP;
+		}
+	}
+
 	public double getRadians()
 	{
 		switch(this)

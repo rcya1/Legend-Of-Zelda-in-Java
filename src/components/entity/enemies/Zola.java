@@ -1,13 +1,14 @@
 package components.entity.enemies;
 
+import components.entity.Direction;
 import components.map.rooms.Room;
+import jdk.nashorn.internal.ir.PropertyKey;
 import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
 
-public class Zola extends Enemy //TODO Divide teleporting code into other methods
-		//TODO Make a Teleporting Enemies Interface
+public class Zola extends TeleportingEnemy implements ProjectileEnemy, ProjectileDeflectibleEnemy
 {
 	private boolean facingUp;
 
@@ -17,6 +18,9 @@ public class Zola extends Enemy //TODO Divide teleporting code into other method
 	private Animation warping;
 
 	private ZolaFireball fireball;
+
+	private double destX;
+	private double destY;
 
 	public Zola(int x, int y, Room room)
 	{
@@ -53,40 +57,7 @@ public class Zola extends Enemy //TODO Divide teleporting code into other method
 
 			if(warpTimer == 90)
 			{
-				double destX = x + (4 * room.getWidthOfTile() -
-						Math.round(Math.random() * 8 * room.getWidthOfTile()));
-				double destY = y + (4 * room.getHeightOfTile() -
-						Math.round(Math.random() * 8 * room.getHeightOfTile()));
-
-				while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
-						&& destY < room.getMapHeight()))
-				{
-					destX = x + (4 * room.getWidthOfTile() -
-							Math.round(Math.random() * 8 * room.getWidthOfTile()));
-					destY = y + (4 * room.getHeightOfTile() -
-							Math.round(Math.random() * 8 * room.getHeightOfTile()));
-				}
-
-				while(!room.getTile((int) (destX / room.getWidthOfTile()),
-								(int) (destY / room.getHeightOfTile())).isWater())
-				{
-					destX = x + (4 * room.getWidthOfTile() -
-							Math.round(Math.random() * 8 * room.getWidthOfTile()));
-					destY = y + (4 * room.getHeightOfTile() -
-							Math.round(Math.random() * 8 * room.getHeightOfTile()));
-
-					while(!(destX > 0 && destY > 0 && destX < room.getMapWidth()
-							&& destY < room.getMapHeight()))
-					{
-						destX = x + (4 * room.getWidthOfTile() -
-								Math.round(Math.random() * 8 * room.getWidthOfTile()));
-						destY = y + (4 * room.getHeightOfTile() -
-								Math.round(Math.random() * 8 * room.getHeightOfTile()));
-					}
-				}
-
-				this.x = destX;
-				this.y = destY;
+				warp();
 			}
 			if(warpTimer > 120)
 			{
@@ -104,7 +75,9 @@ public class Zola extends Enemy //TODO Divide teleporting code into other method
 		case "SHOOTING":
 			if(timer == 60)
 			{
-				fireball = new ZolaFireball(x, y, Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2, room.getLink().getX() - x));
+				fireball = new ZolaFireball(x, y,
+						Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2,
+								room.getLink().getX() - x));
 			}
 			if(timer > 120)
 			{
@@ -124,6 +97,47 @@ public class Zola extends Enemy //TODO Divide teleporting code into other method
 		}
 
 		super.update();
+	}
+
+	private void warp()
+	{
+		generateTargetLocation();
+
+		//Make sure the coordinates are in bounds
+		while(!checkTargetIsInMap(destX, destY))
+		{
+			generateTargetLocation();
+		}
+
+		//Check if the coordinates are in water
+		while(!checkTargetIsAvailable(destX, destY))
+		{
+			generateTargetLocation();
+
+			//Make sure the new coordinates are in bounds
+			while(!checkTargetIsInMap(destX, destY))
+			{
+				generateTargetLocation();
+			}
+			//If the coordinates are no longer in water, the loop starts over
+		}
+
+		this.x = destX;
+		this.y = destY;
+	}
+
+	void generateTargetLocation()
+	{
+		destX = x + (4 * room.getWidthOfTile() -
+				Math.round(Math.random() * 8 * room.getWidthOfTile()));
+		destY = y + (4 * room.getHeightOfTile() -
+				Math.round(Math.random() * 8 * room.getHeightOfTile()));
+	}
+
+	boolean checkTargetIsAvailable(double destX, double destY)
+	{
+		return room.getTile((int) (destX / room.getWidthOfTile()),
+				(int) (destY / room.getHeightOfTile())).isWater();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -149,5 +163,33 @@ public class Zola extends Enemy //TODO Divide teleporting code into other method
 		{
 			warping.draw(g2d, drawX, drawY, width, height);
 		}
+	}
+	public void removeProjectile()
+	{
+		fireball = null;
+	}
+
+	public Rectangle getProjectileCollisionBox()
+	{
+		if(fireball != null) return fireball.getRectangle();
+		else return new Rectangle();
+	}
+
+	public int getProjectileDamage()
+	{
+		if(fireball != null) return fireball.getDamage();
+		else return 0;
+	}
+
+	public int getShieldRequiredLevel()
+	{
+		return 1;
+	}
+
+	public Direction getProjectileDirection()
+	{
+		return null;
+		//return fireball.getDirection();
+		//TODO Do this
 	}
 }

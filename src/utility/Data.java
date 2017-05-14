@@ -5,6 +5,8 @@ public class Data
 	public static int swordLevel = 0;
 	public static int rupees = 0;
 
+	public static int shieldLevel = 0;
+
 	public static int boomerangLevel = 1;
 
 	public static boolean hasBombs = false;

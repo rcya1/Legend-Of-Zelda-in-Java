@@ -85,9 +85,9 @@ public class Animation
 		index = 0;
 	}
 
-	public int getIndex()
+	public boolean isOver()
 	{
-		return index;
+		return index == -1;
 	}
 
 	public void draw(Graphics2D g2d, int x, int y, int width, int height)

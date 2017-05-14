@@ -6,7 +6,7 @@ import utility.Images;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-class OctorokPellet //TODO Add Shield Deflect
+class OctorokPellet //TODO Break when hit wall
 {
 	private double x;
 	private double y;
@@ -65,5 +65,10 @@ class OctorokPellet //TODO Add Shield Deflect
 	int getDamage()
 	{
 		return damage;
+	}
+
+	Direction getDirection()
+	{
+		return direction;
 	}
 }

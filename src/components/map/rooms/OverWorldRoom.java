@@ -113,7 +113,7 @@ public class OverWorldRoom implements Room
 			if(mapItem instanceof AnimationObject)
 			{
 				AnimationObject animationObject = (AnimationObject) mapItem;
-				if(animationObject.getAnimation().getIndex() == -1)
+				if(animationObject.getAnimation().isOver())
 				{
 					mapItemIterator.remove();
 				}
