@@ -19,12 +19,16 @@ public class ZolaFireball
 
 	private final int damage;
 
+	private final double angle;
+
 	private final Animation animation;
 
 	ZolaFireball(double x, double y, double angle)
 	{
 		this.x = x;
 		this.y = y;
+
+		this.angle = angle;
 
 		velX = Math.cos(angle) * 2;
 		velY = Math.sin(angle) * 2;
@@ -66,5 +70,10 @@ public class ZolaFireball
 	int getDamage()
 	{
 		return damage;
+	}
+
+	double getDirection()
+	{
+		return angle;
 	}
 }

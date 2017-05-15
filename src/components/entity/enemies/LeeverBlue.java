@@ -123,7 +123,5 @@ public class LeeverBlue extends Leever
 				emerge.draw(g2d, drawX, drawY, width, height);
 			}
 		}
-
-		System.out.println(state);
 	}
 }

@@ -163,6 +163,8 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 		{
 			warping.draw(g2d, drawX, drawY, width, height);
 		}
+
+		if(fireball != null) System.out.println(fireball.getDirection());
 	}
 	public void removeProjectile()
 	{
@@ -188,8 +190,26 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 
 	public Direction getProjectileDirection()
 	{
-		return null;
-		//return fireball.getDirection();
-		//TODO Do this
+		if(fireball.getDirection() >= -Math.PI / 4 && fireball.getDirection() < Math.PI / 4)
+		{
+			return Direction.RIGHT;
+		}
+		else if(fireball.getDirection() >= Math.PI / 4 && fireball.getDirection() < Math.PI * 3 / 4)
+		{
+			return Direction.DOWN;
+		}
+		else if((fireball.getDirection() >= Math.PI * 3 / 4 &&
+				fireball.getDirection() < Math.PI) ||
+				(fireball.getDirection() < -Math.PI * 3 / 4 &&
+				fireball.getDirection() > -Math.PI)
+				)
+		{
+			return Direction.LEFT;
+		}
+		else if(fireball.getDirection() < -Math.PI / 4 && fireball.getDirection() >= -Math.PI * 3 / 4)
+		{
+			return Direction.UP;
+		}
+		else return Direction.LEFT;
 	}
 }
