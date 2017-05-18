@@ -163,8 +163,6 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 		{
 			warping.draw(g2d, drawX, drawY, width, height);
 		}
-
-		if(fireball != null) System.out.println(fireball.getDirection());
 	}
 	public void removeProjectile()
 	{
