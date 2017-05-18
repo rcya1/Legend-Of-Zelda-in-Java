@@ -11,11 +11,16 @@ import utility.MapFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class OverWorld
 {
 	private OverWorldRoom currentRoom;
 	private OverWorldRoom loadingRoom;
+
+	private ArrayList<OverWorldRoom> roomBuffer;
 
 	private final Link link;
 
@@ -41,6 +46,8 @@ public class OverWorld
 		currentRoom.setRoomMetadata(new RoomMetadata(startingRoom, this));
 
 		loadingRoom = null;
+
+		roomBuffer = new ArrayList<>(Arrays.asList(new OverWorldRoom[5]));
 	}
 
 	private void loadMetadata(String filePath)
@@ -79,56 +86,79 @@ public class OverWorld
 
 		if(!(link.getRoom() instanceof SecretRoom))
 		{
-			if(link.getX() <= widthOfTile && link.getDirection() == Direction.LEFT && !link.getState().equals("TRANSITION") && loadingRoom == null)
+			if(link.getX() <= widthOfTile && link.getDirection() == Direction.LEFT &&
+					!link.getState().equals("TRANSITION") && loadingRoom == null)
 			{
-				link.setTransitionVector(4, 0);
-				loadingRoom = new OverWorldRoom(currentRoom.getId() - 10, this, mapFactory);
-				loadingRoom.setRoomMetadata(new RoomMetadata(currentRoom.getId() - 10, this));
-				loadingRoom.setDrawCoordinates(-loadingRoom.getMapWidth(), 0);
-				currentRoom.setDrawVector(4, 0);
-				loadingRoom.setDrawVector(4, 0);
-
-				currentRoom.updateDrawCoordinates();
-				loadingRoom.updateDrawCoordinates();
+				loadNewRoom(new int[] {4, 0}, currentRoom.getId() - 10,
+						new int[] {-currentRoom.getMapWidth(), 0});
 			}
 
-			if(link.getX() >= currentRoom.getMapWidth() - widthOfTile && link.getDirection() == Direction.RIGHT && !link.getState().equals("TRANSITION") && loadingRoom == null)
+			if(link.getX() >= currentRoom.getMapWidth() - widthOfTile &&
+					link.getDirection() == Direction.RIGHT &&
+					!link.getState().equals("TRANSITION") && loadingRoom == null)
 			{
-				link.setTransitionVector(-4, 0);
-				loadingRoom = new OverWorldRoom(currentRoom.getId() + 10, this, mapFactory);
-				loadingRoom.setRoomMetadata(new RoomMetadata(currentRoom.getId() + 10, this));
-				loadingRoom.setDrawCoordinates(loadingRoom.getMapWidth(), 0);
-				currentRoom.setDrawVector(-4, 0);
-				loadingRoom.setDrawVector(-4, 0);
-
-				currentRoom.updateDrawCoordinates();
-				loadingRoom.updateDrawCoordinates();
+				loadNewRoom(new int[] {-4, 0}, currentRoom.getId() + 10,
+						new int[] {currentRoom.getMapWidth(), 0});
 			}
-			if(link.getY() <= heightOfTile / 2 && link.getDirection() == Direction.UP && !link.getState().equals("TRANSITION") && loadingRoom == null)
-			{
-				link.setTransitionVector(0, 4);
-				loadingRoom = new OverWorldRoom(currentRoom.getId() - 1, this, mapFactory);
-				loadingRoom.setRoomMetadata(new RoomMetadata(currentRoom.getId() - 1, this));
-				loadingRoom.setDrawCoordinates(0, -loadingRoom.getMapHeight());
-				currentRoom.setDrawVector(0, 4);
-				loadingRoom.setDrawVector(0, 4);
 
-				currentRoom.updateDrawCoordinates();
-				loadingRoom.updateDrawCoordinates();
+			if(link.getY() <= heightOfTile / 2 && link.getDirection() == Direction.UP &&
+					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			{
+				loadNewRoom(new int[] {0, 4}, currentRoom.getId() - 1,
+						new int[] {0, -currentRoom.getMapHeight()});
 			}
-			if(link.getY() >= currentRoom.getMapHeight() - heightOfTile && link.getDirection() == Direction.DOWN && !link.getState().equals("TRANSITION") && loadingRoom == null)
-			{
-				link.setTransitionVector(0, -4);
-				loadingRoom = new OverWorldRoom(currentRoom.getId() + 1, this, mapFactory);
-				loadingRoom.setRoomMetadata(new RoomMetadata(currentRoom.getId() + 1, this));
-				loadingRoom.setDrawCoordinates(0, loadingRoom.getMapHeight());
-				currentRoom.setDrawVector(0, -4);
-				loadingRoom.setDrawVector(0, -4);
 
-				currentRoom.updateDrawCoordinates();
-				loadingRoom.updateDrawCoordinates();
+			if(link.getY() >= currentRoom.getMapHeight() - heightOfTile &&
+					link.getDirection() == Direction.DOWN &&
+					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			{
+				loadNewRoom(new int[] {0, -4}, currentRoom.getId() + 1,
+						new int[] {0, currentRoom.getMapHeight()});
 			}
 		}
+	}
+
+	private void loadNewRoom(int[] transitionVector, int loadingRoomID, int[] loadingRoomLocation)
+	{
+		saveRoom();
+
+		link.setTransitionVector(transitionVector[0], transitionVector[1]);
+
+		int roomFoundIndex = -1;
+		for(int i = 0; i < 5; i++)
+		{
+			if(roomBuffer.get(i) != null)
+			{
+				if(roomBuffer.get(i).getId() == loadingRoomID)
+				{
+					roomFoundIndex = i;
+					break;
+				}
+			}
+		}
+		if(roomFoundIndex == -1)
+		{
+			loadingRoom = new OverWorldRoom(loadingRoomID, this, mapFactory);
+			loadingRoom.setRoomMetadata(new RoomMetadata(loadingRoomID, this));
+		}
+		else
+		{
+			loadingRoom = roomBuffer.get(roomFoundIndex);
+		}
+
+
+		loadingRoom.setDrawCoordinates(loadingRoomLocation[0], loadingRoomLocation[1]);
+		currentRoom.setDrawVector(transitionVector[0], transitionVector[1]);
+		loadingRoom.setDrawVector(transitionVector[0], transitionVector[1]);
+
+		currentRoom.updateDrawCoordinates();
+		loadingRoom.updateDrawCoordinates();
+	}
+
+	private void saveRoom()
+	{
+		roomBuffer.add(0, currentRoom);
+		if(roomBuffer.size() > 5) roomBuffer.remove(4);
 	}
 
 	public void draw(Graphics2D g2d)
