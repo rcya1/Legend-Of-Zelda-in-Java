@@ -10,7 +10,8 @@ public class SoundPlayer
 	private final Object synchronizationLock = new Object();
 	private Clip clip;
 
-	public static final SoundPlayer INTRO = new SoundPlayer("/sound/beginning/Intro.wav");
+	public static final SoundPlayer INTRO = new SoundPlayer("/audio/beginning/Intro.wav");
+	public static final SoundPlayer OVERWORLD = new SoundPlayer("/audio/Overworld.wav");
 
 	private SoundPlayer(String string)
 	{

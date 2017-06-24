@@ -7,6 +7,7 @@ import components.entity.Direction;
 import components.entity.Link;
 import org.w3c.dom.Document;
 import utility.MapFactory;
+import utility.SoundPlayer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -48,6 +49,8 @@ public class OverWorld
 		loadingRoom = null;
 
 		roomBuffer = new ArrayList<>(Arrays.asList(new OverWorldRoom[5]));
+
+		if(!SoundPlayer.OVERWORLD.isPlaying()) SoundPlayer.OVERWORLD.loop();
 	}
 
 	private void loadMetadata(String filePath)
@@ -116,6 +119,8 @@ public class OverWorld
 						new int[] {0, currentRoom.getMapHeight()});
 			}
 		}
+
+		if(!SoundPlayer.OVERWORLD.isPlaying()) SoundPlayer.OVERWORLD.loop();
 	}
 
 	private void loadNewRoom(int[] transitionVector, int loadingRoomID, int[] loadingRoomLocation)

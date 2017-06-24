@@ -7,6 +7,7 @@ import components.entity.Link;
 import main.GamePanel;
 import state.State;
 import state.StateManager;
+import utility.SoundPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -52,6 +53,7 @@ public class OverWorldState extends State
 		case "OVERWORLD":
 			if(link.getRoom() instanceof SecretRoom)
 			{
+				if(SoundPlayer.OVERWORLD.isPlaying()) SoundPlayer.OVERWORLD.stop();
 				((SecretRoom) link.getRoom()).update();
 			}
 			else overWorld.update();

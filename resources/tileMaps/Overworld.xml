@@ -1415,22 +1415,22 @@
 	<ROOM id = "11-8">
 		<ENEMIES>
 			<ENEMY>
-                <TYPE>LEEVER-BLUE</TYPE>
+                <TYPE>TEKTITE-BLUE</TYPE>
                 <COL>4</COL>
                 <ROW>3</ROW>
             </ENEMY>
 			<ENEMY>
-                <TYPE>LEEVER-BLUE</TYPE>
+                <TYPE>TEKTITE-BLUE</TYPE>
                 <COL>8</COL>
                 <ROW>8</ROW>
             </ENEMY>
 			<ENEMY>
-                <TYPE>LEEVER-BLUE</TYPE>
+                <TYPE>TEKTITE-BLUE</TYPE>
                 <COL>11</COL>
                 <ROW>5</ROW>
             </ENEMY>
 			<ENEMY>
-                <TYPE>LEEVER-BLUE</TYPE>
+                <TYPE>TEKTITE-BLUE</TYPE>
                 <COL>12</COL>
                 <ROW>7</ROW>
             </ENEMY>
@@ -1446,7 +1446,11 @@
 
 	<ROOM id = "12-1">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>12</COL>
+                <ROW>8</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1458,7 +1462,7 @@
 	</ROOM>
 	<ROOM id = "12-2">
 		<ENEMIES>
-
+			
 		</ENEMIES>
 
 		<WARPS>
@@ -1470,7 +1474,36 @@
 	</ROOM>
 	<ROOM id = "12-3">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>4</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>2</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>3</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>2</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>10</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>PEAHAT</TYPE>
+                <COL>12</COL>
+                <ROW>3</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1482,7 +1515,26 @@
 	</ROOM>
 	<ROOM id = "12-4">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>3</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>8</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>10</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER-BLUE</TYPE>
+                <COL>13</COL>
+                <ROW>7</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1494,7 +1546,36 @@
 	</ROOM>
 	<ROOM id = "12-5">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>1</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>2</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>3</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>5</COL>
+                <ROW>9</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>8</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>9</COL>
+                <ROW>7</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1506,7 +1587,26 @@
 	</ROOM>
 	<ROOM id = "12-6">
 		<ENEMIES>
-			
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>8</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>11</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>8</COL>
+                <ROW>7</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1518,7 +1618,36 @@
 	</ROOM>
 	<ROOM id = "12-7">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK-BLUE</TYPE>
+                <COL>1</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK-BLUE</TYPE>
+                <COL>14</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>4</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>8</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>10</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>12</COL>
+                <ROW>4</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1530,7 +1659,21 @@
 	</ROOM>
 	<ROOM id = "12-8">
 		<ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>6</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>11</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>ZOLA</TYPE>
+                <COL>11</COL>
+                <ROW>8</ROW>
+            </ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -1543,7 +1686,36 @@
 
     <ROOM id = "13-1">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>3</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>4</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>7</COL>
+                <ROW>7</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>9</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>10</COL>
+                <ROW>3</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>11</COL>
+                <ROW>6</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1555,7 +1727,7 @@
     </ROOM>
     <ROOM id = "13-2">
         <ENEMIES>
-
+			
         </ENEMIES>
 
         <WARPS>
@@ -1567,7 +1739,26 @@
     </ROOM>
     <ROOM id = "13-3">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>1</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>4</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>5</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>TEKTITE</TYPE>
+                <COL>13</COL>
+                <ROW>7</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1579,7 +1770,11 @@
     </ROOM>
     <ROOM id = "13-4">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK-BLUE</TYPE>
+                <COL>14</COL>
+                <ROW>5</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1591,7 +1786,31 @@
     </ROOM>
     <ROOM id = "13-5">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>3</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>3</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK</TYPE>
+                <COL>10</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK-BLUE</TYPE>
+                <COL>1</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>OCTOROK-BLUE</TYPE>
+                <COL>9</COL>
+                <ROW>8</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1603,7 +1822,26 @@
     </ROOM>
     <ROOM id = "13-6">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>1</COL>
+                <ROW>8</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>5</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE</TYPE>
+                <COL>12</COL>
+                <ROW>2</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN-BLUE<TYPE>
+                <COL>12</COL>
+                <ROW>5</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1615,7 +1853,26 @@
     </ROOM>
     <ROOM id = "13-7">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>3</COL>
+                <ROW>6</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>6</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>9</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>MOLBLIN</TYPE>
+                <COL>12</COL>
+                <ROW>2</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
@@ -1627,7 +1884,21 @@
     </ROOM>
     <ROOM id = "13-8">
         <ENEMIES>
-
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>5</COL>
+                <ROW>5</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>LEEVER</TYPE>
+                <COL>12</COL>
+                <ROW>4</ROW>
+            </ENEMY>
+			<ENEMY>
+                <TYPE>ZOLA</TYPE>
+                <COL>12</COL>
+                <ROW>9</ROW>
+            </ENEMY>
         </ENEMIES>
 
         <WARPS>
