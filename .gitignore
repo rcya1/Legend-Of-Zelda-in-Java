@@ -17,3 +17,10 @@ hs_err_pid*
 .idea/workspace.xml
 .idea/uiDesigner.xml
 bin/
+/Legend-Of-Zelda-in-Java.iml
+.DS_Store
+.idea/
+Legend-Of-Zelda-in-Java.iml
+out/
+resources/.DS_Store
+resources/audio/beginning/.DS_Store
