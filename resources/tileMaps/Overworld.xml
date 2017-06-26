@@ -1838,7 +1838,7 @@
                 <ROW>2</ROW>
             </ENEMY>
 			<ENEMY>
-                <TYPE>MOLBLIN-BLUE<TYPE>
+                <TYPE>MOLBLIN-BLUE</TYPE>
                 <COL>12</COL>
                 <ROW>5</ROW>
             </ENEMY>
