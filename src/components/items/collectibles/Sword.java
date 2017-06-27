@@ -4,6 +4,7 @@ import components.map.rooms.Room;
 import components.entity.Link;
 import utility.Data;
 import utility.Images;
+import utility.SoundPlayer;
 
 import java.awt.*;
 
@@ -35,6 +36,9 @@ public class Sword extends Collectible
 	public boolean action(Link link)
 	{
 		Data.swordLevel = 1;
+		link.enterItemState(this);
+		playClip();
+
 		return true;
 	}
 }

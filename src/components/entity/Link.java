@@ -58,6 +58,9 @@ public class Link extends Entity
 	private int healthContainers;
 	private final int maxHealthContainers;
 
+	private Collectible drawCollectible;
+	private int getAnimationTimer;
+
 	public Link(OverWorld overWorld)
 	{
 		this.overWorld = overWorld;
@@ -91,6 +94,8 @@ public class Link extends Entity
 		healthContainers = 3;
 		maxHealthContainers = 16;
 
+		getAnimationTimer = 0;
+
 		item = null;
 	}
 
@@ -103,117 +108,133 @@ public class Link extends Entity
 
 		switch(state)
 		{
-		case "IDLE":
-			velX = 0;
-			velY = 0;
+			case "IDLE":
+				velX = 0;
+				velY = 0;
 
-			checkFreeMovement();
-			break;
-		case "UP":
-			velX = alignToGrid(x, 8);
-			velY = -moveSpeed;
-			direction = Direction.UP;
+				checkFreeMovement();
+				break;
+			case "UP":
+				velX = alignToGrid(x, 8);
+				velY = -moveSpeed;
+				direction = Direction.UP;
 
-			walkUp.update();
+				walkUp.update();
 
-			checkFreeMovement();
-			break;
-		case "RIGHT":
-			velX = moveSpeed;
-			velY = alignToGrid(y, 8);
-			direction = Direction.RIGHT;
+				checkFreeMovement();
+				break;
+			case "RIGHT":
+				velX = moveSpeed;
+				velY = alignToGrid(y, 8);
+				direction = Direction.RIGHT;
 
-			walkRight.update();
+				walkRight.update();
 
-			checkFreeMovement();
-			break;
-		case "DOWN":
-			velX = alignToGrid(x, 8);
-			velY = moveSpeed;
-			direction = Direction.DOWN;
+				checkFreeMovement();
+				break;
+			case "DOWN":
+				velX = alignToGrid(x, 8);
+				velY = moveSpeed;
+				direction = Direction.DOWN;
 
-			walkDown.update();
+				walkDown.update();
 
-			checkFreeMovement();
-			break;
-		case "LEFT":
-			velX = -moveSpeed;
-			velY = alignToGrid(y, 8);
-			direction = Direction.LEFT;
+				checkFreeMovement();
+				break;
+			case "LEFT":
+				velX = -moveSpeed;
+				velY = alignToGrid(y, 8);
+				direction = Direction.LEFT;
 
-			walkLeft.update();
+				walkLeft.update();
 
-			checkFreeMovement();
-			break;
-		case "ATTACK_SWORD_START":
-			velX = 0;
-			velY = 0;
+				checkFreeMovement();
+				break;
+			case "ATTACK_SWORD_START":
+				velX = 0;
+				velY = 0;
 
-			swordTimer = 16;
+				swordTimer = 16;
 
-			state = "ATTACK_SWORD";
-			break;
-		case "ATTACK_SWORD":
-			if(swordTimer == 9)
-			{
-				int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x), (int) Math.round(y), 12, direction);
-				sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld.getCurrentRoom());
-			}
-			else if(swordTimer <= 2)
-			{
-				sword.retract();
-			}
-
-			if(swordTimer > 0) swordTimer--;
-			else
-			{
-				state = "IDLE";
-				sword = null;
-			}
-			break;
-		case "ITEM_USE":
-			velX = 0;
-			velY = 0;
-
-			if(item != null)
-			{
-				if(itemTimer == 0) itemTimer = 30;
-				if(itemTimer == 20) item.action(this);
-
-				if(itemTimer > 0) itemTimer--;
-				if(itemTimer == 0) state = "IDLE";
-			}
-			else state = "IDLE";
-			break;
-		case "TRANSITION":
-			velX = 0;
-			velY = 0;
-
-			x += transitionVelX;
-			y += transitionVelY;
-
-			transitionAmountX += transitionVelX;
-			transitionAmountY += transitionVelY;
-
-			if(Math.abs(transitionAmountX) == room.getMapWidth() - 20)
-				transitionVelX = 0;
-			if(Math.abs(transitionAmountY) == room.getMapHeight() - 20)
-				transitionVelY = 0;
-
-			if(transitionVelX == 0 && transitionVelY == 0)
-			{
-				transitionAmountX = 0;
-				transitionAmountY = 0;
-
-				if(!overWorld.isMoving())
+				state = "ATTACK_SWORD";
+				break;
+			case "ATTACK_SWORD":
+				if(swordTimer == 9)
 				{
-					this.state = "IDLE";
+					int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x), (int) Math.round(y), 12, direction);
+					sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld.getCurrentRoom());
 				}
-			}
-			break;
-		default:
-			System.out.println(state);
-			break;
+				else if(swordTimer <= 2)
+				{
+					sword.retract();
+				}
+
+				if(swordTimer > 0) swordTimer--;
+				else
+				{
+					state = "IDLE";
+					sword = null;
+				}
+				break;
+			case "ITEM_USE":
+				velX = 0;
+				velY = 0;
+
+				if(item != null)
+				{
+					if(itemTimer == 0) itemTimer = 30;
+					if(itemTimer == 20) item.action(this);
+
+					if(itemTimer > 0) itemTimer--;
+					if(itemTimer == 0) state = "IDLE";
+				}
+				else state = "IDLE";
+				break;
+			case "GET_ITEM":
+				velX = 0;
+				velY = 0;
+				if(getAnimationTimer == 0) getAnimationTimer = 180;
+				else getAnimationTimer--;
+
+				if(getAnimationTimer == 0) state = "IDLE";
+				break;
+			case "GET_TRIFORCE":
+				velX = 0;
+				velY = 0;
+				if(getAnimationTimer == 0) getAnimationTimer = 180;
+				else getAnimationTimer--;
+
+				if(getAnimationTimer == 0) state = "IDLE";
+				break;
+			case "TRANSITION":
+				velX = 0;
+				velY = 0;
+
+				x += transitionVelX;
+				y += transitionVelY;
+
+				transitionAmountX += transitionVelX;
+				transitionAmountY += transitionVelY;
+
+				if(Math.abs(transitionAmountX) == room.getMapWidth() - 20)
+					transitionVelX = 0;
+				if(Math.abs(transitionAmountY) == room.getMapHeight() - 20)
+					transitionVelY = 0;
+
+				if(transitionVelX == 0 && transitionVelY == 0)
+				{
+					transitionAmountX = 0;
+					transitionAmountY = 0;
+
+					if(!overWorld.isMoving())
+					{
+						this.state = "IDLE";
+					}
+				}
+				break;
+			default:
+				System.out.println(state);
+				break;
 		}
 
 		if(invincibilityFrames > 0) invincibilityFrames--;
@@ -231,7 +252,6 @@ public class Link extends Entity
 		if(boomerang != null)
 		{
 			boomerang.update();
-
 			if(boomerang.getReturnTimer() == 0 && getRectangle().intersects(boomerang.getRectangle()))
 			{
 				boomerang = null;
@@ -265,85 +285,94 @@ public class Link extends Entity
 
 			switch(state)
 			{
-			case "IDLE":
-				switch(direction)
-				{
-				case UP:
+				case "IDLE":
+					switch(direction)
+					{
+					case UP:
+						walkUp.draw(g2d, drawX, drawY, width, height);
+						break;
+					case RIGHT:
+						walkRight.draw(g2d, drawX, drawY, width, height);
+						break;
+					case DOWN:
+						walkDown.draw(g2d, drawX, drawY, width, height);
+						break;
+					case LEFT:
+						walkLeft.draw(g2d, drawX, drawY, width, height);
+						break;
+					default:
+						break;
+					}
+					break;
+				case "UP":
 					walkUp.draw(g2d, drawX, drawY, width, height);
 					break;
-				case RIGHT:
-					walkRight.draw(g2d, drawX, drawY, width, height);
-					break;
-				case DOWN:
+				case "DOWN":
 					walkDown.draw(g2d, drawX, drawY, width, height);
 					break;
-				case LEFT:
-					walkLeft.draw(g2d, drawX, drawY, width, height);
-					break;
-				default:
-					break;
-				}
-				break;
-			case "UP":
-				walkUp.draw(g2d, drawX, drawY, width, height);
-				break;
-			case "DOWN":
-				walkDown.draw(g2d, drawX, drawY, width, height);
-				break;
-			case "RIGHT":
-				walkRight.draw(g2d, drawX, drawY, width, height);
-				break;
-			case "LEFT":
-				walkLeft.draw(g2d, drawX, drawY, width, height);
-				break;
-			case "ATTACK_SWORD_START":
-				g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
-				break;
-			case "ATTACK_SWORD":
-				g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
-				break;
-			case "ITEM_USE":
-				switch(direction)
-				{
-				case UP:
-					g2d.drawImage(Images.Link.LINK_ITEM_UP, drawX, drawY, width, height, null);
-					break;
-				case RIGHT:
-					g2d.drawImage(Images.Link.LINK_ITEM_RIGHT, drawX, drawY, width, height, null);
-					break;
-				case DOWN:
-					g2d.drawImage(Images.Link.LINK_ITEM_DOWN, drawX, drawY, width, height, null);
-					break;
-				case LEFT:
-					g2d.drawImage(Images.Link.LINK_ITEM_LEFT, drawX, drawY, width, height, null);
-					break;
-				default:
-					break;
-				}
-				break;
-			case "TRANSITION":
-				switch(direction)
-				{
-				case UP:
-					walkUp.draw(g2d, drawX, drawY, width, height);
-					break;
-				case RIGHT:
+				case "RIGHT":
 					walkRight.draw(g2d, drawX, drawY, width, height);
 					break;
-				case DOWN:
-					walkDown.draw(g2d, drawX, drawY, width, height);
-					break;
-				case LEFT:
+				case "LEFT":
 					walkLeft.draw(g2d, drawX, drawY, width, height);
 					break;
-				default:
+				case "ATTACK_SWORD_START":
+					g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
 					break;
-				}
-				break;
-			default:
-				g2d.setColor(Color.RED);
-				g2d.drawRect(drawX, drawY, width, height);
-				break;
+				case "ATTACK_SWORD":
+					g2d.drawImage(swordAttack[direction.getInteger()], drawX, drawY, width, height, null);
+					break;
+				case "ITEM_USE":
+					switch(direction)
+					{
+					case UP:
+						g2d.drawImage(Images.Link.LINK_ITEM_UP, drawX, drawY, width, height, null);
+						break;
+					case RIGHT:
+						g2d.drawImage(Images.Link.LINK_ITEM_RIGHT, drawX, drawY, width, height, null);
+						break;
+					case DOWN:
+						g2d.drawImage(Images.Link.LINK_ITEM_DOWN, drawX, drawY, width, height, null);
+						break;
+					case LEFT:
+						g2d.drawImage(Images.Link.LINK_ITEM_LEFT, drawX, drawY, width, height, null);
+						break;
+					default:
+						break;
+					}
+					break;
+				case "GET_ITEM":
+					g2d.drawImage(Images.Link.Items.LINK_GET_ITEM, drawX, drawY, width, height, null);
+					drawCollectible.draw(drawX + drawCollectible.getWidth() / 4,
+							drawY - drawCollectible.getHeight() / 2, g2d);
+					break;
+				case "GET_TRIFORCE":
+					g2d.drawImage(Images.Link.Items.LINK_GET_TRIFORCE, drawX, drawY, width, height, null);
+					//TODO Draw a triforce
+					break;
+				case "TRANSITION":
+					switch(direction)
+					{
+					case UP:
+						walkUp.draw(g2d, drawX, drawY, width, height);
+						break;
+					case RIGHT:
+						walkRight.draw(g2d, drawX, drawY, width, height);
+						break;
+					case DOWN:
+						walkDown.draw(g2d, drawX, drawY, width, height);
+						break;
+					case LEFT:
+						walkLeft.draw(g2d, drawX, drawY, width, height);
+						break;
+					default:
+						break;
+					}
+					break;
+				default:
+					g2d.setColor(Color.RED);
+					g2d.drawRect(drawX, drawY, width, height);
+					break;
 			}
 		}
 
@@ -469,6 +498,17 @@ public class Link extends Entity
 		if(key == KeyEvent.VK_S) inputDown = bool;
 		if(key == KeyEvent.VK_SPACE) inputAttack = bool;
 		if(key == KeyEvent.VK_SHIFT) inputItem = bool;
+	}
+
+	public void enterItemState(Collectible collectible)
+	{
+		this.state = "GET_ITEM";
+		drawCollectible = collectible;
+	}
+
+	public void enterTriforceState()
+	{
+		this.state = "GET_TRIFORCE";
 	}
 
 	public Sword getSword()

@@ -29,4 +29,14 @@ public abstract class MapItem
 	{
 		return new Rectangle(x, y, width, height);
 	}
+
+	public int getWidth()
+	{
+		return width;
+	}
+
+	public int getHeight()
+	{
+		return height;
+	}
 }

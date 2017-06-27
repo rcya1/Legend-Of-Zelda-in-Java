@@ -14,7 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class OverWorld
 {
@@ -119,8 +118,6 @@ public class OverWorld
 						new int[] {0, currentRoom.getMapHeight()});
 			}
 		}
-
-		if(!SoundPlayer.OVERWORLD.isPlaying()) SoundPlayer.OVERWORLD.loop();
 	}
 
 	private void loadNewRoom(int[] transitionVector, int loadingRoomID, int[] loadingRoomLocation)
