@@ -14,7 +14,7 @@ public class Octorok extends Enemy implements ProjectileEnemy, ProjectileDeflect
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	protected Animation animation;
+	Animation animation;
 
 	private OctorokPellet pellet;
 

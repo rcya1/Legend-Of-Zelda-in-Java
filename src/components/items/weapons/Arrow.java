@@ -10,7 +10,7 @@ import java.awt.geom.AffineTransform;
 
 public class Arrow extends Weapon
 {
-	private Direction direction;
+	private final Direction direction;
 
 	public Arrow(int x, int y, Direction direction, Room room)
 	{

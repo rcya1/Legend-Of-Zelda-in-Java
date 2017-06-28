@@ -10,7 +10,7 @@ import java.awt.*;
 public class LeeverBlue extends Leever
 {
 	private int movementRefreshTimer;
-	private Animation tunnel;
+	private final Animation tunnel;
 
 	public LeeverBlue(int x, int y, Direction direction, Room room)
 	{

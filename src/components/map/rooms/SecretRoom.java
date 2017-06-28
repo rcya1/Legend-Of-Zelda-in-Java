@@ -34,15 +34,15 @@ public class SecretRoom implements Room
 
 	private final Tile[][] tiles;
 
-	private OverWorld overWorld;
+	private final OverWorld overWorld;
 
-	private int warpColumn;
-	private int warpRow;
+	private final int warpColumn;
+	private final int warpRow;
 
-	private RoomMetadata metadata;
+	private final RoomMetadata metadata;
 
-	private AnimationObject fire1;
-	private AnimationObject fire2;
+	private final AnimationObject fire1;
+	private final AnimationObject fire2;
 
 	private Collectible[] items;
 

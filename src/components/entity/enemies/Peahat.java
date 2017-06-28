@@ -10,7 +10,7 @@ public class Peahat extends Enemy
 {
 	private int direction;
 
-	private Animation animation;
+	private final Animation animation;
 
 	private double speed;
 	private int timer;

@@ -1,6 +1,6 @@
 package components.entity.enemies;
 
-public abstract class TeleportingEnemy extends Enemy
+abstract class TeleportingEnemy extends Enemy
 {
 	abstract void generateTargetLocation();
 

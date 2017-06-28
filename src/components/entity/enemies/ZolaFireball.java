@@ -5,7 +5,7 @@ import utility.Images;
 
 import java.awt.*;
 
-public class ZolaFireball
+class ZolaFireball
 {
 	private double x;
 	private double y;

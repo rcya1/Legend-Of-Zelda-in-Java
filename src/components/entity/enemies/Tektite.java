@@ -8,12 +8,12 @@ import java.awt.*;
 
 public class Tektite extends Enemy
 {
-	protected Animation animation;
+	Animation animation;
 
 	int targetColumn;
 	int targetRow;
 
-	double gravity;
+	final double gravity;
 
 	public Tektite(int x, int y, Room room)
 	{

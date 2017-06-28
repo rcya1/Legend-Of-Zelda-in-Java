@@ -15,7 +15,7 @@ public class SoundPlayer
 	public static final SoundPlayer OVERWORLD = new SoundPlayer("/audio/Overworld.wav");
 	public static final SoundPlayer ITEM = new SoundPlayer("/audio/Item.wav");
 
-	public static SoundPlayer[] soundPlayers = new SoundPlayer[]
+	private static final SoundPlayer[] soundPlayers = new SoundPlayer[]
 			{INTRO, OVERWORLD, ITEM};
 
 	private SoundPlayer(String path)

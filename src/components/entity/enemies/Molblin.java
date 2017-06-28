@@ -13,10 +13,10 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 	private int shootingTimer;
 	private int movementRefreshTimer;
 
-	protected Animation up;
-	protected Animation right;
-	protected Animation down;
-	protected Animation left;
+	Animation up;
+	Animation right;
+	Animation down;
+	Animation left;
 
 	private MolblinSpear spear;
 

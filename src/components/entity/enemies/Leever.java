@@ -65,11 +65,6 @@ public class Leever extends TeleportingEnemy
 			normal.update();
 			break;
 		case "BURROW":
-			if(targetColumn == -2)
-			{
-
-			}
-
 			if(burrow.isOver())
 			{
 				this.x = targetColumn * room.getWidthOfTile();
@@ -112,7 +107,7 @@ public class Leever extends TeleportingEnemy
 		super.update();
 	}
 
-	public void update(boolean callSuper)
+	void update(boolean callSuper)
 	{
 		super.update();
 	}

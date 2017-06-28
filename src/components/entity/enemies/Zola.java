@@ -14,7 +14,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 	private int timer;
 	private int warpTimer;
 
-	private Animation warping;
+	private final Animation warping;
 
 	private ZolaFireball fireball;
 
