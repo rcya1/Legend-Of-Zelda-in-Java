@@ -1,8 +1,8 @@
 package components.entity;
 
 import components.map.rooms.Room;
-import utility.Tile;
 import utility.MathHelper;
+import utility.Tile;
 
 import java.awt.*;
 

@@ -1,9 +1,9 @@
 package state.states;
 
-import utility.Animation;
 import main.GamePanel;
 import state.State;
 import state.StateManager;
+import utility.Animation;
 import utility.Images;
 import utility.SoundPlayer;
 

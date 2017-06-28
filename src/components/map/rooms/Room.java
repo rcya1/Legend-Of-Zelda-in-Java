@@ -3,8 +3,8 @@ package components.map.rooms;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
 import components.items.MapItem;
-import utility.Tile;
 import components.items.collectibles.Collectible;
+import utility.Tile;
 
 import java.util.ArrayList;
 

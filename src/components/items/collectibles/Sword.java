@@ -1,10 +1,9 @@
 package components.items.collectibles;
 
-import components.map.rooms.Room;
 import components.entity.Link;
+import components.map.rooms.Room;
 import utility.Data;
 import utility.Images;
-import utility.SoundPlayer;
 
 import java.awt.*;
 

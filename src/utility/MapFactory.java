@@ -1,8 +1,8 @@
 package utility;
 
+import components.entity.Direction;
 import components.entity.enemies.*;
 import components.map.OverWorld;
-import components.entity.Direction;
 import components.map.WarpTile;
 import components.map.rooms.Room;
 

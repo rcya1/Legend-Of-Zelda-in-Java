@@ -1,7 +1,7 @@
 package components.items.collectibles;
 
-import components.map.rooms.OverWorldRoom;
 import components.entity.Link;
+import components.map.rooms.OverWorldRoom;
 import utility.Images;
 
 public class HeartContainer extends Collectible

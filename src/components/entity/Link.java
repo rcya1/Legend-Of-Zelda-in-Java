@@ -1,17 +1,19 @@
 package components.entity;
 
-import components.entity.enemies.*;
+import components.entity.enemies.Enemy;
+import components.entity.enemies.ProjectileDeflectibleEnemy;
+import components.entity.enemies.ProjectileEnemy;
+import components.items.MapItem;
+import components.items.collectibles.Collectible;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
 import components.items.weapons.Boomerang;
-import utility.Animation;
+import components.items.weapons.Sword;
 import components.map.OverWorld;
+import components.map.WarpTile;
 import components.map.rooms.Room;
 import components.map.rooms.SecretRoom;
-import components.items.MapItem;
-import components.map.WarpTile;
-import components.items.collectibles.Collectible;
-import components.items.weapons.Sword;
+import utility.Animation;
 import utility.Data;
 import utility.Images;
 import utility.MathHelper;

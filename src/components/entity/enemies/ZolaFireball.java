@@ -4,7 +4,6 @@ import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 public class ZolaFireball
 {

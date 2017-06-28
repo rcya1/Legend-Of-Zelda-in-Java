@@ -2,7 +2,6 @@ package components.entity.enemies;
 
 import components.entity.Direction;
 import components.map.rooms.Room;
-import jdk.nashorn.internal.ir.PropertyKey;
 import utility.Animation;
 import utility.Images;
 

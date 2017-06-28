@@ -1,13 +1,16 @@
 package components.map.rooms;
 
-import components.entity.enemies.Enemy;
-import components.items.MapItem;
-import utility.*;
 import components.entity.Direction;
 import components.entity.Link;
+import components.entity.enemies.Enemy;
+import components.items.MapItem;
+import components.items.collectibles.Collectible;
 import components.map.AnimationObject;
 import components.map.OverWorld;
-import components.items.collectibles.Collectible;
+import utility.Animation;
+import utility.Images;
+import utility.TextHelper;
+import utility.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

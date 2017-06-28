@@ -1,7 +1,7 @@
 package components.items.weapons;
 
-import components.map.rooms.OverWorldRoom;
 import components.entity.Direction;
+import components.map.rooms.OverWorldRoom;
 import utility.Images;
 
 import java.awt.*;

@@ -1,15 +1,13 @@
 package components.entity.enemies;
 
+import components.entity.Direction;
 import components.map.rooms.Room;
 import utility.Animation;
-import components.entity.Direction;
 import utility.Images;
 import utility.Tile;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-
-import static components.entity.Direction.RIGHT;
 
 public class Octorok extends Enemy implements ProjectileEnemy, ProjectileDeflectibleEnemy
 {

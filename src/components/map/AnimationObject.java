@@ -1,8 +1,8 @@
 package components.map;
 
 import components.items.MapItem;
-import utility.Animation;
 import components.map.rooms.Room;
+import utility.Animation;
 
 import java.awt.*;
 

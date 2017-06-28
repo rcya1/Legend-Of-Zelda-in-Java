@@ -1,7 +1,7 @@
 package components.items.collectibles;
 
-import components.map.rooms.Room;
 import components.entity.Link;
+import components.map.rooms.Room;
 import utility.Images;
 
 public class Heart extends Collectible

@@ -1,15 +1,15 @@
 package components.map.rooms;
 
-import utility.Animation;
-import utility.Tile;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
-import components.map.AnimationObject;
 import components.items.MapItem;
-import components.map.OverWorld;
 import components.items.collectibles.Collectible;
+import components.map.AnimationObject;
+import components.map.OverWorld;
+import utility.Animation;
 import utility.Images;
 import utility.MapFactory;
+import utility.Tile;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

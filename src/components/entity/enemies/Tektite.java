@@ -2,7 +2,6 @@ package components.entity.enemies;
 
 import components.map.rooms.Room;
 import utility.Animation;
-import components.map.rooms.OverWorldRoom;
 import utility.Images;
 
 import java.awt.*;

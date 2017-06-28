@@ -1,10 +1,10 @@
 package components.map;
 
+import components.entity.Direction;
+import components.entity.Link;
 import components.map.rooms.OverWorldRoom;
 import components.map.rooms.RoomMetadata;
 import components.map.rooms.SecretRoom;
-import components.entity.Direction;
-import components.entity.Link;
 import org.w3c.dom.Document;
 import utility.MapFactory;
 import utility.SoundPlayer;

@@ -1,8 +1,8 @@
 package components.items.collectibles;
 
-import components.map.rooms.Room;
 import components.entity.Link;
 import components.items.MapItem;
+import components.map.rooms.Room;
 import utility.SoundPlayer;
 
 import java.awt.*;
