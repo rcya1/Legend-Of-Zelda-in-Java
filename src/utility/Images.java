@@ -794,6 +794,30 @@ public class Images
 
 			public static final BufferedImage MOLBLIN_SPEAR = loadSingleImage("/textures/sprites/enemies/molblin/Spear.png");
 		}
+
+		public static class Armos
+		{
+			private static final BufferedImage ARMOS_FRONT = loadSingleImage("/textures/sprites/enemies/armos/ArmosFront.png");
+			private static final BufferedImage ARMOS_BACK = loadSingleImage("/textures/sprites/enemies/armos/ArmosBack.png");
+
+			public static final BufferedImage ARMOS_FRONT_1 = ARMOS_FRONT != null ?
+					ARMOS_FRONT.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ARMOS_FRONT_2 = ARMOS_FRONT != null ?
+					ARMOS_FRONT.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage ARMOS_BACK_1 = ARMOS_BACK != null ?
+					ARMOS_BACK.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ARMOS_BACK_2 = ARMOS_BACK != null ?
+					ARMOS_BACK.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage ARMOS_BROWN = loadSingleImage("/textures/sprites/enemies/armos/ArmosBrown.png");
+			public static final BufferedImage ARMOS_GREEN = loadSingleImage("/textures/sprites/enemies/armos/ArmosGreen.png");
+			public static final BufferedImage ARMOS_WHITE = loadSingleImage("/textures/sprites/enemies/armos/ArmosWhite.png");
+		}
 	}
 
 	public static class Menu

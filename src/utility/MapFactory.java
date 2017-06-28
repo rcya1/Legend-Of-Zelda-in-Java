@@ -65,26 +65,32 @@ public class MapFactory
 
 		switch(string)
 		{
-		case "OCTOROK":
-			return new Octorok(x, y, Direction.getRandom(), room);
-		case "TEKTITE":
-			return new Tektite(x, y, room);
-		case "TEKTITE-BLUE":
-			return new TektiteBlue(x, y, room);
-		case "OCTOROK-BLUE":
-			return new OctorokBlue(x, y, Direction.getRandom(), room);
-		case "LEEVER":
-			return new Leever(x, y, Direction.getRandom(), room);
-		case "LEEVER-BLUE":
-			return new LeeverBlue(x, y, Direction.getRandom(), room);
-		case "PEAHAT":
-			return new Peahat(x, y, (int) (Math.random() * 8), room);
-		case "ZOLA":
-			return new Zola(x, y, room);
-		case "MOLBLIN":
-			return new Molblin(x, y, Direction.getRandom(), room);
-		case "MOLBLIN-BLUE":
-			return new MolblinBlue(x, y, Direction.getRandom(), room);
+			case "OCTOROK":
+				return new Octorok(x, y, Direction.getRandom(), room);
+			case "TEKTITE":
+				return new Tektite(x, y, room);
+			case "TEKTITE-BLUE":
+				return new TektiteBlue(x, y, room);
+			case "OCTOROK-BLUE":
+				return new OctorokBlue(x, y, Direction.getRandom(), room);
+			case "LEEVER":
+				return new Leever(x, y, Direction.getRandom(), room);
+			case "LEEVER-BLUE":
+				return new LeeverBlue(x, y, Direction.getRandom(), room);
+			case "PEAHAT":
+				return new Peahat(x, y, (int) (Math.random() * 8), room);
+			case "ZOLA":
+				return new Zola(x, y, room);
+			case "MOLBLIN":
+				return new Molblin(x, y, Direction.getRandom(), room);
+			case "MOLBLIN-BLUE":
+				return new MolblinBlue(x, y, Direction.getRandom(), room);
+			case "ARMOS-BROWN":
+				return new ArmosBrown(x, y, room);
+			case "ARMOS-GREEN":
+				return new ArmosGreen(x, y, room);
+			case "ARMOS-WHITE":
+				return new ArmosWhite(x, y, room);
 		default:
 			return null;
 		}
