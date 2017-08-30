@@ -75,8 +75,7 @@ public abstract class Entity
 		if(collisionX)
 		{
 			x = ((int) Math.round(x) / 8) * 8;
-			if(MathHelper.sign(velX) == -1) x += 8;
-			if(velX == 0 && direction == Direction.LEFT) x += 8;
+			if(MathHelper.sign(velX) == -1) x += 8;   //Correct rounding issues
 
 			velX = 0;
 			velY = 0;
@@ -85,8 +84,7 @@ public abstract class Entity
 		if(collisionY)
 		{
 			y = ((int) Math.round(y) / 8) * 8;
-			if(MathHelper.sign(velY) == -1) y += 8;
-			if(velY == 0 && direction == Direction.UP) y += 8;
+			if(MathHelper.sign(velY) == -1) y += 8;  //Correct rounding issues
 
 			velX = 0;
 			velY = 0;
