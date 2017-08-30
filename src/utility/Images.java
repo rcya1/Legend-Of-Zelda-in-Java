@@ -824,6 +824,90 @@ public class Images
 			public static final BufferedImage ARMOS_GREEN = loadSingleImage("/textures/sprites/enemies/armos/ArmosGreen.png");
 			public static final BufferedImage ARMOS_WHITE = loadSingleImage("/textures/sprites/enemies/armos/ArmosWhite.png");
 		}
+
+		public static class Lynel
+		{
+			private static final BufferedImage LYNEL = loadSingleImage("/textures/sprites/enemies/lynel/Lynel.png");
+
+			public static final BufferedImage LYNEL_UP = LYNEL != null ?
+					LYNEL.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_UP_2 = LYNEL != null ?
+					LYNEL.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_RIGHT = LYNEL != null ?
+					LYNEL.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_RIGHT_2 = LYNEL != null ?
+					LYNEL.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_DOWN = LYNEL != null ?
+					LYNEL.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_DOWN_2 = LYNEL != null ?
+					LYNEL.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_LEFT = LYNEL != null ?
+					LYNEL.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_LEFT_2 = LYNEL != null ?
+					LYNEL.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			private static final BufferedImage LYNEL_BLUE = loadSingleImage("/textures/sprites/enemies/lynel/LynelBlue.png");
+
+			public static final BufferedImage LYNEL_BLUE_UP = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_BLUE_UP_2 = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_BLUE_RIGHT = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_BLUE_RIGHT_2 = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_BLUE_DOWN = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(0, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_BLUE_DOWN_2 = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(TILE_WIDTH, TILE_HEIGHT * 2, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_BLUE_LEFT = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(0, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_BLUE_LEFT_2 = LYNEL_BLUE != null ?
+					LYNEL_BLUE.getSubimage(TILE_WIDTH, TILE_HEIGHT * 3, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+
+			public static final BufferedImage LYNEL_SWORD = loadSingleImage("/textures/sprites/enemies/lynel/Sword.png");
+
+			public static final BufferedImage LYNEL_SWORD_1 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_SWORD_2 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_SWORD_3 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_SWORD_4 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_SWORD_5 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage LYNEL_SWORD_6 = LYNEL_SWORD != null ?
+					LYNEL_SWORD.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
 	}
 
 	//All of the menu sprites

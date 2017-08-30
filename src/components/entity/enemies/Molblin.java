@@ -62,22 +62,6 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
 			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			switch(direction)
-			{
-			case UP:
-				up.update();
-				break;
-			case RIGHT:
-				right.update();
-				break;
-			case DOWN:
-				down.update();
-				break;
-			case LEFT:
-				left.update();
-				break;
-			}
-
 			if((Math.random() * 100) < 2) direction = Direction.getRandom();
 			if((Math.random() * 300) < 2)
 			{
@@ -109,6 +93,22 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 			break;
 		default:
 			break;
+		}
+
+		switch(direction)
+		{
+			case UP:
+				up.update();
+				break;
+			case RIGHT:
+				right.update();
+				break;
+			case DOWN:
+				down.update();
+				break;
+			case LEFT:
+				left.update();
+				break;
 		}
 
 		if(handleTileCollisions() && movementRefreshTimer == 0)

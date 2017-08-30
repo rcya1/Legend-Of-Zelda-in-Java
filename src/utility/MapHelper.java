@@ -103,6 +103,10 @@ public class MapHelper
 				return new ArmosGreen(x, y, room);
 			case "ARMOS-WHITE":
 				return new ArmosWhite(x, y, room);
+			case "LYNEL":
+				return new Lynel(x, y, Direction.getRandom(), room);
+			case "LYNEL-BLUE":
+				return new LynelBlue(x, y, Direction.getRandom(), room);
 		default:
 			return null;
 		}
