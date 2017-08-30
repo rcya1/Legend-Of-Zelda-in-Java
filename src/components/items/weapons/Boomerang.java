@@ -9,17 +9,15 @@ import utility.Tile;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+//A boomerang that stuns enemies and returns
 public class Boomerang extends Weapon
 {
-	private double x;
-	private double y;
+	private double x, y;
+	private double velX, velY;
 
-	private double velX;
-	private double velY;
+	private int returnTimer;     //How long until the boomerang should reverse and go back to Link
 
-	private int returnTimer;
-
-	private int animationTimer;
+	private int animationTimer;  //Timer for how much the boomerang should be rotated
 
 	public Boomerang(double x, double y, Direction direction, Room room)
 	{
@@ -38,10 +36,13 @@ public class Boomerang extends Weapon
 		animationTimer = 0;
 	}
 
+	//Updates the position of the boomerang
 	public void update()
 	{
+		//If it is time for the boomerang to come back
 		if(returnTimer == 0)
 		{
+			//Calculate an angle between the boomerang and Link, and go by that angle
 			double angle = Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2,
 					room.getLink().getX() - x);
 			velX = Math.cos(angle) * 2.00;
@@ -51,6 +52,7 @@ public class Boomerang extends Weapon
 		this.x += velX;
 		this.y += velY;
 
+		//Find the left, right, top, and bottom lines
 		int leftColumn = (int) Math.round(x - width / 2) / room.getWidthOfTile();
 		int rightColumn = (int) Math.round(x + width / 2) / room.getWidthOfTile();
 		int topRow = (int) Math.round(y - height / 2) / room.getHeightOfTile();
@@ -61,6 +63,7 @@ public class Boomerang extends Weapon
 		if(topRow < 0) topRow = 0;
 		if(bottomRow > room.getNumOfRows() - 1) bottomRow = room.getNumOfRows() - 1;
 
+		//Go through each grid that the boomerang is on/is near, and check for collisions
 		for(int i = leftColumn; i <= rightColumn; i++)
 		{
 			for(int j = topRow; j <= bottomRow; j++)
@@ -72,6 +75,7 @@ public class Boomerang extends Weapon
 							j * room.getHeightOfTile(), room.getWidthOfTile(),
 							room.getHeightOfTile() / 2);
 
+					//If the tile is solid and the boomerang intersects it, then reverse the boomerang
 					if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
 					{
 						returnTimer = 0;
@@ -81,14 +85,15 @@ public class Boomerang extends Weapon
 		}
 
 		if(returnTimer > 0) returnTimer--;
-
 		animationTimer++;
 	}
 
+	//Draw the boomerang with ritations
 	public void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
 
+		//Rotate the boomerang periodically
 		if(animationTimer % 16 < 4) g2d.rotate(Math.PI / 2, x, y);
 		else if(animationTimer % 16 < 8) g2d.rotate(Math.PI, x, y);
 		else if(animationTimer % 16 < 12) g2d.rotate(Math.PI * 1.5, x, y);
@@ -99,12 +104,14 @@ public class Boomerang extends Weapon
 		g2d.setTransform(transform);
 	}
 
+	//Stun the enemy when the enemy is hit and return the boomerang
 	public void action(Enemy enemy)
 	{
 		enemy.setStunTimer(120);
 		returnTimer = 0;
 	}
 
+	//Make sure the boomerang does not cause invincibility
 	public boolean callsInvincibility()
 	{
 		return false;

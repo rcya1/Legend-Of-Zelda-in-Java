@@ -1,12 +1,13 @@
 package components.items.weapons;
 
 import components.entity.Direction;
-import components.map.rooms.OverWorldRoom;
+import components.map.rooms.WorldRoom;
 import utility.Images;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+//The sword that Link wields
 public class Sword extends Weapon
 {
 	private int velX;
@@ -14,7 +15,7 @@ public class Sword extends Weapon
 
 	private final Direction direction;
 
-	public Sword(int x, int y, Direction direction, OverWorldRoom room)
+	public Sword(int x, int y, Direction direction, WorldRoom room)
 	{
 		this.x = x;
 		this.y = y;
@@ -32,12 +33,14 @@ public class Sword extends Weapon
 		damage = 2;
 	}
 
+	//Updates the position of the sword
 	public void update()
 	{
 		x += velX;
 		y += velY;
 	}
 
+	//Draws the sword at the current x/y
 	public void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
@@ -46,6 +49,7 @@ public class Sword extends Weapon
 		g2d.setTransform(transform);
 	}
 
+	//Pulls back the sword
 	public void retract()
 	{
 		int[] vector = direction.getVector(4);

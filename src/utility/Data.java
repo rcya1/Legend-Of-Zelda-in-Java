@@ -1,5 +1,6 @@
 package utility;
 
+//Stores all data for the game
 public class Data
 {
 	public static int swordLevel = 0;

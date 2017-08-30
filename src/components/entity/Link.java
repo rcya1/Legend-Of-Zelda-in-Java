@@ -1,16 +1,16 @@
 package components.entity;
 
+import components.MapItem;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.ProjectileDeflectibleEnemy;
 import components.entity.enemies.ProjectileEnemy;
-import components.items.MapItem;
 import components.items.collectibles.Collectible;
 import components.items.player.Item;
 import components.items.weapons.Arrow;
 import components.items.weapons.Boomerang;
 import components.items.weapons.Sword;
-import components.map.OverWorld;
 import components.map.WarpTile;
+import components.map.World;
 import components.map.rooms.Room;
 import components.map.rooms.SecretRoom;
 import utility.Animation;
@@ -24,49 +24,42 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+//The player
 public class Link extends Entity
 {
-	private final OverWorld overWorld;
+	private final World world;                         //The current world that Link is in
 
-	private int transitionAmountX;
-	private int transitionAmountY;
+	private boolean inputLeft, inputUp, inputRight,    //Variables that keep track of inputs
+			inputDown, inputAttack, inputItem;
 
-	private int transitionVelX;
-	private int transitionVelY;
+	private Sword sword;                               //Link's sword
+	private int swordTimer;                            //Timer for Link extending and retracting his sword
 
-	private boolean inputLeft;
-	private boolean inputUp;
-	private boolean inputRight;
-	private boolean inputDown;
-	private boolean inputAttack;
-	private boolean inputItem;
+	private Item item;                                 //The current item that Link has equipped
+	private int itemTimer;                             //Timer for Link's item animation
 
-	private Sword sword;
-	private int swordTimer;
+	private Arrow arrow;                               //The arrow that Link has shot
+	private Boomerang boomerang;                       //The boomerang that Link has thrown out
 
-	private Item item;
-	private int itemTimer;
+	private final Animation walkUp, walkRight,         //Link's animations
+			walkDown, walkLeft;
 
-	private Arrow arrow;
-	private Boomerang boomerang;
+	private final BufferedImage[] swordAttack;         //All of the possible images for Link's extending sprite
 
-	private final Animation walkUp;
-	private final Animation walkRight;
-	private final Animation walkDown;
-	private final Animation walkLeft;
+	private int healthContainers;                      //Link's total health containers
+	private final int maxHealthContainers;             //Max amount of health containers Link can have
 
-	private final BufferedImage[] swordAttack;
+	private Collectible drawCollectible;               //The collectible link has just collected, so that it can be drawn
+	private int getAnimationTimer;                     //The timer for the item get animation
 
-	private int healthContainers;
-	private final int maxHealthContainers;
+	private int transitionAmountX, transitionAmountY;  //How far Link has moved in the transition
+	private int transitionVelX, transitionVelY;        //How Link is moving for the transition
 
-	private Collectible drawCollectible;
-	private int getAnimationTimer;
-
-	public Link(OverWorld overWorld)
+	//TODO Add in the knockback from hitting an enemy
+	public Link(World world)
 	{
-		this.overWorld = overWorld;
-		this.room = overWorld.getCurrentRoom();
+		this.world = world;
+		this.room = world.getCurrentRoom();
 
 		x = 100;
 		y = 96;
@@ -101,11 +94,13 @@ public class Link extends Entity
 		item = null;
 	}
 
+	//Updates Link's position, items, projectiles, and animations
 	public void update()
 	{
+		//Set up the current room
 		if(!(this.room instanceof SecretRoom))
 		{
-			this.room = overWorld.getCurrentRoom();
+			this.room = world.getCurrentRoom();
 		}
 
 		switch(state)
@@ -161,17 +156,21 @@ public class Link extends Entity
 				state = "ATTACK_SWORD";
 				break;
 			case "ATTACK_SWORD":
+				//After 7 frames, Link should extend his sword
 				if(swordTimer == 9)
 				{
-					int[] drawingCoordinates = MathHelper.getSwordOffset((int) Math.round(x), (int) Math.round(y), 12, direction);
-					sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, overWorld.getCurrentRoom());
+					int[] drawingCoordinates = MathHelper.getSwordOffset(
+							(int) Math.round(x), (int) Math.round(y), 12, direction);
+					sword = new Sword(drawingCoordinates[0], drawingCoordinates[1], direction, world.getCurrentRoom());
 				}
+				//After 14 frames, then Link should begin retracting his sword
 				else if(swordTimer <= 2)
 				{
 					sword.retract();
 				}
 
 				if(swordTimer > 0) swordTimer--;
+				//After 16 frames, Link's sword should disappear
 				else
 				{
 					state = "IDLE";
@@ -185,9 +184,11 @@ public class Link extends Entity
 				if(item != null)
 				{
 					if(itemTimer == 0) itemTimer = 30;
+					//After 10 frames, Link should use his item
 					if(itemTimer == 20) item.action(this);
 
 					if(itemTimer > 0) itemTimer--;
+					//After 30 frames, Link should go back to idle
 					if(itemTimer == 0) state = "IDLE";
 				}
 				else state = "IDLE";
@@ -198,6 +199,7 @@ public class Link extends Entity
 				if(getAnimationTimer == 0) getAnimationTimer = 180;
 				else getAnimationTimer--;
 
+				//After 180 frames, then Link should go back to idle
 				if(getAnimationTimer == 0) state = "IDLE";
 				break;
 			case "GET_TRIFORCE":
@@ -206,18 +208,22 @@ public class Link extends Entity
 				if(getAnimationTimer == 0) getAnimationTimer = 180;
 				else getAnimationTimer--;
 
+				//After 180 frames, then Link should go back to idle
 				if(getAnimationTimer == 0) state = "IDLE";
 				break;
 			case "TRANSITION":
 				velX = 0;
 				velY = 0;
 
+				//Move Link with the transition
 				x += transitionVelX;
 				y += transitionVelY;
 
+				//Store how far Link has moved
 				transitionAmountX += transitionVelX;
 				transitionAmountY += transitionVelY;
 
+				//Move Link until he is 20 pixels away from the edge of the room
 				if(Math.abs(transitionAmountX) == room.getMapWidth() - 20)
 					transitionVelX = 0;
 				if(Math.abs(transitionAmountY) == room.getMapHeight() - 20)
@@ -225,13 +231,12 @@ public class Link extends Entity
 
 				if(transitionVelX == 0 && transitionVelY == 0)
 				{
+					//Reset the amount stored
 					transitionAmountX = 0;
 					transitionAmountY = 0;
 
-					if(!overWorld.isMoving())
-					{
-						this.state = "IDLE";
-					}
+					//Once Link and the world have both stopped moving, then set Link to idle
+					if(!world.isMoving()) state = "IDLE";
 				}
 				break;
 			default:
@@ -239,32 +244,38 @@ public class Link extends Entity
 				break;
 		}
 
+		//Decrease any invincibility frames
 		if(invincibilityFrames > 0) invincibilityFrames--;
 
+		//Create a screen rectangle for checking if projectiles have gone off screen
+		Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
+
+		//Update Link's sword
 		if(sword != null) sword.update();
+		//Update the arrow
 		if(arrow != null)
 		{
 			arrow.update();
 
-			Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
-			if(arrow != null)
-				if(!screen.intersects(arrow.getRectangle())) arrow = null;
+			//If the arrow has gone off the screen, remove it
+			if(arrow != null) if(!screen.intersects(arrow.getRectangle())) arrow = null;
 		}
 
+		//Update the boomerang
 		if(boomerang != null)
 		{
 			boomerang.update();
+
+			//If the boomerang is coming back and it collides with Link, then remove the boomerang
 			if(boomerang.getReturnTimer() == 0 && getRectangle().intersects(boomerang.getRectangle()))
 			{
 				boomerang = null;
 			}
-			else
-			{
-				Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
-				if(!screen.intersects(boomerang.getRectangle())) boomerang = null;
-			}
+			//If the boomerang goes off screen, then remove it
+			else if(!screen.intersects(boomerang.getRectangle())) boomerang = null;
 		}
 
+		//Check for collisions
 		if(!state.equals("TRANSITION"))
 		{
 			handleTileCollisions();
@@ -273,14 +284,17 @@ public class Link extends Entity
 		}
 	}
 
+	//Draw Link and all of his projectiles
 	public void draw(Graphics2D g2d)
 	{
+		//If Link is invincible, make him flicker by only drawing him every third frame
 		if(!(invincibilityFrames > 0 && invincibilityFrames % 3 == 0))
 		{
+			//Set integer forms of the current x/y for drawing
 			drawX = (int) Math.round(x) - width / 2;
 			drawY = (int) Math.round(y) - height / 2;
 
-
+			//Draw all of Link's items/projectiles
 			if(sword != null) sword.draw(g2d);
 			if(arrow != null) arrow.draw(g2d);
 			if(boomerang != null) boomerang.draw(g2d);
@@ -345,6 +359,7 @@ public class Link extends Entity
 					break;
 				case "GET_ITEM":
 					g2d.drawImage(Images.Link.Items.LINK_GET_ITEM, drawX, drawY, width, height, null);
+					//Draw the collectible on top of Link for Link holding it
 					drawCollectible.draw(drawX + drawCollectible.getWidth() / 4,
 							drawY - drawCollectible.getHeight() / 2, g2d);
 					break;
@@ -396,38 +411,46 @@ public class Link extends Entity
 		if(transitionVelX != 0 || transitionVelY != 0) 	state = "TRANSITION";
 	}
 
+	//Checks for collisions with all enemies in the room
 	private void handleEnemyCollisions()
 	{
 		ArrayList<Enemy> enemies = room.getEnemies();
 		for(Enemy enemy : enemies)
 		{
+			//Checks for a direct collision with the enemy
 			if(checkCollisionWith(enemy))
 			{
 				health -= enemy.getDamage();
 				invincibilityFrames = 30;
 			}
 
+			//If the enemy has a possible projectile
 			if(enemy instanceof ProjectileEnemy)
 			{
 				ProjectileEnemy projectileEnemy = (ProjectileEnemy) enemy;
 				if(projectileEnemy.getProjectileCollisionBox() != null)
 				{
+					//If Link is touching the enemy's projectile
 					if(checkCollisionWith(projectileEnemy.getProjectileCollisionBox()))
 					{
-
+						//If the enemy's projectile can be deflected
 						if(projectileEnemy instanceof ProjectileDeflectibleEnemy)
 						{
 							ProjectileDeflectibleEnemy projectileDeflectibleEnemy =
 									(ProjectileDeflectibleEnemy) projectileEnemy;
+
+							//Check if Link has the required shield level to deflect and Link is facing the right way
 							if((projectileDeflectibleEnemy.getShieldRequiredLevel() <=
 									Data.shieldLevel && projectileDeflectibleEnemy.
 									getProjectileDirection().getOpposite() == direction))
 							{
+								//Remove the projectile
 								projectileEnemy.removeProjectile();
 								return;
 							}
 						}
 
+						//Cause Link to take damage from the projectile
 						health -= projectileEnemy.getProjectileDamage();
 						invincibilityFrames = 30;
 						projectileEnemy.removeProjectile();
@@ -437,13 +460,17 @@ public class Link extends Entity
 		}
 	}
 
+	//Checks for collisions with items in the room
 	private void handleMapItemCollisions()
 	{
+		//Go through every single map item
 		ArrayList<MapItem> mapItems = room.getMapItems();
 		Iterator iterator = mapItems.iterator();
 		while(iterator.hasNext())
 		{
 			MapItem mapItem = (MapItem) iterator.next();
+
+			//If the map item can be collected
 			if(mapItem instanceof Collectible)
 			{
 				Collectible collectible = (Collectible) mapItem;
@@ -451,11 +478,14 @@ public class Link extends Entity
 				Rectangle collectiblePickUpRectangle = new Rectangle((int) this.x - this.width / 2,
 						(int) this.y - height / 2, this.width * 2, this.height * 2);
 
+				//Check if Link is touching the item
 				if(collectiblePickUpRectangle.intersects(collectible.getRectangle()))
 				{
+					//Activate the collectible's item and remove it if necessary
 					if(collectible.action(this)) iterator.remove();
 				}
 			}
+			//If the map item is a warp tile
 			else if(mapItem instanceof WarpTile)
 			{
 				if(checkCollisionWith(mapItem.getRectangle()))
@@ -464,8 +494,10 @@ public class Link extends Entity
 
 					if(warpTile.getDirection() != null)
 					{
+						//If the warp tile has a direction, then make sure Link is going in that direction
 						if(this.direction == warpTile.getDirection())
 						{
+							//Teleport to the warp tile's destination
 							this.x = warpTile.getDestColumn() * room.getWidthOfTile()
 									+ room.getWidthOfTile() / 2;
 							this.y = warpTile.getDestRow() * room.getHeightOfTile()
@@ -474,15 +506,17 @@ public class Link extends Entity
 					}
 					else
 					{
+						//Teleport to the warp tile's destination
 						this.x = warpTile.getDestColumn() * room.getWidthOfTile()
 								+ room.getWidthOfTile() / 2;
 						this.y = warpTile.getDestRow() * room.getHeightOfTile()
 								+ room.getHeightOfTile() / 2;
 					}
 
+					//If the warp tile leads to a cave, then move Link to the cave
 					if(warpTile.getType().equals("CAVE"))
 					{
-						room = new SecretRoom(room.getId(), overWorld,
+						room = new SecretRoom(room.getId(), world,
 								room.getMetadata(),
 								warpTile.getColumn(room.getWidthOfTile()),
 								warpTile.getRow(room.getHeightOfTile()));
@@ -492,6 +526,7 @@ public class Link extends Entity
 		}
 	}
 
+	//Updates Link's input variables
 	public void setKeyVariable(int key, boolean bool)
 	{
 		if(key == KeyEvent.VK_D) inputRight = bool;
@@ -502,6 +537,7 @@ public class Link extends Entity
 		if(key == KeyEvent.VK_SHIFT) inputItem = bool;
 	}
 
+	//Makes Link go into the collect state w/ the given collectible
 	public void enterItemState(Collectible collectible)
 	{
 		this.state = "GET_ITEM";

@@ -1,7 +1,6 @@
 package components.entity.enemies;
 
 import components.map.rooms.Room;
-import utility.Animation;
 import utility.Images;
 
 public class ArmosGreen extends Armos

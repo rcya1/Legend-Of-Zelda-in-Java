@@ -8,6 +8,7 @@ import utility.Tile;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+//The item shot from a bow
 public class Arrow extends Weapon
 {
 	private final Direction direction;
@@ -27,11 +28,13 @@ public class Arrow extends Weapon
 		damage = 2;
 	}
 
+	//Update the arrow's position and check for collisions
 	public void update()
 	{
 		x += direction.getVector(2)[0];
 		y += direction.getVector(2)[1];
 
+		//Go through each grid that the arrow is on/is near, and check for collisions
 		int leftColumn = Math.round(x - width / 2) / room.getWidthOfTile();
 		int rightColumn = Math.round(x + width / 2) / room.getWidthOfTile();
 		int topRow = Math.round(y - height / 2) / room.getHeightOfTile();
@@ -53,6 +56,7 @@ public class Arrow extends Weapon
 							j * room.getHeightOfTile(), room.getWidthOfTile(),
 							room.getHeightOfTile() / 2);
 
+					//If the tile is solid and the arrow intersects it, then remove the arrow
 					if(!tile.isPassible() && getRectangle().intersects(tileRectangle))
 					{
 						room.getLink().setArrow(null);
@@ -62,6 +66,7 @@ public class Arrow extends Weapon
 		}
 	}
 
+	//Draw the arrow
 	public void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();

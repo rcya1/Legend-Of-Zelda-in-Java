@@ -1,10 +1,11 @@
 package components.items.weapons;
 
+import components.MapItem;
 import components.entity.enemies.Enemy;
-import components.items.MapItem;
 
 import java.awt.*;
 
+//A map item that can harm an enemy
 public abstract class Weapon extends MapItem
 {
 	int damage;
@@ -14,6 +15,7 @@ public abstract class Weapon extends MapItem
 		//Normally do Nothing
 	}
 
+	//Returns whether the enemy should experience invinicibility frames after being hit by this weapon
 	public abstract boolean callsInvincibility();
 
 	public int getDamage()

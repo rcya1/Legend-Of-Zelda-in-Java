@@ -1,14 +1,14 @@
 package components.map.rooms;
 
+import components.MapItem;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
-import components.items.MapItem;
 import components.items.collectibles.Collectible;
 import components.map.AnimationObject;
-import components.map.OverWorld;
+import components.map.World;
 import utility.Animation;
 import utility.Images;
-import utility.MapFactory;
+import utility.MapHelper;
 import utility.Tile;
 
 import java.awt.*;
@@ -16,22 +16,17 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class OverWorldRoom implements Room
+//The rooms that make up a world
+public class WorldRoom implements Room
 {
-	private final int id;
+	private final int id;                        //Col/row of the room in the world
 
-	private int drawX;
-	private int drawY;
-	private int drawVelX;
-	private int drawVelY;
+	private int drawX, drawY;                    //Where the room should be drawn
+	private int drawVelX, drawVelY;              //Velocity for the drawX/Y coords
 
-	private final int numOfColumns;
-	private final int numOfRows;
-	private final int widthOfTile;
-	private final int heightOfTile;
-
-	private final int mapWidth;
-	private final int mapHeight;
+	private final int numOfColumns, numOfRows;   //Dimensions of the room in cols/rows
+	private final int widthOfTile, heightOfTile; //Dimensions of tiles
+	private final int mapWidth, mapHeight;       //Dimensions of the room in pixels
 
 	private final ArrayList<Enemy> enemies;
 	private final ArrayList<MapItem> mapItems;
@@ -39,11 +34,11 @@ public class OverWorldRoom implements Room
 
 	private final Tile[][] tiles;
 
-	private final MapFactory mapFactory;
-
+	private final MapHelper mapHelper;
 	private RoomMetadata roomMetadata;
 
-	public OverWorldRoom(int id, OverWorld overWorld, MapFactory mapFactory)
+	//TODO Add in the Enemies appearing animation, with the cloud of dust
+	public WorldRoom(int id, World world, MapHelper mapHelper)
 	{
 		this.id = id;
 
@@ -56,8 +51,8 @@ public class OverWorldRoom implements Room
 		this.numOfColumns = 16;
 		this.numOfRows = 11;
 
-		widthOfTile = overWorld.getWidthOfTile();
-		heightOfTile = overWorld.getHeightOfTile();
+		widthOfTile = world.getWidthOfTile();
+		heightOfTile = world.getHeightOfTile();
 
 		mapWidth = numOfColumns * widthOfTile;
 		mapHeight = numOfRows * heightOfTile;
@@ -65,13 +60,33 @@ public class OverWorldRoom implements Room
 		tiles = new Tile[numOfColumns][numOfRows];
 		enemies = new ArrayList<>();
 		mapItems = new ArrayList<>();
-		link = overWorld.getLink();
+		link = world.getLink();
 
-		this.mapFactory = mapFactory;
+		this.mapHelper = mapHelper;
 
 		loadTiles();
 	}
 
+	//Goes through the world's tiles and gets the section that belongs to this room
+	private void loadTiles()
+	{
+		int screenColumn = (int) Math.floor((double) id / 10);
+		int screenRow = id % 10;
+
+		for(int column = (screenColumn - 1) * numOfColumns; column < screenColumn * numOfColumns; column++)
+		{
+			for(int row = (screenRow - 1) * numOfRows; row < screenRow * numOfRows; row++)
+			{
+				String tile = mapHelper.getTile(column, row);
+
+				tiles[column - ((screenColumn - 1) * numOfColumns)]
+						[row - (screenRow - 1) * numOfRows] =
+						Tile.parseID(Integer.parseInt(tile));
+			}
+		}
+	}
+
+	//Updates all of the objects in the room
 	public void update()
 	{
 		updateDrawCoordinates();
@@ -121,16 +136,18 @@ public class OverWorldRoom implements Room
 		}
 	}
 
+	//Draws the room
 	public void draw(Graphics2D g2d)
 	{
 		AffineTransform transform = g2d.getTransform();
 		g2d.translate(drawX, drawY);
 
-		for(int i = 0; i < numOfColumns; i++)
+		for(int col = 0; col < numOfColumns; col++)
 		{
-			for(int j = 0; j < numOfRows; j++)
+			for(int row = 0; row < numOfRows; row++)
 			{
-				g2d.drawImage(Tile.getSprite(tiles[i][j]), widthOfTile * i, heightOfTile * j, widthOfTile, heightOfTile, null);
+				g2d.drawImage(Tile.getSprite(tiles[col][row]), widthOfTile * col, heightOfTile * row,
+						widthOfTile, heightOfTile, null);
 			}
 		}
 
@@ -147,24 +164,7 @@ public class OverWorldRoom implements Room
 		g2d.setTransform(transform);
 	}
 
-	private void loadTiles()
-	{
-		int screenColumn = (int) Math.floor((double) id / 10);
-		int screenRow = id % 10;
-
-		for(int column = (screenColumn - 1) * numOfColumns; column < screenColumn * numOfColumns; column++)
-		{
-			for(int row = (screenRow - 1) * numOfRows; row < screenRow * numOfRows; row++)
-			{
-				String tile = mapFactory.getTile(column, row);
-
-				tiles[column - ((screenColumn - 1) * numOfColumns)]
-						[row - (screenRow - 1) * numOfRows] =
-						Tile.parseID(Integer.parseInt(tile));
-			}
-		}
-	}
-
+	//Sets the metadata and adds all of the items/enemies from that metadata
 	public void setRoomMetadata(RoomMetadata roomMetadata)
 	{
 		this.roomMetadata = roomMetadata;
@@ -172,22 +172,51 @@ public class OverWorldRoom implements Room
 		this.mapItems.addAll(roomMetadata.getWarpTiles());
 	}
 
+	//Returns the metadata for the room
 	public RoomMetadata getRoomMetadata()
 	{
 		return roomMetadata;
 	}
 
+	//Updates the draw position of the room
 	public void updateDrawCoordinates()
 	{
 		drawX += drawVelX;
 		drawY += drawVelY;
 	}
 
+	//Sets where to draw the room
+	public void setDrawCoordinates(int drawX, int drawY)
+	{
+		this.drawX = drawX;
+		this.drawY = drawY;
+	}
+
+	public int[] getDrawCoordinates()
+	{
+		return new int[] {drawX, drawY};
+	}
+
+	//Sets the velocity of the room
+	public void setDrawVector(int drawVelX, int drawVelY)
+	{
+		this.drawVelX = drawVelX;
+		this.drawVelY = drawVelY;
+	}
+
+	//Returns the velocity of the room
+	public int[] getDrawVelocity()
+	{
+		return new int[] {drawVelX, drawVelY};
+	}
+
+	//Adds a collectible to the room
 	public void addCollectible(Collectible collectible)
 	{
 		mapItems.add(collectible);
 	}
 
+	//Returns the tile in this room at a given coordinate
 	public Tile getTile(int column, int row)
 	{
 		return tiles[column][row];
@@ -210,28 +239,6 @@ public class OverWorldRoom implements Room
 	public int getNumOfRows()
 	{
 		return numOfRows;
-	}
-
-	public void setDrawCoordinates(int drawX, int drawY)
-	{
-		this.drawX = drawX;
-		this.drawY = drawY;
-	}
-
-	public int[] getDrawCoordinates()
-	{
-		return new int[] {drawX, drawY};
-	}
-
-	public void setDrawVector(int drawVelX, int drawVelY)
-	{
-		this.drawVelX = drawVelX;
-		this.drawVelY = drawVelY;
-	}
-
-	public int[] getDrawVector()
-	{
-		return new int[] {drawVelX, drawVelY};
 	}
 
 	public int getMapWidth()
@@ -269,6 +276,7 @@ public class OverWorldRoom implements Room
 		return link;
 	}
 
+	//Draws a debug menu that shows collision boxes
 	private void drawDebug(Graphics2D g2d)
 	{
 		for(int i = 0; i < numOfColumns; i++)

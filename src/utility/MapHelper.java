@@ -2,9 +2,12 @@ package utility;
 
 import components.entity.Direction;
 import components.entity.enemies.*;
-import components.map.OverWorld;
+import components.items.collectibles.Collectible;
+import components.items.collectibles.Sword;
 import components.map.WarpTile;
+import components.map.World;
 import components.map.rooms.Room;
+import components.map.rooms.WorldRoom;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,18 +15,21 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.StringTokenizer;
 
-public class MapFactory
+//Used by a map to handle the tiles, enemies, and warp tiles
+//The map helper is created by a world, and the rooms use it to handle things
+public class MapHelper
 {
-	private final OverWorld overWorld;
-	private final String[][] overWorldTiles;
+	private final World world;               //The world that the maphelper is used for
+	private final String[][] worldTiles;     //Array that stores the tiles for the world
 
-	public MapFactory(OverWorld overWorld, String tileMapFilePath, int columns, int rows)
+	public MapHelper(World world, String tileMapFilePath, int columns, int rows)
 	{
-		this.overWorld = overWorld;
-		overWorldTiles = new String[columns][rows];
+		this.world = world;
+		worldTiles = new String[columns][rows];
 		loadTiles(tileMapFilePath);
 	}
 
+	//Loads all of the tiles from a file
 	private void loadTiles(String filePath)
 	{
 		try(BufferedReader bufferedReader = new BufferedReader(
@@ -39,7 +45,7 @@ public class MapFactory
 				while(tokenizer.hasMoreElements())
 				{
 					String token = tokenizer.nextToken();
-					overWorldTiles[characterCount][lineCount] = token;
+					worldTiles[characterCount][lineCount] = token;
 					characterCount++;
 				}
 				lineCount++;
@@ -51,19 +57,25 @@ public class MapFactory
 		}
 	}
 
+	//Returns the tile for given coordinates
 	public String getTile(int column, int row)
 	{
-		return overWorldTiles[column][row];
+		return worldTiles[column][row];
 	}
 
-	public Enemy buildEnemy(String string, int col, int row)
+	//Returns an enemy that is constructed from id and coordinates
+	public Enemy buildEnemy(String id, int col, int row)
 	{
-		int x = col * overWorld.getWidthOfTile() + overWorld.getWidthOfTile() / 2;
-		int y = row * overWorld.getHeightOfTile() + overWorld.getHeightOfTile() / 2;
-		Room room = (overWorld.getLoadingRoom() != null) ?
-				overWorld.getLoadingRoom() : overWorld.getCurrentRoom();
+		//Calculates the coordinates for the given coordinates
+		int x = col * world.getWidthOfTile() + world.getWidthOfTile() / 2;
+		int y = row * world.getHeightOfTile() + world.getHeightOfTile() / 2;
 
-		switch(string)
+		//If the overworld is loading a new room, then put the enemy in the new room, otherwise, take the current room
+		Room room = (world.getLoadingRoom() != null) ?
+				world.getLoadingRoom() : world.getCurrentRoom();
+
+		//Create all of the various enemies from the required parameters
+		switch(id)
 		{
 			case "OCTOROK":
 				return new Octorok(x, y, Direction.getRandom(), room);
@@ -96,11 +108,26 @@ public class MapFactory
 		}
 	}
 
+	//Returns a warp tile from parameters
 	public WarpTile buildWarpTile(int column, int row, int destColumn, int destRow, String type, String direction)
 	{
+		//Parse the direction from a string
 		Direction dir = Direction.parseString(direction);
-		return new WarpTile((overWorld.getLoadingRoom() != null) ?
-				overWorld.getLoadingRoom() : overWorld.getCurrentRoom(),
-				column, row, destColumn, destRow, type, dir);
+
+		//If the overworld is loading a new room, then put the tile in the new room, otherwise, take the current room
+		WorldRoom room = (world.getLoadingRoom() != null) ? world.getLoadingRoom() : world.getCurrentRoom();
+
+		return new WarpTile(room, column, row, destColumn, destRow, type, dir);
+	}
+
+	public static Collectible parse(String collectible, int x, int y, Room room)
+	{
+		switch(collectible)
+		{
+			case "SWORD":
+				return new Sword(x, y, room);
+			default:
+				return null;
+		}
 	}
 }

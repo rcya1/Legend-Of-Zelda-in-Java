@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+//Stores all of the sprites for the game
 public class Images
 {
 	private static final int TILE_WIDTH = 16;
@@ -13,11 +14,12 @@ public class Images
 	private static final int HEART_WIDTH = 8;
 	private static final int HEART_HEIGHT = 8;
 
-	private static BufferedImage loadSingleImage(String string)
+	//Loads an image from a path
+	private static BufferedImage loadSingleImage(String path)
 	{
 		try
 		{
-			Image image = ImageIO.read(Images.class.getResourceAsStream(string));
+			Image image = ImageIO.read(Images.class.getResourceAsStream(path));
 			return (BufferedImage) image;
 		}
 		catch(IOException e)
@@ -27,6 +29,7 @@ public class Images
 		return null;
 	}
 
+	//All sprites for the title/items/select save
 	public static class Beginning
 	{
 		public static final BufferedImage DISPLAY_ITEMS_1 = loadSingleImage("/textures/beginning/displayItems/DisplayItems1.png");
@@ -107,6 +110,7 @@ public class Images
 		}
 	}
 
+	//All of Link's sprites
 	public static class Link
 	{
 		private static final BufferedImage LINK_WALK = loadSingleImage("/textures/sprites/link/LinkWalk.png");
@@ -184,6 +188,7 @@ public class Images
 		}
 	}
 
+	//All of the tiles
 	public static class Blocks
 	{
 		static final BufferedImage EMPTY = loadSingleImage("/textures/sprites/blocks/Empty.png");
@@ -584,6 +589,7 @@ public class Images
 		}
 	}
 
+	//All of the enemies
 	public static class Enemies
 	{
 		public static final BufferedImage ENEMY_DEATH = loadSingleImage("/textures/sprites/enemies/Death.png");
@@ -820,6 +826,7 @@ public class Images
 		}
 	}
 
+	//All of the menu sprites
 	public static class Menu
 	{
 		public static final BufferedImage MENU = loadSingleImage("/textures/menu/menu.png");

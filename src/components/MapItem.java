@@ -1,10 +1,11 @@
-package components.items;
+package components;
 
 import components.map.rooms.Room;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+//An item that exists in the world (Warp Tile, Collectible, Weapon)
 public abstract class MapItem
 {
 	protected Room room;

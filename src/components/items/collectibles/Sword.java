@@ -7,9 +7,10 @@ import utility.Images;
 
 import java.awt.*;
 
+//The collectible that gives the player the the sword
 public class Sword extends Collectible
 {
-	Sword(int x, int y, Room room)
+	public Sword(int x, int y, Room room)
 	{
 		this.x = x;
 		this.y = y;
@@ -32,9 +33,12 @@ public class Sword extends Collectible
 		if(Data.swordLevel == 0) super.draw(g2d);
 	}
 
+	//
 	public boolean action(Link link)
 	{
+		//Allow link yo use the sword
 		Data.swordLevel = 1;
+		//Set link to the item collect state and play the sound effect
 		link.enterItemState(this);
 		playClip();
 

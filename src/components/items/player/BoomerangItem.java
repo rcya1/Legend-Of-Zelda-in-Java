@@ -3,6 +3,7 @@ package components.items.player;
 import components.entity.Link;
 import components.items.weapons.Boomerang;
 
+//When used, summons a boomerang
 public class BoomerangItem extends Item
 {
 	public BoomerangItem()

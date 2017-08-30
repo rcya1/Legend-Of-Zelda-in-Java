@@ -15,6 +15,7 @@ public class Peahat extends Enemy
 	private double speed;
 	private int timer;
 
+	//Add in randomness so that they are not synced
 	public Peahat(int x, int y, int direction, Room room)
 	{
 		this.x = x;
@@ -63,8 +64,8 @@ public class Peahat extends Enemy
 			direction = ((direction + 4) + (int) (Math.random() * 3 - 1.5)) % 8;
 		}
 
-		animation.setSpeed((int) (15 - speed));
-		if(animation.getSpeed() == 14) animation.setSpeed(120);
+		animation.setDelay((int) (15 - speed));
+		if(animation.getDelay() == 14) animation.setDelay(120);
 
 		animation.update();
 

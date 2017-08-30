@@ -2,12 +2,12 @@ package components.map;
 
 import components.entity.Direction;
 import components.entity.Link;
-import components.map.rooms.OverWorldRoom;
 import components.map.rooms.RoomMetadata;
 import components.map.rooms.SecretRoom;
+import components.map.rooms.WorldRoom;
 import org.w3c.dom.Document;
-import utility.MapFactory;
-import utility.SoundPlayer;
+import utility.MapHelper;
+import utility.SoundManager;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,43 +15,44 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class OverWorld
+//A world that contains a maze of rooms that must move around and be loaded from tiles
+public class World
 {
-	private OverWorldRoom currentRoom;
-	private OverWorldRoom loadingRoom;
+	private WorldRoom currentRoom;                //The room Link is currently in
+	private WorldRoom loadingRoom;                //The room that Link is entering
 
-	private ArrayList<OverWorldRoom> roomBuffer;
+	private ArrayList<WorldRoom> roomBuffer;      //The last 5 rooms that Link has gone into, to store data
 
-	private final Link link;
+	private final Link link;                      //Player Object
 
-	private final int widthOfTile;
-	private final int heightOfTile;
+	private final int widthOfTile, heightOfTile;  //Dimensions of a tile
 
-	private final MapFactory mapFactory;
+	private final MapHelper mapHelper;            //Object that constructs the world and create enemies
+	private Document metadataDocument;            //XML document that stores the metadata
 
-	private Document metadataDocument;
-
-	public OverWorld(int startingRoom, String tileMapFilePath, String metadataFilePath,
-			int columns, int rows)
+	//Creates a world from given parameters
+	public World(int startingRoom, String tileMapFilePath, String metadataFilePath, int columns, int rows)
 	{
 		link = new Link(this);
 
 		widthOfTile = 16;
 		heightOfTile = 16;
 
-		mapFactory = new MapFactory(this, tileMapFilePath, columns, rows);
+		mapHelper = new MapHelper(this, tileMapFilePath, columns, rows);
 		loadMetadata(metadataFilePath);
 
-		currentRoom = new OverWorldRoom(startingRoom, this, mapFactory);
+		currentRoom = new WorldRoom(startingRoom, this, mapHelper);
 		currentRoom.setRoomMetadata(new RoomMetadata(startingRoom, this));
 
 		loadingRoom = null;
 
-		roomBuffer = new ArrayList<>(Arrays.asList(new OverWorldRoom[5]));
+		roomBuffer = new ArrayList<>(Arrays.asList(new WorldRoom[5]));
 
-		if(!SoundPlayer.OVERWORLD.isPlaying()) SoundPlayer.OVERWORLD.loop();
+		//Set the current song
+		if(!SoundManager.OVERWORLD.isPlaying()) SoundManager.OVERWORLD.loop();
 	}
 
+	//Loads the metadata from the xml file
 	private void loadMetadata(String filePath)
 	{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -68,12 +69,19 @@ public class OverWorld
 		metadataDocument.getDocumentElement().normalize();
 	}
 
+	//Updates Link and the rooms
 	public void update()
 	{
+		//Update the current room
 		currentRoom.update();
+
+		//If there is a new loading room
 		if(loadingRoom != null)
 		{
+			//Update the coords of the loading room
 			loadingRoom.updateDrawCoordinates();
+
+			//If the loading room has locked into place, then stop the room and set the room to the new room
 			if(loadingRoom.getDrawCoordinates()[0] % 256 == 0 &&
 					loadingRoom.getDrawCoordinates()[1] % 176 == 0)
 			{
@@ -86,33 +94,32 @@ public class OverWorld
 
 		link.update();
 
-		if(!(link.getRoom() instanceof SecretRoom))
+		//Check for the screen transitions
+		if(!(link.getRoom() instanceof SecretRoom) && !link.getState().equals("TRANSITION") && loadingRoom == null)
 		{
-			if(link.getX() <= widthOfTile && link.getDirection() == Direction.LEFT &&
-					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			//If link is leaving through the left side
+			if(link.getX() <= widthOfTile && link.getDirection() == Direction.LEFT)
 			{
 				loadNewRoom(new int[] {4, 0}, currentRoom.getId() - 10,
 						new int[] {-currentRoom.getMapWidth(), 0});
 			}
 
-			if(link.getX() >= currentRoom.getMapWidth() - widthOfTile &&
-					link.getDirection() == Direction.RIGHT &&
-					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			//If Link is leaving through the right side
+			if(link.getX() >= currentRoom.getMapWidth() - widthOfTile && link.getDirection() == Direction.RIGHT)
 			{
 				loadNewRoom(new int[] {-4, 0}, currentRoom.getId() + 10,
 						new int[] {currentRoom.getMapWidth(), 0});
 			}
 
-			if(link.getY() <= heightOfTile / 2 && link.getDirection() == Direction.UP &&
-					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			//If Link is leaving through the top side
+			if(link.getY() <= heightOfTile && link.getDirection() == Direction.UP)
 			{
 				loadNewRoom(new int[] {0, 4}, currentRoom.getId() - 1,
 						new int[] {0, -currentRoom.getMapHeight()});
 			}
 
-			if(link.getY() >= currentRoom.getMapHeight() - heightOfTile &&
-					link.getDirection() == Direction.DOWN &&
-					!link.getState().equals("TRANSITION") && loadingRoom == null)
+			//If Link is leaving through the bottom side
+			if(link.getY() >= currentRoom.getMapHeight() - heightOfTile && link.getDirection() == Direction.DOWN)
 			{
 				loadNewRoom(new int[] {0, -4}, currentRoom.getId() + 1,
 						new int[] {0, currentRoom.getMapHeight()});
@@ -120,12 +127,16 @@ public class OverWorld
 		}
 	}
 
+	//Loads a new room from another direction
 	private void loadNewRoom(int[] transitionVector, int loadingRoomID, int[] loadingRoomLocation)
 	{
+		//Saves the current room's data so that it can be accessed if returned to
 		saveRoom();
 
+		//Set Link's transition vector so that Link moves along with the room
 		link.setTransitionVector(transitionVector[0], transitionVector[1]);
 
+		//Check if the new room matches the id of any rooms in the stored rooms
 		int roomFoundIndex = -1;
 		for(int i = 0; i < 5; i++)
 		{
@@ -138,17 +149,20 @@ public class OverWorld
 				}
 			}
 		}
+
+		//If there is no room found, then create a new room and set it as the loading room
 		if(roomFoundIndex == -1)
 		{
-			loadingRoom = new OverWorldRoom(loadingRoomID, this, mapFactory);
+			loadingRoom = new WorldRoom(loadingRoomID, this, mapHelper);
 			loadingRoom.setRoomMetadata(new RoomMetadata(loadingRoomID, this));
 		}
+		//If there is one found, then set it as the loading room
 		else
 		{
 			loadingRoom = roomBuffer.get(roomFoundIndex);
 		}
 
-
+		//Set the coordinates/vectors so that the loading room moves
 		loadingRoom.setDrawCoordinates(loadingRoomLocation[0], loadingRoomLocation[1]);
 		currentRoom.setDrawVector(transitionVector[0], transitionVector[1]);
 		loadingRoom.setDrawVector(transitionVector[0], transitionVector[1]);
@@ -157,6 +171,7 @@ public class OverWorld
 		loadingRoom.updateDrawCoordinates();
 	}
 
+	//Saves the room into an array
 	private void saveRoom()
 	{
 		roomBuffer.add(0, currentRoom);
@@ -174,12 +189,12 @@ public class OverWorld
 		link.draw(g2d);
 	}
 
-	public OverWorldRoom getCurrentRoom()
+	public WorldRoom getCurrentRoom()
 	{
 		return currentRoom;
 	}
 
-	public OverWorldRoom getLoadingRoom()
+	public WorldRoom getLoadingRoom()
 	{
 		return loadingRoom;
 	}
@@ -204,14 +219,15 @@ public class OverWorld
 		return metadataDocument;
 	}
 
-	public MapFactory getMapFactory()
+	public MapHelper getMapHelper()
 	{
-		return mapFactory;
+		return mapHelper;
 	}
 
+	//Returns if the world is currently transitioning between rooms
 	public boolean isMoving()
 	{
-		return (currentRoom.getDrawVector()[0] != 0 && currentRoom.getDrawVector()[1] != 0)
+		return (currentRoom.getDrawVelocity()[0] != 0 && currentRoom.getDrawVelocity()[1] != 0)
 				&& (loadingRoom != null);
 	}
 }

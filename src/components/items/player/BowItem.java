@@ -4,6 +4,7 @@ import components.entity.Link;
 import components.items.weapons.Arrow;
 import utility.Data;
 
+//When used, shoots out an arrow
 public class BowItem extends Item
 {
 	public BowItem()

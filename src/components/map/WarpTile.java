@@ -1,22 +1,20 @@
 package components.map;
 
+import components.MapItem;
 import components.entity.Direction;
-import components.items.MapItem;
-import components.map.rooms.OverWorldRoom;
+import components.map.rooms.Room;
 
 import java.awt.*;
 
+//A Tile that is used to transport the player to another location
 public class WarpTile extends MapItem
 {
-	private final int destColumn;
-	private final int destRow;
+	private final int destColumn, destRow;      //The result coords for the player
+	private final String type;                  //Type of the tile (CAVE, DUNGEON)
+	private final Direction direction;          //The direction that the player must approach the tile
 
-	private final String type;
-
-	private final Direction direction;
-
-	public WarpTile(OverWorldRoom room, int column, int row,
-			int destColumn, int destRow, String type, Direction direction)
+	//Creates a warp tile in the given room from the given parameters
+	public WarpTile(Room room, int column, int row, int destColumn, int destRow, String type, Direction direction)
 	{
 		this.x = column * room.getWidthOfTile();
 		this.y = row * room.getHeightOfTile();
@@ -26,6 +24,7 @@ public class WarpTile extends MapItem
 
 		this.direction = direction;
 
+		//If there is a given direction, then move the tile so that it can only be hit from one way
 		if(direction != null)
 		{
 			switch(direction)
@@ -46,6 +45,7 @@ public class WarpTile extends MapItem
 				break;
 			}
 		}
+		//With no given direction, then move the tile so that it can be hit from all directions
 		else
 		{
 			this.x--;

@@ -6,6 +6,7 @@ import utility.Tile;
 
 import java.awt.*;
 
+//A moving object in the world w/ health
 public abstract class Entity
 {
 	protected Room room;
@@ -33,28 +34,32 @@ public abstract class Entity
 
 	protected boolean destroyFlag;
 
-
+	//Updates the entity's position/other variables
 	public abstract void update();
 
+	//Draws the entity
 	public abstract void draw(Graphics2D g2d);
 
-
+	//Returns if the entity collides with another entity
 	boolean checkCollisionWith(Entity other)
 	{
 		return getRectangle().intersects(other.getRectangle());
 	}
 
+	//Returns if the entity collides with a rectangle
 	protected boolean checkCollisionWith(Rectangle otherRectangle)
 	{
 		return getRectangle().intersects(otherRectangle);
 	}
 
+	//Returns the collision box for the entity
 	public Rectangle getRectangle()
 	{
 		return new Rectangle((int) Math.round(x - width / 2),
 				(int) Math.round(y - height / 2), width, height);
 	}
 
+	//Handles collisions with the tile
 	protected boolean handleTileCollisions()
 	{
 		boolean collisionX = false;
@@ -93,6 +98,7 @@ public abstract class Entity
 		return collisionX || collisionY;
 	}
 
+	//Returns if the entity is currently colliding with an unpassible tile
 	private boolean checkCollisionWithTileMap(double newX, double newY)
 	{
 		boolean collisionFlag = false;
@@ -132,6 +138,9 @@ public abstract class Entity
 		return collisionFlag;
 	}
 
+	//Returns a value that is aligned to the nearest multiple of alignTo
+	// value   - the value to be aligned
+	// alignTo - the distance to be alignedTo
 	protected int alignToGrid(double value, int alignTo)
 	{
 		int extra = (int) Math.round(value) % alignTo; //Figure out how much the value is off by
@@ -196,6 +205,7 @@ public abstract class Entity
 		this.y = y;
 	}
 
+	//Draws the collision box and the tiles that are being checked for collision
 	void drawDebug(Graphics2D g2d)
 	{
 		g2d.setColor(new Color(255, 0, 0, 100));

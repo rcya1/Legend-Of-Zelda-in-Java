@@ -5,21 +5,16 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+//An object that plays a given song
 public class SoundPlayer
 {
-	private final Object synchronizationLock = new Object();
-	private Clip clip;
-	private boolean isLooping;
+	private final Object synchronizationLock = new Object();    //Object that is used as a lock to prevent synchronization issues
+	private Clip clip;                                          //The clip that stores the song
+	private boolean isLooping;                                  //Whether the player is currently looping
 
-	public static final SoundPlayer INTRO = new SoundPlayer("/audio/beginning/Intro.wav");
-	public static final SoundPlayer OVERWORLD = new SoundPlayer("/audio/Overworld.wav");
-	public static final SoundPlayer ITEM = new SoundPlayer("/audio/Item.wav");
-
-	private static final SoundPlayer[] soundPlayers = new SoundPlayer[]
-			{INTRO, OVERWORLD, ITEM};
-
-	private SoundPlayer(String path)
+	SoundPlayer(String path)
 	{
+		//Try to load in the clip
 		try
 		{
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
@@ -33,12 +28,14 @@ public class SoundPlayer
 		}
 	}
 
+	//Plays the clip w/o looping
 	public void play()
 	{
 		try
 		{
 			if(clip != null)
 			{
+				//Create a new thread to begin playing the clip
 				new Thread(() ->
 				{
 					synchronized(synchronizationLock)
@@ -48,6 +45,7 @@ public class SoundPlayer
 						clip.start();
 					}
 				}).start();
+				//Make sure the player does not think the clip is looping
 				isLooping = false;
 			}
 		}
@@ -57,18 +55,21 @@ public class SoundPlayer
 		}
 	}
 
+	//Stops the current clip
 	public void stop()
 	{
 		if(clip == null) return;
 		clip.stop();
 	}
 
+	//Loops the current clip
 	public void loop()
 	{
 		try
 		{
 			if(clip != null)
 			{
+				//Create a new thread for looping the current clip
 				new Thread(() ->
 				{
 					synchronized(synchronizationLock)
@@ -87,41 +88,26 @@ public class SoundPlayer
 		}
 	}
 
-	public static void stopAll()
-	{
-		for(SoundPlayer soundPlayer : soundPlayers)
-		{
-			soundPlayer.stop();
-		}
-	}
-
-	//Returns the first sound player it finds that is playing
-	public static SoundPlayer getPlaying()
-	{
-		for(SoundPlayer soundPlayer : soundPlayers)
-		{
-			if(soundPlayer.isPlaying()) return soundPlayer;
-		}
-
-		return null;
-	}
-
+	//Sets the volume of the clip
 	public void setVolume(int relativeVolume)
 	{
 		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(relativeVolume);
 	}
 
+	//Returns whether the clip is playing
 	public boolean isPlaying()
 	{
 		return clip.isActive();
 	}
 
+	//Returns whether the clip has finished playing
 	public boolean isFinished()
 	{
 		return clip.getMicrosecondPosition() == clip.getMicrosecondLength();
 	}
 
+	//Returns whether the clip is looping
 	public boolean isLooping()
 	{
 		return isLooping;

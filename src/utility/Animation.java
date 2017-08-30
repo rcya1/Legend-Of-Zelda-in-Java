@@ -3,62 +3,54 @@ package utility;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+//Used for displaying images that update over a set amount of time
 public class Animation
 {
-	private int speed;
-	private final int frameCount;
+	private int delay;                       //The time between each update of the image
 
-	private int timer;
-	private int index;
+	private int timer;                       //Timer to keep track of when to update the image
+	private int index;                       //The index of the current sprite in the sprite sheet
 
-	private final BufferedImage[] images;
-	private BufferedImage currentImage;
+	private final BufferedImage[] images;    //Sprite sheet containing all frames of animation
 
-	private final boolean repeat;
+	private final boolean repeat;            //Whether or not the animation should cycle
 
-	public Animation(int speed, boolean repeat, BufferedImage... frames)
+	//Animation with a given list of all frames
+	public Animation(int delay, boolean repeat, BufferedImage... frames)
 	{
-		this.speed = speed;
+		this.delay = delay;
 		this.images = frames;
-		frameCount = frames.length;
 
 		timer = 0;
 		index = 0;
 
 		this.repeat = repeat;
-
-		currentImage = this.images[0];
-		nextFrame();
 	}
 
+	//Constructor with a given sprite sheet and a given width/height of each sprite
 	//Note: Must be linear, one row
-	public Animation(int speed, boolean repeat, BufferedImage spriteSheet, int spriteWidth, int spriteHeight)
+	public Animation(int delay, boolean repeat, BufferedImage spriteSheet, int spriteWidth, int spriteHeight)
 	{
-		this.speed = speed;
+		this.delay = delay;
 
-		BufferedImage[] frames = new BufferedImage[spriteSheet.getWidth() / spriteWidth];
-
-		for(int i = 0; i < frames.length; i++)
+		//Cuts apart spriteSheet and sets each frame in sequential order to images
+		images = new BufferedImage[spriteSheet.getWidth() / spriteWidth];
+		for(int i = 0; i < images.length; i++)
 		{
-			frames[i] = spriteSheet.getSubimage(i * spriteWidth, 0, spriteWidth, spriteHeight);
+			images[i] = spriteSheet.getSubimage(i * spriteWidth, 0, spriteWidth, spriteHeight);
 		}
-
-		this.images = frames;
-		frameCount = frames.length;
 
 		timer = 0;
 		index = 0;
 
 		this.repeat = repeat;
-
-		currentImage = this.images[0];
-		nextFrame();
 	}
 
 	public void update()
 	{
+		//Updates the timer, and if the timer has reached the delay, then move to the next frame
 		timer++;
-		if(timer > speed)
+		if(timer > delay)
 		{
 			timer = 0;
 			nextFrame();
@@ -67,52 +59,60 @@ public class Animation
 
 	private void nextFrame()
 	{
+		//If the index is -1, then the animation should not update, since it was set to not loop
 		if(index != -1)
 		{
-			currentImage = images[index];
 			index++;
 
-			if(index >= frameCount)
+			//If the index has gone pass the cycle
+			if(index >= images.length)
 			{
+				//If repeating, then reset the cycle, if not, then set the index to -1
 				if(repeat) index = 0;
 				else index = -1;
 			}
 		}
 	}
 
+	public void draw(Graphics2D g2d, int x, int y, int width, int height)
+	{
+		g2d.drawImage(images[index], x, y, width, height,null);
+	}
+
+	//Resets the current cycle of the animation
 	public void reset()
 	{
 		index = 0;
 	}
 
+	//Returns if a non repeating animation has ended
 	public boolean isOver()
 	{
 		return index == -1;
 	}
 
-	public void draw(Graphics2D g2d, int x, int y, int width, int height)
-	{
-		g2d.drawImage(currentImage, x, y, width, height,null);
-	}
-
+	//Returns the width of the animation image
 	public int getWidth()
 	{
-		return currentImage.getWidth();
+		return images[index].getWidth();
 	}
 
+	//Returns the height of the animation image
 	public int getHeight()
 	{
-		return currentImage.getHeight();
+		return images[index].getHeight();
 	}
 
-	public void setSpeed(int speed)
+	//Changes the delay for the animation
+	public void setDelay(int delay)
 	{
-		this.speed = speed;
-		if(timer > speed) timer = speed;
+		this.delay = delay;
+		//Make sure the timer does not go above the delay
+		if(timer > delay) timer = delay;
 	}
 
-	public int getSpeed()
+	public int getDelay()
 	{
-		return speed;
+		return delay;
 	}
 }

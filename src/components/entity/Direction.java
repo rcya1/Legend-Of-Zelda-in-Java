@@ -1,5 +1,6 @@
 package components.entity;
 
+//Used to store the direction and other helper methods for entites
 public enum Direction
 {
 	UP, RIGHT, DOWN, LEFT;
