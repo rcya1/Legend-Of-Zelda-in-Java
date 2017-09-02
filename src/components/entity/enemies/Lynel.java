@@ -232,7 +232,7 @@ public class Lynel extends Enemy implements ProjectileEnemy, ProjectileDeflectib
 
     public int getShieldRequiredLevel()
     {
-        return 0;
+        return 1;
     }
 
     public Direction getProjectileDirection()

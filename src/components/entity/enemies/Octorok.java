@@ -22,9 +22,7 @@ public class Octorok extends Enemy implements ProjectileEnemy, ProjectileDeflect
 	{
 		this.x = x;
 		this.y = y;
-
 		this.direction = direction;
-
 		this.room = room;
 
 		velX = 0;

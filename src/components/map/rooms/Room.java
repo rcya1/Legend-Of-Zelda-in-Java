@@ -28,6 +28,9 @@ public interface Room
 	//Returns all of the enemies in a room
 	ArrayList<Enemy> getEnemies();
 
+	//Adds an enemy to the room, avoid ConcurrentModificationException
+	void addEnemy(Enemy enemy);
+
 	//Returns all of the items in a room
 	ArrayList<MapItem> getMapItems();
 

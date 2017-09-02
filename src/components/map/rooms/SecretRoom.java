@@ -216,6 +216,11 @@ public class SecretRoom implements Room
 		return new ArrayList<>();
 	}
 
+	public void addEnemy(Enemy enemy)
+	{
+
+	}
+
 	public ArrayList<MapItem> getMapItems()
 	{
 		return new ArrayList<>();

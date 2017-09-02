@@ -31,6 +31,10 @@ public abstract class Enemy extends Entity
 		if(health < 0)
 		{
 			destroyFlag = true;
+		}
+
+		if(destroyFlag)
+		{
 			room.addCollectible(new Heart((int) Math.round(x), (int) Math.round(y), room));
 		}
 	}

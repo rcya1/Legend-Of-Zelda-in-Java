@@ -418,7 +418,7 @@ public class Link extends Entity
 		for(Enemy enemy : enemies)
 		{
 			//Checks for a direct collision with the enemy
-			if(checkCollisionWith(enemy))
+			if(checkCollisionWith(enemy) && enemy.getDamage() > 0)
 			{
 				health -= enemy.getDamage();
 				invincibilityFrames = 30;
@@ -602,6 +602,11 @@ public class Link extends Entity
 	{
 		this.transitionVelX = transitionVelX;
 		this.transitionVelY = transitionVelY;
+	}
+
+	public boolean isTransitioning()
+	{
+		return state.equals("TRANSITION") || world.isMoving();
 	}
 
 	public Room getRoom()

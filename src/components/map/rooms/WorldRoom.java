@@ -3,6 +3,7 @@ package components.map.rooms;
 import components.MapItem;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
+import components.entity.enemies.Ghini;
 import components.items.collectibles.Collectible;
 import components.map.AnimationObject;
 import components.map.World;
@@ -29,6 +30,7 @@ public class WorldRoom implements Room
 	private final int mapWidth, mapHeight;       //Dimensions of the room in pixels
 
 	private final ArrayList<Enemy> enemies;
+	private final ArrayList<Enemy> addEnemies;
 	private final ArrayList<MapItem> mapItems;
 	private final Link link;
 
@@ -59,6 +61,7 @@ public class WorldRoom implements Room
 
 		tiles = new Tile[numOfColumns][numOfRows];
 		enemies = new ArrayList<>();
+		addEnemies = new ArrayList<>();
 		mapItems = new ArrayList<>();
 		link = world.getLink();
 
@@ -91,6 +94,7 @@ public class WorldRoom implements Room
 	{
 		updateDrawCoordinates();
 
+		boolean destroyAllGhini = false;
 		Iterator enemyIterator = enemies.iterator();
 		while(enemyIterator.hasNext())
 		{
@@ -108,6 +112,10 @@ public class WorldRoom implements Room
 
 			if(enemy.getDestroyFlag())
 			{
+				if(enemy instanceof Ghini)
+				{
+					destroyAllGhini = true;
+				}
 				enemyIterator.remove();
 				mapItems.add(new AnimationObject(
 						(int) Math.round(enemy.getX() - enemy.getWidth() / 2),
@@ -115,6 +123,17 @@ public class WorldRoom implements Room
 						new Animation(3, false,
 								Images.Enemies.ENEMY_DEATH, 16, 16),
 						this));
+			}
+		}
+
+		enemies.addAll(addEnemies);
+		addEnemies.clear();
+
+		if(destroyAllGhini)
+		{
+			for(Enemy enemy : enemies)
+			{
+				if(enemy instanceof Ghini) enemy.setDestroyFlag(true);
 			}
 		}
 
@@ -216,6 +235,10 @@ public class WorldRoom implements Room
 		mapItems.add(collectible);
 	}
 
+	public void addEnemy(Enemy enemy)
+	{
+		addEnemies.add(enemy);
+	}
 	//Returns the tile in this room at a given coordinate
 	public Tile getTile(int column, int row)
 	{

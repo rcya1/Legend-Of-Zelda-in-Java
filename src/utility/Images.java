@@ -908,6 +908,24 @@ public class Images
 					LYNEL_SWORD.getSubimage(TILE_WIDTH * 2, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
 					null;
 		}
+
+		public static class Ghini
+		{
+			private static final BufferedImage GHINI = loadSingleImage("/textures/sprites/enemies/ghini/Ghini.png");
+
+			public static final BufferedImage GHINI_TOP_LEFT = GHINI != null ?
+					GHINI.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage GHINI_TOP_RIGHT = GHINI != null ?
+					GHINI.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage GHINI_BOTTOM_LEFT = GHINI != null ?
+					GHINI.getSubimage(0, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage GHINI_BOTTOM_RIGHT = GHINI != null ?
+					GHINI.getSubimage(TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
 	}
 
 	//All of the menu sprites

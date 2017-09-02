@@ -184,6 +184,11 @@ public abstract class Entity
 		return destroyFlag;
 	}
 
+	public void setDestroyFlag(boolean destroyFlag)
+	{
+		this.destroyFlag = destroyFlag;
+	}
+
 	public Direction getDirection()
 	{
 		return direction;
