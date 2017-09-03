@@ -909,6 +909,18 @@ public class Images
 					null;
 		}
 
+		public static class Rock
+		{
+			public static final BufferedImage ROCK = loadSingleImage("/textures/sprites/enemies/rock/rock.png");
+
+			public static final BufferedImage ROCK_1 = ROCK != null ?
+					ROCK.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+			public static final BufferedImage ROCK_2 = ROCK != null ?
+					ROCK.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+					null;
+		}
+
 		public static class Ghini
 		{
 			private static final BufferedImage GHINI = loadSingleImage("/textures/sprites/enemies/ghini/Ghini.png");

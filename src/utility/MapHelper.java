@@ -107,10 +107,12 @@ public class MapHelper
 				return new Lynel(x, y, Direction.getRandom(), room);
 			case "LYNEL-BLUE":
 				return new LynelBlue(x, y, Direction.getRandom(), room);
-            case "GHINI":
-                return new Ghini(x, y, ((int) (Math.random() * 4)) * 2, room, true);
-            case "GHINI-SPAWNER":
-                return new GhiniSpawner(x, y, room);
+			case "GHINI":
+				return new Ghini(x, y, ((int) (Math.random() * 4)) * 2, room, true);
+			case "GHINI-SPAWNER":
+				return new GhiniSpawner(x, y, room);
+			case "ROCK":
+				return new Rock(room);
 		default:
 			return null;
 		}

@@ -55,7 +55,7 @@ public class Tektite extends Enemy
 				double distance = (targetColumn * width) - x;
 				double framesForJump = 40;
 				velX = distance / framesForJump;
-				velY = framesForJump * gravity / 2;
+				velY = framesForJump * gravity / 2.0;
 			}
 			break;
 		case "JUMPING":
