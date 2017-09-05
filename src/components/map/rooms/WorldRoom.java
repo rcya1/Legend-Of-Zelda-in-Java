@@ -3,7 +3,7 @@ package components.map.rooms;
 import components.MapItem;
 import components.entity.Link;
 import components.entity.enemies.Enemy;
-import components.entity.enemies.Ghini;
+import components.entity.enemies.overworld.Ghini;
 import components.items.collectibles.Collectible;
 import components.map.AnimationObject;
 import components.map.World;

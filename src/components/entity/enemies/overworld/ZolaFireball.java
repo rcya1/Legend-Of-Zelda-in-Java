@@ -1,4 +1,4 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import utility.Animation;
 import utility.Images;

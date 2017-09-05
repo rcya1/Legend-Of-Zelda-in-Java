@@ -54,62 +54,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -131,62 +131,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -208,62 +208,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -468,62 +468,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -545,62 +545,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -622,62 +622,62 @@
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>3</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>6</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>9</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>4</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>6</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>GHINI-SPAWNER</TYPE>
 				<COL>12</COL>
-				<ROW>8</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -951,18 +951,18 @@
 			<ENEMY>
 				<TYPE>LYNEL</TYPE>
 				<COL>8</COL>
-				<ROW>2</ROW>
+				<ROW>8</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>LYNEL</TYPE>
 				<COL>8</COL>
-				<ROW>2</ROW>
+				<ROW>8</ROW>
 			</ENEMY>
 
 			<ENEMY>
 				<TYPE>LYNEL-BLUE</TYPE>
 				<COL>3</COL>
-				<ROW>2</ROW>
+				<ROW>3</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>LYNEL-BLUE</TYPE>
@@ -973,12 +973,12 @@
 			<ENEMY>
 				<TYPE>PEAHAT</TYPE>
 				<COL>6</COL>
-				<ROW>2</ROW>
+				<ROW>7</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>PEAHAT</TYPE>
 				<COL>4</COL>
-				<ROW>2</ROW>
+				<ROW>4</ROW>
 			</ENEMY>
 		</ENEMIES>
 
@@ -1376,7 +1376,31 @@
 
 	<ROOM id = "5-1">
 		<ENEMIES>
-
+			<ENEMY>
+				<TYPE>LYNEL-BLUE</TYPE>
+				<COL>1</COL>
+				<ROW>7</ROW>
+			</ENEMY>
+			<ENEMY>
+				<TYPE>LYNEL-BLUE</TYPE>
+				<COL>2</COL>
+				<ROW>5</ROW>
+			</ENEMY>
+			<ENEMY>
+				<TYPE>LYNEL-BLUE</TYPE>
+				<COL>3</COL>
+				<ROW>6</ROW>
+			</ENEMY>
+			<ENEMY>
+				<TYPE>LYNEL-BLUE</TYPE>
+				<COL>4</COL>
+				<ROW>5</ROW>
+			</ENEMY>
+			<ENEMY>
+				<TYPE>LYNEL-BLUE</TYPE>
+				<COL>10</COL>
+				<ROW>6</ROW>
+			</ENEMY>
 		</ENEMIES>
 
 		<WARPS>
@@ -4104,22 +4128,22 @@
 			<ENEMY>
 				<TYPE>OCTOROK-BLUE</TYPE>
 				<COL>6</COL>
-				<ROW>6</ROW>
+				<ROW>4</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>OCTOROK-BLUE</TYPE>
 				<COL>7</COL>
-				<ROW>7</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>OCTOROK-BLUE</TYPE>
 				<COL>10</COL>
-				<ROW>6</ROW>
+				<ROW>4</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>OCTOROK-BLUE</TYPE>
 				<COL>11</COL>
-				<ROW>7</ROW>
+				<ROW>5</ROW>
 			</ENEMY>
 			<ENEMY>
 				<TYPE>ZOLA</TYPE>
@@ -4138,31 +4162,6 @@
 
     <ROOM id = "15-1">
         <ENEMIES>
-			<ENEMY>
-				<TYPE>LYNEL-BLUE</TYPE>
-				<COL>1</COL>
-				<ROW>7</ROW>
-			</ENEMY>
-			<ENEMY>
-				<TYPE>LYNEL-BLUE</TYPE>
-				<COL>2</COL>
-				<ROW>5</ROW>
-			</ENEMY>
-			<ENEMY>
-				<TYPE>LYNEL-BLUE</TYPE>
-				<COL>3</COL>
-				<ROW>6</ROW>
-			</ENEMY>
-			<ENEMY>
-				<TYPE>LYNEL-BLUE</TYPE>
-				<COL>4</COL>
-				<ROW>5</ROW>
-			</ENEMY>
-			<ENEMY>
-				<TYPE>LYNEL-BLUE</TYPE>
-				<COL>10</COL>
-				<ROW>6</ROW>
-			</ENEMY>
         </ENEMIES>
 
         <WARPS>

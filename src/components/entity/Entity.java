@@ -34,6 +34,8 @@ public abstract class Entity
 
 	protected boolean destroyFlag;
 
+	protected int knockbackDistance;
+
 	//Updates the entity's position/other variables
 	public abstract void update();
 

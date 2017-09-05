@@ -30,6 +30,7 @@ public class World
 	private final MapHelper mapHelper;            //Object that constructs the world and create enemies
 	private Document metadataDocument;            //XML document that stores the metadata
 
+	//TODO Fix 5-8, which has a missing entrance
 	//Creates a world from given parameters
 	public World(int startingRoom, String tileMapFilePath, String metadataFilePath, int columns, int rows)
 	{
@@ -112,7 +113,7 @@ public class World
 			}
 
 			//If Link is leaving through the top side
-			if(link.getY() <= heightOfTile && link.getDirection() == Direction.UP)
+			if(link.getY() <= heightOfTile / 2 && link.getDirection() == Direction.UP)
 			{
 				loadNewRoom(new int[] {0, 4}, currentRoom.getId() - 1,
 						new int[] {0, -currentRoom.getMapHeight()});

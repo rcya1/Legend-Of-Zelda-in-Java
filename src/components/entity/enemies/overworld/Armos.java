@@ -1,6 +1,7 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.entity.Direction;
+import components.entity.enemies.Enemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
@@ -20,28 +21,17 @@ public abstract class Armos extends Enemy
 
     Armos(int x, int y, Room room)
     {
-        this.x = x;
-        this.y = y;
+        super(x, y, room, 6, 2, "IMMOBILE", 16, 16);
 
         direction = Direction.DOWN;
 
-        this.room = room;
-
         velX = 0;
         velY = 0;
-
-        width = 16;
-        height = 16;
-
-        state = "IMMOBILE";
 
         moveSpeed = Math.random() <= 0.5 ? 0.75 : 1.5;
 
         walkingUp = new Animation(20, true, Images.Enemies.Armos.ARMOS_BACK_1, Images.Enemies.Armos.ARMOS_BACK_2);
         walkingDown = new Animation(20, true, Images.Enemies.Armos.ARMOS_FRONT_1, Images.Enemies.Armos.ARMOS_FRONT_2);
-
-        health = 6;
-        damage = 2;
     }
 
     public void update()

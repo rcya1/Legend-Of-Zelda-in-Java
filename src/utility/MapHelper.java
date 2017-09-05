@@ -2,6 +2,7 @@ package utility;
 
 import components.entity.Direction;
 import components.entity.enemies.*;
+import components.entity.enemies.overworld.*;
 import components.items.collectibles.Collectible;
 import components.items.collectibles.Sword;
 import components.map.WarpTile;

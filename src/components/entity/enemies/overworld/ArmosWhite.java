@@ -1,4 +1,4 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.map.rooms.Room;
 import utility.Images;

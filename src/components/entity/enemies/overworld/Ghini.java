@@ -1,12 +1,13 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
+import components.entity.enemies.Enemy;
+import components.entity.enemies.KnockbackResistEnemy;
 import components.map.rooms.Room;
 import utility.Images;
 
 import java.awt.*;
 
-//TODO Fix problem where main ghihi moves faster than the fake ones
-public class Ghini extends Enemy
+public class Ghini extends Enemy implements KnockbackResistEnemy
 {
     private boolean mainGhini;
     private int movementRefreshTimer;
@@ -15,24 +16,16 @@ public class Ghini extends Enemy
 
     public Ghini(int x, int y, int direction, Room room, boolean mainGhini)
     {
-        this.x = x;
-        this.y = y;
+        super(x, y, room, 18, 2, "MOVING", 16, 16);
+
         this.direction = direction;
-        this.room = room;
         this.mainGhini = mainGhini;
 
         velX = 0;
         velY = 0;
 
-        width = 16;
-        height = 16;
-
         moveSpeed = 0.5;
         movementRefreshTimer = 0;
-        state = "MOVING";
-
-        health = 18;
-        damage = 2;
     }
 
     public void update()
@@ -105,8 +98,6 @@ public class Ghini extends Enemy
             if(mainGhini) direction = (direction + 4) % 8;
             else direction = ((direction + 4) + (int) (Math.random() * 3 - 1.5)) % 8;
         }
-
-        System.out.println(direction);
 
         super.update();
     }

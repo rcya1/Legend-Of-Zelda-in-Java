@@ -1,6 +1,9 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.entity.Direction;
+import components.entity.enemies.Enemy;
+import components.entity.enemies.ProjectileDeflectibleEnemy;
+import components.entity.enemies.ProjectileEnemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
@@ -22,21 +25,14 @@ public class Lynel extends Enemy implements ProjectileEnemy, ProjectileDeflectib
 
     public Lynel(int x, int y, Direction direction, Room room)
     {
-        this.x = x;
-        this.y = y;
+        super(x, y, room, 8, 4, "MOVING", 16, 16);
 
         this.direction = direction;
-
-        this.room = room;
 
         velX = 0;
         velY = 0;
 
-        width = 16;
-        height = 16;
-
         moveSpeed = 0.8;
-        state = "MOVING";
         
         up = new Animation(10, true, Images.Enemies.Lynel.LYNEL_UP,
                 Images.Enemies.Lynel.LYNEL_UP_2);
@@ -46,12 +42,7 @@ public class Lynel extends Enemy implements ProjectileEnemy, ProjectileDeflectib
                 Images.Enemies.Lynel.LYNEL_DOWN_2);
         left = new Animation(10, true, Images.Enemies.Lynel.LYNEL_LEFT,
                 Images.Enemies.Lynel.LYNEL_LEFT_2);
-
-        health = 8;
-        damage = 4;
     }
-
-
 
     public void update()
     {
@@ -128,6 +119,7 @@ public class Lynel extends Enemy implements ProjectileEnemy, ProjectileDeflectib
 
             if(sword != null) handleSwordWallCollision();
         }
+
         super.update();
     }
 

@@ -53,9 +53,8 @@ public class Link extends Entity
 	private int getAnimationTimer;                     //The timer for the item get animation
 
 	private int transitionAmountX, transitionAmountY;  //How far Link has moved in the transition
-	private int transitionVelX, transitionVelY;        //How Link is moving for the transition
+	private int transitionVelX, transitionVelY;        //How fast Link is moving for the transition
 
-	//TODO Add in the knockback from hitting an enemy
 	public Link(World world)
 	{
 		this.world = world;
@@ -84,6 +83,8 @@ public class Link extends Entity
 		state = "IDLE";
 
 		direction = Direction.UP;
+
+		knockbackDistance = 0;
 
 		health = 6;
 		healthContainers = 3;
@@ -239,6 +240,22 @@ public class Link extends Entity
 					if(!world.isMoving()) state = "IDLE";
 				}
 				break;
+			case "KNOCKBACK":
+				//Get a vector in the opposite direction of the player
+				int[] knockback = direction.getOpposite().getVector(2);
+				velX = knockback[0];
+				velY = knockback[1];
+
+				//Store how far Link has moved
+				knockbackDistance += (velX + velY);
+				System.out.println(knockbackDistance);
+				//If Link has moved two tiles, then stop the knockback
+				if(Math.abs(knockbackDistance) >= room.getWidthOfTile() * 2)
+				{
+					knockbackDistance = 0;
+					state = "IDLE";
+				}
+				break;
 			default:
 				System.out.println(state);
 				break;
@@ -246,8 +263,9 @@ public class Link extends Entity
 
 		//Decrease any invincibility frames
 		if(invincibilityFrames > 0) invincibilityFrames--;
+		if(health < 0) health = 0;
 
-		//Create a screen rectangle for checking if projectiles have gone off screen
+		//Create a screen rectangle for checking if things are going offscreen
 		Rectangle screen = new Rectangle(room.getMapWidth(), room.getMapHeight());
 
 		//Update Link's sword
@@ -278,7 +296,18 @@ public class Link extends Entity
 		//Check for collisions
 		if(!state.equals("TRANSITION"))
 		{
-			handleTileCollisions();
+			//If Link hits a tile or Link goes offscreen, then make Link go out of knockback
+			if(handleTileCollisions() && state.equals("KNOCKBACK"))
+			{
+				knockbackDistance = 0;
+				state = "IDLE";
+			}
+			if(!screen.intersects(getRectangle()) && state.equals("KNOCKBACK"))
+			{
+				knockbackDistance = 0;
+				state = "IDLE";
+			}
+
 			if(invincibilityFrames == 0) handleEnemyCollisions();
 			handleMapItemCollisions();
 		}
@@ -386,6 +415,25 @@ public class Link extends Entity
 						break;
 					}
 					break;
+				case "KNOCKBACK":
+					switch(direction)
+					{
+						case UP:
+							walkUp.draw(g2d, drawX, drawY, width, height);
+							break;
+						case RIGHT:
+							walkRight.draw(g2d, drawX, drawY, width, height);
+							break;
+						case DOWN:
+							walkDown.draw(g2d, drawX, drawY, width, height);
+							break;
+						case LEFT:
+							walkLeft.draw(g2d, drawX, drawY, width, height);
+							break;
+						default:
+							break;
+					}
+					break;
 				default:
 					g2d.setColor(Color.RED);
 					g2d.drawRect(drawX, drawY, width, height);
@@ -421,6 +469,7 @@ public class Link extends Entity
 			if(checkCollisionWith(enemy) && enemy.getDamage() > 0)
 			{
 				health -= enemy.getDamage();
+				state = "KNOCKBACK";
 				invincibilityFrames = 30;
 			}
 
@@ -452,6 +501,7 @@ public class Link extends Entity
 
 						//Cause Link to take damage from the projectile
 						health -= projectileEnemy.getProjectileDamage();
+						state = "KNOCKBACK";
 						invincibilityFrames = 30;
 						projectileEnemy.removeProjectile();
 					}

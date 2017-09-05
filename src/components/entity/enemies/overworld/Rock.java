@@ -1,12 +1,14 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
+import components.entity.enemies.Enemy;
+import components.entity.enemies.KnockbackResistEnemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
 
-public class Rock extends Enemy
+public class Rock extends Enemy implements KnockbackResistEnemy
 {
     private double targetX, targetY;
     private final double gravity;
@@ -17,7 +19,8 @@ public class Rock extends Enemy
 
     public Rock(Room room)
     {
-        this.room = room;
+        super(0, 0, room, 5000, 1, "ROLLING", 16, 16);
+
         animation = new Animation(6, true, Images.Enemies.Rock.ROCK_1, Images.Enemies.Rock.ROCK_2);
 
         init();
@@ -32,14 +35,8 @@ public class Rock extends Enemy
         velX = 0;
         velY = 0;
 
-        width = 16;
-        height = 16;
-
         moveSpeed = 0;
         state = "ROLLING";
-
-        health = 5000;
-        damage = 1;
 
         restartTimer = 120;
 
@@ -80,6 +77,9 @@ public class Rock extends Enemy
         }
 
         animation.update();
+        invincibilityFrames = 10;
+
+        super.update();
     }
 
     private void generateTargetTile()

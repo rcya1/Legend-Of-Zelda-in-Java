@@ -1,4 +1,4 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.entity.Direction;
 import components.map.rooms.Room;
@@ -33,62 +33,62 @@ public class LeeverBlue extends Leever
 	{
 		switch(state)
 		{
-		case "MOVING":
-			double[] vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+			case "MOVING":
+				double[] vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			normal.update();
+				normal.update();
 
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 500) > 498)
-			{
-				state = "BURROW";
-			}
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 500) > 498)
+				{
+					state = "BURROW";
+				}
 
-			if(x < 0) direction = Direction.RIGHT;
-			if(y < 0) direction = Direction.DOWN;
-			if(x > room.getMapWidth()) direction = Direction.LEFT;
-			if(y > room.getMapHeight()) direction = Direction.UP;
-			break;
-		case "BURROW":
-			burrow.update();
-			if(burrow.isOver())
-			{
-				state = "TUNNEL";
-				burrow.reset();
-			}
-			break;
-		case "TUNNEL":
-			vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+				if(x < 0) direction = Direction.RIGHT;
+				if(y < 0) direction = Direction.DOWN;
+				if(x > room.getMapWidth()) direction = Direction.LEFT;
+				if(y > room.getMapHeight()) direction = Direction.UP;
+				break;
+			case "BURROW":
+				burrow.update();
+				if(burrow.isOver())
+				{
+					state = "TUNNEL";
+					burrow.reset();
+				}
+				break;
+			case "TUNNEL":
+				vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			tunnel.update();
+				tunnel.update();
 
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 500) > 498)
-			{
-				state = "EMERGE";
-			}
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 500) > 498)
+				{
+					state = "EMERGE";
+				}
 
-			if(x < 0) direction = Direction.RIGHT;
-			if(y < 0) direction = Direction.DOWN;
-			if(x > room.getMapWidth()) direction = Direction.LEFT;
-			if(y > room.getMapHeight()) direction = Direction.UP;
+				if(x < 0) direction = Direction.RIGHT;
+				if(y < 0) direction = Direction.DOWN;
+				if(x > room.getMapWidth()) direction = Direction.LEFT;
+				if(y > room.getMapHeight()) direction = Direction.UP;
 
-			invincibilityFrames = 1;
-			break;
-		case "EMERGE":
-			emerge.update();
-			if(emerge.isOver())
-			{
-				state = "MOVING";
-				emerge.reset();
-			}
+				invincibilityFrames = 1;
+				break;
+			case "EMERGE":
+				emerge.update();
+				if(emerge.isOver())
+				{
+					state = "MOVING";
+					emerge.reset();
+				}
 
-			invincibilityFrames = 0;
-			break;
+				invincibilityFrames = 0;
+				break;
 		}
 
 		if(handleTileCollisions() && movementRefreshTimer == 0)

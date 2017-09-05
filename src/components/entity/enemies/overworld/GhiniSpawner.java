@@ -1,31 +1,23 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
+import components.entity.enemies.Enemy;
+import components.entity.enemies.KnockbackResistEnemy;
 import components.map.rooms.Room;
 
 import java.awt.*;
 
-public class GhiniSpawner extends Enemy
+public class GhiniSpawner extends Enemy implements KnockbackResistEnemy
 {
     private int spawnTimer;
 
     public GhiniSpawner(int x, int y, Room room)
     {
-        this.x = x;
-        this.y = y;
-
-        this.room = room;
+        super(x, y, room, 5000, 0, "SPAWNING", 16, 16);
 
         velX = 0;
         velY = 0;
 
-        width = 16;
-        height = 16;
-
-        state = "SPAWNING";
         spawnTimer = 0;
-
-        health = -1;
-        damage = 0;
     }
 
     public void update()
@@ -43,7 +35,9 @@ public class GhiniSpawner extends Enemy
                 break;
         }
         if(spawnTimer > 0) spawnTimer--;
-        invincibilityFrames = 1;
+        invincibilityFrames = 10;
+
+        super.update();
     }
 
     public void draw(Graphics2D g2d)

@@ -1,5 +1,6 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
+import components.entity.enemies.Enemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
@@ -15,26 +16,19 @@ public class Peahat extends Enemy
 	private double speed;
 	private int timer;
 
-	//Add in randomness so that they are not synced
 	public Peahat(int x, int y, int direction, Room room)
 	{
-		this.x = x;
-		this.y = y;
-
-		width = 16;
-		height = 16;
+		super(x, y, room, 4, 1, "MOVING", 16, 16);
 
 		this.direction = direction;
 
-		this.room = room;
+		velX = 0;
+		velY = 0;
 
 		speed = 10;
-		timer = 0;
+		timer = (int) (Math.random() * 90);
 
 		animation = new Animation(10, true, Images.Enemies.Peahat.PEAHAT_1, Images.Enemies.Peahat.PEAHAT_2);
-
-		health = 4;
-		damage = 1;
 	}
 
 	public void update()
@@ -71,7 +65,7 @@ public class Peahat extends Enemy
 
 		super.update();
 
-		speed = (Math.cos(timer / 90) * 5) + 5;
+		speed = (Math.cos(timer / 90.0) * 5) + 5;
 
 		if(speed > 2) invincibilityFrames = 1;
 		else invincibilityFrames = 0;

@@ -1,6 +1,9 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.entity.Direction;
+import components.entity.enemies.Enemy;
+import components.entity.enemies.ProjectileDeflectibleEnemy;
+import components.entity.enemies.ProjectileEnemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
@@ -22,21 +25,14 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 
 	public Molblin(int x, int y, Direction direction, Room room)
 	{
-		this.x = x;
-		this.y = y;
+		super(x, y, room, 4, 1, "MOVING", 16, 16);
 
 		this.direction = direction;
-
-		this.room = room;
 
 		velX = 0;
 		velY = 0;
 
-		width = 16;
-		height = 16;
-
 		moveSpeed = 0.5;
-		state = "MOVING";
 
 		up = new Animation(20, true, Images.Enemies.Molblin.MOLBLIN_UP,
 				Images.Enemies.Molblin.MOLBLIN_UP_2);
@@ -48,51 +44,48 @@ public class Molblin extends Enemy implements ProjectileEnemy, ProjectileDeflect
 				Images.Enemies.Molblin.MOLBLIN_LEFT_2);
 
 		spear = null;
-
-		health = 4;
-		damage = 1;
 	}
 
 	public void update()
 	{
 		switch(state)
 		{
-		case "MOVING":
-			double[] vector = direction.getVector(moveSpeed);
-			velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
-			velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
+			case "MOVING":
+				double[] vector = direction.getVector(moveSpeed);
+				velX = (vector[0] != 0) ? vector[0] : alignToGrid(x, 8);
+				velY = (vector[1] != 0) ? vector[1] : alignToGrid(y, 8);
 
-			if((Math.random() * 100) < 2) direction = Direction.getRandom();
-			if((Math.random() * 300) < 2)
-			{
-				state = "SHOOTING";
-				shootingTimer = 0;
-			}
-			if(x < 0) direction = Direction.RIGHT;
-			if(y < 0) direction = Direction.DOWN;
-			if(x > room.getMapWidth()) direction = Direction.LEFT;
-			if(y > room.getMapHeight()) direction = Direction.UP;
-
-			break;
-		case "SHOOTING":
-			velX = 0;
-			velY = 0;
-
-			if(shootingTimer < 90)
-			{
-				shootingTimer++;
-				if(shootingTimer == 60)
+				if((Math.random() * 100) < 2) direction = Direction.getRandom();
+				if((Math.random() * 300) < 2)
 				{
-					spear = new MolblinSpear(x, y, direction);
+					state = "SHOOTING";
+					shootingTimer = 0;
 				}
-			}
-			else
-			{
-				state = "MOVING";
-			}
-			break;
-		default:
-			break;
+				if(x < 0) direction = Direction.RIGHT;
+				if(y < 0) direction = Direction.DOWN;
+				if(x > room.getMapWidth()) direction = Direction.LEFT;
+				if(y > room.getMapHeight()) direction = Direction.UP;
+
+				break;
+			case "SHOOTING":
+				velX = 0;
+				velY = 0;
+
+				if(shootingTimer < 90)
+				{
+					shootingTimer++;
+					if(shootingTimer == 60)
+					{
+						spear = new MolblinSpear(x, y, direction);
+					}
+				}
+				else
+				{
+					state = "MOVING";
+				}
+				break;
+			default:
+				break;
 		}
 
 		switch(direction)

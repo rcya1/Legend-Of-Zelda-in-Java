@@ -76,7 +76,7 @@ public class Animation
 
 	public void draw(Graphics2D g2d, int x, int y, int width, int height)
 	{
-		g2d.drawImage(images[index], x, y, width, height,null);
+		if(index != -1) g2d.drawImage(images[index], x, y, width, height,null);
 	}
 
 	//Resets the current cycle of the animation

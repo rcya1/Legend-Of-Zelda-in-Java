@@ -1,13 +1,17 @@
-package components.entity.enemies;
+package components.entity.enemies.overworld;
 
 import components.entity.Direction;
+import components.entity.enemies.KnockbackResistEnemy;
+import components.entity.enemies.ProjectileDeflectibleEnemy;
+import components.entity.enemies.ProjectileEnemy;
+import components.entity.enemies.TeleportingEnemy;
 import components.map.rooms.Room;
 import utility.Animation;
 import utility.Images;
 
 import java.awt.*;
 
-public class Zola extends TeleportingEnemy implements ProjectileEnemy, ProjectileDeflectibleEnemy
+public class Zola extends TeleportingEnemy implements ProjectileEnemy, ProjectileDeflectibleEnemy, KnockbackResistEnemy
 {
 	private boolean facingUp;
 
@@ -23,20 +27,9 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 
 	public Zola(int x, int y, Room room)
 	{
-		this.x = x;
-		this.y = y;
-
-		width = 16;
-		height = 16;
-
-		this.room = room;
-
-		state = "WARPING";
+		super(x, y, room, 4, 1, "SHOOTING", 16, 16);
 
 		fireball = null;
-
-		health = 4;
-		damage = 1;
 
 		facingUp = false;
 
@@ -51,41 +44,41 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 	{
 		switch(state)
 		{
-		case "WARPING":
-			invincibilityFrames = 1;
+			case "WARPING":
+				invincibilityFrames = 1;
 
-			if(warpTimer == 90)
-			{
-				warp();
-			}
-			if(warpTimer > 120)
-			{
-				state = "SHOOTING";
-				warpTimer = 0;
+				if(warpTimer == 90)
+				{
+					warp();
+				}
+				if(warpTimer > 120)
+				{
+					state = "SHOOTING";
+					warpTimer = 0;
 
-				this.health += 2;
-				if(this.health > 4) this.health = 4;
+					this.health += 2;
+					if(this.health > 4) this.health = 4;
 
-				facingUp = !(room.getLink().getY() > y);
-			}
-			warpTimer++;
-			warping.update();
-			break;
-		case "SHOOTING":
-			if(timer == 60)
-			{
-				fireball = new ZolaFireball(x, y,
-						Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2,
-								room.getLink().getX() - x));
-			}
-			if(timer > 120)
-			{
-				state = "WARPING";
-				timer = 0;
-			}
+					facingUp = !(room.getLink().getY() > y);
+				}
+				warpTimer++;
+				warping.update();
+				break;
+			case "SHOOTING":
+				if(timer == 60)
+				{
+					fireball = new ZolaFireball(x, y,
+							Math.atan2(room.getLink().getY() - y - room.getLink().getHeight() / 2,
+									room.getLink().getX() - x));
+				}
+				if(timer > 120)
+				{
+					state = "WARPING";
+					timer = 0;
+				}
 
-			timer++;
-			break;
+				timer++;
+				break;
 		}
 
 		if(fireball != null)
@@ -114,7 +107,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 			generateTargetLocation();
 
 			//Make sure the new coordinates are in bounds
-			while(!checkTargetIsInMap(destX, destY))
+			while(!(checkTargetIsInMap(destX, destY) || room.getLink().isTransitioning()))
 			{
 				generateTargetLocation();
 			}
@@ -125,7 +118,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 		this.y = destY;
 	}
 
-	void generateTargetLocation()
+	public void generateTargetLocation()
 	{
 		destX = x + (4 * room.getWidthOfTile() -
 				Math.round(Math.random() * 8 * room.getWidthOfTile()));
@@ -133,7 +126,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 				Math.round(Math.random() * 8 * room.getHeightOfTile()));
 	}
 
-	boolean checkTargetIsAvailable(double destX, double destY)
+	public boolean checkTargetIsAvailable(double destX, double destY)
 	{
 		return room.getTile((int) (destX / room.getWidthOfTile()),
 				(int) (destY / room.getHeightOfTile())).isWater();
