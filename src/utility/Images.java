@@ -593,6 +593,17 @@ public class Images
 	public static class Enemies
 	{
 		public static final BufferedImage ENEMY_DEATH = loadSingleImage("/textures/sprites/enemies/Death.png");
+		private static final BufferedImage CLOUD = loadSingleImage("/textures/sprites/enemies/Cloud.png");
+
+		public static final BufferedImage CLOUD_1 = CLOUD != null ?
+				CLOUD.getSubimage(0, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage CLOUD_2 = CLOUD != null ?
+				CLOUD.getSubimage(TILE_WIDTH, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
+		public static final BufferedImage CLOUD_3 = CLOUD != null ?
+				CLOUD.getSubimage(TILE_WIDTH * 2, 0, TILE_WIDTH, TILE_HEIGHT) :
+				null;
 
 		public static class Octorok
 		{

@@ -2,6 +2,7 @@ package components.map.rooms;
 
 import components.MapItem;
 import components.entity.Link;
+import components.entity.enemies.Cloud;
 import components.entity.enemies.Enemy;
 import components.entity.enemies.overworld.Ghini;
 import components.items.collectibles.Collectible;
@@ -23,7 +24,7 @@ public class WorldRoom implements Room
 	private final int id;                        //Col/row of the room in the world
 
 	private int drawX, drawY;                    //Where the room should be drawn
-	private int drawVelX, drawVelY;              //Velocity for the drawX/Y coords
+	private int drawVelX, drawVelY;              //Velocity for the drawX/drawY coords
 
 	private final int numOfColumns, numOfRows;   //Dimensions of the room in cols/rows
 	private final int widthOfTile, heightOfTile; //Dimensions of tiles
@@ -39,7 +40,6 @@ public class WorldRoom implements Room
 	private final MapHelper mapHelper;
 	private RoomMetadata roomMetadata;
 
-	//TODO Add in the Enemies appearing animation, with the cloud of dust
 	public WorldRoom(int id, World world, MapHelper mapHelper)
 	{
 		this.id = id;
@@ -150,6 +150,11 @@ public class WorldRoom implements Room
 				if(animationObject.getAnimation().isOver())
 				{
 					mapItemIterator.remove();
+					if(animationObject instanceof Cloud)
+					{
+						Cloud cloud = (Cloud) animationObject;
+						enemies.add(cloud.getEnemy());
+					}
 				}
 			}
 		}
@@ -187,7 +192,10 @@ public class WorldRoom implements Room
 	public void setRoomMetadata(RoomMetadata roomMetadata)
 	{
 		this.roomMetadata = roomMetadata;
-		this.enemies.addAll(roomMetadata.getEnemies());
+		for(Enemy enemy : roomMetadata.getEnemies())
+		{
+			this.mapItems.add(new Cloud((int) enemy.getX(), (int) enemy.getY(),this, enemy));
+		}
 		this.mapItems.addAll(roomMetadata.getWarpTiles());
 	}
 
