@@ -86,7 +86,7 @@ public class Leever extends TeleportingEnemy
 					targetColumn = -2;
 					targetRow = -2;
 
-					state = "NORMAL";
+					state = "MOVING";
 					emerge.reset();
 				}
 				emerge.update();
@@ -137,7 +137,7 @@ public class Leever extends TeleportingEnemy
 
 	public boolean checkTargetIsAvailable(double destX, double destY)
 	{
-		return room.getTile(targetColumn, targetRow).isPassible();
+		return !(destX < 0) && !(destX > room.getMapWidth()) && !(destY < 0) && !(destY > room.getMapHeight()) && room.getTile(targetColumn, targetRow).isPassible();
 	}
 
 	public void draw(Graphics2D g2d)
@@ -149,7 +149,7 @@ public class Leever extends TeleportingEnemy
 		{
 			switch(state)
 			{
-			case "NORMAL":
+			case "MOVING":
 				normal.draw(g2d, drawX, drawY, width, height);
 				break;
 			case "BURROW":

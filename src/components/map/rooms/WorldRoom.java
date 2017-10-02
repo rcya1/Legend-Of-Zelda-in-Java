@@ -94,66 +94,69 @@ public class WorldRoom implements Room
 	{
 		updateDrawCoordinates();
 
-		boolean destroyAllGhini = false;
-		Iterator enemyIterator = enemies.iterator();
-		while(enemyIterator.hasNext())
+		if(drawVelX == 0 && drawVelY == 0)
 		{
-			Enemy enemy = (Enemy) enemyIterator.next();
-
-			if(link.getSword() != null) enemy.setSword(link.getSword());
-			else enemy.setSword(null);
-			if(link.getArrow() != null) enemy.setArrow(link.getArrow());
-			else enemy.setArrow(null);
-			if(link.getBoomerang() != null) enemy.setBoomerang(link.getBoomerang());
-			else enemy.setBoomerang(null);
-
-			if(enemy.getStunTimer() == 0) enemy.update();
-			else enemy.updateHealth();
-
-			if(enemy.getDestroyFlag())
+			boolean destroyAllGhini = false;
+			Iterator enemyIterator = enemies.iterator();
+			while(enemyIterator.hasNext())
 			{
-				if(enemy instanceof Ghini)
+				Enemy enemy = (Enemy) enemyIterator.next();
+
+				if(link.getSword() != null) enemy.setSword(link.getSword());
+				else enemy.setSword(null);
+				if(link.getArrow() != null) enemy.setArrow(link.getArrow());
+				else enemy.setArrow(null);
+				if(link.getBoomerang() != null) enemy.setBoomerang(link.getBoomerang());
+				else enemy.setBoomerang(null);
+
+				if(enemy.getStunTimer() == 0) enemy.update();
+				else enemy.updateHealth();
+
+				if(enemy.getDestroyFlag())
 				{
-					destroyAllGhini = true;
-				}
-				enemyIterator.remove();
-				mapItems.add(new AnimationObject(
-						(int) Math.round(enemy.getX() - enemy.getWidth() / 2),
-						(int) Math.round(enemy.getY() - enemy.getHeight() / 2),
-						new Animation(3, false,
-								Images.Enemies.ENEMY_DEATH, 16, 16),
-						this));
-			}
-		}
-
-		enemies.addAll(addEnemies);
-		addEnemies.clear();
-
-		if(destroyAllGhini)
-		{
-			for(Enemy enemy : enemies)
-			{
-				if(enemy instanceof Ghini) enemy.setDestroyFlag(true);
-			}
-		}
-
-		Iterator mapItemIterator = mapItems.iterator();
-		while(mapItemIterator.hasNext())
-		{
-			MapItem mapItem = (MapItem) mapItemIterator.next();
-
-			mapItem.update();
-
-			if(mapItem instanceof AnimationObject)
-			{
-				AnimationObject animationObject = (AnimationObject) mapItem;
-				if(animationObject.getAnimation().isOver())
-				{
-					mapItemIterator.remove();
-					if(animationObject instanceof Cloud)
+					if(enemy instanceof Ghini)
 					{
-						Cloud cloud = (Cloud) animationObject;
-						enemies.add(cloud.getEnemy());
+						destroyAllGhini = true;
+					}
+					enemyIterator.remove();
+					mapItems.add(new AnimationObject(
+							(int) Math.round(enemy.getX() - enemy.getWidth() / 2),
+							(int) Math.round(enemy.getY() - enemy.getHeight() / 2),
+							new Animation(3, false,
+									Images.Enemies.ENEMY_DEATH, 16, 16),
+							this));
+				}
+			}
+
+			enemies.addAll(addEnemies);
+			addEnemies.clear();
+
+			if(destroyAllGhini)
+			{
+				for(Enemy enemy : enemies)
+				{
+					if(enemy instanceof Ghini) enemy.setDestroyFlag(true);
+				}
+			}
+
+			Iterator mapItemIterator = mapItems.iterator();
+			while(mapItemIterator.hasNext())
+			{
+				MapItem mapItem = (MapItem) mapItemIterator.next();
+
+				mapItem.update();
+
+				if(mapItem instanceof AnimationObject)
+				{
+					AnimationObject animationObject = (AnimationObject) mapItem;
+					if(animationObject.getAnimation().isOver())
+					{
+						mapItemIterator.remove();
+						if(animationObject instanceof Cloud)
+						{
+							Cloud cloud = (Cloud) animationObject;
+							enemies.add(cloud.getEnemy());
+						}
 					}
 				}
 			}

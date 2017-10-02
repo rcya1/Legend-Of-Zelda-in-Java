@@ -16,7 +16,7 @@ public class Tektite extends Enemy
 
 	public Tektite(int x, int y, Room room)
 	{
-		super(x, y, room, 1, 1, "MOVING", 16, 16);
+		super(x, y, room, 1, 1, "IDLE", 16, 16);
 
 		velX = 0;
 		velY = 0;

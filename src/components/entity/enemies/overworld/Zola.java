@@ -128,8 +128,8 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 
 	public boolean checkTargetIsAvailable(double destX, double destY)
 	{
-		return room.getTile((int) (destX / room.getWidthOfTile()),
-				(int) (destY / room.getHeightOfTile())).isWater();
+		return !(destX < 0) && !(destX > room.getMapWidth()) && !(destY < 0) && !(destY > room.getMapHeight()) &&
+				room.getTile((int) (destX / room.getWidthOfTile()), (int) (destY / room.getHeightOfTile())).isWater();
 	}
 
 	public void draw(Graphics2D g2d)

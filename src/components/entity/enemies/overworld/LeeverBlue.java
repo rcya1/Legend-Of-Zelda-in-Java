@@ -21,8 +21,6 @@ public class LeeverBlue extends Leever
 
 		movementRefreshTimer = 0;
 
-		state = "MOVING";
-
 		normal = new Animation(10, true, Images.Enemies.Leever.LEEVER_BLUE_1, Images.Enemies.Leever.LEEVER_BLUE_2);
 		burrow = new Animation(10, false, Images.Enemies.Leever.LEEVER_BLUE_MIDBURROW, Images.Enemies.Leever.LEEVER_BLUE_BURROW_1, Images.Enemies.Leever.LEEVER_BLUE_BURROW_2);
 		emerge = new Animation(10, false, Images.Enemies.Leever.LEEVER_BLUE_BURROW_2, Images.Enemies.Leever.LEEVER_BLUE_BURROW_1, Images.Enemies.Leever.LEEVER_BLUE_MIDBURROW);
