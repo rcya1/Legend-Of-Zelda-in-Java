@@ -416,6 +416,7 @@ public class Link extends Entity
 					}
 					break;
 				case "KNOCKBACK":
+					//TODO Make flinching sprites better
 					switch(direction)
 					{
 						case UP:
@@ -548,31 +549,34 @@ public class Link extends Entity
 						if(this.direction == warpTile.getDirection())
 						{
 							//Teleport to the warp tile's destination
-							this.x = warpTile.getDestColumn() * room.getWidthOfTile()
-									+ room.getWidthOfTile() / 2;
-							this.y = warpTile.getDestRow() * room.getHeightOfTile()
-									+ room.getHeightOfTile() / 2;
+							teleportLink(warpTile);
 						}
 					}
 					else
 					{
 						//Teleport to the warp tile's destination
-						this.x = warpTile.getDestColumn() * room.getWidthOfTile()
-								+ room.getWidthOfTile() / 2;
-						this.y = warpTile.getDestRow() * room.getHeightOfTile()
-								+ room.getHeightOfTile() / 2;
-					}
-
-					//If the warp tile leads to a cave, then move Link to the cave
-					if(warpTile.getType().equals("CAVE"))
-					{
-						room = new SecretRoom(room.getId(), world,
-								room.getMetadata(),
-								warpTile.getColumn(room.getWidthOfTile()),
-								warpTile.getRow(room.getHeightOfTile()));
+						teleportLink(warpTile);
 					}
 				}
 			}
+		}
+	}
+
+	//Teleports Link to a warp tile's destination
+	private void teleportLink(WarpTile warpTile)
+	{
+		this.x = warpTile.getDestColumn() * room.getWidthOfTile()
+				+ room.getWidthOfTile() / 2;
+		this.y = warpTile.getDestRow() * room.getHeightOfTile()
+				+ room.getHeightOfTile() / 2;
+
+		//If the warp tile leads to a cave, then move Link to the cave
+		if(warpTile.getType().equals("CAVE"))
+		{
+			room = new SecretRoom(room.getId(), world,
+					room.getMetadata(),
+					warpTile.getColumn(room.getWidthOfTile()),
+					warpTile.getRow(room.getHeightOfTile()));
 		}
 	}
 

@@ -13,7 +13,6 @@ public class WarpTile extends MapItem
 	private final String type;                  //Type of the tile (CAVE, DUNGEON)
 	private final Direction direction;          //The direction that the player must approach the tile
 
-	//TODO Fix Warp tile entering (entering from side because of top half tiles, entering with half a tile aka not aligned)
 	//Creates a warp tile in the given room from the given parameters
 	public WarpTile(Room room, int column, int row, int destColumn, int destRow, String type, Direction direction)
 	{
