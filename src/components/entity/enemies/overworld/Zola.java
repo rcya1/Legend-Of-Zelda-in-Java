@@ -25,10 +25,13 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 	private double destX;
 	private double destY;
 
+	private int maxDamage;
+
 	public Zola(int x, int y, Room room)
 	{
 		super(x, y, room, 4, 1, "SHOOTING", 16, 16);
 
+		maxDamage = damage;
 		fireball = null;
 
 		facingUp = false;
@@ -46,6 +49,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 		{
 			case "WARPING":
 				invincibilityFrames = 1;
+				damage = 0;
 
 				if(warpTimer == 90)
 				{
@@ -58,6 +62,7 @@ public class Zola extends TeleportingEnemy implements ProjectileEnemy, Projectil
 
 					this.health += 2;
 					if(this.health > 4) this.health = 4;
+					this.damage = maxDamage;
 
 					facingUp = !(room.getLink().getY() > y);
 				}

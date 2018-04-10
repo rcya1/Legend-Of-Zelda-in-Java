@@ -18,10 +18,13 @@ public class Leever extends TeleportingEnemy
 	private int targetColumn;
 	private int targetRow;
 
+	int maxDamage;
+
 	public Leever(int x, int y, Direction direction, Room room)
 	{
 		super(x, y, room, 4, 1, "MOVING", 16, 16);
 
+		this.maxDamage = damage;
 		this.direction = direction;
 
 		targetColumn = -2;
@@ -53,6 +56,7 @@ public class Leever extends TeleportingEnemy
 				normal.update();
 				break;
 			case "BURROW":
+				this.damage = 0;
 				if(burrow.isOver())
 				{
 					warp();
@@ -60,6 +64,7 @@ public class Leever extends TeleportingEnemy
 					this.y = targetRow * room.getHeightOfTile();
 
 					state = "EMERGE";
+					this.damage = maxDamage;
 
 					burrow.reset();
 				}

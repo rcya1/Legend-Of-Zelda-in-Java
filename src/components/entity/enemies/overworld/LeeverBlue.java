@@ -18,6 +18,7 @@ public class LeeverBlue extends Leever
 
 		health = 8;
 		damage = 2;
+		maxDamage = damage;
 
 		movementRefreshTimer = 0;
 
@@ -50,10 +51,12 @@ public class LeeverBlue extends Leever
 				if(y > room.getMapHeight()) direction = Direction.UP;
 				break;
 			case "BURROW":
+				this.damage = 0;
 				burrow.update();
 				if(burrow.isOver())
 				{
 					state = "TUNNEL";
+					this.damage = maxDamage;
 					burrow.reset();
 				}
 				break;

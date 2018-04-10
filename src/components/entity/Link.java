@@ -248,7 +248,6 @@ public class Link extends Entity
 
 				//Store how far Link has moved
 				knockbackDistance += (velX + velY);
-				System.out.println(knockbackDistance);
 				//If Link has moved two tiles, then stop the knockback
 				if(Math.abs(knockbackDistance) >= room.getWidthOfTile() * 2)
 				{
